@@ -38,6 +38,8 @@ SKIPPED_RANGES = re.compile(
 )
 #: the base SKU Icecat files; pages add a country suffix (C11CL63409B2)
 SKU = re.compile(r"\b(C1[01]C[A-Z0-9]{6})[A-Z0-9]{0,3}\b")
+#: width, depth and height
+DIMENSIONS = 3
 SPEC = re.compile(
     r'specification-heading">\s*([^<]+?)\s*</h5>\s*'
     r'<span class="technical-specifications__specification-value">(.*?)</span>',
@@ -110,7 +112,42 @@ def specifications(spec: dict[str, str], url: str) -> dict[str, Any]:
             else None,
             "ethernet": "Ethernet" in interfaces if interfaces else None,
             "ppm_iso": number(spec.get("Printing Speed ISO/IEC 24734")),
+            "ppm_black": number(after_word(spec.get("Printing Speed"), "Monochrome")),
+            "ppm_color": number(after_word(spec.get("Printing Speed"), "Colour")),
+            "first_page_s": decimal(
+                first(r"Monochrome\s*([\d.]+)", spec.get("First Page Out"))
+            ),
             "paper_input": number(spec.get("Paper Tray Capacity")),
+            "paper_output": number(spec.get("Output Tray Capacity")),
             "weight_kg": decimal(spec.get("Product weight")),
+            "noise_db": decimal(
+                first(r"([\d.]+)\s*dB\s*\(A\)", spec.get("Noise Level"))
+            ),
+            **dimensions(spec.get("Product dimensions", "")),
         }
     )
+
+
+def first(pattern: str, text: str | None) -> str | None:
+    """The first group of the first match of ``pattern``, or None."""
+    match = re.search(pattern, text or "")
+    return match.group(1) if match else None
+
+
+def after_word(text: str | None, word: str) -> str:
+    """The figure before ``word``: "33 pages/min Monochrome, 15 pages/min Colour"."""
+    match = re.search(rf"(\d+)\s*pages/min\s*{word}", text or "")
+    return match.group(1) if match else ""
+
+
+def dimensions(text: str) -> dict[str, float | None]:
+    """Read "361 x 317 x 162 mm (Width x Depth x Height)" as catalogue fields."""
+    found = (
+        re.findall(r"\d+(?:\.\d+)?", text.split("mm", maxsplit=1)[0])
+        if "mm" in text
+        else []
+    )
+    if len(found) != DIMENSIONS:
+        return {}
+    width, depth, height = (float(n) for n in found)
+    return {"width_mm": width, "depth_mm": depth, "height_mm": height}

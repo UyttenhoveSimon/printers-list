@@ -18,6 +18,8 @@ from . import Candidate
 LOC = re.compile(r"<loc>([^<]+)</loc>")
 #: product pages read per run at most, so a first run stays reasonable
 MAX_PAGES = 400
+#: bumped when a reader takes more from its pages: older entries are read again
+PAGE_VERSION = 2
 
 #: html -> (product code, specifications), or None when the page is no printer
 ReadPage = Callable[[str, str], tuple[str, dict[str, Any]] | None]
@@ -47,8 +49,8 @@ def discover(
     budget = MAX_PAGES
     for page_id, url in printer_pages(sitemap).items():
         entry: Any = cache.get(page_id)
-        if not isinstance(entry, dict):
-            # an older cache kept the code alone: read the page again
+        if not isinstance(entry, dict) or entry.get("v", 1) < PAGE_VERSION:
+            # read under an older reader, or a cache that kept the code alone
             if budget == 0:
                 continue
             budget -= 1
@@ -57,9 +59,15 @@ def discover(
             except FetchError:
                 continue
             fresh: dict[str, Any] = {"code": read[0], "record": read[1]} if read else {}
-            entry = cache[page_id] = fresh | {"code": fresh.get("code", "")}
-        code: str = entry["code"]
-        record: dict[str, Any] | None = entry.get("record")
+            entry = cache[page_id] = fresh | {
+                "code": fresh.get("code", ""),
+                "v": PAGE_VERSION,
+            }
+        code = str(entry.get("code") or "")
+        found_record = entry.get("record")
+        record: dict[str, Any] | None = (
+            found_record if isinstance(found_record, dict) else None
+        )
         if code:
             found.setdefault(
                 code,

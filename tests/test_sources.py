@@ -9,6 +9,7 @@ from printers.sources import (
     Candidate,
     all_sources,
     brother,
+    brother_support,
     epson,
     hp,
     icecat_index,
@@ -72,8 +73,16 @@ def test_epson_reads_the_page_once_then_reuses_it_in_other_markets():
         "wifi": True,
         "ethernet": False,
         "ppm_iso": 11,
+        "ppm_black": 33,
+        "ppm_color": 15,
+        "first_page_s": 10.0,
         "paper_input": 100,
+        "paper_output": 30,
         "weight_kg": 4.2,
+        "noise_db": 38.0,
+        "width_mm": 361.0,
+        "depth_mm": 317.0,
+        "height_mm": 162.0,
     }
     assert cache["60087"]["code"] == "C11CL63409"
     assert "161" not in cache  # its page failed: read again next run
@@ -169,7 +178,7 @@ def test_lexmark_discovers_printers_from_its_sitemap():
     assert found.code == "40N9163"
     assert found.record is not None
     assert found.record["name"] == "Lexmark MC3326adwe"
-    assert cache["11831"] == {"code": ""}  # not a printer page: remembered
+    assert cache["11831"] == {"code": "", "v": pages.PAGE_VERSION}  # remembered
 
 
 def test_epson_without_product_sitemap_is_an_error():
@@ -216,3 +225,60 @@ def test_every_source_is_registered():
         "epson",
         "lexmark",
     ]
+
+
+def test_a_page_read_by_an_older_reader_is_read_again():
+    gb = lexmark.SITEMAP.format(locale="en_gb")
+    mc = next(
+        iter(lexmark.printer_pages(fixture_text("lexmark_sitemap_gb.xml")).values())
+    )
+    fetcher = FakeFetcher(
+        {
+            gb: fixture_text("lexmark_sitemap_gb.xml"),
+            mc: fixture_text("lexmark_mc3326adwe.html"),
+        }
+    )
+    cache = {
+        "14450": {"code": "40N9163", "record": {"name": "old"}},
+        "11831": {"code": "", "v": pages.PAGE_VERSION},
+    }
+    (found,) = lexmark.discover(fetcher, "GB", cache)
+    assert found.record is not None
+    assert found.record["name"] == "Lexmark MC3326adwe"
+    assert cache["14450"]["v"] == pages.PAGE_VERSION
+
+
+def test_brother_support_values_per_model():
+    """Brother's spec pages list values per model group within one cell."""
+    html = fixture_text("brother_support_spec_mfcl3740cdw.html")
+    mfc = brother_support.specifications(html, "MFC-L3740CDW")
+    assert mfc == {
+        "weight_kg": 20.0,
+        "noise_db": 46.0,
+        "adf_capacity": 50,
+        "paper_input": 250,
+        "paper_output": 150,
+    }
+    dcp = brother_support.specifications(html, "DCP-L3520CDW")
+    assert dcp["weight_kg"] == 18.6
+    assert "adf_capacity" not in dcp  # the ADF row names the models that have one
+
+
+def test_brother_support_finds_the_model_and_its_page():
+    assert (
+        brother_support.model_of("Brother MFC-L3740CDW multifunction printer")
+        == "MFC-L3740CDW"
+    )
+    assert brother_support.model_of("Brother printer") == ""
+    assert brother_support.spec_url("MFC-L3740CDW").endswith("prod=mfcl3740cdw_eu")
+    fetcher = FakeFetcher(
+        {
+            brother_support.spec_url("MFC-L3740CDW"): fixture_text(
+                "brother_support_spec_mfcl3740cdw.html"
+            )
+        }
+    )
+    record = brother_support.enrich(fetcher, {"name": "Brother MFC-L3740CDW"})
+    assert record is not None
+    assert record["weight_kg"] == 20.0
+    assert brother_support.enrich(fetcher, {"name": "no model here"}) is None
