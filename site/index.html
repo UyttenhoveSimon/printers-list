@@ -28,6 +28,10 @@
     <div class="bar">
       <p id="count" aria-live="polite"></p>
       <button id="since" type="button" class="ghost small" hidden></button>
+      <div id="view" class="seg view-switch" role="group" data-i18n-label="view">
+        <button type="button" data-view="grid" data-i18n="view_grid">Grid</button>
+        <button type="button" data-view="list" data-i18n="view_list">List</button>
+      </div>
       <label class="sort"><span data-i18n="sort">Sort</span> <select id="sort"></select></label>
     </div>
     <div id="active" class="active"></div>

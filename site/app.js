@@ -31,18 +31,28 @@ function value(key, v) {
   return String(v);
 }
 
+// the maker sites read for each brand: where "not on the maker's site" looked
+const MAKER_SITES = {
+  Epson: "epson.eu", Lexmark: "lexmark.com", HP: "hp.com", Canon: "canon.co.uk", KYOCERA: "kyoceradocumentsolutions.eu",
+};
+
+function unlistedNote(p) {
+  return t("unlisted_note", { site: MAKER_SITES[p.brand] || p.brand });
+}
+
 function tags(p) {
   const out = [];
   if (p.office) out.push([t("class_office"), "office"]);
   if (p.new) out.push([t("new"), "new"]);
   if (!p.available) out.push([t("not_on_sale"), "off"]);
+  if (p.maker_listed === false) out.push([t("not_on_maker_site"), "unlisted", unlistedNote(p)]);
   if (p.technology) out.push([p.technology === "laser" && p.led ? "LED" : t(p.technology), ""]);
   if (p.ink_tank) out.push([t("ink_tank"), ""]);
   out.push([p.color ? t("colour_yes") : t("colour_no"), ""]);
   if (p.duplex_print) out.push([t("duplex_print"), "good"]);
   if (p.duplex_scan) out.push([t("duplex_scan"), "good"]);
   for (const k of ["scan", "fax", "adf", "wifi", "ethernet", "airprint", "a3"]) if (p[k]) out.push([t(k), ""]);
-  return out.map(([label, cls]) => `<span class="tag ${cls}">${esc(label)}</span>`).join("");
+  return out.map(([label, cls, title]) => `<span class="tag ${cls}"${title ? ` title="${esc(title)}"` : ""}>${esc(label)}</span>`).join("");
 }
 
 // --- the side panel -------------------------------------------------------------
@@ -126,6 +136,9 @@ function syncPanel() {
 
 // --- results --------------------------------------------------------------------
 
+// the figures a row of the list view shows beside the photo
+const ROW_SPECS = ["ppm_black", "ppm_color", "paper_input", "max_paper", "weight_kg", "noise_db", "tec_kwh"];
+
 function card(p) {
   const meta = [];
   if (p.ppm_black) meta.push(`${p.ppm_black} ppm`);
@@ -138,6 +151,8 @@ function card(p) {
     <h3><button type="button" class="linkish" data-open="${esc(p.id)}">${esc(p.name)}</button></h3>
     <div class="meta">${meta.map(esc).join(" · ")}</div>
     <div class="tags">${tags(p)}</div>
+    <dl class="row-specs">${ROW_SPECS.filter((k) => p[k] !== undefined && p[k] !== null)
+      .map((k) => `<div><dt>${esc(t(k))}</dt><dd>${esc(value(k, p[k]))}</dd></div>`).join("")}</dl>
     <label class="check compare-check"><input type="checkbox" data-compare="${esc(p.id)}" ${picked ? "checked" : ""}> ${esc(t("compare"))}</label>
   </li>`;
 }
@@ -191,6 +206,8 @@ function render({ scroll = false } = {}) {
   const found = L.search(all, state);
   const { page, pages, items } = L.paginate(found, state.page);
   state.page = page;
+  $("#results").classList.toggle("list", state.view === "list");
+  for (const b of document.querySelectorAll("#view button")) b.setAttribute("aria-pressed", String(b.dataset.view === state.view));
   $("#results").innerHTML = items.length ? items.map(card).join("") : `<li class="empty">${esc(t("none"))}</li>`;
   $("#pager").innerHTML = renderPager(page, pages);
   $("#count").textContent = t("count", { n: formatNumber(found.length), total: formatNumber(all.length) });
@@ -268,7 +285,7 @@ async function openDetail(id) {
   $("#detail-body").innerHTML = `
     <div class="detail-head">
       ${p.image ? `<img src="${esc(p.image)}" alt="" width="240" height="180">` : ""}
-      <div><h2 id="detail-title">${esc(p.name)}</h2><div class="tags">${tags(p)}</div>${checksNote(p)}<p class="links">${links.join(" · ")}</p></div>
+      <div><h2 id="detail-title">${esc(p.name)}</h2><div class="tags">${tags(p)}</div>${p.maker_listed === false ? `<p class="warn">${esc(unlistedNote(p))}</p>` : ""}${checksNote(p)}<p class="links">${links.join(" · ")}</p></div>
     </div>
     <h3>${esc(t("supplies"))}</h3>${suppliesList(p.id)}
     <h3>${esc(t("sold_in"))}</h3><p>${countries.length ? countries.map(esc).join(", ") : esc(t("unknown"))}</p>
@@ -370,7 +387,7 @@ function bind() {
     if (!b) return;
     const seg = b.closest(".seg");
     if (seg) state[seg.dataset.key] = b.dataset.value;
-    else if (b.id === "reset") state = { ...L.emptyState(state.defaultYear), compare: state.compare };
+    else if (b.id === "reset") state = { ...L.emptyState(state.defaultYear), compare: state.compare, view: state.view };
     else return;
     state.page = 1;
     render();
@@ -381,11 +398,15 @@ function bind() {
     typing = setTimeout(() => { state.q = e.target.value.trim(); state.page = 1; render(); }, 150);
   });
   $("#since").addEventListener("click", () => { state.year = ""; state.page = 1; render(); });
+  $("#view").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-view]");
+    if (b) { state.view = b.dataset.view; render(); }
+  });
   $("#sort").addEventListener("change", (e) => { state.sort = e.target.value; state.page = 1; render(); });
   $("#active").addEventListener("click", (e) => {
     const b = e.target.closest("button");
     if (!b) return;
-    if (b.dataset.clear === "all") state = { ...L.emptyState(state.defaultYear), compare: state.compare };
+    if (b.dataset.clear === "all") state = { ...L.emptyState(state.defaultYear), compare: state.compare, view: state.view };
     else L.clearFilter(state, b.dataset.clear, b.dataset.value);
     render();
   });

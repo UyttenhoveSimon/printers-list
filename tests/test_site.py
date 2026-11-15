@@ -876,3 +876,46 @@ def test_every_source_is_listed_with_its_status(page):
         page.get_attribute('#sources-table a[href="https://icecat.biz"]', "target")
         == "_blank"
     )
+
+
+def test_the_list_view_shows_a_row_per_printer_and_stays_in_the_url(page):
+    page.click('#view button[data-view="list"]')
+    assert "list" in page.get_attribute("#results", "class")
+    assert "view=list" in hash_of(page)
+    assert page.is_visible("#results li .row-specs")
+    assert (
+        page.get_attribute('#view button[data-view="list"]', "aria-pressed") == "true"
+    )
+    page.click("#reset")
+    assert "list" in page.get_attribute("#results", "class")  # a filter reset keeps it
+    page.click('#view button[data-view="grid"]')
+    assert "view=list" not in hash_of(page)
+    assert page.is_hidden("#results li .row-specs")
+
+
+def test_a_printer_its_maker_no_longer_lists_says_so(page):
+    """Epson's site is read for Epson's models; none of the fixture's is on it."""
+    page.fill("#q", "Model 02")
+    page.wait_for_function(
+        "() => document.querySelector('#count').textContent.startsWith('1 ')"
+    )
+    tag = page.query_selector("#results li .tag.unlisted")
+    assert tag is not None
+    assert tag.text_content() == "Not on the maker's site"
+    assert "epson.eu" in tag.get_attribute("title")
+    page.click("#results li button.linkish")
+    assert "epson.eu" in page.text_content("#detail .warn")
+    page.click("#detail [data-close]")
+    page.fill("#q", "Model 01")  # an HP: its listing was not read, no tag
+    page.wait_for_function(
+        "() => document.querySelector('#results h3').textContent.includes('01')"
+    )
+    assert page.query_selector("#results li .tag.unlisted") is None
+
+
+def test_view_in_the_url(page):
+    assert logic(page, "return L.decode('#view=list').view") == "list"
+    assert logic(page, "return L.decode('#view=tiles').view") == "grid"
+    assert logic(page, "return L.encode({...L.emptyState(''), view: 'list'})") == (
+        "view=list"
+    )

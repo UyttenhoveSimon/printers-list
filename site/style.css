@@ -141,7 +141,7 @@ select {
 /* results */
 .bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
 #count { margin: 0; color: var(--muted); }
-#since { margin-right: auto; }
+#since { margin-right: 0; }
 #since[hidden] { display: none; }
 .sort { display: flex; gap: 8px; align-items: center; color: var(--muted); }
 
@@ -177,6 +177,32 @@ select {
 .tag.new { background: var(--new-soft); color: var(--new); font-weight: 600; }
 .tag.office { background: var(--warn-soft); color: var(--warn); font-weight: 600; }
 .tag.off { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+.tag.unlisted { background: var(--warn-soft); color: var(--warn); cursor: help; }
+
+/* the list view: one row per printer, a small photo, the details beside it */
+.row-specs { display: none; }
+.grid.list { grid-template-columns: 1fr; gap: 8px; }
+.grid.list .card {
+  display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; grid-template-areas:
+    "img name compare" "img meta compare" "img tags compare" "img specs compare";
+  column-gap: 16px; row-gap: 4px; padding: 10px 14px; align-items: start;
+}
+.grid.list .card .img { grid-area: img; width: 96px; }
+.grid.list .card h3 { grid-area: name; }
+.grid.list .card .meta { grid-area: meta; }
+.grid.list .card .tags { grid-area: tags; margin-top: 0; }
+.grid.list .row-specs { grid-area: specs; display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 2px 0 0; font-size: 13px; }
+.row-specs div { display: flex; gap: 6px; }
+.row-specs dt { color: var(--muted); }
+.row-specs dd { margin: 0; font-weight: 600; }
+.grid.list .compare-check { grid-area: compare; border-top: 0; padding-top: 0; align-self: center; white-space: nowrap; }
+@media (max-width: 640px) {
+  .grid.list .card { grid-template-columns: 72px minmax(0, 1fr); grid-template-areas: "img name" "img meta" "tags tags" "specs specs" "compare compare"; }
+  .grid.list .card .img { width: 72px; }
+}
+.view-switch { margin: 0 0 0 auto; flex: none; }
+.view-switch button { flex: none; padding: 6px 12px; overflow: visible; }
+.view-switch button[aria-pressed="true"] { color: var(--accent); font-weight: 600; background: var(--accent-soft); }
 .compare-check { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; }
 .empty { color: var(--muted); padding: 40px 0; text-align: center; grid-column: 1 / -1; }
 

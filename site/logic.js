@@ -3,6 +3,8 @@
 
 export const PAGE_SIZE = 48;
 export const COMPARE_MAX = 4;
+// cards in a grid, or one row each: a small photo, the details beside it
+export const VIEWS = ["grid", "list"];
 // By default the list starts this many years back: Icecat still counts some
 // long-gone models as on the market somewhere.
 export const DEFAULT_YEARS = 10;
@@ -23,6 +25,9 @@ export const GROUPS = [
   { id: "availability", open: true, filters: [
     { key: "available", type: "flag", default: true },
     { key: "new", label: "new_week", type: "flag" },
+    // its maker's own site still lists it: not a long-gone model Icecat
+    // keeps "on the market"
+    { key: "maker_listed", label: "listed_by_maker", type: "flag" },
   ] },
   { id: "two_sided", open: true, filters: [
     { key: "duplex_print", type: "flag" },
@@ -117,7 +122,7 @@ export function isOff(f, v) {
 }
 
 export function emptyState(defaultYear = "") {
-  const state = { q: "", year: defaultYear, defaultYear, markets: new Set(), brands: new Set(), sort: DEFAULT_SORT, page: 1, compare: [] };
+  const state = { q: "", year: defaultYear, defaultYear, markets: new Set(), brands: new Set(), sort: DEFAULT_SORT, page: 1, compare: [], view: "grid" };
   for (const f of FILTERS) state[f.key] = offValue(f);
   return state;
 }
@@ -284,6 +289,7 @@ export function encode(state) {
   if (state.sort !== DEFAULT_SORT) h.set("sort", state.sort);
   if (state.page > 1) h.set("page", String(state.page));
   if (state.compare.length) h.set("cmp", state.compare.join(","));
+  if (state.view !== "grid") h.set("view", state.view);
   return h.toString();
 }
 
@@ -304,6 +310,7 @@ export function decode(hash, defaultYear = "") {
   state.sort = SORTS[h.get("sort")] ? h.get("sort") : DEFAULT_SORT;
   state.page = Math.max(1, Number(h.get("page")) || 1);
   state.compare = (h.get("cmp") || "").split(",").filter(Boolean).slice(0, COMPARE_MAX);
+  state.view = VIEWS.includes(h.get("view")) ? h.get("view") : "grid";
   return state;
 }
 
