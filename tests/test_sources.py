@@ -316,7 +316,11 @@ def test_hp_shop_finds_a_printer_by_its_sku_in_the_shop_list():
     url = "https://www.hp.com/gb-en/shop/products/printers/hp-color-laserjet-enterprise-mfp-m776dn-t3u55a-b19"
     fetcher = FakeFetcher(
         {
-            hp_shop.LIST_URL: fixture_text("hp_products_url_gb_en.txt"),
+            hp_shop.list_url("gb-en"): fixture_text("hp_products_url_gb_en.txt"),
+            **{
+                hp_shop.list_url(locale): FetchError("refused")
+                for locale in hp_shop.LOCALES[1:]
+            },
             url: fixture_text("hp_shop_m776dn.html"),
         }
     )
@@ -324,7 +328,8 @@ def test_hp_shop_finds_a_printer_by_its_sku_in_the_shop_list():
     assert record is not None
     assert record["weight_kg"] == 70.9
     assert hp_shop.enrich(fetcher, {"code": "XXXXXX"}) is None
-    assert fetcher.calls.count(hp_shop.LIST_URL) == 1  # the list is read once
+    # each list is read once a run
+    assert fetcher.calls.count(hp_shop.list_url("gb-en")) == 1
 
 
 def test_hp_power_is_the_printing_figure_or_nothing():
@@ -426,3 +431,19 @@ def test_a_cut_short_icecat_index_is_a_fetch_error(monkeypatch):
     fetcher = SimpleNamespace(stream=lambda url, auth: Response())
     with pytest.raises(FetchError, match="cut short"):
         icecat_index.discover(fetcher, "ALL", {})
+
+
+def test_hp_shop_reads_a_german_sheet_under_the_english_labels():
+    page = fixture_text("hp_shop_de_4002dw.html")
+    record = hp_shop.specifications(hp_shop.spec_sheet(page, english=False))
+    assert record["weight_kg"] == 8.56  # "8,56 kg"
+    assert record["duty_cycle"] == 80000  # "Bis zu 80.000 Seiten"
+    assert record["monthly_volume"] == 4000  # "750 bis 4.000"
+    assert record["tec_kwh"] == 0.36
+    assert (record["width_mm"], record["paper_input"]) == (381.0, 350)
+
+
+def test_hp_figures_written_the_local_way():
+    assert hp_shop.english_figures("1.140 x 570 mm") == "1140 x 570 mm"
+    assert hp_shop.english_figures("0,109 Watt") == "0.109 Watt"
+    assert hp_shop.english_figures("Up to 3,000 pages") == "Up to 3,000 pages"

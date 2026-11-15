@@ -303,7 +303,7 @@ const SOURCES = [
   { name: "hp.com", url: "https://www.hp.com", label: "HP", gives: "source_hp" },
   { name: "brother", url: "https://www.brother.eu", label: "Brother", gives: "source_brother" },
   { name: "brother-support", url: "https://support.brother.com", label: "Brother support", gives: "source_brother_support" },
-  { name: "hp-shop", url: "https://www.hp.com/gb-en/shop", label: "HP shop", gives: "source_hp_shop" },
+  { name: "hp-shop", url: "https://www.hp.com/gb-en/shop", label: "HP shops", gives: "source_hp_shop" },
   { name: "canon-uk", url: "https://www.canon.co.uk", label: "Canon UK", gives: "source_canon_uk" },
   { name: "kyocera", url: "https://www.kyoceradocumentsolutions.eu", label: "Kyocera", gives: "source_kyocera" },
 ];

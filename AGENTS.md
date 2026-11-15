@@ -54,7 +54,7 @@ printers/
     epson.py        Epson, 7 countries: SKU and spec sheet (cross-checks Icecat)
     lexmark.py      Lexmark, 9 countries: the record itself (not in Open Icecat)
     brother_support.py  support.brother.com spec pages: fills Brother's gaps
-    hp_shop.py      HP's UK shop spec sheets, through browser.py: fills HP's gaps
+    hp_shop.py      HP's shop spec sheets (7 countries), through browser.py: fills HP's gaps
     canon_uk.py     canon.co.uk spec pages, through browser.py: fills Canon's gaps
     kyocera.py      Kyocera Europe's product pages: fills Kyocera's gaps
     hp.py, brother.py  model lists; both refuse non-browser clients today
