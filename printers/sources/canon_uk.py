@@ -21,15 +21,22 @@ from .pages import compact
 NAME = "canon-uk"
 #: canon.co.uk refuses plain HTTP clients
 BROWSER = True
+#: what the page states; a printer missing any of them is read
 FIELDS = (
-    "weight_kg",
-    "width_mm",
+    "ppm_iso",
+    "ppm_black",
+    "print_dpi",
+    "first_page_s",
     "paper_input",
     "paper_output",
+    "monthly_volume",
+    "duty_cycle",
+    "weight_kg",
     "noise_db",
     "power_w",
-    "monthly_volume",
-    "first_page_s",
+    "tec_kwh",
+    "max_paper",
+    "width_mm",
 )
 SITEMAP = "https://www.canon.co.uk/sitemap/sitemap-default-uk-en.xml"
 SPEC_PAGE = re.compile(r"/([a-z0-9_-]+)/specifications/$", re.IGNORECASE)

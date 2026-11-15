@@ -21,6 +21,7 @@ from .pages import compact
 NAME = "hp-shop"
 #: hp.com refuses plain HTTP clients
 BROWSER = True
+#: what the page states; a printer missing any of them is read
 FIELDS = (
     "weight_kg",
     "width_mm",
@@ -33,6 +34,7 @@ FIELDS = (
     "print_dpi",
     "power_w",
     "tec_kwh",
+    "max_paper",
 )
 LIST_URL = "https://www.hp.com/gb-en/shop/media/facets_url/products_url_gb_en.txt"
 PRINTER_URL = re.compile(

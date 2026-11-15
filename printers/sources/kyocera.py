@@ -17,7 +17,17 @@ from .canon_uk import dimensions, find, first, sheets
 from .pages import compact
 
 NAME = "kyocera"
-FIELDS = ("weight_kg", "width_mm", "power_w", "paper_input", "paper_output")
+#: what the page states; a printer missing any of them is read
+FIELDS = (
+    "ppm_black",
+    "print_dpi",
+    "weight_kg",
+    "width_mm",
+    "power_w",
+    "paper_input",
+    "paper_output",
+    "max_paper",
+)
 SITEMAP = "https://www.kyoceradocumentsolutions.eu/sitemap.xml"
 PRODUCT_PAGE = re.compile(r"/en/products/(?:printers|mfp)/([A-Za-z0-9-]+)\.html$")
 #: the ranges in front of a model code, dropped to match names with or without
