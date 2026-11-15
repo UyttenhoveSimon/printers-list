@@ -4678,6 +4678,20 @@
      "wifi": true
     }
    },
+   "28788": {
+    "code": "C11CH60401",
+    "record": {
+     "duplex_print": true,
+     "ethernet": true,
+     "fax": true,
+     "paper_input": 250,
+     "ppm_iso": 25,
+     "scan": true,
+     "technology": "inkjet",
+     "weight_kg": 63.4,
+     "wifi": true
+    }
+   },
    "28801": {
     "code": "C11CH96401",
     "record": {
@@ -37896,8 +37910,8 @@
   },
   "icecat:132421955": {
    "checked": "2026-11-15",
-   "id": 132421955,
-   "reason": ""
+   "id": null,
+   "reason": "Icecat answered 500"
   },
   "icecat:132421956": {
    "checked": "2026-11-15",
@@ -80964,6 +80978,11 @@
    "id": 92438094,
    "reason": ""
   },
+  "icecat:92438095": {
+   "checked": "2026-11-15",
+   "id": 92438095,
+   "reason": ""
+  },
   "icecat:92438096": {
    "checked": "2026-11-15",
    "id": 92438096,
@@ -84412,9 +84431,9 @@
  },
  "report": {
   "date": "2026-11-15",
-  "lookups": 8497,
-  "new": 7932,
-  "pending": 1,
+  "lookups": 10477,
+  "new": 1,
+  "pending": 0,
   "sources": {
    "brother:BE": {
     "detail": "www.brother.be refused the request (403)",
