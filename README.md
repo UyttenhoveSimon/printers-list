@@ -31,15 +31,16 @@ I could not find an easy way to find a printer with the specs I wanted, so I bui
 ## ✨ Features
 
 - 🔁 **Two-sided printing and scanning**: automatic duplex only. A "manual duplex" that asks you to turn the stack over does not count.
-- 🖨️ **Technology**: laser (LED included) or inkjet, and refillable ink tanks (EcoTank, Smart Tank, MegaTank...).
-- 🎨 **Colour or mono**.
-- 📠 **Functions**: scan, copy, fax, automatic document feeder (ADF), A3.
-- 📶 **Connectivity**: Wi-Fi, Ethernet, Wi-Fi Direct, AirPrint, NFC.
-- ⚡ **Speed** in pages per minute, and **release year**.
-- 🌍 **Sold in**: Belgium, the Netherlands, France, Germany, the UK, Switzerland and more.
+- 🧰 **Every spec is a filter** in the side panel: technology (laser, LED, inkjet, ink tank), colour, scan, copy, fax, ADF, borderless, A3, paper capacity, connectivity (Wi-Fi, Wi-Fi Direct, Ethernet, USB, AirPrint, Mopria, NFC, Bluetooth), display, speed, time to first page, duty cycle, resolution, size, weight, noise, power, release year, country and brand.
+- 🖋️ **Cartridges**: the ink, toner and drums each printer takes, with the starter cartridge yield.
+- 🌍 **Where it is sold**: the countries each model is marketed in, with country names in your language.
+- ✅ **Cross-checked**: printers whose maker's site states the same specs as Icecat are marked as confirmed, and any disagreement is shown.
+- ⚖️ **Comparator**: tick up to four printers and compare them side by side, all specs or only the differences.
+- 🗣️ **International**: English, French, Dutch and German, picked from your browser.
+- 📄 **Paginated**: 48 printers a page, so thousands of models stay fast.
 - 🆕 **New this week**: models first seen in the latest weekly run.
-- 🔗 **Shareable**: the filters live in the URL.
-- 🚀 **Fast**: one static page and one compact JSON file, with no framework and no build step.
+- 🔗 **Shareable**: the filters, page and comparison live in the URL.
+- 🚀 **Fast**: a static page with no framework or build step. The list loads one compact file, and the cartridges load only when you open a printer.
 
 ## ⚙️ How it works
 
@@ -51,10 +52,10 @@ I could not find an easy way to find a printer with the specs I wanted, so I bui
  └──────────────────────────┘    └───────────────────────┘    └─────────────────────┘
 ```
 
-1. **Discover.** Each source lists the printers it sells, per market.
+1. **Discover.** Each source lists the printers it sells, per market. Manufacturer sites also give their own spec sheet.
 2. **Look up.** A model not seen before is looked up in [Open Icecat](https://icecat.biz) and its data sheet is mapped to the filters. What Icecat answered is remembered in `data/state.json`, so each week only the **delta** is fetched. A code Icecat does not know is asked again after a month.
-3. **Merge.** `data/products.json` keeps one record per Icecat product with its sightings, meaning which source listed it, where and when. Regional SKUs of one model (the same DCP-T430W in Europe and in Mexico) are folded into a single row.
-4. **Publish.** `printers build` writes the page and a compact `printers.json`, leaving out fields that are false, and GitHub Pages serves it.
+3. **Merge.** `data/products.json` keeps one record per product with its sightings, meaning which source listed it, where and when. When a maker's page and Icecat disagree on a field such as two-sided printing, fax or speed, the record notes it. A brand Icecat lacks (Lexmark) gets its record from its own pages. Regional SKUs of one model (the same DCP-T430W in Europe and in Mexico) are folded into a single row.
+4. **Publish.** `printers build` writes the page, a compact `printers.json` for the list and a `details.json` for cartridges and checks, each versioned by content hash. GitHub Pages serves them.
 
 A printer stays **on sale** while one of its sources still lists it. When a source is down, walled or suddenly returns nothing, its printers keep their status instead of disappearing, and the run reports the problem.
 
@@ -63,12 +64,13 @@ A printer stays **on sale** while one of its sources still lists it. When a sour
 | Source | What it gives | Status |
 | --- | --- | --- |
 | Icecat on-market index | Every printer from the brands that sponsor Open Icecat (HP, Canon, Brother, Epson, Kyocera, Xerox...) with its countries | ✅ needs an Icecat account |
-| epson.co.uk / .be / .fr / .de | Epson's own catalogue per market | ✅ |
+| epson.co.uk, .be, .nl, .fr, .de, .it, .es | Epson's catalogue per country, with its spec sheets to cross-check Icecat | ✅ |
+| lexmark.com (GB, BE, NL, FR, DE, CH, IT, ES, US) | Lexmark's printers and full specs; Lexmark is not in Open Icecat | ✅ |
 | hp.com (GB, FR, DE) | HP's shop list | ⛔ refuses non-browser clients |
 | brother.* (GB, BE, FR, DE) | Brother's support sitemap | ⛔ 403 |
 | Canon, Galaxus, Digitec | | ⛔ 403 |
 | Amazon | | ⛔ forbids automated access |
-| Lexmark | | ❌ not in Open Icecat |
+| Kyocera | Pages answer, but list no product code Icecat knows | 🔜 |
 
 Anti-bot walls are **reported, never bypassed**. The fetcher says who it is in its user agent, pauses between requests and gives up on a site that refuses it. The weekly [update](.github/workflows/update.yml) ends with `printers check`, which fails the run when a source that used to answer stops, so a broken site is reported rather than silently shrinking the list.
 
@@ -109,7 +111,8 @@ python -m http.server -d _site    # open http://localhost:8000
 
 ```bash
 uv sync                          # everything, dev tools included
-uv run pytest                    # offline tests, against trimmed real captures
+uv run python -m rustwright install chromium   # once, for the page tests
+uv run pytest                    # offline tests: trimmed real captures, and the page in Chromium
 uv run pytest -m live            # against the real sites (network)
 uv run prek install              # run the hooks on every commit
 uv run prek run --all-files      # what CI runs: ruff, ty, uv-lock, whitespace
@@ -121,8 +124,9 @@ printers/
   icecat.py          Icecat lookup and data-sheet mapping
   catalog.py         merge, availability, the page's data
   cli.py             printers update | build | check
-  sources/           icecat_index, epson, hp, brother
-site/                index.html, app.js, style.css
+  specs.py           the record's fields, number readers, cross-check
+  sources/           icecat_index, epson, lexmark, hp, brother; pages (shared)
+site/                index.html, app.js (DOM), logic.js (filters, URL, pages), i18n.js
 data/                products.json, state.json (rewritten weekly)
 tests/fixtures/      real captures, trimmed
 ```
