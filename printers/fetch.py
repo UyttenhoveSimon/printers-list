@@ -27,7 +27,8 @@ DELAY_SECONDS = 0.5
 BOT_WALL_MARKERS = (
     "captcha-delivery.com",
     "/cdn-cgi/challenge-platform",
-    "_Incapsula_Resource",
+    # Imperva's block page; its script (_Incapsula_Resource) is on normal pages too
+    "Incapsula incident ID",
     "Access Denied</title>",
 )
 WALL_STATUSES = frozenset(

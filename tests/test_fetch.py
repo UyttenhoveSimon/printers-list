@@ -72,3 +72,13 @@ def test_the_user_agent_says_who_it_is():
     session = Session(Response())
     Fetcher(session=session)
     assert "printers-list" in session.headers["User-Agent"]
+
+
+def test_a_page_carrying_the_imperva_script_is_not_a_wall():
+    page = Response(
+        text='<script src="/_Incapsula_Resource?SWJIYLWA=1"></script><h1>Printer</h1>'
+    )
+    assert "Printer" in fetcher(page).text("https://a.example/")
+    blocked = Response(text="Request unsuccessful. Incapsula incident ID: 123")
+    with pytest.raises(BotWallError):
+        fetcher(blocked).text("https://a.example/")
