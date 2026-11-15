@@ -339,8 +339,8 @@ class FakeEnricher:
     def __init__(self, record=None, error=None):
         self.record, self.error, self.calls = record, error, []
 
-    def model_of(self, name):
-        return name.split()[-1]
+    def key(self, product):
+        return product["name"].split()[-1]
 
     def enrich(self, fetcher, product):
         self.calls.append(product["name"])
@@ -394,3 +394,26 @@ def test_new_models_go_before_refreshes(tmp_path, icecat):
     later = [index(*(Candidate("icecat", icecat_id=i) for i in (1, 2, 3)))]
     run(tmp_path, DAY + timedelta(days=31), later, max_lookups=2)
     assert icecat == [1, 2, 3]
+
+
+class BrowserEnricher(FakeEnricher):
+    BROWSER = True
+
+    def enrich(self, fetcher, product):
+        self.readers = [*getattr(self, "readers", []), fetcher]
+        return super().enrich(fetcher, product)
+
+
+def test_a_maker_that_needs_a_browser_is_read_only_through_it(
+    tmp_path, icecat, monkeypatch
+):
+    enricher = BrowserEnricher({"weight_kg": 21.5})
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": enricher})
+    found = [index(Candidate("icecat", icecat_id=3))]
+    run(tmp_path, DAY, found)
+    assert enricher.calls == []  # no browser in this run: skipped
+    catalog = Catalog(tmp_path, today=DAY)
+    browser = SimpleNamespace(text=lambda url: "")
+    catalog.update(None, found, 100, browser)
+    assert enricher.readers == [browser]
+    assert catalog.products["3"]["weight_kg"] == 21.5

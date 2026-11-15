@@ -13,7 +13,7 @@ the one whose group names the model; a cell without groups applies to all.
 import re
 from typing import Any
 
-from ..fetch import Fetcher
+from ..fetch import Reader
 from ..specs import decimal, number
 from .pages import clean, compact
 
@@ -32,6 +32,11 @@ def model_of(name: str) -> str:
     """The model code in a printer's name: "Brother MFC-L3740CDW printer"."""
     match = MODEL.search(name or "")
     return match.group() if match else ""
+
+
+def key(product: dict[str, Any]) -> str:
+    """What a page is cached under: the model, shared by its regional SKUs."""
+    return model_of(product.get("name", ""))
 
 
 def spec_url(model: str) -> str:
@@ -92,7 +97,7 @@ def specifications(html: str, model: str) -> dict[str, Any]:
     return compact(found)
 
 
-def enrich(fetcher: Fetcher, product: dict[str, Any]) -> dict[str, Any] | None:
+def enrich(fetcher: Reader, product: dict[str, Any]) -> dict[str, Any] | None:
     """Specs for a Brother printer from the support portal, or None if no page."""
     model = model_of(product.get("name", ""))
     if not model:

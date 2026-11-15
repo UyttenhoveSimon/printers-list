@@ -8,7 +8,7 @@ and the source is skipped for the run; nothing here tries to get past it.
 import logging
 import time
 from http import HTTPStatus
-from typing import Any
+from typing import Any, Protocol
 from urllib.parse import urlsplit
 
 import requests
@@ -34,6 +34,15 @@ BOT_WALL_MARKERS = (
 WALL_STATUSES = frozenset(
     {HTTPStatus.FORBIDDEN, HTTPStatus.TOO_MANY_REQUESTS, HTTPStatus.UNAUTHORIZED}
 )
+
+
+class Reader(Protocol):
+    """What a maker's page reader needs: `Fetcher`, or `browser.Browser`."""
+
+    def text(self, url: str) -> str: ...
+
+    # hashable, so a reader can key a per-run cache (hp_shop.product_urls)
+    def __hash__(self) -> int: ...
 
 
 class FetchError(RuntimeError):

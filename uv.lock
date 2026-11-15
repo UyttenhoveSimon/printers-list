@@ -189,6 +189,7 @@ source = { editable = "." }
 dependencies = [
     { name = "defusedxml" },
     { name = "requests" },
+    { name = "rustwright" },
 ]
 
 [package.dev-dependencies]
@@ -197,7 +198,6 @@ dev = [
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "ruff" },
-    { name = "rustwright" },
     { name = "ty" },
 ]
 
@@ -205,6 +205,7 @@ dev = [
 requires-dist = [
     { name = "defusedxml", specifier = ">=0.7.1" },
     { name = "requests", specifier = ">=2.32" },
+    { name = "rustwright", specifier = ">=0.3.0,<0.4" },
 ]
 
 [package.metadata.requires-dev]
@@ -213,7 +214,6 @@ dev = [
     { name = "pytest", specifier = ">=9.1.1" },
     { name = "pytest-cov", specifier = ">=7.1.0" },
     { name = "ruff", specifier = ">=0.17.2" },
-    { name = "rustwright", specifier = ">=0.3.0,<0.4" },
     { name = "ty", specifier = ">=0.0.91" },
 ]
 

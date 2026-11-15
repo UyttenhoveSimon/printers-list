@@ -33,6 +33,8 @@ jobs:
         with:
           enable-cache: true
       - run: uv sync --locked --no-dev
+      # HP's shop answers browsers only
+      - run: uv run python -m rustwright install chromium
       - name: Update the catalogue
         env:
           ICECAT_USER: ${{ secrets.ICECAT_USER }}

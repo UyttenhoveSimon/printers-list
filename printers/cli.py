@@ -8,6 +8,7 @@ import shutil
 from pathlib import Path
 
 from . import catalog as catalog_module
+from .browser import Browser
 from .catalog import Catalog
 from .fetch import Fetcher
 from .sources import KNOWN_WALLS, all_sources, pages
@@ -24,7 +25,8 @@ def update(args: argparse.Namespace) -> None:
         catalog_module.ENRICH_PAGES = args.max_pages
     catalog = Catalog(args.data)
     sources = [s for s in all_sources() if not args.source or s.NAME in args.source]
-    report = catalog.update(Fetcher(), sources, args.max_lookups)
+    with Browser() as browser:
+        report = catalog.update(Fetcher(), sources, args.max_lookups, browser)
     catalog.save()
     print(f"{report.lookups} Icecat lookups, {len(report.new)} new printers")
     print(f"{report.pending} candidates left for the next run")

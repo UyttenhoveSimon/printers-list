@@ -46,6 +46,7 @@ printers/
   icecat.py         Icecat JSON lookup and data-sheet mapping, consumables
   specs.py          the record's fields, number readers, SCHEMA, cross-check rules
   fetch.py          polite HTTP: honest user agent, pauses, wall detection
+  browser.py        the same through headless Chromium, for sites that want a browser
   sources/
     __init__.py     Candidate, the Source protocol, all_sources(), KNOWN_WALLS
     icecat_index.py on_market.index.xml.gz streamed: every printer on sale, its countries
@@ -53,6 +54,7 @@ printers/
     epson.py        Epson, 7 countries: SKU and spec sheet (cross-checks Icecat)
     lexmark.py      Lexmark, 9 countries: the record itself (not in Open Icecat)
     brother_support.py  support.brother.com spec pages: fills Brother's gaps
+    hp_shop.py      HP's UK shop spec sheets, through browser.py: fills HP's gaps
     hp.py, brother.py  model lists; both refuse non-browser clients today
 site/
   index.html        the shell; strings filled from i18n.js

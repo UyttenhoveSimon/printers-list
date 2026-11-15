@@ -76,6 +76,7 @@ The page lists these sources too, at the bottom, with how each one answered in t
 | [hp.com](https://www.hp.com) (GB, FR, DE) | HP's shop list | ⛔ refuses non-browser clients (HP is covered by Icecat) |
 | [brother.*](https://www.brother.eu) (GB, BE, FR, DE) | Brother's support sitemap | ⛔ 403 (Brother is covered by Icecat) |
 | [support.brother.com](https://support.brother.com) | Brother's spec pages: weight, noise, paper trays and ADF size where Icecat leaves them empty | ✅ |
+| [HP's UK shop](https://www.hp.com/gb-en/shop) | HP's spec sheets: speed, energy use, duty cycle and paper capacity where Icecat leaves them empty; read through headless Chromium, as hp.com answers browsers only | ✅ |
 | Canon (Europe, US, Asia, Australia), Galaxus, Digitec | | ⛔ 403 (Canon is covered by Icecat) |
 | support.hp.com | | ⛔ its spec data sits behind paths its robots.txt disallows |
 | Amazon | | ⛔ forbids automated access |

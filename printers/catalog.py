@@ -23,11 +23,13 @@ from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from datetime import date, timedelta
 from pathlib import Path
+from types import ModuleType
 from typing import Any
 
 from . import icecat
-from .fetch import BotWallError, Fetcher, FetchError
-from .sources import Candidate, Source, brother_support
+from .browser import Browser
+from .fetch import BotWallError, Fetcher, FetchError, Reader
+from .sources import Candidate, Source, brother_support, hp_shop
 from .specs import FILLABLE, SCHEMA, disagreements, office_copier, out_of_scope
 
 logger = logging.getLogger(__name__)
@@ -42,7 +44,7 @@ CHECKPOINT = 500
 #: Icecat lookups in flight at once, each with its own courtesy pause
 WORKERS = 4
 #: makers' sites that fill the gaps Icecat leaves, by brand
-ENRICHERS = {"Brother": brother_support}
+ENRICHERS = {"Brother": brother_support, "HP": hp_shop}
 #: how long a maker page read for its gaps is trusted
 ENRICH_AGAIN_AFTER = timedelta(days=90)
 #: maker pages read per run for gaps at most
@@ -255,51 +257,70 @@ class Catalog:
                 filled += 1
         return filled
 
-    def enrich(self, fetcher: Fetcher, report: Report) -> None:
-        """Read the makers' own spec pages for printers Icecat left with gaps."""
+    def enrich(
+        self, fetcher: Fetcher, report: Report, browser: Browser | None = None
+    ) -> None:
+        """Read the makers' own spec pages for printers Icecat left with gaps.
+
+        A maker that refuses plain HTTP (``BROWSER``) is read through
+        ``browser``, and skipped when the run has none.
+        """
         for brand, enricher in ENRICHERS.items():
-            cache = self.state["caches"].setdefault(enricher.NAME, {})
-            budget, filled, failures = ENRICH_PAGES, 0, 0
-            for product_id, product in self.products.items():
-                if product.get("brand") != brand:
+            if not getattr(enricher, "BROWSER", False):
+                self.enrich_brand(brand, enricher, fetcher, report)
+            elif browser is not None:
+                self.enrich_brand(brand, enricher, browser, report)
+
+    def enrich_brand(
+        self, brand: str, enricher: ModuleType, reader: Reader, report: Report
+    ) -> None:
+        """One maker's pages, at most ``ENRICH_PAGES`` read, the rest cached."""
+        cache = self.state["caches"].setdefault(enricher.NAME, {})
+        budget, filled, failures = ENRICH_PAGES, 0, 0
+        for product_id, product in self.products.items():
+            if product.get("brand") != brand:
+                continue
+            if all(product.get(f) is not None for f in enricher.FIELDS):
+                continue
+            key = enricher.key(product)
+            if not key:
+                continue
+            entry: dict[str, Any] | None = cache.get(key)
+            stale = (
+                entry is None
+                or self.today - date.fromisoformat(entry["checked"])
+                >= ENRICH_AGAIN_AFTER
+            )
+            if stale:
+                if budget <= 0:
                     continue
-                if all(product.get(f) is not None for f in enricher.FIELDS):
+                budget -= 1
+                try:
+                    record = enricher.enrich(reader, product) or {}
+                except FetchError as error:
+                    failures += 1
+                    logger.debug(f"{enricher.NAME} {key}: {error}")
                     continue
-                key = enricher.model_of(product.get("name", ""))
-                if not key:
-                    continue
-                entry: dict[str, Any] | None = cache.get(key)
-                stale = (
-                    entry is None
-                    or self.today - date.fromisoformat(entry["checked"])
-                    >= ENRICH_AGAIN_AFTER
-                )
-                if stale:
-                    if budget <= 0:
-                        continue
-                    budget -= 1
-                    try:
-                        record = enricher.enrich(fetcher, product) or {}
-                    except FetchError as error:
-                        failures += 1
-                        logger.debug(f"{enricher.NAME} {key}: {error}")
-                        continue
-                    entry = cache[key] = {
-                        "checked": self.today.isoformat(),
-                        "record": record,
-                    }
-                if self.fill(product_id, enricher.NAME, entry["record"]):
-                    filled += 1
-            read = ENRICH_PAGES - budget
-            status = "error" if read and failures == read else "ok"
-            report.sources[f"{enricher.NAME}:ALL"] = {"status": status, "found": filled}
-            self.state["runs"][f"{enricher.NAME}:ALL"] = self.today.isoformat()
-            logger.info(f"{enricher.NAME}: {read} pages read, {filled} printers filled")
+                entry = cache[key] = {
+                    "checked": self.today.isoformat(),
+                    "record": record,
+                }
+            if self.fill(product_id, enricher.NAME, entry["record"]):
+                filled += 1
+        read = ENRICH_PAGES - budget
+        status = "error" if read and failures == read else "ok"
+        report.sources[f"{enricher.NAME}:ALL"] = {"status": status, "found": filled}
+        self.state["runs"][f"{enricher.NAME}:ALL"] = self.today.isoformat()
+        logger.info(f"{enricher.NAME}: {read} pages read, {filled} printers filled")
 
     # the run -----------------------------------------------------------------
 
     def update(
-        self, fetcher: Fetcher, sources: list[Source], max_lookups: int
+        self,
+        fetcher: Fetcher,
+        sources: list[Source],
+        max_lookups: int,
+        browser: Browser | None = None,
     ) -> Report:
         report = Report()
         known_before = set(self.products)
@@ -331,7 +352,7 @@ class Catalog:
                 self.save()
                 done = min(start + CHECKPOINT, len(candidates))
                 logger.info(f"{where}: {done}/{len(candidates)} resolved")
-        self.enrich(fetcher, report)
+        self.enrich(fetcher, report, browser)
         self.save()
         report.lookups = max_lookups - max(budget, 0)
         report.new = sorted(set(self.products) - known_before)

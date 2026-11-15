@@ -12,6 +12,7 @@ from printers.sources import (
     brother_support,
     epson,
     hp,
+    hp_shop,
     icecat_index,
     lexmark,
     pages,
@@ -286,3 +287,44 @@ def test_brother_support_finds_the_model_and_its_page():
     assert record is not None
     assert record["weight_kg"] == 20.0
     assert brother_support.enrich(fetcher, {"name": "no model here"}) is None
+
+
+def test_hp_shop_reads_the_spec_sheet_embedded_in_the_page():
+    sheet = hp_shop.spec_sheet(fixture_text("hp_shop_m776dn.html"))
+    assert sheet["Weight"] == "70.9 kg"  # its footnote mark dropped
+    assert hp_shop.specifications(sheet) == {
+        "weight_kg": 70.9,
+        "paper_input": 650,  # the trays it comes with, not the first one
+        "paper_output": 500,
+        "adf_capacity": 200,
+        "duty_cycle": 200000,
+        "monthly_volume": 40000,
+        "ppm_iso": 46,
+        "first_page_s": 6.5,
+        "print_dpi": 1200,
+        "scan_dpi": 600,
+        "power_w": 900.0,
+        "tec_kwh": 2.47,
+        "max_paper": "A3",
+    }
+
+
+def test_hp_shop_finds_a_printer_by_its_sku_in_the_shop_list():
+    url = "https://www.hp.com/gb-en/shop/products/printers/hp-color-laserjet-enterprise-mfp-m776dn-t3u55a-b19"
+    fetcher = FakeFetcher(
+        {
+            hp_shop.LIST_URL: fixture_text("hp_products_url_gb_en.txt"),
+            url: fixture_text("hp_shop_m776dn.html"),
+        }
+    )
+    record = hp_shop.enrich(fetcher, {"code": "T3U55A#B19"})
+    assert record is not None
+    assert record["weight_kg"] == 70.9
+    assert hp_shop.enrich(fetcher, {"code": "XXXXXX"}) is None
+    assert fetcher.calls.count(hp_shop.LIST_URL) == 1  # the list is read once
+
+
+def test_hp_power_is_the_printing_figure_or_nothing():
+    assert hp_shop.watts("Active Printing: 282 W; Ready: 27 W; Sleep: 1.0 W") == 282
+    assert hp_shop.watts("900 watts (printing), 100 watts (ready)") == 900
+    assert hp_shop.watts("0.109 watts (manual-Off), 3.023 watts (ready)") is None
