@@ -137,7 +137,8 @@ def specifications(spec: dict[str, str], url: str) -> dict[str, Any]:
 
 def largest_paper(text: str | None) -> str | None:
     """The largest A size a printer takes: "A4 (21.0x29.7 cm), A5, A6" is A4."""
-    sizes = [int(n) for n in re.findall(r"\bA(\d)\b", text or "")]
+    # A3 to A6: "A2" in a list of formats is an envelope (HP's Spanish sheets)
+    sizes = [int(n) for n in re.findall(r"\bA([3-6])\b", text or "")]
     return f"A{min(sizes)}" if sizes else None
 
 
