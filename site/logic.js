@@ -3,6 +3,14 @@
 
 export const PAGE_SIZE = 48;
 export const COMPARE_MAX = 4;
+// By default the list starts this many years back: Icecat still counts some
+// long-gone models as on the market somewhere.
+export const DEFAULT_YEARS = 10;
+
+export function defaultYear(data) {
+  const year = data && data.updated ? Number(data.updated.slice(0, 4)) : new Date().getFullYear();
+  return String(year - DEFAULT_YEARS);
+}
 
 // Every filter of the side panel, by group. A flag keeps printers that have
 // the feature; a choice keeps one value; min/max keep printers at or beyond a
@@ -11,7 +19,6 @@ export const GROUPS = [
   { id: "availability", open: true, filters: [
     { key: "available", type: "flag", default: true },
     { key: "new", label: "new_week", type: "flag" },
-    { key: "confirmed", type: "flag" },
   ] },
   { id: "two_sided", open: true, filters: [
     { key: "duplex_print", type: "flag" },
@@ -90,11 +97,11 @@ export const SPEC_ROWS = [
   "wifi_direct", "ethernet", "usb", "airprint", "mopria", "nfc", "bluetooth",
   "display", "touchscreen", "cartridges", "starter_yield", "width_mm", "depth_mm",
   "height_mm", "weight_kg", "noise_db", "power_w", "tec_kwh", "release_date",
-  "end_of_life",
+  "added", "end_of_life",
 ];
 
-export function emptyState() {
-  const state = { q: "", year: "", markets: new Set(), brands: new Set(), sort: "name", page: 1, compare: [] };
+export function emptyState(defaultYear = "") {
+  const state = { q: "", year: defaultYear, defaultYear, markets: new Set(), brands: new Set(), sort: DEFAULT_SORT, page: 1, compare: [] };
   for (const f of FILTERS) state[f.key] = f.type === "flag" ? Boolean(f.default) : f.type === "choice" ? "" : 0;
   return state;
 }
@@ -108,9 +115,11 @@ export function prepare(data) {
   for (const p of data.printers) {
     p.new = Boolean(p.first_seen && p.first_seen > since);
     p.a3 = Boolean(p.max_paper && Number(p.max_paper.replace(/\D/g, "")) <= 3);
-    p.confirmed = Boolean(p.confirmed && p.confirmed.length);
     p._text = `${p.brand} ${p.name} ${p.code || ""}`.toLowerCase();
-    p._year = p.release_date ? Number(p.release_date.slice(0, 4)) : null;
+    // the release date when Icecat has one, else the day it added the model
+    p._date = p.release_date || p.added || "";
+    p._year = p._date ? Number(p._date.slice(0, 4)) : null;
+    p._footprint = p.width_mm && p.depth_mm ? p.width_mm * p.depth_mm : null;
   }
   return data.printers;
 }
@@ -148,7 +157,8 @@ export function matches(p, state) {
       if (f.type === "max" && v > want) return false;
     }
   }
-  if (state.year && !(p._year >= Number(state.year))) return false;
+  // a printer whose sheet gives no date at all is kept: it may well be recent
+  if (state.year && p._year !== null && p._year < Number(state.year)) return false;
   if (state.brands.size && !state.brands.has(p.brand)) return false;
   if (state.markets.size && !(p.markets || []).some((m) => state.markets.has(m))) return false;
   if (state.q) {
@@ -160,23 +170,34 @@ export function matches(p, state) {
 }
 
 const byName = (a, b) => a.brand.localeCompare(b.brand) || a.name.localeCompare(b.name);
-const missingLast = (key, dir) => (a, b) => {
+
+// Values sort with the unknowns last whichever the direction, so "fastest"
+// does not open on printers whose speed nobody published.
+const by = (key, dir) => (a, b) => {
   const x = a[key], y = b[key];
-  if (x == null && y == null) return byName(a, b);
-  if (x == null) return 1;
-  if (y == null) return -1;
-  return dir * (x - y) || byName(a, b);
+  const xNone = x === null || x === undefined || x === "";
+  const yNone = y === null || y === undefined || y === "";
+  if (xNone || yNone) return xNone === yNone ? byName(a, b) : xNone ? 1 : -1;
+  const order = typeof x === "string" ? x.localeCompare(y) : x - y;
+  return dir * order || byName(a, b);
 };
 
+export const DEFAULT_SORT = "newest";
 export const SORTS = {
+  newest: by("_date", -1),
+  oldest: by("_date", 1),
   name: byName,
-  newest: (a, b) => (b.release_date || b.first_seen || "").localeCompare(a.release_date || a.first_seen || "") || byName(a, b),
-  fastest: missingLast("ppm_black", -1),
-  lightest: missingLast("weight_kg", 1),
+  fastest: by("ppm_black", -1),
+  fastest_colour: by("ppm_color", -1),
+  most_paper: by("paper_input", -1),
+  lightest: by("weight_kg", 1),
+  smallest: by("_footprint", 1),
+  quietest: by("noise_db", 1),
+  greenest: by("tec_kwh", 1),
 };
 
 export function search(printers, state) {
-  return printers.filter((p) => matches(p, state)).sort(SORTS[state.sort] || SORTS.name);
+  return printers.filter((p) => matches(p, state)).sort(SORTS[state.sort] || SORTS[DEFAULT_SORT]);
 }
 
 export function paginate(items, page, size = PAGE_SIZE) {
@@ -211,7 +232,7 @@ export function activeFilters(state) {
     const off = f.type === "flag" ? Boolean(f.default) : f.type === "choice" ? "" : 0;
     if (v !== off) out.push([f.key, v]);
   }
-  if (state.year) out.push(["year", state.year]);
+  if (state.year !== state.defaultYear) out.push(["year", state.year]);
   for (const m of state.markets) out.push(["market", m]);
   for (const b of state.brands) out.push(["brand", b]);
   return out;
@@ -219,7 +240,7 @@ export function activeFilters(state) {
 
 export function clearFilter(state, key, value) {
   if (key === "q") state.q = "";
-  else if (key === "year") state.year = "";
+  else if (key === "year") state.year = state.defaultYear;
   else if (key === "market") state.markets.delete(value);
   else if (key === "brand") state.brands.delete(value);
   else if (BY_KEY[key]) {
@@ -240,18 +261,18 @@ export function encode(state) {
     if (f.type === "flag") { if (v !== Boolean(f.default)) h.set(f.key, v ? "1" : "0"); }
     else if (v !== "" && v !== 0) h.set(f.key, String(v));
   }
-  if (state.year) h.set("year", state.year);
+  if (state.year !== state.defaultYear) h.set("year", state.year || "all");
   if (state.markets.size) h.set("in", [...state.markets].join(","));
   if (state.brands.size) h.set("brand", [...state.brands].join(","));
-  if (state.sort !== "name") h.set("sort", state.sort);
+  if (state.sort !== DEFAULT_SORT) h.set("sort", state.sort);
   if (state.page > 1) h.set("page", String(state.page));
   if (state.compare.length) h.set("cmp", state.compare.join(","));
   return h.toString();
 }
 
-export function decode(hash) {
+export function decode(hash, defaultYear = "") {
   const h = new URLSearchParams(hash.replace(/^#/, ""));
-  const state = emptyState();
+  const state = emptyState(defaultYear);
   state.q = h.get("q") || "";
   for (const f of FILTERS) {
     if (!h.has(f.key)) continue;
@@ -260,10 +281,10 @@ export function decode(hash) {
     else if (f.type === "choice") state[f.key] = f.values.includes(raw) ? raw : "";
     else state[f.key] = Number(raw) || 0;
   }
-  state.year = h.get("year") || "";
+  if (h.has("year")) state.year = h.get("year") === "all" ? "" : h.get("year");
   state.markets = new Set((h.get("in") || "").split(",").filter(Boolean));
   state.brands = new Set((h.get("brand") || "").split(",").filter(Boolean));
-  state.sort = SORTS[h.get("sort")] ? h.get("sort") : "name";
+  state.sort = SORTS[h.get("sort")] ? h.get("sort") : DEFAULT_SORT;
   state.page = Math.max(1, Number(h.get("page")) || 1);
   state.compare = (h.get("cmp") || "").split(",").filter(Boolean).slice(0, COMPARE_MAX);
   return state;

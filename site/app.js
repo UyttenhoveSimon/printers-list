@@ -41,7 +41,6 @@ function tags(p) {
   if (p.duplex_print) out.push([t("duplex_print"), "good"]);
   if (p.duplex_scan) out.push([t("duplex_scan"), "good"]);
   for (const k of ["scan", "fax", "adf", "wifi", "ethernet", "airprint", "a3"]) if (p[k]) out.push([t(k), ""]);
-  if (p.confirmed) out.push(["✓ " + (p.brand || ""), "good"]);
   return out.map(([label, cls]) => `<span class="tag ${cls}">${esc(label)}</span>`).join("");
 }
 
@@ -74,7 +73,7 @@ function renderPanel() {
     if (!body.trim()) return "";
     return `<details class="group" ${g.open ? "open" : ""}><summary>${esc(t("g_" + g.id))}</summary>${body}</details>`;
   });
-  const years = [...new Set(all.map((p) => p._year).filter(Boolean))].sort((a, b) => b - a);
+  const years = [...new Set(all.map((p) => p._year).filter(Boolean).concat(state.defaultYear ? [Number(state.defaultYear)] : []))].sort((a, b) => b - a);
   if (years.length) {
     groups.push(`<details class="group" open><summary>${esc(t("g_year"))}</summary>
       <select data-key="year" aria-label="${esc(t("g_year"))}"><option value="">${esc(t("any_year"))}</option>
@@ -158,7 +157,7 @@ function renderActive() {
     if (key === "q") label = `“${v}”`;
     else if (key === "market") label = countryName(v);
     else if (key === "brand") label = v;
-    else if (key === "year") label = t("or_later", { year: v });
+    else if (key === "year") label = v ? t("or_later", { year: v }) : t("any_year");
     else if (key === "available" && !v) label = t("not_on_sale");
     else {
       const f = L.FILTERS.find((x) => x.key === key);
@@ -209,18 +208,32 @@ async function loadDetails() {
   return details;
 }
 
+function supplyLine(c) {
+  const brand = c.own || !c.brand ? "" : `<span class="supply-brand">${esc(c.brand)}</span> `;
+  const name = c.name !== c.code ? esc(c.name) : "";
+  return `<li class="${c.own ? "own" : "other"}"><span class="tag">${esc(t("kind_" + c.kind))}</span> ${brand}<code>${esc(c.code)}</code> ${name}</li>`;
+}
+
+// The brand's own supplies first; compatibles from other brands set apart.
 function suppliesList(id) {
   const extra = (details && details[id]) || {};
   const items = extra.consumables || [];
-  const lines = items.map((c) => `<li><span class="tag">${esc(t("kind_" + c.kind))}</span> <code>${esc(c.code)}</code> ${c.name !== c.code ? esc(c.name) : ""}</li>`);
-  if (extra.supplies) lines.push(`<li>${esc(extra.supplies)}</li>`);
-  return lines.length ? `<ul class="supplies">${lines.join("")}</ul>` : `<p class="muted">${esc(t("supplies_none"))}</p>`;
+  const own = items.filter((c) => c.own !== false);
+  const other = items.filter((c) => c.own === false);
+  let html = "";
+  if (own.length) html += `<ul class="supplies">${own.map(supplyLine).join("")}</ul>`;
+  if (extra.supplies) html += `<p class="supplies-text">${esc(extra.supplies)}</p>`;
+  if (other.length) {
+    html += `<details class="supplies-other"><summary>${esc(t("supplies_other", { n: other.length }))}</summary>
+      <p class="muted">${esc(t("supplies_other_note"))}</p>
+      <ul class="supplies">${other.map(supplyLine).join("")}</ul></details>`;
+  }
+  return html || `<p class="muted">${esc(t("supplies_none"))}</p>`;
 }
 
 function checksNote(p) {
   const extra = (details && details[p.id]) || {};
   const notes = [];
-  if (p.confirmed) notes.push(`<p class="ok">✓ ${esc(t("confirmed_by", { sources: (extra.confirmed || []).join(", ") }))}</p>`);
   for (const [source, differ] of Object.entries(extra.differs || {})) {
     const fields = Object.entries(differ).map(([k, [ours, theirs]]) => `${t(k)}: ${value(k, ours)} → ${value(k, theirs)}`).join("; ");
     notes.push(`<p class="warn">⚠ ${esc(t("differs", { source, fields }))}</p>`);
@@ -303,7 +316,7 @@ function bind() {
     if (!b) return;
     const seg = b.closest(".seg");
     if (seg) state[seg.dataset.key] = b.dataset.value;
-    else if (b.id === "reset") state = { ...L.emptyState(), compare: state.compare };
+    else if (b.id === "reset") state = { ...L.emptyState(state.defaultYear), compare: state.compare };
     else return;
     state.page = 1;
     render();
@@ -317,7 +330,7 @@ function bind() {
   $("#active").addEventListener("click", (e) => {
     const b = e.target.closest("button");
     if (!b) return;
-    if (b.dataset.clear === "all") state = { ...L.emptyState(), compare: state.compare };
+    if (b.dataset.clear === "all") state = { ...L.emptyState(state.defaultYear), compare: state.compare };
     else L.clearFilter(state, b.dataset.clear, b.dataset.value);
     render();
   });
@@ -367,7 +380,7 @@ function start(payload) {
   all = L.prepare(payload);
   byId = new Map(all.map((p) => [p.id, p]));
   bounds = L.ranges(all);
-  state = L.decode(location.hash);
+  state = L.decode(location.hash, L.defaultYear(payload));
   applyStrings();
   renderPanel();
   bind();

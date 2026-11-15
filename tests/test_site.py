@@ -47,8 +47,15 @@ def printer(i):
         "max_paper": "A3" if i == 7 else "A4",
         "release_date": f"{2018 + i % 8}-01-01",
         "consumables": [
-            {"code": f"T{i}BK", "name": f"Black ink {i}", "kind": "ink"},
-            {"code": f"D{i}", "name": f"Drum {i}", "kind": "drum"},
+            {"code": f"T{i}BK", "name": f"Black ink {i}", "kind": "ink", "own": True},
+            {"code": f"D{i}", "name": f"Drum {i}", "kind": "drum", "own": True},
+            {
+                "code": f"X{i}",
+                "name": f"Compatible ink {i}",
+                "kind": "ink",
+                "brand": "Xerox",
+                "own": False,
+            },
         ],
         "first_seen": DAY,
         "sightings": {
@@ -72,11 +79,37 @@ class Quiet(http.server.SimpleHTTPRequestHandler):
         pass
 
 
+def old_printer(i, release):
+    """A plain inkjet sold in the US only, released ``release`` (or undated)."""
+    record = {
+        "schema": 3,
+        "icecat_id": 2000 + i,
+        "brand": "Ricoh",
+        "name": f"Old printer {i}",
+        "title": f"Old printer {i}",
+        "category": "Inkjet Printers",
+        "technology": "inkjet",
+        "color": True,
+        "first_seen": DAY,
+        "sightings": {"icecat:ALL": {"date": DAY, "markets": ["US"], "url": ""}},
+    }
+    if release:
+        record["added"] = release
+    return record
+
+
 @pytest.fixture(scope="module")
 def site(tmp_path_factory):
     root = tmp_path_factory.mktemp("site")
     data = root / "data"
-    save(data / "products.json", {str(1000 + i): printer(i) for i in range(60)})
+    products = {str(1000 + i): printer(i) for i in range(60)}
+    # two models from 2010 and 2012, hidden by default, and one with no date
+    products |= {
+        "2000": old_printer(0, "2010-05-01"),
+        "2001": old_printer(1, "2012-01-01"),
+        "2002": old_printer(2, ""),
+    }
+    save(data / "products.json", products)
     save(
         data / "state.json",
         {
@@ -84,7 +117,15 @@ def site(tmp_path_factory):
             "caches": {},
             "runs": {"icecat:ALL": DAY},
             "started": "2026-10-01",
-            "report": {"date": DAY},
+            "report": {
+                "date": DAY,
+                "sources": {
+                    "icecat:ALL": {"status": "ok", "found": 63},
+                    "epson:GB": {"status": "ok", "found": 5},
+                    "epson:BE": {"status": "error", "detail": "down"},
+                    "hp.com:GB": {"status": "error", "detail": "timeout"},
+                },
+            },
         },
     )
     out = root / "out"
@@ -165,7 +206,7 @@ def test_bad_url_values_fall_back_to_defaults(page):
         page,
         """
         const s = L.decode('#technology=plasma&sort=random&page=-4&ppm_black=abc');
-        return s.technology === '' && s.sort === 'name' && s.page === 1
+        return s.technology === '' && s.sort === 'newest' && s.page === 1
           && s.ppm_black === 0 && s.available === true;
         """,
     )
@@ -262,7 +303,7 @@ def test_language_is_picked_from_the_browser(page):
 
 
 def test_first_page_shows_48_of_60(page):
-    assert count(page) == "60 of 60 printers"
+    assert count(page) == "61 of 63 printers"
     assert len(page.query_selector_all(".card")) == 48
     assert "Page 1 of 2" in page.text_content("#pager")
     shot(page, "desktop")
@@ -270,27 +311,27 @@ def test_first_page_shows_48_of_60(page):
 
 def test_next_page(page):
     page.click('#pager button[data-page="2"]')
-    assert len(page.query_selector_all(".card")) == 12
+    assert len(page.query_selector_all(".card")) == 13
     assert "page=2" in hash_of(page)
 
 
 def test_two_sided_scanning_filter(page):
     page.check('input[data-key="duplex_scan"]')
-    assert count(page) == "15 of 60 printers"
+    assert count(page) == "15 of 63 printers"
     chips = page.text_content("#active")
     assert "Two-sided scanning" in chips
     page.click('#active button[data-clear="duplex_scan"]')
-    assert count(page) == "60 of 60 printers"
+    assert count(page) == "61 of 63 printers"
 
 
 def test_technology_and_colour_choices(page):
     page.click('.seg[data-key="technology"] button[data-value="laser"]')
-    assert count(page) == "20 of 60 printers"
+    assert count(page) == "20 of 63 printers"
     page.click('.seg[data-key="color"] button[data-value="0"]')
     # lasers (every 3rd) that are mono (every 5th): 0, 15, 30, 45
-    assert count(page) == "4 of 60 printers"
+    assert count(page) == "4 of 63 printers"
     page.click('#active button[data-clear="all"]')
-    assert count(page) == "60 of 60 printers"
+    assert count(page) == "61 of 63 printers"
 
 
 def test_speed_slider(page):
@@ -298,22 +339,16 @@ def test_speed_slider(page):
         'input[data-key="ppm_black"]',
         "el => { el.value = 60; el.dispatchEvent(new Event('input', {bubbles: true})); }",
     )
-    assert count(page) == "10 of 60 printers"
+    assert count(page) == "10 of 63 printers"
     assert "≥ 60" in page.text_content('output[data-out="ppm_black"]')
 
 
 def test_country_and_brand(page):
     page.check('input[data-market="BE"]')
-    assert count(page) == "30 of 60 printers"
+    assert count(page) == "30 of 63 printers"
     page.check('input[data-brand="HP"]')
-    assert count(page) == "0 of 60 printers"  # HP is every 4th: even, so never BE
+    assert count(page) == "0 of 63 printers"  # HP is every 4th: even, so never BE
     assert "No printer matches" in page.text_content("#results")
-
-
-def test_confirmed_by_the_manufacturer(page):
-    page.check('input[data-key="confirmed"]')
-    assert count(page) == "1 of 60 printers"
-    assert "Model 03" in page.text_content("#results")
 
 
 def test_search(page):
@@ -340,7 +375,10 @@ def test_detail_shows_supplies_and_countries(page):
     assert not page.is_visible("#detail")
 
 
-def test_compare_two_printers(page):
+def test_compare_two_printers(page, site):
+    page.goto(site + "#sort=name")
+    page.reload()
+    page.wait_for_selector(".card")
     page.check('input[data-compare="1000"]')
     assert page.is_visible("#tray")
     assert page.is_disabled("#open-compare")
@@ -357,13 +395,16 @@ def test_compare_two_printers(page):
     )  # the last two rows are supplies and countries
     shot(page, "compare")
     assert "cmp=1000%2C1001" in hash_of(page)
+    page.click('#compare button[data-uncompare="1001"]')
+    assert not page.is_visible("#compare")  # one printer left: nothing to compare
+    assert "Model 00" in page.text_content("#tray")
 
 
 def test_url_restores_the_view(page, site):
     page.goto(site + "#duplex_print=1&technology=inkjet&sort=fastest")
     page.reload()
     page.wait_for_selector(".card")
-    assert count(page) == "20 of 60 printers"
+    assert count(page) == "20 of 63 printers"
     assert page.is_checked('input[data-key="duplex_print"]')
     first = page.text_content(".card h3")
     assert first == "Model 58"
@@ -371,10 +412,11 @@ def test_url_restores_the_view(page, site):
 
 def test_french(page):
     page.select_option("#lang", "fr")
-    assert page.text_content("#count") == "60 imprimantes sur 60"
+    assert page.text_content("#count") == "61 imprimantes sur 63"
     assert "Recto verso" in page.text_content("#filters")
     assert "Belgique" in page.text_content("#filters")
     assert page.evaluate("document.documentElement.lang") == "fr"
+    assert page.text_content("#count") == "61 imprimantes sur 63"
     page.select_option("#lang", "en")
 
 
@@ -424,4 +466,38 @@ def test_data_files_are_versioned_and_split(site, page):
         "code": "T3BK",
         "name": "Black ink 3",
         "kind": "ink",
+        "own": True,
     }
+
+
+def test_the_last_ten_years_by_default(page):
+    """2010 and 2012 models are hidden; an undated one is not, it may be recent."""
+    assert page.input_value('select[data-key="year"]') == "2016"
+    assert (
+        "Old printer 2" in page.text_content("#results")
+        or count(page) == "61 of 63 printers"
+    )
+    page.select_option('select[data-key="year"]', "")
+    assert count(page) == "63 of 63 printers"
+    assert "Any year" in page.text_content("#active")
+    assert "year=all" in hash_of(page)
+    page.click('#active button[data-clear="year"]')
+    assert count(page) == "61 of 63 printers"
+
+
+def test_older_years_from_the_url(page, site):
+    page.goto(site + "#year=2011")
+    page.reload()
+    page.wait_for_selector(".card")
+    assert count(page) == "62 of 63 printers"
+
+
+def test_other_brands_supplies_are_set_apart(page):
+    page.click('.card[data-id="1004"] [data-open]')
+    page.wait_for_selector("#detail[open]")
+    own = page.text_content("#detail-body ul.supplies")
+    assert "T4BK" in own
+    assert "X4" not in own
+    other = page.text_content("#detail-body .supplies-other")
+    assert "Compatible, other brands (1)" in other
+    assert "Xerox" in other
