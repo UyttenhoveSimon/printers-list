@@ -171,6 +171,9 @@ function buildChoices() {
   $("#markets").innerHTML = SHOWN_MARKETS.map((m) => `<button data-value="${m}" title="${MARKET_NAMES[m]}">${m}</button>`).join("");
   const yearSelect = filtersEl.querySelector('[name="year"]');
   [...years].sort((a, b) => b - a).forEach((y) => yearSelect.insertAdjacentHTML("beforeend", `<option value="${y}">${y} or later</option>`));
+  // a filter with nothing to choose from is noise: hide it until the data has some
+  $("#brands").closest("section").hidden = brands.size === 0;
+  yearSelect.closest("section").hidden = years.size === 0;
 }
 
 function bind() {
