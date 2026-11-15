@@ -45,6 +45,7 @@
     "1930155071282",
     "5715063742563"
    ],
+   "BrandPartCode": "4ZB95A",
    "TitleInfo": {
     "GeneratedIntTitle": "HP Color Laser 150nw"
    },
@@ -61,6 +62,11 @@
   },
   "FeaturesGroups": [
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Printing"
+     }
+    },
     "Features": [
      {
       "Feature": {
@@ -73,10 +79,34 @@
      {
       "Feature": {
        "Name": {
+        "Value": "Print resolution colour"
+       }
+      },
+      "PresentationValue": "600 x 600 DPI"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Print resolution black"
+       }
+      },
+      "PresentationValue": "600 x 600 DPI"
+     },
+     {
+      "Feature": {
+       "Name": {
         "Value": "Print speed (colour, normal quality, A4/US Letter)"
        }
       },
       "PresentationValue": "4 ppm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Print speed (black, draft quality, A4/US Letter)"
+       }
+      },
+      "PresentationValue": "19 ppm"
      },
      {
       "Feature": {
@@ -105,14 +135,83 @@
      {
       "Feature": {
        "Name": {
+        "Value": "Maximum resolution"
+       }
+      },
+      "PresentationValue": "600 x 600 DPI"
+     },
+     {
+      "Feature": {
+       "Name": {
         "Value": "Print speed (black, normal quality, A4/US Letter)"
        }
       },
       "PresentationValue": "18 ppm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Warm-up time"
+       }
+      },
+      "PresentationValue": "38 s"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Time to first page (black, normal)"
+       }
+      },
+      "PresentationValue": "12.4 s"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Time to first page (colour, normal)"
+       }
+      },
+      "PresentationValue": "25.3 s"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Print margins (top, bottom, right, left)"
+       }
+      },
+      "PresentationValue": "5 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Watermark printing"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Secure printing"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Booklet printing function"
+       }
+      },
+      "PresentationValue": "Yes"
      }
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Features"
+     }
+    },
     "Features": [
      {
       "Feature": {
@@ -125,14 +224,140 @@
      {
       "Feature": {
        "Name": {
+        "Value": "Recommended duty cycle"
+       }
+      },
+      "PresentationValue": "100 - 500 pages per month"
+     },
+     {
+      "Feature": {
+       "Name": {
         "Value": "Printing colours"
        }
       },
       "PresentationValue": "Black, Cyan, Magenta, Yellow"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Number of print cartridges"
+       }
+      },
+      "PresentationValue": "4"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Page description languages"
+       }
+      },
+      "PresentationValue": "SPL"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Country of origin"
+       }
+      },
+      "PresentationValue": "China"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Replacement cartridges"
+       }
+      },
+      "PresentationValue": "HP 117A Black Original Laser Toner Cartridge (yield: 1,000 pages) W2070A; HP 117A Cyan Original Laser Toner Cartridge (yield: 700 pages) W2071A; HP 117A Yellow Original Laser Toner Cartridge (yield: 700 pages) W2072A; HP 117A Magenta Original Laser Toner Cartridge (yield: 700 pages) W2073A"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "HP segment"
+       }
+      },
+      "PresentationValue": "Home office"
      }
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Input & output capacity"
+     }
+    },
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Total number of input trays"
+       }
+      },
+      "PresentationValue": "1"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Total input capacity"
+       }
+      },
+      "PresentationValue": "150 sheets"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Total output capacity"
+       }
+      },
+      "PresentationValue": "50 sheets"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Paper tray 1 input capacity"
+       }
+      },
+      "PresentationValue": "150 sheets"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Paper input type"
+       }
+      },
+      "PresentationValue": "Sheetfed"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum number of input trays"
+       }
+      },
+      "PresentationValue": "1"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum input capacity"
+       }
+      },
+      "PresentationValue": "150 sheets"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum output capacity"
+       }
+      },
+      "PresentationValue": "50 sheets"
+     }
+    ]
+   },
+   {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Paper handling"
+     }
+    },
     "Features": [
      {
       "Feature": {
@@ -141,11 +366,96 @@
        }
       },
       "PresentationValue": "A4"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum print size"
+       }
+      },
+      "PresentationValue": "216 x 356 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Paper tray media types"
+       }
+      },
+      "PresentationValue": "Plain paper, Glossy paper, Bond paper, Recycled paper, Labels, Heavy paper, Lightweight paper"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "ISO A-series sizes (A0...A9)"
+       }
+      },
+      "PresentationValue": "A4, A5, A6"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Non-ISO print media sizes"
+       }
+      },
+      "PresentationValue": "Oficio"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "JIS B-series sizes (B0...B9)"
+       }
+      },
+      "PresentationValue": "B5"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Custom media width"
+       }
+      },
+      "PresentationValue": "76 - 216 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Custom media length"
+       }
+      },
+      "PresentationValue": "148.5 - 356 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Paper tray media weight"
+       }
+      },
+      "PresentationValue": "60 - 220 g/m²"
      }
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Ports & interfaces"
+     }
+    },
     "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Standard interfaces"
+       }
+      },
+      "PresentationValue": "USB 2.0"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Direct printing"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
      {
       "Feature": {
        "Name": {
@@ -153,11 +463,32 @@
        }
       },
       "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "USB 2.0 ports quantity"
+       }
+      },
+      "PresentationValue": "1"
      }
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Network"
+     }
+    },
     "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Network ready"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
      {
       "Feature": {
        "Name": {
@@ -177,10 +508,42 @@
      {
       "Feature": {
        "Name": {
+        "Value": "Cabling technology"
+       }
+      },
+      "PresentationValue": "10/100Base-T(X)"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Ethernet LAN data rates"
+       }
+      },
+      "PresentationValue": "10,100 Mbit/s"
+     },
+     {
+      "Feature": {
+       "Name": {
         "Value": "Wi-Fi Direct"
        }
       },
       "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Wi-Fi standards"
+       }
+      },
+      "PresentationValue": "Wi-Fi 4 (802.11n), 802.11g, 802.11b"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Security algorithms"
+       }
+      },
+      "PresentationValue": "SNMPv2, SNMP, IPSec"
      },
      {
       "Feature": {
@@ -193,6 +556,60 @@
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Performance"
+     }
+    },
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Internal memory"
+       }
+      },
+      "PresentationValue": "64 MB"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum internal memory"
+       }
+      },
+      "PresentationValue": "64 MB"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Built-in processor"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Processor frequency"
+       }
+      },
+      "PresentationValue": "400 MHz"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Sound power level (printing)"
+       }
+      },
+      "PresentationValue": "6.5 dB"
+     }
+    ]
+   },
+   {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Design"
+     }
+    },
     "Features": [
      {
       "Feature": {
@@ -201,8 +618,277 @@
        }
       },
       "PresentationValue": "Home & office"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Product colour"
+       }
+      },
+      "PresentationValue": "White"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Built-in display"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Display"
+       }
+      },
+      "PresentationValue": "LED"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Control type"
+       }
+      },
+      "PresentationValue": "Buttons"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Certification"
+       }
+      },
+      "PresentationValue": "EN 61000-3-2:2014, EN 61000-3-3:2013, EN55024:2010, EN 55032:2012/AC:2013, 47 CFR Part 15, Subpart B I ANSI C63.4-2009, ICES-003 Issue 5, KN32, KN35, GB/T 9254-2008, GB17625.1-2012, CISPR22: 2008, CISPR32:2012, CNS 13438, other EMC approvals as required by individual countries"
      }
     ]
+   },
+   {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Power"
+     }
+    },
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Power consumption (printing)"
+       }
+      },
+      "PresentationValue": "282 W"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Power consumption (ready)"
+       }
+      },
+      "PresentationValue": "27 W"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Power consumption (PowerSave)"
+       }
+      },
+      "PresentationValue": "0.2 W"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Power consumption (off)"
+       }
+      },
+      "PresentationValue": "0.2 W"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Energy Star Typical Electricity Consumption (TEC)"
+       }
+      },
+      "PresentationValue": "0.988 kWh/week"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "AC input voltage"
+       }
+      },
+      "PresentationValue": "220 - 240 V"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "AC input frequency"
+       }
+      },
+      "PresentationValue": "50/60 Hz"
+     }
+    ]
+   },
+   {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Weight & dimensions"
+     }
+    },
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Width"
+       }
+      },
+      "PresentationValue": "382 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Depth"
+       }
+      },
+      "PresentationValue": "309 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Height"
+       }
+      },
+      "PresentationValue": "211.5 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Pallet dimensions (W x D x H)"
+       }
+      },
+      "PresentationValue": "954 x 838 x 2442 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Weight"
+       }
+      },
+      "PresentationValue": "10 kg"
+     }
+    ]
+   },
+   {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Packaging content"
+     }
+    },
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Warranty card"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Manual"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Cables included"
+       }
+      },
+      "PresentationValue": "AC"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Quick installation guide"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "User guide"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Bundled software"
+       }
+      },
+      "PresentationValue": "Common Installer, V3 Print driver with Lite SM"
+     }
+    ]
+   }
+  ],
+  "ProductRelated": [
+   {
+    "CategoryID": 1024,
+    "ProductCode": "5KZ38A",
+    "ProductName": "Laser Toner Collection Unit",
+    "Brand": "HP",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 381,
+    "ProductCode": "W1120A",
+    "ProductName": "120A Original Laser Imaging Drum",
+    "Brand": "HP",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 375,
+    "ProductCode": "W2070A",
+    "ProductName": "117A Black Original Laser Toner Cartridge",
+    "Brand": "HP",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 375,
+    "ProductCode": "W2072A",
+    "ProductName": "117A Yellow Original Laser Toner Cartridge",
+    "Brand": "HP",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 375,
+    "ProductCode": "W2073A",
+    "ProductName": "117A Magenta Original Laser Toner Cartridge",
+    "Brand": "HP",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 375,
+    "ProductCode": "W2071A",
+    "ProductName": "117A Cyan Original Laser Toner Cartridge",
+    "Brand": "HP",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 714,
+    "ProductCode": "7MV83A",
+    "ProductName": "Professional Business Paper Glossy 200 g/m2 A4 (210 x 297 mm) 150 sheets",
+    "Brand": "HP",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 788,
+    "ProductCode": "UB4X0E",
+    "ProductName": "3 year Next Business Day Exchange Service for Color Laser 15x and 17x MFP",
+    "Brand": "HP",
+    "RelationTypeCode": "service"
    }
   ]
  }

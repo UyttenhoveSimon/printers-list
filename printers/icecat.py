@@ -9,11 +9,21 @@ when set) and falls back to the public demo account ``openIcecat-live``.
 import os
 import re
 from dataclasses import dataclass
-from datetime import date
 from http import HTTPStatus
 from typing import Any
 
 from .fetch import Fetcher
+from .specs import (
+    SCHEMA,
+    consumable_kind,
+    decimal,
+    dmy_date,
+    number,
+    present,
+    technology,
+    upper_bound,
+    yes,
+)
 
 API = "https://live.icecat.biz/api/"
 DEMO_USER = "openIcecat-live"
@@ -35,10 +45,8 @@ OUT_OF_SCOPE = re.compile(
     r"SureColor|Label|Photo Lab)\b",
     re.IGNORECASE,
 )
-
-
-class NotFoundError(LookupError):
-    """Icecat has no open data sheet for this product."""
+#: categories of related products that are paper, not ink or toner
+PAPER_CATIDS = frozenset({714, 847})
 
 
 @dataclass(frozen=True)
@@ -58,44 +66,26 @@ def features(data: dict[str, Any]) -> dict[str, str]:
     }
 
 
-def yes(value: str | None) -> bool:
-    return value == "Yes"
-
-
-def present(value: str | None) -> bool:
-    """A function the machine has: Icecat says "No" or leaves it out otherwise."""
-    return value not in {None, "", "No", "Not supported"}
-
-
-def number(value: str | None) -> int | None:
-    match = re.search(r"\d+", value or "")
-    return int(match.group()) if match else None
-
-
-def icecat_date(value: str) -> str | None:
-    """Icecat writes dates as dd-mm-yyyy; the catalogue keeps ISO dates."""
-    match = re.fullmatch(r"(\d{2})-(\d{2})-(\d{4})", value or "")
-    if not match:
-        return None
-    day, month, year = (int(part) for part in match.groups())
-    return date(year, month, day).isoformat()
-
-
-def technology(value: str | None) -> str:
-    """LED printers are laser printers with an LED array; they are filed together."""
-    lowered = (value or "").lower()
-    if lowered in {"laser", "led"}:
-        return "laser"
-    if "inkjet" in lowered:
-        return "inkjet"
-    return lowered or "unknown"
-
-
 def first(spec: dict[str, str], *names: str) -> str | None:
     for name in names:
         if name in spec:
             return spec[name]
     return None
+
+
+def consumables(data: dict[str, Any]) -> list[dict[str, str]]:
+    """The ink, toner and drums Icecat relates to the printer; paper left out."""
+    found: dict[str, dict[str, str]] = {}
+    for related in data.get("ProductRelated") or []:
+        if related.get("RelationTypeCode") != "consumable":
+            continue
+        if related.get("CategoryID") in PAPER_CATIDS:
+            continue
+        code = related.get("ProductCode") or ""
+        name = related.get("ProductName") or code
+        if code and code not in found:
+            found[code] = {"code": code, "name": name, "kind": consumable_kind(name)}
+    return sorted(found.values(), key=lambda c: (c["kind"], c["code"]))
 
 
 def parse(data: dict[str, Any]) -> dict[str, Any]:
@@ -107,11 +97,13 @@ def parse(data: dict[str, Any]) -> dict[str, Any]:
     duplex_mode = spec.get("Duplex printing mode", "")
     image = data.get("Image") or {}
     return {
+        "schema": SCHEMA,
         "icecat_id": info["IcecatId"],
         "brand": info["Brand"],
         # "HP Color LaserJet Pro 3202dw Printer", where ProductName drops the brand
         "name": info.get("TitleInfo", {}).get("GeneratedIntTitle") or title,
         "title": title,
+        "code": info.get("BrandPartCode") or None,
         "gtin": next(iter(info.get("GTIN") or []), None),
         "category": info["Category"]["Name"]["Value"],
         "image": image.get("Pic500x500") or image.get("ThumbPic"),
@@ -127,12 +119,18 @@ def parse(data: dict[str, Any]) -> dict[str, Any]:
         "copy": present(spec.get("Copying")),
         "fax": present(spec.get("Faxing")),
         "adf": yes(spec.get("Auto document feeder (ADF)")),
+        "adf_capacity": number(spec.get("Auto document feeder (ADF) input capacity")),
+        "borderless": yes(spec.get("Borderless printing")),
         "wifi": yes(spec.get("Wi-Fi")),
         "wifi_direct": yes(spec.get("Wi-Fi Direct")),
         "ethernet": yes(spec.get("Ethernet LAN")),
         "usb": yes(spec.get("USB port")),
-        "airprint": "AirPrint" in mobile,
+        "bluetooth": yes(spec.get("Bluetooth")),
         "nfc": yes(spec.get("Near Field Communication (NFC)")),
+        "airprint": "AirPrint" in mobile,
+        "mopria": "Mopria" in mobile,
+        "display": yes(spec.get("Built-in display")) or present(spec.get("Display")),
+        "touchscreen": yes(spec.get("Touchscreen")),
         "ppm_black": number(
             first(
                 spec,
@@ -147,11 +145,35 @@ def parse(data: dict[str, Any]) -> dict[str, Any]:
                 "Print speed (ISO/IEC 24734) colour",
             )
         ),
+        "ppm_iso": number(spec.get("Print speed (ISO/IEC 24734) black")),
+        "first_page_s": decimal(spec.get("Time to first page (black, normal)")),
+        "print_dpi": number(spec.get("Maximum resolution")),
+        "scan_dpi": number(spec.get("Optical scanning resolution")),
         "max_paper": spec.get("Maximum ISO A-series paper size"),
+        "paper_input": number(
+            first(spec, "Total input capacity", "Maximum input capacity")
+        ),
+        "paper_output": number(
+            first(spec, "Total output capacity", "Maximum output capacity")
+        ),
+        "trays": number(spec.get("Total number of input trays")),
         "duty_cycle": number(spec.get("Maximum duty cycle")),
+        "monthly_volume": upper_bound(spec.get("Recommended duty cycle")),
+        "noise_db": decimal(spec.get("Sound pressure level (printing)")),
+        "power_w": decimal(spec.get("Power consumption (printing)")),
+        "tec_kwh": decimal(
+            spec.get("Energy Star Typical Electricity Consumption (TEC)")
+        ),
+        "weight_kg": decimal(spec.get("Weight")),
+        "width_mm": decimal(spec.get("Width")),
+        "depth_mm": decimal(spec.get("Depth")),
+        "height_mm": decimal(spec.get("Height")),
+        "cartridges": number(spec.get("Number of print cartridges")),
+        "starter_yield": number(spec.get("Included cartridge capacity (black)")),
+        "consumables": consumables(data),
         "market_positioning": spec.get("Market positioning"),
-        "release_date": icecat_date(info.get("ReleaseDate", "")),
-        "end_of_life": icecat_date(info.get("EndOfLifeDate", "")),
+        "release_date": dmy_date(info.get("ReleaseDate", "")),
+        "end_of_life": dmy_date(info.get("EndOfLifeDate", "")),
     }
 
 

@@ -10,6 +10,7 @@
    "GTIN": [
     "8715946741284"
    ],
+   "BrandPartCode": "C11CL63409",
    "TitleInfo": {
     "GeneratedIntTitle": "Epson EcoTank L3360"
    },
@@ -26,6 +27,11 @@
   },
   "FeaturesGroups": [
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Printing"
+     }
+    },
     "Features": [
      {
       "Feature": {
@@ -38,10 +44,26 @@
      {
       "Feature": {
        "Name": {
+        "Value": "Printing"
+       }
+      },
+      "PresentationValue": "Colour printing"
+     },
+     {
+      "Feature": {
+       "Name": {
         "Value": "Duplex printing"
        }
       },
       "PresentationValue": "No"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum resolution"
+       }
+      },
+      "PresentationValue": "5760 x 1440 DPI"
      },
      {
       "Feature": {
@@ -66,11 +88,64 @@
        }
       },
       "PresentationValue": "11 ppm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Print speed (ISO/IEC 24734) colour"
+       }
+      },
+      "PresentationValue": "6 ppm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Time to first page (black, normal)"
+       }
+      },
+      "PresentationValue": "10 s"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Time to first page (colour, normal)"
+       }
+      },
+      "PresentationValue": "16 s"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Economical printing"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Borderless printing"
+       }
+      },
+      "PresentationValue": "Yes"
      }
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Copying"
+     }
+    },
     "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Duplex copying"
+       }
+      },
+      "PresentationValue": "No"
+     },
      {
       "Feature": {
        "Name": {
@@ -78,10 +153,39 @@
        }
       },
       "PresentationValue": "Colour copying"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum copy resolution"
+       }
+      },
+      "PresentationValue": "600 x 600 DPI"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum copy size"
+       }
+      },
+      "PresentationValue": "A4"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum number of copies"
+       }
+      },
+      "PresentationValue": "99 copies"
      }
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Scanning"
+     }
+    },
     "Features": [
      {
       "Feature": {
@@ -98,10 +202,55 @@
        }
       },
       "PresentationValue": "Colour scanning"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Optical scanning resolution"
+       }
+      },
+      "PresentationValue": "1200 x 2400 DPI"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Scanner type"
+       }
+      },
+      "PresentationValue": "Flatbed scanner"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Scan technology"
+       }
+      },
+      "PresentationValue": "CIS"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Image formats supported"
+       }
+      },
+      "PresentationValue": "JPEG, BMP, PICT, TIFF, MTIFF, PNG"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Document formats supported"
+       }
+      },
+      "PresentationValue": "PDF"
      }
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Fax"
+     }
+    },
     "Features": [
      {
       "Feature": {
@@ -114,7 +263,20 @@
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Features"
+     }
+    },
     "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Duplex functions"
+       }
+      },
+      "PresentationValue": "Not supported"
+     },
      {
       "Feature": {
        "Name": {
@@ -126,14 +288,68 @@
      {
       "Feature": {
        "Name": {
+        "Value": "Number of print cartridges"
+       }
+      },
+      "PresentationValue": "4"
+     },
+     {
+      "Feature": {
+       "Name": {
         "Value": "Printing colours"
        }
       },
       "PresentationValue": "Black, Cyan, Magenta, Yellow"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "All-In-One-multitasking"
+       }
+      },
+      "PresentationValue": "Yes"
      }
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Input & output capacity"
+     }
+    },
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Total number of input trays"
+       }
+      },
+      "PresentationValue": "1"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Total input capacity"
+       }
+      },
+      "PresentationValue": "100 sheets"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Total output capacity"
+       }
+      },
+      "PresentationValue": "30 sheets"
+     }
+    ]
+   },
+   {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Paper handling"
+     }
+    },
     "Features": [
      {
       "Feature": {
@@ -142,10 +358,64 @@
        }
       },
       "PresentationValue": "A4"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Paper tray media types"
+       }
+      },
+      "PresentationValue": "Plain paper, Photo paper, Envelopes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "ISO A-series sizes (A0...A9)"
+       }
+      },
+      "PresentationValue": "A4, A6, A5"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Envelopes sizes"
+       }
+      },
+      "PresentationValue": "C6, DL, B5, B6"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Photo paper sizes"
+       }
+      },
+      "PresentationValue": "10x15 cm"
      }
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Ports & interfaces"
+     }
+    },
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Direct printing"
+       }
+      },
+      "PresentationValue": "Yes"
+     }
+    ]
+   },
+   {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Network"
+     }
+    },
     "Features": [
      {
       "Feature": {
@@ -182,7 +452,20 @@
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Design"
+     }
+    },
     "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Product colour"
+       }
+      },
+      "PresentationValue": "Black"
+     },
      {
       "Feature": {
        "Name": {
@@ -190,8 +473,246 @@
        }
       },
       "PresentationValue": "Home & office"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Built-in display"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Display"
+       }
+      },
+      "PresentationValue": "LCD"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Display diagonal"
+       }
+      },
+      "PresentationValue": "9.4 cm (3.7\")"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Control type"
+       }
+      },
+      "PresentationValue": "Buttons"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Colour display"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Display tilting"
+       }
+      },
+      "PresentationValue": "Yes"
      }
     ]
+   },
+   {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Power"
+     }
+    },
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Power consumption (printing)"
+       }
+      },
+      "PresentationValue": "12 W"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Power consumption (copying)"
+       }
+      },
+      "PresentationValue": "12 W"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Power consumption (ready)"
+       }
+      },
+      "PresentationValue": "6 W"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Power consumption (sleep)"
+       }
+      },
+      "PresentationValue": "0.5 W"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Power consumption (off)"
+       }
+      },
+      "PresentationValue": "0.1 W"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Energy Star Typical Electricity Consumption (TEC)"
+       }
+      },
+      "PresentationValue": "0.13 kWh/week"
+     }
+    ]
+   },
+   {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Weight & dimensions"
+     }
+    },
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Width"
+       }
+      },
+      "PresentationValue": "361 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Depth"
+       }
+      },
+      "PresentationValue": "317 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Height"
+       }
+      },
+      "PresentationValue": "162 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Weight"
+       }
+      },
+      "PresentationValue": "4.2 kg"
+     }
+    ]
+   },
+   {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Packaging content"
+     }
+    },
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Cartridge(s) included"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Included cartridge capacity (black)"
+       }
+      },
+      "PresentationValue": "8300 pages"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Included cartridge capacity (CMY)"
+       }
+      },
+      "PresentationValue": "6500 pages"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Cables included"
+       }
+      },
+      "PresentationValue": "AC"
+     }
+    ]
+   }
+  ],
+  "ProductRelated": [
+   {
+    "CategoryID": 7408,
+    "ProductCode": "C13T00S14A",
+    "ProductName": "103 EcoTank Black ink bottle",
+    "Brand": "Epson",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 7408,
+    "ProductCode": "C13T00S44A",
+    "ProductName": "103 EcoTank Yellow ink bottle",
+    "Brand": "Epson",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 7408,
+    "ProductCode": "C13T00S34A",
+    "ProductName": "103 EcoTank Magenta ink bottle",
+    "Brand": "Epson",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 7408,
+    "ProductCode": "C13T00S24A",
+    "ProductName": "103 EcoTank Cyan ink bottle",
+    "Brand": "Epson",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 7408,
+    "ProductCode": "C13T00S64A",
+    "ProductName": "C13T00S64A",
+    "Brand": "Epson",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 714,
+    "ProductCode": "C13S450075",
+    "ProductName": "Epson A4 Inkjet Business Paper 80gsm, 500 sheets",
+    "Brand": "Epson",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 788,
+    "ProductCode": "CP05OSSWCL61",
+    "ProductName": "L33XX 5Y OSSW CoverPlus",
+    "Brand": "Epson",
+    "RelationTypeCode": "service"
    }
   ]
  }

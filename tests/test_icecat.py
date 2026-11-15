@@ -26,6 +26,28 @@ def test_brother_dcp_l3550cdw(brother):
     assert brother["ppm_black"] == 18
     assert brother["max_paper"] == "A4"
     assert icecat.in_scope(brother) == ""
+    assert brother["schema"] == 2
+    assert brother["code"] == "DCP-L3550CDW"
+    assert brother["paper_input"] == 250
+    assert brother["paper_output"] == 150
+    assert brother["adf_capacity"] == 50
+    assert brother["touchscreen"] is True
+    assert brother["weight_kg"] == pytest.approx(21.9, abs=10)
+    assert brother["noise_db"] is not None
+
+
+def test_consumables_keep_ink_and_toner_not_paper_or_service():
+    data = fixture_json("icecat_epson_c11cl63409.json")["data"]
+    supplies = icecat.consumables(data)
+    names = [s["name"] for s in supplies]
+    assert "103 EcoTank Black ink bottle" in names
+    assert not any("Paper" in n for n in names)
+    assert {s["kind"] for s in supplies} <= {"ink", "supply"}
+    record = icecat.parse(data)
+    assert record["consumables"] == supplies
+    assert record["starter_yield"] == 8300
+    assert record["cartridges"] == 4
+    assert record["borderless"] is True
 
 
 def test_epson_ecotank_is_an_ink_tank_without_duplex():
@@ -49,14 +71,6 @@ def test_enterprise_ranges_are_out_of_scope(brother):
     assert icecat.in_scope(enterprise) == "Enterprise range"
     scanner = brother | {"category": "Scanners"}
     assert icecat.in_scope(scanner) == "category Scanners"
-
-
-@pytest.mark.parametrize(
-    ("value", "expected"),
-    [("01-04-2024", "2024-04-01"), ("", None), ("2024", None)],
-)
-def test_icecat_date(value, expected):
-    assert icecat.icecat_date(value) == expected
 
 
 def test_lookup_by_icecat_id_uses_the_account(monkeypatch):

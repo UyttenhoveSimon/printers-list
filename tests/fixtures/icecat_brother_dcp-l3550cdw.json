@@ -16,6 +16,7 @@
     "4977766790208",
     "4977766790499"
    ],
+   "BrandPartCode": "DCP-L3550CDW",
    "TitleInfo": {
     "GeneratedIntTitle": "Brother DCP-L3550CDW multifunction printer"
    },
@@ -32,6 +33,11 @@
   },
   "FeaturesGroups": [
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Printing"
+     }
+    },
     "Features": [
      {
       "Feature": {
@@ -52,10 +58,26 @@
      {
       "Feature": {
        "Name": {
+        "Value": "Printing"
+       }
+      },
+      "PresentationValue": "Colour printing"
+     },
+     {
+      "Feature": {
+       "Name": {
         "Value": "Duplex printing"
        }
       },
       "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum resolution"
+       }
+      },
+      "PresentationValue": "2400 x 600 DPI"
      },
      {
       "Feature": {
@@ -72,10 +94,55 @@
        }
       },
       "PresentationValue": "18 ppm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Warm-up time"
+       }
+      },
+      "PresentationValue": "28 s"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Time to first page (black, normal)"
+       }
+      },
+      "PresentationValue": "15.5 s"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Time to first page (colour, normal)"
+       }
+      },
+      "PresentationValue": "15.5 s"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "N-in-1 print function"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "N-up printing"
+       }
+      },
+      "PresentationValue": "2, 4, 9, 16, 25"
      }
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Copying"
+     }
+    },
     "Features": [
      {
       "Feature": {
@@ -84,10 +151,47 @@
        }
       },
       "PresentationValue": "Colour copying"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum copy resolution"
+       }
+      },
+      "PresentationValue": "600 x 600 DPI"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Time to first copy (black, normal)"
+       }
+      },
+      "PresentationValue": "17 s"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Time to first copy (colour, normal)"
+       }
+      },
+      "PresentationValue": "18 s"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Copier resize"
+       }
+      },
+      "PresentationValue": "25 - 400%"
      }
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Scanning"
+     }
+    },
     "Features": [
      {
       "Feature": {
@@ -96,10 +200,87 @@
        }
       },
       "PresentationValue": "Colour scanning"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Optical scanning resolution"
+       }
+      },
+      "PresentationValue": "2400 x 1200 DPI"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum scan resolution"
+       }
+      },
+      "PresentationValue": "19200 x 19200 DPI"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Scan technology"
+       }
+      },
+      "PresentationValue": "CIS"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Scan to"
+       }
+      },
+      "PresentationValue": "E-mail, FTP, File, Image, SMB"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Scan speed (colour)"
+       }
+      },
+      "PresentationValue": "21 ppm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Input colour depth"
+       }
+      },
+      "PresentationValue": "48 bit"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Output colour depth"
+       }
+      },
+      "PresentationValue": "24 bit"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Greyscale levels"
+       }
+      },
+      "PresentationValue": "256"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Scan drivers"
+       }
+      },
+      "PresentationValue": "SANE, TWAIN, WIA"
      }
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Fax"
+     }
+    },
     "Features": [
      {
       "Feature": {
@@ -112,7 +293,28 @@
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Features"
+     }
+    },
     "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Recommended duty cycle"
+       }
+      },
+      "PresentationValue": "300 - 1500 pages per month"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Number of print cartridges"
+       }
+      },
+      "PresentationValue": "4"
+     },
      {
       "Feature": {
        "Name": {
@@ -120,11 +322,112 @@
        }
       },
       "PresentationValue": "Black, Cyan, Magenta, Yellow"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Page description languages"
+       }
+      },
+      "PresentationValue": "BR-Script 3, PCL 6"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Printer fonts"
+       }
+      },
+      "PresentationValue": "Barcode, Bitmap, PCL, PostScript"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Number of printer fonts"
+       }
+      },
+      "PresentationValue": "157"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Number of PCL fonts"
+       }
+      },
+      "PresentationValue": "66"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Number of PostScript fonts"
+       }
+      },
+      "PresentationValue": "66"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Number of barcode fonts"
+       }
+      },
+      "PresentationValue": "13"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Number of bitmap fonts"
+       }
+      },
+      "PresentationValue": "12"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Country of origin"
+       }
+      },
+      "PresentationValue": "Vietnam"
      }
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Input & output capacity"
+     }
+    },
     "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Total number of input trays"
+       }
+      },
+      "PresentationValue": "1"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Total input capacity"
+       }
+      },
+      "PresentationValue": "250 sheets"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Total output capacity"
+       }
+      },
+      "PresentationValue": "150 sheets"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Paper input type"
+       }
+      },
+      "PresentationValue": "Paper tray"
+     },
      {
       "Feature": {
        "Name": {
@@ -132,10 +435,23 @@
        }
       },
       "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Auto document feeder (ADF) input capacity"
+       }
+      },
+      "PresentationValue": "50 sheets"
      }
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Paper handling"
+     }
+    },
     "Features": [
      {
       "Feature": {
@@ -144,11 +460,96 @@
        }
       },
       "PresentationValue": "A4"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Paper tray media types"
+       }
+      },
+      "PresentationValue": "Envelopes, Glossy paper, Labels, Plain paper, Recycled paper, Thick paper, Thin paper"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Multi-purpose tray media types"
+       }
+      },
+      "PresentationValue": "Plain paper, Recycled paper, Thin paper"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "ISO A-series sizes (A0...A9)"
+       }
+      },
+      "PresentationValue": "A4, A5, A6"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Non-ISO print media sizes"
+       }
+      },
+      "PresentationValue": "Executive, Folio, Legal"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "JIS B-series sizes (B0...B9)"
+       }
+      },
+      "PresentationValue": "B5"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Custom media width"
+       }
+      },
+      "PresentationValue": "76.2 - 215.9 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Custom media length"
+       }
+      },
+      "PresentationValue": "116 - 355.6 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Paper tray media weight"
+       }
+      },
+      "PresentationValue": "60 - 163 g/m²"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Auto Document Feeder (ADF) media weight"
+       }
+      },
+      "PresentationValue": "64 - 105 g/m²"
      }
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Ports & interfaces"
+     }
+    },
     "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Standard interfaces"
+       }
+      },
+      "PresentationValue": "Ethernet, USB 2.0, Wireless LAN"
+     },
      {
       "Feature": {
        "Name": {
@@ -160,6 +561,11 @@
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Network"
+     }
+    },
     "Features": [
      {
       "Feature": {
@@ -180,6 +586,54 @@
      {
       "Feature": {
        "Name": {
+        "Value": "Cabling technology"
+       }
+      },
+      "PresentationValue": "10/100Base-T(X)"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Ethernet LAN data rates"
+       }
+      },
+      "PresentationValue": "10,100 Mbit/s"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Wi-Fi standards"
+       }
+      },
+      "PresentationValue": "802.11b, 802.11g, Wi-Fi 4 (802.11n)"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Security algorithms"
+       }
+      },
+      "PresentationValue": "64-bit WEP, 128-bit WEP, SMTP-AUTH, SNMPv3, SSL/TLS, WPA-AES, WPA-PSK, WPA-TKIP, WPA2-AES, WPA2-PSK, WPA2-TKIP"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Supported network protocols (IPv4)"
+       }
+      },
+      "PresentationValue": "ARP, RARP, BOOTP, DHCP, APIPA(Auto IP), WINS/NetBIOS name resolution, DNS Resolver, mDNS, LLMNR responder, LPR/LPD, Custom Raw Port/Port9100, SMTP Client, IPP/IPPS, FTP Client and Server, CIFS Client, TELNET Server, SNMPv1/v2c/v3, HTTP/HTTPS server, TFTP client and server, ICMP, Web Services (Print/Scan), SNTP Client"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Supported network protocols (IPv6)"
+       }
+      },
+      "PresentationValue": "NDP, RA, DNS resolver, mDNS, LLMNR responder, LPR/LPD, Custom Raw Port/Port9100, IPP/IPPS, SMTP Client, FTP Client and Server, CIFS Client, TELNET Server, SNMPv1/v2c/v3, HTTP/HTTPS server, TFTP client and server, ICMPv6, SNTP Client, Web Services (Print/Scan)"
+     },
+     {
+      "Feature": {
+       "Name": {
         "Value": "Mobile printing technologies"
        }
       },
@@ -188,7 +642,77 @@
     ]
    },
    {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Performance"
+     }
+    },
     "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Card reader integrated"
+       }
+      },
+      "PresentationValue": "No"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Internal memory"
+       }
+      },
+      "PresentationValue": "512 MB"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Built-in processor"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Processor frequency"
+       }
+      },
+      "PresentationValue": "800 MHz"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Sound pressure level (printing)"
+       }
+      },
+      "PresentationValue": "45 dB"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Sound pressure level (quiet mode)"
+       }
+      },
+      "PresentationValue": "43 dB"
+     }
+    ]
+   },
+   {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Design"
+     }
+    },
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Product colour"
+       }
+      },
+      "PresentationValue": "Grey"
+     },
      {
       "Feature": {
        "Name": {
@@ -196,8 +720,231 @@
        }
       },
       "PresentationValue": "Home & office"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Built-in display"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Display diagonal"
+       }
+      },
+      "PresentationValue": "9.3 cm (3.66\")"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Touchscreen"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Control type"
+       }
+      },
+      "PresentationValue": "Touch"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Colour display"
+       }
+      },
+      "PresentationValue": "Yes"
      }
     ]
+   },
+   {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Power"
+     }
+    },
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Power consumption (average operating)"
+       }
+      },
+      "PresentationValue": "400 W"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Power consumption (standby)"
+       }
+      },
+      "PresentationValue": "80 W"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Power consumption (sleep)"
+       }
+      },
+      "PresentationValue": "9.7 W"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Power consumption (off)"
+       }
+      },
+      "PresentationValue": "0.04 W"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Energy Star Typical Electricity Consumption (TEC)"
+       }
+      },
+      "PresentationValue": "0.9 kWh/week"
+     }
+    ]
+   },
+   {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Weight & dimensions"
+     }
+    },
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Width"
+       }
+      },
+      "PresentationValue": "520 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Depth"
+       }
+      },
+      "PresentationValue": "570 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Height"
+       }
+      },
+      "PresentationValue": "590 mm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Weight"
+       }
+      },
+      "PresentationValue": "23.1 kg"
+     }
+    ]
+   },
+   {
+    "FeatureGroup": {
+     "Name": {
+      "Value": "Packaging content"
+     }
+    },
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Cartridge(s) included"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Included cartridge capacity (black)"
+       }
+      },
+      "PresentationValue": "1000 pages"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Included cartridge capacity (CMY)"
+       }
+      },
+      "PresentationValue": "1000 pages"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Manual"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Power cord included"
+       }
+      },
+      "PresentationValue": "Yes"
+     }
+    ]
+   }
+  ],
+  "ProductRelated": [
+   {
+    "CategoryID": 381,
+    "ProductCode": "DR-243CL",
+    "ProductName": "DR-243CL",
+    "Brand": "Brother",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 375,
+    "ProductCode": "TN-243CMYK",
+    "ProductName": "TN-243CMYK",
+    "Brand": "Brother",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 375,
+    "ProductCode": "TN-243BK",
+    "ProductName": "TN-243BK",
+    "Brand": "Brother",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 375,
+    "ProductCode": "TN-247BKTWIN",
+    "ProductName": "TN-247BKTWIN",
+    "Brand": "Brother",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 375,
+    "ProductCode": "TN-247BK",
+    "ProductName": "TN-247BK",
+    "Brand": "Brother",
+    "RelationTypeCode": "consumable"
+   },
+   {
+    "CategoryID": 375,
+    "ProductCode": "TN-247M",
+    "ProductName": "TN-247M",
+    "Brand": "Brother",
+    "RelationTypeCode": "consumable"
    }
   ]
  }
