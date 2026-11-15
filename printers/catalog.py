@@ -27,8 +27,8 @@ from typing import Any
 
 from . import icecat
 from .fetch import BotWallError, Fetcher, FetchError
-from .sources import Candidate, Source
-from .specs import SCHEMA, disagreements, office_copier, out_of_scope
+from .sources import Candidate, Source, brother_support
+from .specs import FILLABLE, SCHEMA, disagreements, office_copier, out_of_scope
 
 logger = logging.getLogger(__name__)
 
@@ -38,6 +38,12 @@ RETRY_AFTER = timedelta(days=30)
 CHECKPOINT = 500
 #: Icecat lookups in flight at once, each with its own courtesy pause
 WORKERS = 4
+#: makers' sites that fill the gaps Icecat leaves, by brand
+ENRICHERS = {"Brother": brother_support}
+#: how long a maker page read for its gaps is trusted
+ENRICH_AGAIN_AFTER = timedelta(days=90)
+#: maker pages read per run for gaps at most
+ENRICH_PAGES = 400
 #: brands Open Icecat does not carry: their makers' pages are the record
 NOT_IN_OPEN_ICECAT = frozenset({"Lexmark"})
 
@@ -217,6 +223,59 @@ class Catalog:
             "date": self.today.isoformat(),
             "differ": disagreements(product, candidate.record),
         }
+        self.fill(product_id, candidate.source, candidate.record)
+
+    def fill(self, product_id: str, source: str, record: dict[str, Any]) -> int:
+        """Fill the fields Icecat left empty from a maker's page; return how many."""
+        product = self.products[product_id]
+        filled = 0
+        for name in FILLABLE:
+            if product.get(name) is None and record.get(name) is not None:
+                product[name] = record[name]
+                product.setdefault("filled", {})[name] = source
+                filled += 1
+        return filled
+
+    def enrich(self, fetcher: Fetcher, report: Report) -> None:
+        """Read the makers' own spec pages for printers Icecat left with gaps."""
+        for brand, enricher in ENRICHERS.items():
+            cache = self.state["caches"].setdefault(enricher.NAME, {})
+            budget, filled, failures = ENRICH_PAGES, 0, 0
+            for product_id, product in self.products.items():
+                if product.get("brand") != brand:
+                    continue
+                if all(product.get(f) is not None for f in enricher.FIELDS):
+                    continue
+                key = enricher.model_of(product.get("name", ""))
+                if not key:
+                    continue
+                entry: dict[str, Any] | None = cache.get(key)
+                stale = (
+                    entry is None
+                    or self.today - date.fromisoformat(entry["checked"])
+                    >= ENRICH_AGAIN_AFTER
+                )
+                if stale:
+                    if budget <= 0:
+                        continue
+                    budget -= 1
+                    try:
+                        record = enricher.enrich(fetcher, product) or {}
+                    except FetchError as error:
+                        failures += 1
+                        logger.debug(f"{enricher.NAME} {key}: {error}")
+                        continue
+                    entry = cache[key] = {
+                        "checked": self.today.isoformat(),
+                        "record": record,
+                    }
+                if self.fill(product_id, enricher.NAME, entry["record"]):
+                    filled += 1
+            read = ENRICH_PAGES - budget
+            status = "error" if read and failures == read else "ok"
+            report.sources[f"{enricher.NAME}:ALL"] = {"status": status, "found": filled}
+            self.state["runs"][f"{enricher.NAME}:ALL"] = self.today.isoformat()
+            logger.info(f"{enricher.NAME}: {read} pages read, {filled} printers filled")
 
     # the run -----------------------------------------------------------------
 
@@ -242,6 +301,8 @@ class Catalog:
                 self.save()
                 done = min(start + CHECKPOINT, len(candidates))
                 logger.info(f"{where}: {done}/{len(candidates)} resolved")
+        self.enrich(fetcher, report)
+        self.save()
         report.lookups = max_lookups - max(budget, 0)
         report.new = sorted(set(self.products) - known_before)
         report.pending = sum(
@@ -298,7 +359,16 @@ class Catalog:
         record = {
             key: value
             for key, value in product.items()
-            if key not in {"sightings", "checks", "title", "category", "gtin", "schema"}
+            if key
+            not in {
+                "sightings",
+                "checks",
+                "title",
+                "category",
+                "gtin",
+                "schema",
+                "filled",
+            }
         }
         icecat_id = product.get("icecat_id")
         return record | {
@@ -312,6 +382,7 @@ class Catalog:
             if icecat_id
             else "",
             "office": office_copier(product),
+            "filled": product.get("filled", {}),
             # the makers' sites that state the same as Icecat on every field
             "confirmed": sorted(s for s, c in checks.items() if not c["differ"]),
             "differs": {s: c["differ"] for s, c in checks.items() if c["differ"]},

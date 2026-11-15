@@ -44,6 +44,12 @@ def source(name, markets, found):
     return SimpleNamespace(NAME=name, MARKETS=markets, discover=discover)
 
 
+@pytest.fixture(autouse=True)
+def no_enrichers(monkeypatch):
+    """The makers' gap-filling sites are faked in their own tests below."""
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {})
+
+
 @pytest.fixture
 def icecat(monkeypatch):
     """Icecat knows ids 1 and 2 (two regional SKUs of one model) and 3."""
@@ -262,3 +268,71 @@ def test_the_earliest_added_date_is_kept(tmp_path, icecat):
         tmp_path, DAY + timedelta(days=14), [index(Candidate("icecat", icecat_id=1))]
     )
     assert catalog.products["1"]["added"] == "2020-02-02"  # kept across a fresh read
+
+
+def test_a_maker_page_fills_what_icecat_left_empty(tmp_path, icecat):
+    page = Candidate(
+        "epson", icecat_id=1, record={"weight_kg": 9.5, "duplex_print": True}
+    )
+    catalog, _ = run(tmp_path, DAY, [source("epson", ("GB",), {"GB": [page]})])
+    product = catalog.products["1"]
+    assert product["weight_kg"] == 9.5
+    assert product["filled"] == {"weight_kg": "epson"}
+    (printer,) = catalog.site()["printers"]
+    assert printer["filled"] == {"weight_kg": "epson"}
+
+
+def test_icecat_values_are_never_overwritten_by_a_fill(tmp_path, icecat):
+    catalog, _ = run(tmp_path, DAY, [index(Candidate("icecat", icecat_id=1))])
+    catalog.products["1"]["weight_kg"] = 12.0
+    catalog.save()
+    page = Candidate("epson", icecat_id=1, record={"weight_kg": 9.5})
+    catalog, _ = run(tmp_path, DAY, [source("epson", ("GB",), {"GB": [page]})])
+    assert catalog.products["1"]["weight_kg"] == 12.0
+    assert "filled" not in catalog.products["1"]
+
+
+class FakeEnricher:
+    NAME = "fake-support"
+    FIELDS = ("weight_kg", "noise_db")
+
+    def __init__(self, record=None, error=None):
+        self.record, self.error, self.calls = record, error, []
+
+    def model_of(self, name):
+        return name.split()[-1]
+
+    def enrich(self, fetcher, product):
+        self.calls.append(product["name"])
+        if self.error:
+            raise self.error
+        return self.record
+
+
+def test_gaps_are_filled_from_the_support_site_and_cached(
+    tmp_path, icecat, monkeypatch
+):
+    enricher = FakeEnricher({"weight_kg": 21.5, "noise_db": 47.0})
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": enricher})
+    found = [index(Candidate("icecat", icecat_id=3))]
+    catalog, report = run(tmp_path, DAY, found)
+    assert catalog.products["3"]["weight_kg"] == 21.5
+    assert catalog.products["3"]["filled"] == {
+        "weight_kg": "fake-support",
+        "noise_db": "fake-support",
+    }
+    assert report.sources["fake-support:ALL"] == {"status": "ok", "found": 1}
+    # the next run fills again from the cache, without reading the page
+    catalog.products["3"]["schema"] = SCHEMA - 1
+    catalog.save()
+    catalog, _ = run(tmp_path, DAY + timedelta(days=7), found)
+    assert enricher.calls == ["Brother HL-L2445DW"]  # one page read, two runs
+    assert catalog.products["3"]["weight_kg"] == 21.5
+
+
+def test_a_support_site_that_fails_is_reported(tmp_path, icecat, monkeypatch):
+    enricher = FakeEnricher(error=FetchError("down"))
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": enricher})
+    catalog, report = run(tmp_path, DAY, [index(Candidate("icecat", icecat_id=3))])
+    assert report.sources["fake-support:ALL"]["status"] == "error"
+    assert "weight_kg" not in catalog.products["3"]

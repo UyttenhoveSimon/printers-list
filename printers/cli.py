@@ -7,9 +7,10 @@ import logging
 import shutil
 from pathlib import Path
 
+from . import catalog as catalog_module
 from .catalog import Catalog
 from .fetch import Fetcher
-from .sources import KNOWN_WALLS, all_sources
+from .sources import KNOWN_WALLS, all_sources, pages
 
 ROOT = Path(__file__).resolve().parent.parent
 #: Icecat lookups per run: a first run spreads over a few weeks, then the
@@ -18,6 +19,9 @@ MAX_LOOKUPS = 4000
 
 
 def update(args: argparse.Namespace) -> None:
+    if args.max_pages is not None:
+        pages.MAX_PAGES = args.max_pages
+        catalog_module.ENRICH_PAGES = args.max_pages
     catalog = Catalog(args.data)
     sources = [s for s in all_sources() if not args.source or s.NAME in args.source]
     report = catalog.update(Fetcher(), sources, args.max_lookups)
@@ -29,7 +33,7 @@ def update(args: argparse.Namespace) -> None:
 
 
 #: what the detail view and the comparison need, fetched only when opened
-DETAIL_FIELDS = ("consumables", "supplies", "confirmed", "differs")
+DETAIL_FIELDS = ("consumables", "supplies", "confirmed", "differs", "filled")
 #: detail fields the list needs as well: the "confirmed" filter and badge
 LIST_DETAIL_FIELDS = frozenset({"confirmed"})
 #: sent although false: "mono" is a filter value, not an unknown
@@ -128,6 +132,11 @@ def main(argv: list[str] | None = None) -> None:
 
     update_parser = commands.add_parser("update", help="refresh the catalogue")
     update_parser.add_argument("--max-lookups", type=int, default=MAX_LOOKUPS)
+    update_parser.add_argument(
+        "--max-pages",
+        type=int,
+        help="maker pages read per source and run (default: a few hundred)",
+    )
     update_parser.add_argument(
         "--source", action="append", help="only this source (repeatable)"
     )

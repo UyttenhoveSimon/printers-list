@@ -27,6 +27,24 @@ CHECKED_FIELDS: dict[str, float] = {
     "ppm_iso": 1,
 }
 
+#: fields a maker's page may fill when Icecat leaves them empty
+FILLABLE = (
+    "weight_kg",
+    "width_mm",
+    "depth_mm",
+    "height_mm",
+    "paper_input",
+    "paper_output",
+    "adf_capacity",
+    "duty_cycle",
+    "monthly_volume",
+    "noise_db",
+    "ppm_black",
+    "ppm_color",
+    "ppm_iso",
+    "first_page_s",
+)
+
 NUMBER = re.compile(r"\d+(?:[.,]\d+)?")
 
 
