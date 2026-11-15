@@ -41,8 +41,9 @@ jobs:
         run: uv run printers update --max-lookups "${{ inputs.max_lookups || '4000' }}"
       - name: Commit the catalogue
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # the weekly refresh is committed as the repository owner, not as a bot
+          git config user.name "UyttenhoveSimon"
+          git config user.email "3716879+UyttenhoveSimon@users.noreply.github.com"
           git add data
           if git diff --cached --quiet; then
             echo "nothing new"
