@@ -9,7 +9,9 @@ HTTP, as GitHub Pages serves it. Screenshots land in ``_site-shots/``.
 import functools
 import http.server
 import os
+import re
 import threading
+from datetime import date, timedelta
 from pathlib import Path
 
 import pytest
@@ -541,13 +543,30 @@ def shown(p):
 
 
 def expected(data, keep):
-    return f"{sum(1 for p in data if shown(p) and keep(p))} of {len(data)} printers"
+    """The count line as the page writes it in English: "1,880 of 7,440 printers"."""
+    return f"{sum(1 for p in data if shown(p) and keep(p)):,} of {len(data):,} printers"
+
+
+def is_new(page):
+    """The page's rule: first seen in the latest week, never on the first fill."""
+    meta = page.evaluate(
+        "async () => { const d = await (await fetch('printers.json')).json(); return [d.updated, d.started]; }"
+    )
+    updated, started = (date.fromisoformat(d) for d in meta)
+    since = max(started, updated - timedelta(days=7)).isoformat()
+    return lambda p: p.get("first_seen", "") > since
 
 
 def open_all(page):
     """Open every section of the panel, as someone looking for a filter would."""
     for summary in page.query_selector_all("#filters details:not([open]) summary"):
         summary.click()
+
+
+def takes_a3(p):
+    """A3, A3+ and SRA3 all take an A3 sheet, as the page reads them."""
+    digits = re.sub(r"\D", "", p.get("max_paper") or "")
+    return bool(digits) and int(digits) <= 3
 
 
 def check_each(page, cases):
@@ -569,12 +588,13 @@ def test_every_flag(page):
         "async () => (await import('./logic.js')).FILTERS.filter((f) => f.type === 'flag' && !f.default).map((f) => f.key)"
     )
     assert len(flags) >= 20
+    new = is_new(page)
 
     def case(key):
         selector = f'input[data-key="{key}"]'
-        keep = (lambda p: True) if key == "new" else (lambda p: bool(p.get(key)))
+        keep = new if key == "new" else (lambda p: bool(p.get(key)))
         if key == "a3":
-            keep = lambda p: p.get("max_paper") == "A3"  # noqa: E731
+            keep = takes_a3
         return (
             key,
             lambda: page.check(selector),
@@ -703,7 +723,7 @@ def test_every_year(page):
             known = year(p)
             return p.get("available") and (known is None or known >= y)
 
-        want = f"{sum(1 for p in data if keep(p))} of {len(data)} printers"
+        want = f"{sum(1 for p in data if keep(p)):,} of {len(data):,} printers"
         cases.append(
             (value, lambda v=value: page.select_option(sel, v), lambda: None, want)
         )
@@ -713,6 +733,9 @@ def test_every_year(page):
 
 def test_every_sort(page):
     data = [p for p in rows(page) if shown(p)]
+    for p in data:
+        if p.get("width_mm") and p.get("depth_mm"):
+            p["_footprint"] = p["width_mm"] * p["depth_mm"]
     by_name = lambda p: (p["brand"], p["name"])  # noqa: E731
     sorts = page.eval_on_selector_all("#sort option", "os => os.map((o) => o.value)")
     assert len(sorts) >= 8
@@ -725,6 +748,7 @@ def test_every_sort(page):
         "lightest": ("weight_kg", 1),
         "quietest": ("noise_db", 1),
         "greenest": ("tec_kwh", 1),
+        "smallest": ("_footprint", 1),
     }
     wrong = []
     for name in sorts:
@@ -732,7 +756,7 @@ def test_every_sort(page):
         first = page.eval_on_selector_all(
             ".card h3", "hs => hs.slice(0, 5).map((h) => h.textContent)"
         )
-        if name in {"name", "smallest"}:  # nothing has a size here: by name
+        if name == "name":
             want = sorted(data, key=by_name)
         else:
             key, direction = fields[name]
@@ -791,6 +815,7 @@ def test_every_language(page):
         assert page.query_selector_all(".card")
 
 
+@pytest.mark.skipif(bool(os.environ.get("SITE_DATA")), reason="synthetic report only")
 def test_every_source_is_listed_with_its_status(page):
     table = page.text_content("#sources-table")
     for name in ["Open Icecat", "Epson", "Lexmark", "HP", "Brother"]:
