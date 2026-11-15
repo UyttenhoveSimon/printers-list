@@ -131,7 +131,7 @@ function writeHash() {
 function readHash() {
   const h = new URLSearchParams(location.hash.slice(1));
   state.q = h.get("q") || "";
-  for (const f of FLAGS) if (h.has(f)) state[f] = h.get(f) === "1";
+  for (const f of FLAGS) state[f] = h.has(f) ? h.get(f) === "1" : f === "available";
   for (const k of ["technology", "color", "year"]) state[k] = h.get(k) || "";
   state.ppm = Number(h.get("ppm")) || 0;
   state.sort = h.get("sort") || "name";
