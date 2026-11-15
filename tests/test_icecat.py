@@ -26,7 +26,7 @@ def test_brother_dcp_l3550cdw(brother):
     assert brother["ppm_black"] == 18
     assert brother["max_paper"] == "A4"
     assert icecat.in_scope(brother) == ""
-    assert brother["schema"] == 2
+    assert brother["schema"] == 3
     assert brother["code"] == "DCP-L3550CDW"
     assert brother["paper_input"] == 250
     assert brother["paper_output"] == 150
@@ -43,11 +43,39 @@ def test_consumables_keep_ink_and_toner_not_paper_or_service():
     assert "103 EcoTank Black ink bottle" in names
     assert not any("Paper" in n for n in names)
     assert {s["kind"] for s in supplies} <= {"ink", "supply"}
+    assert all(s["own"] and s["brand"] == "Epson" for s in supplies)
     record = icecat.parse(data)
     assert record["consumables"] == supplies
     assert record["starter_yield"] == 8300
     assert record["cartridges"] == 4
     assert record["borderless"] is True
+
+
+def test_other_brands_supplies_come_after_the_makers():
+    """Synthetic: a Brother printer with a Xerox compatible toner related."""
+    related = [
+        {
+            "RelationTypeCode": "consumable",
+            "CategoryID": 375,
+            "ProductCode": "006R04206",
+            "ProductName": "Mono Toner compatible with Brother TN3380",
+            "Brand": "Xerox",
+        },
+        {
+            "RelationTypeCode": "consumable",
+            "CategoryID": 375,
+            "ProductCode": "TN-3380",
+            "ProductName": "TN-3380 toner",
+            "Brand": "Brother",
+        },
+    ]
+    supplies = icecat.consumables(
+        {"GeneralInfo": {"Brand": "Brother"}, "ProductRelated": related}
+    )
+    assert [(s["code"], s["own"]) for s in supplies] == [
+        ("TN-3380", True),
+        ("006R04206", False),
+    ]
 
 
 def test_epson_ecotank_is_an_ink_tank_without_duplex():

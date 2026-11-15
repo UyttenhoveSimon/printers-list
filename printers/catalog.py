@@ -189,11 +189,16 @@ class Catalog:
     def store(self, product_id: str, record: dict[str, Any]) -> str:
         """Put a fresh record in, keeping what earlier runs learnt about it."""
         previous = self.products.get(product_id, {})
-        self.products[product_id] = record | {
-            "first_seen": previous.get("first_seen", self.today.isoformat()),
-            "sightings": previous.get("sightings", {}),
-            "checks": previous.get("checks", {}),
-        }
+        kept = {"added": previous["added"]} if "added" in previous else {}
+        self.products[product_id] = (
+            record
+            | kept
+            | {
+                "first_seen": previous.get("first_seen", self.today.isoformat()),
+                "sightings": previous.get("sightings", {}),
+                "checks": previous.get("checks", {}),
+            }
+        )
         return product_id
 
     def adopt(self, candidate: Candidate) -> str | None:
@@ -264,7 +269,10 @@ class Catalog:
         if product_id is None:
             return
         today = self.today.isoformat()
-        sightings = self.products[product_id]["sightings"]
+        product = self.products[product_id]
+        if candidate.added and candidate.added < product.get("added", "9999"):
+            product["added"] = candidate.added
+        sightings = product["sightings"]
         previous = sightings.get(where)
         markets = set(candidate.markets)
         if previous and previous["date"] == today:

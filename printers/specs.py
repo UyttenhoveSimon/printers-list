@@ -10,7 +10,7 @@ import re
 from datetime import date
 
 #: bumped when a source's mapping changes; older records are read again
-SCHEMA = 2
+SCHEMA = 3
 
 #: fields a manufacturer's site and Icecat can disagree on, and how near is equal
 CHECKED_FIELDS: dict[str, float] = {

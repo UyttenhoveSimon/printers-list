@@ -189,6 +189,13 @@ def test_icecat_index_keeps_printers_on_the_market():
     assert printer.key == "icecat:129039974"
     assert "GB" in printer.markets
     assert "WW" not in printer.markets
+    assert printer.added == "2025-03-04"
+
+
+def test_index_dates():
+    assert icecat_index.iso_date("20050715000000") == "2005-07-15"
+    assert icecat_index.iso_date("") == ""
+    assert icecat_index.iso_date("2005") == ""
 
 
 def test_icecat_index_needs_the_password(no_icecat_account):

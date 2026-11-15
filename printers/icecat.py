@@ -73,9 +73,15 @@ def first(spec: dict[str, str], *names: str) -> str | None:
     return None
 
 
-def consumables(data: dict[str, Any]) -> list[dict[str, str]]:
-    """The ink, toner and drums Icecat relates to the printer; paper left out."""
-    found: dict[str, dict[str, str]] = {}
+def consumables(data: dict[str, Any]) -> list[dict[str, Any]]:
+    """The ink, toner and drums Icecat relates to the printer; paper left out.
+
+    Icecat relates compatible supplies from other brands too (Xerox toner for
+    a Brother): each carries its brand, and the printer's own brand comes
+    first.
+    """
+    maker = (data.get("GeneralInfo") or {}).get("Brand", "")
+    found: dict[str, dict[str, Any]] = {}
     for related in data.get("ProductRelated") or []:
         if related.get("RelationTypeCode") != "consumable":
             continue
@@ -83,9 +89,16 @@ def consumables(data: dict[str, Any]) -> list[dict[str, str]]:
             continue
         code = related.get("ProductCode") or ""
         name = related.get("ProductName") or code
+        brand = related.get("Brand") or ""
         if code and code not in found:
-            found[code] = {"code": code, "name": name, "kind": consumable_kind(name)}
-    return sorted(found.values(), key=lambda c: (c["kind"], c["code"]))
+            found[code] = {
+                "code": code,
+                "name": name,
+                "kind": consumable_kind(name),
+                "brand": brand,
+                "own": brand.lower() == maker.lower(),
+            }
+    return sorted(found.values(), key=lambda c: (not c["own"], c["kind"], c["code"]))
 
 
 def parse(data: dict[str, Any]) -> dict[str, Any]:

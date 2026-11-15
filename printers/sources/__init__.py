@@ -33,6 +33,8 @@ class Candidate:
     icecat_id: int | None = None
     url: str = ""
     markets: tuple[str, ...] = field(default=())
+    #: when the source first listed the model (Icecat's Date_Added), ISO date
+    added: str = ""
     #: the specifications the source itself publishes, in catalogue fields
     record: dict[str, Any] | None = field(default=None, compare=False)
 

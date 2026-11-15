@@ -24,6 +24,8 @@ MARKETS = ("ALL",)
 INDEX_URL = "https://data.icecat.biz/export/freexml/EN/on_market.index.xml.gz"
 #: Icecat's code for "sold everywhere", not a country
 WORLDWIDE = "WW"
+#: yyyymmdd at the start of the index's timestamps
+DATE_DIGITS = 8
 
 
 def credentials() -> tuple[str, str]:
@@ -38,6 +40,13 @@ def discover(fetcher: Fetcher, market: str, cache: dict[str, str]) -> list[Candi
     response = fetcher.stream(INDEX_URL, credentials())
     with response, gzip.GzipFile(fileobj=response.raw) as index:
         return list(parse(index))
+
+
+def iso_date(stamp: str) -> str:
+    """``20250304000000`` -> ``2025-03-04``; anything else -> ``""``."""
+    if len(stamp) < DATE_DIGITS or not stamp[:DATE_DIGITS].isdigit():
+        return ""
+    return f"{stamp[:4]}-{stamp[4:6]}-{stamp[6:8]}"
 
 
 def parse(index: IO[bytes] | gzip.GzipFile) -> Iterable[Candidate]:
@@ -59,6 +68,7 @@ def parse(index: IO[bytes] | gzip.GzipFile) -> Iterable[Candidate]:
                 code=element.get("Prod_ID", ""),
                 icecat_id=int(element.get("Product_ID", "0")),
                 markets=markets,
+                added=iso_date(element.get("Date_Added", "")),
             )
         # the index holds millions of products: keep only the one being read
         element.clear()

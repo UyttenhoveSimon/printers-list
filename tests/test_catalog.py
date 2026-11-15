@@ -243,3 +243,22 @@ def test_a_maker_page_confirms_or_contradicts_icecat(tmp_path, icecat):
     assert printers["1"]["differs"] == {}
     assert printers["3"]["confirmed"] == []
     assert printers["3"]["differs"] == {"epson": {"duplex_print": [True, False]}}
+
+
+def test_the_earliest_added_date_is_kept(tmp_path, icecat):
+    first = [index(Candidate("icecat", icecat_id=1, added="2021-06-01"))]
+    run(tmp_path, DAY, first)
+    later = [
+        index(
+            Candidate("icecat", icecat_id=1, added="2023-01-01"),
+            Candidate("icecat", icecat_id=1, added="2020-02-02"),
+        )
+    ]
+    catalog, _ = run(tmp_path, DAY + timedelta(days=7), later)
+    assert catalog.products["1"]["added"] == "2020-02-02"
+    catalog.products["1"]["schema"] = SCHEMA - 1
+    catalog.save()
+    catalog, _ = run(
+        tmp_path, DAY + timedelta(days=14), [index(Candidate("icecat", icecat_id=1))]
+    )
+    assert catalog.products["1"]["added"] == "2020-02-02"  # kept across a fresh read
