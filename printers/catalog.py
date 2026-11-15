@@ -28,7 +28,7 @@ from typing import Any
 from . import icecat
 from .fetch import BotWallError, Fetcher, FetchError
 from .sources import Candidate, Source
-from .specs import SCHEMA, disagreements, out_of_scope
+from .specs import SCHEMA, disagreements, office_copier, out_of_scope
 
 logger = logging.getLogger(__name__)
 
@@ -311,6 +311,7 @@ class Catalog:
             else icecat.product_url(icecat_id)
             if icecat_id
             else "",
+            "office": office_copier(product),
             # the makers' sites that state the same as Icecat on every field
             "confirmed": sorted(s for s, c in checks.items() if not c["differ"]),
             "differs": {s: c["differ"] for s, c in checks.items() if c["differ"]},

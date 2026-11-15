@@ -68,3 +68,49 @@ def test_out_of_scope():
     assert specs.out_of_scope({"workgroup": "Large Workgroup"})
     assert not specs.out_of_scope({"workgroup": "Small Workgroup"})
     assert not specs.out_of_scope({})
+
+
+@pytest.mark.parametrize(
+    ("record", "copier"),
+    [
+        ({"name": "Canon imageRUNNER ADVANCE DX C3826i"}, True),
+        ({"name": "Kyocera TASKalfa 2554ci"}, True),
+        ({"name": "Ricoh IM C3000"}, True),
+        (
+            {"name": "Brother MFC-L3740CDW", "market_positioning": "Home & office"},
+            False,
+        ),
+        ({"name": "Some printer", "market_positioning": "Workgroup"}, True),
+        (
+            {
+                "name": "A3 laser",
+                "technology": "laser",
+                "max_paper": "SRA3",
+                "paper_input": 1200,
+            },
+            True,
+        ),
+        (
+            {
+                "name": "A3 inkjet",
+                "technology": "inkjet",
+                "max_paper": "A3",
+                "paper_input": 1200,
+            },
+            False,
+        ),
+        (
+            {
+                "name": "A3 laser",
+                "technology": "laser",
+                "max_paper": "A3",
+                "paper_input": 250,
+            },
+            False,
+        ),
+        ({"name": "Heavy", "weight_kg": 62.5}, True),
+        ({"name": "Light", "weight_kg": 12}, False),
+    ],
+)
+def test_office_copier(record, copier):
+    assert specs.office_copier(record) is copier
