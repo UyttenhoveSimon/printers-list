@@ -52,6 +52,7 @@ printers/
     pages.py        shared reader for maker sites with a sitemap and per-model pages
     epson.py        Epson, 7 countries: SKU and spec sheet (cross-checks Icecat)
     lexmark.py      Lexmark, 9 countries: the record itself (not in Open Icecat)
+    brother_support.py  support.brother.com spec pages: fills Brother's gaps
     hp.py, brother.py  model lists; both refuse non-browser clients today
 site/
   index.html        the shell; strings filled from i18n.js
@@ -75,10 +76,14 @@ tests/              offline; fixtures/ holds trimmed real captures
    each with its own session and pause. It saves every 500 candidates.
 3. A candidate is *placed*: resolved to a product, cross-checked against the
    maker's record, and given a sighting (`source:market`, date, countries).
-4. A product is available when one of its sightings is as recent as the last
+4. `Catalog.enrich` then reads makers' support pages (`ENRICHERS`, Brother
+   today) for printers whose `FIELDS` Icecat left empty, cached 90 days. A
+   maker's page only ever fills an empty field (`fill`), never overwrites
+   Icecat, and the record notes the source in `filled`.
+5. A product is available when one of its sightings is as recent as the last
    successful read of that `source:market`. A source that fails or suddenly
    lists nothing leaves its products as they were.
-5. `printers build` folds regional SKUs of one model into one row and writes
+6. `printers build` folds regional SKUs of one model into one row and writes
    `printers.json` (lean: false and empty fields dropped) and `details.json`
    (cartridges, checks), each named by content hash in the page.
 
@@ -93,6 +98,9 @@ tests/              offline; fixtures/ holds trimmed real captures
   marked `live`.
 - **Fixtures are real captures, trimmed.** A payload written by hand must say
   it is synthetic in its test's docstring.
+- **Bump `pages.PAGE_VERSION`** when a maker page reader takes new fields:
+  cached pages are read again (`printers update --max-pages 1000` does it in
+  one run).
 - **Bump `specs.SCHEMA`** when a mapping in `icecat.py` or a maker reader
   changes the fields a record holds: the next run reads those records again
   (about 25 minutes for the whole catalogue).
@@ -131,5 +139,12 @@ tests/              offline; fixtures/ holds trimmed real captures
   `Date_Added`. Undated printers stay visible.
 - Icecat relates compatible supplies from other brands; `own` tells them apart.
 - Release dates are rare in Icecat (about one printer in five).
+- Brother's spec pages cover a model family: a cell lists values per model
+  group, and a row's label may name the models it applies to (the ADF row).
+- Canon refuses honest clients on every regional site tried; HP's support
+  site keeps its spec data behind paths its robots.txt disallows. Do not
+  reach them through a browser: that is the wall rule.
+- Office copiers are classed (`specs.office_copier`) by range name, Icecat
+  positioning, A3 laser with 1,000+ sheets, or 50 kg+: any one sign.
 - rustwright's `page.url` does not follow `history.replaceState`: tests read
   `location.hash`.

@@ -36,7 +36,9 @@ I could not find an easy way to find a printer with the specs I wanted, so I bui
 - ↕️ **Sorting**: newest, oldest, name, fastest (black or colour), largest paper tray, lightest, smallest, quietest, lowest energy use.
 - 🖋️ **Cartridges**: the brand's own ink, toner and drums each printer takes, then compatible supplies from other brands set apart. The starter cartridge yield is shown too.
 - 🌍 **Where it is sold**: the countries each model is marketed in, with country names in your language.
-- 🔎 **Cross-checked**: where a maker's own spec sheet disagrees with Icecat, the printer's detail says so.
+- 🔎 **Cross-checked and completed**: where a maker's own spec sheet disagrees with Icecat, the printer's detail says so. Where Icecat leaves a field empty (weight, size, noise, trays, speed), Epson's spec pages and Brother's support portal fill it, marked with their source.
+- 🏢 **Office copiers apart**: imageRUNNER, TASKalfa, AltaLink, bizhub and other office copiers form their own class, hidden by default. They stay one click away.
+- ↔️ **From and to on every number**: at most 250 sheets, under 15 kg, between 20 and 30 ppm.
 - ⚖️ **Comparator**: tick up to four printers and compare them side by side, all specs or only the differences.
 - 🗣️ **International**: English, French, Dutch and German, picked from your browser.
 - 📄 **Paginated**: 48 printers a page, so thousands of models stay fast.
@@ -73,7 +75,9 @@ The page lists these sources too, at the bottom, with how each one answered in t
 | [lexmark.com](https://www.lexmark.com) (GB, BE, NL, FR, DE, CH, IT, ES, US) | Lexmark's printers and full specs; Lexmark is not in Open Icecat | ✅ |
 | [hp.com](https://www.hp.com) (GB, FR, DE) | HP's shop list | ⛔ refuses non-browser clients (HP is covered by Icecat) |
 | [brother.*](https://www.brother.eu) (GB, BE, FR, DE) | Brother's support sitemap | ⛔ 403 (Brother is covered by Icecat) |
-| Canon, Galaxus, Digitec | | ⛔ 403 (Canon is covered by Icecat) |
+| [support.brother.com](https://support.brother.com) | Brother's spec pages: weight, noise, paper trays and ADF size where Icecat leaves them empty | ✅ |
+| Canon (Europe, US, Asia, Australia), Galaxus, Digitec | | ⛔ 403 (Canon is covered by Icecat) |
+| support.hp.com | | ⛔ its spec data sits behind paths its robots.txt disallows |
 | Amazon | | ⛔ forbids automated access |
 | Kyocera | Pages answer, but list no product code Icecat knows | 🔜 |
 
