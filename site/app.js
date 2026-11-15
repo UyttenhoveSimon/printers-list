@@ -277,6 +277,35 @@ async function openCompare() {
   if (!$("#compare").open) $("#compare").showModal();
 }
 
+// --- where the data comes from ---------------------------------------------------
+
+// Every source the catalogue reads, with what it gives; the run report says
+// how each one answered last time.
+const SOURCES = [
+  { name: "icecat", url: "https://icecat.biz", label: "Open Icecat", gives: "source_icecat" },
+  { name: "epson", url: "https://www.epson.eu", label: "Epson", gives: "source_epson" },
+  { name: "lexmark", url: "https://www.lexmark.com", label: "Lexmark", gives: "source_lexmark" },
+  { name: "hp.com", url: "https://www.hp.com", label: "HP", gives: "source_hp" },
+  { name: "brother", url: "https://www.brother.eu", label: "Brother", gives: "source_brother" },
+];
+
+function renderSources() {
+  const report = (data.report && data.report.sources) || {};
+  const head = `<tr><th scope="col">${esc(t("source"))}</th><th scope="col">${esc(t("source_gives"))}</th><th scope="col">${esc(t("source_countries"))}</th><th scope="col">${esc(t("source_status"))}</th></tr>`;
+  const body = SOURCES.map((s) => {
+    const runs = Object.entries(report).filter(([where]) => where.split(":")[0] === s.name);
+    const ok = runs.filter(([, r]) => r.status === "ok");
+    const found = Math.max(0, ...ok.map(([, r]) => r.found || 0));
+    const countries = runs.map(([where]) => where.split(":")[1]).filter((m) => m !== "ALL").map(countryName);
+    const status = !runs.length ? t("unknown")
+      : ok.length === runs.length ? t("source_ok", { n: formatNumber(found) })
+      : ok.length ? t("source_partial", { ok: ok.length, all: runs.length })
+      : t("source_refused");
+    return `<tr><td><a href="${s.url}" target="_blank" rel="noopener">${esc(s.label)}</a></td><td>${esc(t(s.gives))}</td><td>${esc(countries.join(", ") || t("source_worldwide"))}</td><td>${esc(status)}</td></tr>`;
+  });
+  $("#sources-table").innerHTML = `<thead>${head}</thead><tbody>${body.join("")}</tbody>`;
+}
+
 // --- strings and events -----------------------------------------------------------
 
 function applyStrings() {
@@ -286,6 +315,7 @@ function applyStrings() {
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => (el.placeholder = t(el.dataset.i18nPlaceholder)));
   document.querySelectorAll("[data-i18n-label]").forEach((el) => el.setAttribute("aria-label", t(el.dataset.i18nLabel)));
   $("#sort").innerHTML = Object.keys(L.SORTS).map((k) => `<option value="${k}">${esc(t("sort_" + k))}</option>`).join("");
+  if (data.report) renderSources();
   if (data.updated) $("#updated").textContent = t("updated", { date: new Intl.DateTimeFormat(language(), { dateStyle: "long" }).format(new Date(data.updated)) });
 }
 

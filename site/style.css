@@ -231,6 +231,11 @@ table { border-collapse: collapse; width: 100%; }
 .compare tr.diff td { background: var(--warn-soft); }
 .compare .supplies { font-size: 12px; }
 
+.sources { padding-block: 8px 24px; }
+.sources h2 { font-size: 16px; margin: 16px 0 4px; }
+.sources table { font-size: 14px; }
+.sources th[scope="col"] { color: var(--muted); font-weight: 600; }
+
 .foot { color: var(--muted); font-size: 13px; padding-block: 24px 96px; border-top: 1px solid var(--line); }
 .foot p { margin: 4px 0; }
 

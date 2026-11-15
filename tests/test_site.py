@@ -779,3 +779,16 @@ def test_every_language(page):
         assert page.evaluate("document.documentElement.lang") == lang
         assert page.text_content("#toggle-filters") == word
         assert page.query_selector_all(".card")
+
+
+def test_every_source_is_listed_with_its_status(page):
+    table = page.text_content("#sources-table")
+    for name in ["Open Icecat", "Epson", "Lexmark", "HP", "Brother"]:
+        assert name in table
+    assert "OK, 63 printers" in table
+    assert "1 of 2 countries answered" in table
+    assert "Refuses automated readers" in table
+    assert (
+        page.get_attribute('#sources-table a[href="https://icecat.biz"]', "target")
+        == "_blank"
+    )
