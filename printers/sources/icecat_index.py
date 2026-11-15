@@ -12,6 +12,7 @@ import os
 from collections.abc import Iterable
 from typing import IO
 
+import urllib3
 from defusedxml.ElementTree import iterparse
 
 from ..fetch import Fetcher, FetchError
@@ -38,8 +39,12 @@ def credentials() -> tuple[str, str]:
 
 def discover(fetcher: Fetcher, market: str, cache: dict[str, str]) -> list[Candidate]:
     response = fetcher.stream(INDEX_URL, credentials())
-    with response, gzip.GzipFile(fileobj=response.raw) as index:
-        return list(parse(index))
+    try:
+        with response, gzip.GzipFile(fileobj=response.raw) as index:
+            return list(parse(index))
+    # a download cut short: the gzip stream or its XML ends early
+    except (EOFError, OSError, SyntaxError, urllib3.exceptions.HTTPError) as error:
+        raise FetchError(f"the Icecat index was cut short: {error}") from error
 
 
 def iso_date(stamp: str) -> str:

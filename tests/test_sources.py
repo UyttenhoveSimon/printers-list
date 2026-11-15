@@ -1,5 +1,6 @@
 import gzip
 import io
+from types import SimpleNamespace
 
 import pytest
 from conftest import FIXTURES, FakeFetcher, fixture_text
@@ -405,3 +406,23 @@ def test_canon_uk_reads_a_number_after_a_stray_dot():
     assert canon_uk.specifications({"Mono Print Speed": "Approx .13.0 ipm"}) == {
         "ppm_iso": 13
     }
+
+
+def test_a_cut_short_icecat_index_is_a_fetch_error(monkeypatch):
+    """Synthetic: the real index, compressed, then cut in the middle."""
+    monkeypatch.setenv("ICECAT_USER", "u")
+    monkeypatch.setenv("ICECAT_PASSWORD", "p")
+    data = gzip.compress((FIXTURES / "icecat_daily_index.xml").read_bytes())
+
+    class Response:
+        raw = io.BytesIO(data[: len(data) // 2])
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *exc):
+            return False
+
+    fetcher = SimpleNamespace(stream=lambda url, auth: Response())
+    with pytest.raises(FetchError, match="cut short"):
+        icecat_index.discover(fetcher, "ALL", {})
