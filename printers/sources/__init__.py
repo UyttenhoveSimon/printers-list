@@ -2,17 +2,19 @@
 
 Each source lists printers and hands back, for each, a way to look it up in
 Icecat (a product code, an EAN or an Icecat id) and the markets it was seen
-in. The sources overlap on purpose: a model missing from one is often in
-another.
+in. A manufacturer's site may also hand back the specifications it publishes:
+they fill the record when Icecat has none (Lexmark is not in Open Icecat),
+and are compared with Icecat's otherwise. The sources overlap on purpose: a
+model missing from one is often in another.
 
 Left out, because they wall off plain HTTP clients with a 403: Canon's sites,
-Galaxus and Digitec. Amazon forbids automated access. Lexmark is not in Open
-Icecat. hp.com and brother.* are kept, since they publish model lists, but
-they currently refuse non-browser clients; the run reports it and goes on.
+Galaxus and Digitec. Amazon forbids automated access. hp.com and brother.* are
+kept, since they publish model lists, but they currently refuse non-browser
+clients; the run reports it and goes on.
 """
 
 from dataclasses import dataclass, field
-from typing import Protocol
+from typing import Any, Protocol
 
 from ..fetch import Fetcher
 
@@ -31,6 +33,8 @@ class Candidate:
     icecat_id: int | None = None
     url: str = ""
     markets: tuple[str, ...] = field(default=())
+    #: the specifications the source itself publishes, in catalogue fields
+    record: dict[str, Any] | None = field(default=None, compare=False)
 
     @property
     def key(self) -> str:
@@ -53,12 +57,12 @@ class Source(Protocol):
     def MARKETS(self) -> tuple[str, ...]: ...  # noqa: N802
 
     def discover(
-        self, fetcher: Fetcher, market: str, cache: dict[str, str]
+        self, fetcher: Fetcher, market: str, cache: dict[str, Any]
     ) -> list[Candidate]: ...
 
 
 def all_sources() -> list[Source]:
     # imported late: each of them imports Candidate from this module
-    from . import brother, epson, hp, icecat_index  # noqa: PLC0415
+    from . import brother, epson, hp, icecat_index, lexmark  # noqa: PLC0415
 
-    return [icecat_index, hp, brother, epson]
+    return [icecat_index, hp, brother, epson, lexmark]

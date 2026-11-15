@@ -37,6 +37,7 @@ ignore = [
     "G004",    # logging uses f-strings; nothing logs hot enough to matter
     "TID252",  # sibling imports within the package are relative by design
     "TC001", "TC003",  # imports used in annotations stay plain; nothing heavy is imported
+    "PLR0913", "PLR0917",  # the page readers take the site's few parts by keyword
 ]
 
 [tool.ruff.lint.per-file-ignores]

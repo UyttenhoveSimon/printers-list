@@ -13,7 +13,7 @@ import pytest
 
 from printers import icecat
 from printers.fetch import BotWallError, Fetcher, FetchError
-from printers.sources import KNOWN_WALLS, all_sources, epson
+from printers.sources import KNOWN_WALLS, all_sources, epson, lexmark, pages
 
 pytestmark = pytest.mark.live
 
@@ -23,7 +23,8 @@ pytestmark = pytest.mark.live
     [
         (source, market)
         for source in all_sources()
-        if source.NAME != "epson"  # its other markets depend on the UK cache
+        # their other markets depend on the UK cache, tested below
+        if source.NAME not in {"epson", "lexmark"}
         for market in source.MARKETS
     ],
     ids=lambda value: getattr(value, "NAME", value),
@@ -40,9 +41,12 @@ def test_source_lists_printers(source, market):
     assert found
 
 
-def test_epson_uk_lists_printers(monkeypatch):
-    monkeypatch.setattr(epson, "MAX_PAGES", 3)
-    assert epson.discover(Fetcher(), "GB", {})
+@pytest.mark.parametrize("source", [epson, lexmark], ids=["epson", "lexmark"])
+def test_maker_site_lists_printers_with_specs(source, monkeypatch):
+    monkeypatch.setattr(pages, "MAX_PAGES", 3)
+    found = source.discover(Fetcher(), "GB", {})
+    assert found
+    assert all(candidate.record for candidate in found)
 
 
 def test_icecat_reads_a_known_printer():
