@@ -42,7 +42,7 @@ SKU = re.compile(r"\b(C1[01]C[A-Z0-9]{6})[A-Z0-9]{0,3}\b")
 MODELS = "models"
 #: a model code in a URL slug, its hyphen kept: "WF-3920", "ET-2850", "L3351"
 MODEL_SLUG = re.compile(
-    r"(?<![A-Z0-9])(?:[A-Z]{1,3}-)?[A-Z]{0,2}\d{3,5}[A-Z]*(?![A-Z0-9])"
+    r"(?<![A-Z0-9])(?:[A-Z]{1,3}-)?[A-Z]{0,2}\d{3,5}[A-Z0-9]*(?![A-Z0-9])"
 )
 #: width, depth and height
 DIMENSIONS = 3

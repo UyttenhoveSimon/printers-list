@@ -497,7 +497,7 @@ class Catalog:
         # the model on a page of its own, whatever SKU the page carries
         listed = self.state["caches"].get(source, {}).get("models", {})
         models = {m for market in listed.values() for m in market}
-        return any(m in models for m in MODEL_IN_NAME.findall(product["name"].upper()))
+        return any(m in models for m in models_in_name(product["name"]))
 
     def site(self) -> dict[str, Any]:
         """The page's data: regional variants of one model folded into one row.
@@ -540,7 +540,12 @@ def variant_key(record: dict[str, Any]) -> str | None:
 #: is the C11CK77401, the WF-M5399DW
 BASE_CODE = {"Epson": re.compile(r"^(C1[01]C[A-Z0-9]{6})[A-Z0-9]{1,3}$")}
 #: a model in a name: "WF-M5399DW", "ET-2850", "MFC-L3740CDW"
-MODEL_IN_NAME = re.compile(r"\b[A-Z]{1,4}-?[A-Z]?\d{3,5}[A-Z]*\b")
+MODEL_IN_NAME = re.compile(r"\b[A-Z]{1,4}-?[A-Z]?\d{3,5}[A-Z0-9]*\b")
+
+
+def models_in_name(name: str) -> list[str]:
+    """The model codes in a name; Icecat sometimes hyphenates with U+2011."""
+    return MODEL_IN_NAME.findall(re.sub(r"[\u2010-\u2015]", "-", name.upper()))
 
 
 def bare(record: dict[str, Any]) -> bool:
@@ -565,7 +570,7 @@ def bare_siblings(records: list[dict[str, Any]]) -> dict[int, int]:
     named: dict[tuple[str, str], dict[str, int]] = defaultdict(dict)
     for i, record in enumerate(records):
         base = base_code(record)
-        models = MODEL_IN_NAME.findall(record["name"].upper())
+        models = models_in_name(record["name"])
         if base and models and not bare(record):
             named[(record["brand"], base)].setdefault(models[0], i)
     joined = {}
@@ -582,7 +587,7 @@ def same_model_keys(record: dict[str, Any]) -> list[tuple[str, ...]]:
     keys = [("name", brand, record["name"].lower())]
     # Icecat names one model several ways: "Epson Expression XP-630",
     # "Epson Premium XP-630"; the model code says they are one
-    models = MODEL_IN_NAME.findall(record["name"].upper())
+    models = models_in_name(record["name"])
     if models:
         keys.append(("model", brand, models[0]))
     if record["brand"] == "HP":

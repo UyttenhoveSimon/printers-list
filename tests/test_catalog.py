@@ -522,3 +522,9 @@ def test_a_maker_listing_part_of_its_range_never_marks_absence(
     rows = {p["name"]: p for p in catalog.site()["printers"]}
     assert rows["Brother HL-L2445DW"]["maker_listed"] is True
     assert rows["Brother DCP-T430W"]["maker_listed"] is None
+
+
+def test_a_model_code_with_a_non_breaking_hyphen_is_the_same_model():
+    assert catalog_module.models_in_name("Epson WorkForce Pro WF\u20116590D2TWFC") == [
+        "WF-6590D2TWFC"
+    ]
