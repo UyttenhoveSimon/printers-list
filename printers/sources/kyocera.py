@@ -89,6 +89,11 @@ def specifications(spec: dict[str, str]) -> dict[str, Any]:
     )
 
 
+def covers(reader: Reader, product: dict[str, Any]) -> bool:
+    """Whether Kyocera Europe has a page for the printer's model."""
+    return key(product) in product_pages(reader)
+
+
 def enrich(fetcher: Reader, product: dict[str, Any]) -> dict[str, Any] | None:
     """Specs for a Kyocera printer from Kyocera Europe, or None without a page."""
     url = product_pages(fetcher).get(key(product))

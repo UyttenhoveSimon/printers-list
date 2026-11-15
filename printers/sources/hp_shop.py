@@ -126,6 +126,11 @@ def specifications(sheet: dict[str, str]) -> dict[str, Any]:
     )
 
 
+def covers(reader: Reader, product: dict[str, Any]) -> bool:
+    """Whether the shop sells the printer: only those have a page to read."""
+    return key(product) in product_urls(reader)
+
+
 def enrich(fetcher: Reader, product: dict[str, Any]) -> dict[str, Any] | None:
     """Specs for an HP printer from the UK shop, or None if it does not sell it."""
     url = product_urls(fetcher).get(key(product))

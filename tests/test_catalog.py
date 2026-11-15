@@ -417,3 +417,30 @@ def test_a_maker_that_needs_a_browser_is_read_only_through_it(
     catalog.update(None, found, 100, browser)
     assert enricher.readers == [browser]
     assert catalog.products["3"]["weight_kg"] == 21.5
+
+
+class CoveringEnricher(FakeEnricher):
+    def covers(self, reader, product):
+        return product["name"].endswith("HL-L2445DW")
+
+
+def test_printers_a_maker_does_not_cover_cost_no_page(tmp_path, icecat, monkeypatch):
+    enricher = CoveringEnricher({"weight_kg": 21.5})
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": enricher})
+    monkeypatch.setattr(catalog_module, "ENRICH_PAGES", 1)
+    found = [index(*(Candidate("icecat", icecat_id=i) for i in (1, 2, 3)))]
+    catalog, _ = run(tmp_path, DAY, found)
+    assert enricher.calls == ["Brother HL-L2445DW"]
+    assert catalog.products["3"]["weight_kg"] == 21.5
+    assert set(catalog.state["caches"]["fake-support"]) == {"HL-L2445DW"}
+
+
+class UnlistedEnricher(FakeEnricher):
+    def covers(self, reader, product):
+        raise FetchError("sitemap down")
+
+
+def test_a_maker_whose_page_list_fails_is_reported(tmp_path, icecat, monkeypatch):
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": UnlistedEnricher()})
+    _, report = run(tmp_path, DAY, [index(Candidate("icecat", icecat_id=3))])
+    assert report.sources["fake-support:ALL"]["status"] == "error"

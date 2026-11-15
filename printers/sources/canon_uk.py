@@ -88,8 +88,8 @@ def clean(fragment: str) -> str:
 def spec_list(page: str) -> dict[str, str]:
     """Label -> value; a label met twice keeps both values, joined."""
     found: dict[str, str] = {}
-    for label, value in PAIR.findall(page):
-        label, value = clean(label), clean(value)
+    for raw_label, raw_value in PAIR.findall(page):
+        label, value = clean(raw_label), clean(raw_value)
         found[label] = f"{found[label]} ; {value}" if label in found else value
     return found
 
@@ -110,7 +110,7 @@ def sheets(text: str) -> int | None:
 
 
 def dimensions(text: str) -> dict[str, float]:
-    """ "430 mm x 464 mm x 370 mm" or "approx. 445 x 330 x 163 mm"."""
+    """Read "430 mm x 464 mm x 370 mm" or "approx. 445 x 330 x 163 mm"."""
     figures = re.findall(r"\d+(?:\.\d+)?", text.replace("mm", ""))
     if "mm" not in text or len(figures) < 3:  # noqa: PLR2004 width, depth, height
         return {}
@@ -176,6 +176,11 @@ def specifications(spec: dict[str, str]) -> dict[str, Any]:
             ),
         }
     )
+
+
+def covers(reader: Reader, product: dict[str, Any]) -> bool:
+    """Whether Canon UK has a spec page for the printer's model or series."""
+    return page_for(key(product), spec_pages(reader)) is not None
 
 
 def enrich(fetcher: Reader, product: dict[str, Any]) -> dict[str, Any] | None:

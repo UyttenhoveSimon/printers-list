@@ -283,13 +283,23 @@ class Catalog:
         cache = self.state["caches"].setdefault(enricher.NAME, {})
         budget, filled, failures = ENRICH_PAGES, 0, 0
         for product_id, product in self.products.items():
-            if product.get("brand") != brand:
-                continue
-            if all(product.get(f) is not None for f in enricher.FIELDS):
-                continue
-            key = enricher.key(product)
+            key = gap_key(brand, enricher, product)
             if not key:
                 continue
+            # a maker whose site lists its pages says which printers it covers:
+            # the others cost no page of the budget
+            covers = getattr(enricher, "covers", None)
+            try:
+                if covers is not None and not covers(reader, product):
+                    continue
+            except FetchError as error:
+                # its list of pages is unreadable: nothing to do this run
+                report.sources[f"{enricher.NAME}:ALL"] = {
+                    "status": "error",
+                    "detail": str(error),
+                }
+                logger.warning(f"{enricher.NAME}: {error}")
+                return
             entry: dict[str, Any] | None = cache.get(key)
             stale = (
                 entry is None
@@ -462,6 +472,15 @@ class Catalog:
             "report": self.state.get("report", {}),
             "printers": printers,
         }
+
+
+def gap_key(brand: str, enricher: ModuleType, product: dict[str, Any]) -> str:
+    """What a maker's page for a printer with gaps is cached under, or ""."""
+    if product.get("brand") != brand:
+        return ""
+    if all(product.get(f) is not None for f in enricher.FIELDS):
+        return ""
+    return enricher.key(product)
 
 
 def variant_key(record: dict[str, Any]) -> str | None:
