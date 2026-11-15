@@ -55,6 +55,8 @@ ENRICHERS = {
 ENRICH_AGAIN_AFTER = timedelta(days=90)
 #: maker pages read per run for gaps at most
 ENRICH_PAGES = 400
+#: makers whose own catalogue is a source, by brand
+MAKER_SOURCES = {"Epson": "epson", "Lexmark": "lexmark"}
 #: brands Open Icecat does not carry: their makers' pages are the record
 NOT_IN_OPEN_ICECAT = frozenset({"Lexmark"})
 
@@ -272,10 +274,30 @@ class Catalog:
         ``browser``, and skipped when the run has none.
         """
         for brand, enricher in ENRICHERS.items():
-            if not getattr(enricher, "BROWSER", False):
-                self.enrich_brand(brand, enricher, fetcher, report)
-            elif browser is not None:
-                self.enrich_brand(brand, enricher, browser, report)
+            reader: Reader = fetcher
+            if getattr(enricher, "BROWSER", False):
+                if browser is None:
+                    continue
+                reader = browser
+            self.mark_listed(brand, enricher, reader)
+            self.enrich_brand(brand, enricher, reader, report)
+
+    def mark_listed(self, brand: str, enricher: ModuleType, reader: Reader) -> None:
+        """Note, for a maker that lists its pages, which printers it still lists.
+
+        A printer its maker no longer lists is likely discontinued, or sold
+        elsewhere under another code: the page says so. An unreadable list
+        leaves the marks of the last run.
+        """
+        covers = getattr(enricher, "covers", None)
+        if covers is None:
+            return
+        try:
+            for product in self.products.values():
+                if product.get("brand") == brand:
+                    product["maker_listed"] = covers(reader, product)
+        except FetchError as error:
+            logger.warning(f"{enricher.NAME}: {error}")
 
     def enrich_brand(
         self, brand: str, enricher: ModuleType, reader: Reader, report: Report
@@ -450,11 +472,29 @@ class Catalog:
             if icecat_id
             else "",
             "office": office_copier(product),
+            "maker_listed": self.maker_listed(product, live),
             "filled": product.get("filled", {}),
             # the makers' sites that state the same as Icecat on every field
             "confirmed": sorted(s for s, c in checks.items() if not c["differ"]),
             "differs": {s: c["differ"] for s, c in checks.items() if c["differ"]},
         }
+
+    def maker_listed(self, product: dict[str, Any], live: dict) -> bool | None:
+        """Whether the maker's own site lists the printer; None when unread.
+
+        Epson's and Lexmark's catalogues are sources: a live sighting from
+        them, or the model among those their pages name, is a listing. The
+        makers read for their gaps mark it themselves.
+        """
+        source = MAKER_SOURCES.get(product.get("brand", ""))
+        if not source:
+            return product.get("maker_listed")
+        if any(w.split(":")[0] == source for w in live):
+            return True
+        # the model on a page of its own, whatever SKU the page carries
+        listed = self.state["caches"].get(source, {}).get("models", {})
+        models = {m for market in listed.values() for m in market}
+        return any(m in models for m in MODEL_IN_NAME.findall(product["name"].upper()))
 
     def site(self) -> dict[str, Any]:
         """The page's data: regional variants of one model folded into one row.
@@ -597,6 +637,11 @@ def fold(variants: list[dict[str, Any]]) -> dict[str, Any]:
     merged["available"] = any(v["available"] for v in variants)
     # a sign of a copier on one variant's sheet holds for the model
     merged["office"] = any(v["office"] for v in variants)
+    # listed if any variant is; unlisted only if one was read and none is
+    marks = [v.get("maker_listed") for v in variants]
+    merged["maker_listed"] = (
+        True if True in marks else False if False in marks else None
+    )
     merged["first_seen"] = min(v["first_seen"] for v in variants)
     merged["sources"] = sorted({s for v in variants for s in v["sources"]})
     merged["confirmed"] = sorted({s for v in variants for s in v["confirmed"]})

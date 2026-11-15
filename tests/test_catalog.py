@@ -486,3 +486,24 @@ def test_a_bare_sheet_joins_the_model_its_siblings_name(tmp_path):
     rows = {p["name"]: p for p in catalog.site()["printers"]}
     assert rows["Epson Pro WF-M5399DW"]["variants"] == 2
     assert "Epson C11CB74001BZ laser printer" in rows
+
+
+def test_a_maker_that_lists_its_pages_marks_the_printers_it_still_lists(
+    tmp_path, icecat, monkeypatch
+):
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": CoveringEnricher()})
+    found = [index(*(Candidate("icecat", icecat_id=i) for i in (1, 3)))]
+    catalog, _ = run(tmp_path, DAY, found)
+    rows = {p["name"]: p for p in catalog.site()["printers"]}
+    assert rows["Brother HL-L2445DW"]["maker_listed"] is True
+    assert rows["Brother DCP-T430W"]["maker_listed"] is False
+
+
+def test_epson_lists_a_model_whatever_sku_its_page_carries(tmp_path):
+    catalog = Catalog(tmp_path, today=DAY)
+    epson(catalog, "1", "C11CM01402", "Epson WorkForce Pro WF-3920")
+    epson(catalog, "2", "C11CJ66401", "Epson EcoTank ET-2850")
+    catalog.state["caches"]["epson"] = {"models": {"GB": ["WF-3920"]}}
+    rows = {p["name"]: p for p in catalog.site()["printers"]}
+    assert rows["Epson WorkForce Pro WF-3920"]["maker_listed"] is True
+    assert rows["Epson EcoTank ET-2850"]["maker_listed"] is False

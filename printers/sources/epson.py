@@ -38,6 +38,12 @@ SKIPPED_RANGES = re.compile(
 )
 #: the base SKU Icecat files; pages add a country suffix (C11CL63409B2)
 SKU = re.compile(r"\b(C1[01]C[A-Z0-9]{6})[A-Z0-9]{0,3}\b")
+#: where discover keeps the models each market lists, in the source's cache
+MODELS = "models"
+#: a model code in a URL slug, its hyphen kept: "WF-3920", "ET-2850", "L3351"
+MODEL_SLUG = re.compile(
+    r"(?<![A-Z0-9])(?:[A-Z]{1,3}-)?[A-Z]{0,2}\d{3,5}[A-Z]*(?![A-Z0-9])"
+)
 #: width, depth and height
 DIMENSIONS = 3
 SPEC = re.compile(
@@ -53,18 +59,30 @@ def discover(fetcher: Fetcher, market: str, cache: dict[str, Any]) -> list[Candi
     product_maps = [url for url in pages.locs(index) if "/Product-" in url]
     if not product_maps:
         raise FetchError(f"{site}: no product sitemap in the index")
+    sitemap = fetcher.text(product_maps[0])
+    # the models Epson lists, whichever SKU its pages carry: Icecat may file
+    # the model under a sibling SKU (C11CM01402 for the page's C11CM01401)
+    cache.setdefault(MODELS, {})[market] = sorted(
+        {model for url in printer_pages(sitemap).values() for model in models_in(url)}
+    )
     return pages.discover(
         fetcher,
         name=NAME,
         brand="Epson",
         market=market,
         reference=market == REFERENCE,
-        sitemap=fetcher.text(product_maps[0]),
+        sitemap=sitemap,
         printer_pages=printer_pages,
         product_id=PRODUCT_ID,
         read_page=read_page,
         cache=cache,
     )
+
+
+def models_in(url: str) -> set[str]:
+    """Model codes in a page's URL: ".../workforce-pro-wf-3920-a4-.../p/56721"."""
+    slug = url.rsplit("/p/", 1)[0].rsplit("/", 1)[-1].upper()
+    return set(MODEL_SLUG.findall(slug))
 
 
 def printer_pages(sitemap: str) -> dict[str, str]:

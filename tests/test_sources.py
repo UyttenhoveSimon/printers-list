@@ -447,3 +447,12 @@ def test_hp_figures_written_the_local_way():
     assert hp_shop.english_figures("1.140 x 570 mm") == "1140 x 570 mm"
     assert hp_shop.english_figures("0,109 Watt") == "0.109 Watt"
     assert hp_shop.english_figures("Up to 3,000 pages") == "Up to 3,000 pages"
+
+
+def test_epson_model_codes_in_page_urls():
+    url = (
+        "https://www.epson.co.uk/en_GB/products/printers/inkjet/microbusiness/"
+        "workforce-pro-wf-3920-a4-multifunction-wireless-inkjet-printer/p/56721"
+    )
+    assert epson.models_in(url) == {"WF-3920"}
+    assert epson.models_in("https://x/inkjet/consumer/ecotank-l3351/p/2") == {"L3351"}

@@ -38,8 +38,9 @@ def update(args: argparse.Namespace) -> None:
 DETAIL_FIELDS = ("consumables", "supplies", "confirmed", "differs", "filled")
 #: detail fields the list needs as well: the "confirmed" filter and badge
 LIST_DETAIL_FIELDS = frozenset({"confirmed"})
-#: sent although false: "mono" is a filter value, not an unknown
-KEPT_FALSE = frozenset({"color"})
+#: sent although false: "mono" is a filter value, not an unknown, and a
+#: printer its maker no longer lists is flagged, unlike one never checked
+KEPT_FALSE = frozenset({"color", "maker_listed"})
 
 
 def lean(record: dict) -> dict:
