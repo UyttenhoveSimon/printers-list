@@ -40,7 +40,11 @@ def test_build_writes_the_site_with_compact_records(tmp_path):
     )
     out = tmp_path / "site"
     cli.main(["--data", str(data), "build", "--out", str(out)])
-    assert (out / "index.html").exists()
+    page = (out / "index.html").read_text()
+    assert 'href="style.css?v=' in page
+    assert 'src="app.js?v=' in page
+    assert 'href="printers.json?v=' in page
+    assert 'fetch("printers.json?v=' in (out / "app.js").read_text()
     site = json.loads((out / "printers.json").read_text())
     (printer,) = site["printers"]
     assert printer["available"] is True

@@ -1,6 +1,7 @@
 """``printers update`` refreshes the catalogue; ``printers build`` writes the site."""
 
 import argparse
+import hashlib
 import json
 import logging
 import shutil
@@ -41,7 +42,31 @@ def build(args: argparse.Namespace) -> None:
     ]
     payload = json.dumps(site, ensure_ascii=False, separators=(",", ":"))
     (out / "printers.json").write_text(payload, encoding="utf-8")
+    bust_caches(out)
     print(f"site written to {out}")
+
+
+def bust_caches(out: Path) -> None:
+    """Point the page at its files by content hash.
+
+    GitHub Pages lets browsers keep a file for ten minutes; a fresh deploy
+    would otherwise show the new page with the old script or data.
+    """
+    versions: dict[str, str] = {}
+    # app.js names the data file: it is rewritten before its own hash is taken
+    for name, referrer in (
+        ("printers.json", "app.js"),
+        ("style.css", "index.html"),
+        ("printers.json", "index.html"),
+        ("app.js", "index.html"),
+    ):
+        if name not in versions:
+            content = (out / name).read_bytes()
+            versions[name] = hashlib.sha256(content).hexdigest()[:10]
+        path = out / referrer
+        text = path.read_text(encoding="utf-8")
+        text = text.replace(f'"{name}"', f'"{name}?v={versions[name]}"')
+        path.write_text(text, encoding="utf-8")
 
 
 def check(args: argparse.Namespace) -> None:
