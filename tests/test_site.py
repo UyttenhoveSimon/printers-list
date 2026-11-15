@@ -525,6 +525,15 @@ def test_the_last_ten_years_by_default(page):
     assert count(page) == "61 of 64 printers"
 
 
+def test_the_default_years_are_stated_by_the_count(page):
+    """The ten-year default hides printers: the bar says so and undoes it."""
+    assert page.text_content("#since") == "From 2016 on · show every year"
+    page.click("#since")
+    assert count(page) == "63 of 64 printers"
+    assert page.is_hidden("#since")
+    assert page.input_value('select[data-key="year"]') == ""
+
+
 def test_older_years_from_the_url(page, site):
     page.goto(site + "#year=2011")
     page.reload()

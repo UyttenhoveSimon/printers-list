@@ -77,7 +77,8 @@ function renderPanel() {
   });
   const years = [...new Set(all.map((p) => p._year).filter(Boolean).concat(state.defaultYear ? [Number(state.defaultYear)] : []))].sort((a, b) => b - a);
   if (years.length) {
-    groups.push(`<details class="group" open><summary>${esc(t("g_year"))}</summary>
+    // high up: the default "ten years back" hides half the catalogue
+    groups.splice(2, 0, `<details class="group" open><summary>${esc(t("g_year"))}</summary>
       <select data-key="year" aria-label="${esc(t("g_year"))}"><option value="">${esc(t("any_year"))}</option>
       ${years.map((y) => `<option value="${y}">${esc(t("or_later", { year: y }))}</option>`).join("")}</select></details>`);
   }
@@ -193,6 +194,9 @@ function render({ scroll = false } = {}) {
   $("#results").innerHTML = items.length ? items.map(card).join("") : `<li class="empty">${esc(t("none"))}</li>`;
   $("#pager").innerHTML = renderPager(page, pages);
   $("#count").textContent = t("count", { n: formatNumber(found.length), total: formatNumber(all.length) });
+  const since = $("#since");
+  since.hidden = !state.year;
+  if (state.year) since.textContent = t("since_year", { year: state.year });
   renderActive();
   renderTray();
   syncPanel();
@@ -373,6 +377,7 @@ function bind() {
     clearTimeout(typing);
     typing = setTimeout(() => { state.q = e.target.value.trim(); state.page = 1; render(); }, 150);
   });
+  $("#since").addEventListener("click", () => { state.year = ""; state.page = 1; render(); });
   $("#sort").addEventListener("change", (e) => { state.sort = e.target.value; state.page = 1; render(); });
   $("#active").addEventListener("click", (e) => {
     const b = e.target.closest("button");
