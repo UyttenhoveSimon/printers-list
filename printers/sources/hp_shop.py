@@ -25,6 +25,9 @@ from .pages import compact
 NAME = "hp-shop"
 #: hp.com refuses plain HTTP clients
 BROWSER = True
+#: the shops sell part of HP's range: a printer missing from them may well
+#: be on sale elsewhere, so only a listing is noted, never its absence
+LISTS_ALL = False
 #: what the page states; a printer missing any of them is read
 FIELDS = (
     "weight_kg",

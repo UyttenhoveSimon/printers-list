@@ -292,10 +292,13 @@ class Catalog:
         covers = getattr(enricher, "covers", None)
         if covers is None:
             return
+        lists_all = getattr(enricher, "LISTS_ALL", True)
         try:
             for product in self.products.values():
-                if product.get("brand") == brand:
-                    product["maker_listed"] = covers(reader, product)
+                if product.get("brand") != brand:
+                    continue
+                listed = covers(reader, product)
+                product["maker_listed"] = listed or (False if lists_all else None)
         except FetchError as error:
             logger.warning(f"{enricher.NAME}: {error}")
 
