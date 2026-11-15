@@ -23,7 +23,9 @@ PRODUCT_PAGE = re.compile(r"/en/products/(?:printers|mfp)/([A-Za-z0-9-]+)\.html$
 #: the ranges in front of a model code, dropped to match names with or without
 RANGES = re.compile(r"^(ecosys|taskalfa)")
 #: a model code: "PA2100cwx", "M5526cdw", "2554ci"
-MODEL = re.compile(r"\b(?:ECOSYS\s+|TASKalfa\s+)?([A-Z]{0,3}\d{3,5}[A-Z]*)\b", re.I)
+MODEL = re.compile(
+    r"\b(?:ECOSYS\s+|TASKalfa\s+)?([A-Z]{0,3}\d{3,5}[A-Z]*)\b", re.IGNORECASE
+)
 ICON = re.compile(
     r'l-icon-row__title[^>]*>(.*?)</h5>.*?l-icon-row__text">(.*?)</p>', re.DOTALL
 )
