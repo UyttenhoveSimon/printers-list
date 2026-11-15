@@ -18687,12 +18687,583 @@
      "wifi": false
     },
     "v": 3
+   },
+   "models": {
+    "BE": [],
+    "DE": [],
+    "ES": [],
+    "FR": [],
+    "GB": [
+     "100PPM",
+     "220V",
+     "240V",
+     "28220V",
+     "28240V",
+     "AL-C300DN",
+     "AL-C300DTN",
+     "AL-C300N",
+     "AL-C300TN",
+     "AL-C500DHN",
+     "AL-C500DN",
+     "AL-C500DTN",
+     "AL-C500DXN",
+     "AL-M200DW",
+     "AL-M300D",
+     "AL-M300DN",
+     "AL-M300DT",
+     "AL-M300DTN",
+     "AL-M310DN",
+     "AL-M310DTN",
+     "AL-M8100DN",
+     "AL-M8100DTN",
+     "AL-MX200DNF",
+     "AL-MX200DWF",
+     "AL-MX300DN",
+     "AL-MX300DNF",
+     "AL-MX300DTN",
+     "AL-MX300DTNF",
+     "AM-C10000",
+     "AM-C400",
+     "AM-C4000",
+     "AM-C5000",
+     "AM-C550",
+     "AM-C550Z",
+     "AM-C6000",
+     "AM-M5500",
+     "B-300",
+     "B-310N",
+     "B-510DN",
+     "B1100",
+     "BX300F",
+     "BX305F",
+     "BX305FW",
+     "BX310FN",
+     "BX320FW",
+     "BX525WD",
+     "BX535WD",
+     "BX600FW",
+     "BX610FW",
+     "BX625FWD",
+     "BX630FW",
+     "BX635FWD",
+     "BX925FWD",
+     "BX935FWD",
+     "C1100N",
+     "C1600",
+     "C1700",
+     "C1750N",
+     "C1750W",
+     "C2800DN",
+     "C2800DTN",
+     "C2800N",
+     "C3800DN",
+     "C3800DTN",
+     "C3800N",
+     "C3900DN",
+     "C3900DTN",
+     "C3900N",
+     "C3900TN",
+     "C4200DN",
+     "C4200DTN",
+     "C9200DN",
+     "C9200DTN",
+     "C9200N",
+     "C9300DN",
+     "C9300DTN",
+     "C9300N",
+     "C9300TN",
+     "CX3650",
+     "D120",
+     "D3000",
+     "D700",
+     "DX4000",
+     "DX4050",
+     "DX4200",
+     "DX4400",
+     "DX4450",
+     "DX4800",
+     "DX7400",
+     "DX7450",
+     "DX8400",
+     "DX8450",
+     "DX9400F",
+     "EM-C7100DWF",
+     "EM-C800RDWF",
+     "EM-C8100RDWF",
+     "EM-C8101RDWF",
+     "EP-C7000DW",
+     "EP-C800RDW",
+     "EPL-6200",
+     "EPL-6200DT",
+     "EPL-6200DTN",
+     "EPL-6200N",
+     "EPL-N2550",
+     "EPL-N2550D",
+     "EPL-N2550DT",
+     "EPL-N2550T",
+     "EPL-N3000",
+     "EPL-N3000D",
+     "EPL-N3000DT",
+     "EPL-N3000T",
+     "ET-14000",
+     "ET-14100",
+     "ET-15000",
+     "ET-16150",
+     "ET-16500",
+     "ET-16600",
+     "ET-16605",
+     "ET-16650",
+     "ET-16655",
+     "ET-16680",
+     "ET-16685",
+     "ET-1810",
+     "ET-18100",
+     "ET-1910",
+     "ET-2500",
+     "ET-2550",
+     "ET-2600",
+     "ET-2650",
+     "ET-2700",
+     "ET-2710",
+     "ET-2711",
+     "ET-2712",
+     "ET-2714",
+     "ET-2715",
+     "ET-2720",
+     "ET-2726",
+     "ET-2750",
+     "ET-2751",
+     "ET-2756",
+     "ET-2810",
+     "ET-2811",
+     "ET-2812",
+     "ET-2814",
+     "ET-2815",
+     "ET-2820",
+     "ET-2821",
+     "ET-2826",
+     "ET-2830",
+     "ET-2840",
+     "ET-2850",
+     "ET-2851",
+     "ET-2856",
+     "ET-2860",
+     "ET-2861",
+     "ET-2862",
+     "ET-2864",
+     "ET-2865",
+     "ET-2870",
+     "ET-2871",
+     "ET-2876",
+     "ET-2910",
+     "ET-2911",
+     "ET-2912",
+     "ET-2914",
+     "ET-2915",
+     "ET-2916",
+     "ET-2920",
+     "ET-2921",
+     "ET-2926",
+     "ET-2927",
+     "ET-2950",
+     "ET-2951",
+     "ET-2955",
+     "ET-2956",
+     "ET-2959",
+     "ET-3600",
+     "ET-3700",
+     "ET-3750",
+     "ET-3850",
+     "ET-3950",
+     "ET-3956",
+     "ET-4500",
+     "ET-4550",
+     "ET-4700",
+     "ET-4750",
+     "ET-4800",
+     "ET-4810",
+     "ET-4850",
+     "ET-4856",
+     "ET-4900",
+     "ET-4905",
+     "ET-4950",
+     "ET-4951",
+     "ET-4955",
+     "ET-4956",
+     "ET-5150",
+     "ET-5170",
+     "ET-5185",
+     "ET-5800",
+     "ET-5805",
+     "ET-5850",
+     "ET-5855",
+     "ET-5880",
+     "ET-5885",
+     "ET-7700",
+     "ET-7750",
+     "ET-8500",
+     "ET-8550",
+     "ET-M1100",
+     "ET-M1120",
+     "ET-M1140",
+     "ET-M1170",
+     "ET-M1180",
+     "ET-M16600",
+     "ET-M16680",
+     "ET-M16685",
+     "ET-M2120",
+     "ET-M2140",
+     "ET-M2170",
+     "ET-M3140",
+     "ET-M3170",
+     "ET-M3180",
+     "IC-240V",
+     "L3110",
+     "L3111",
+     "L3150",
+     "L3151",
+     "L3270",
+     "L3276",
+     "L3280",
+     "L3350",
+     "L3360",
+     "L355",
+     "L3560",
+     "L4260",
+     "L4360",
+     "L5190",
+     "L5310",
+     "L5390",
+     "L555",
+     "L5590",
+     "LE-240V",
+     "M1200",
+     "M1400",
+     "M2000D",
+     "M2000DN",
+     "M2000DT",
+     "M2000DTN",
+     "M2300D",
+     "M2300DN",
+     "M2300DT",
+     "M2300DTN",
+     "M2400D",
+     "M2400DN",
+     "M2400DT",
+     "M2400DTN",
+     "M4000DN",
+     "M4000DTN",
+     "M4000N",
+     "M4000TN",
+     "M7000DN",
+     "M7000DTN",
+     "M7000N",
+     "M7000TN",
+     "M8000DN",
+     "M8000DTN",
+     "M8000N",
+     "M8000TN",
+     "ML-240V",
+     "PRO-4800",
+     "PX650",
+     "PX700W",
+     "PX710W",
+     "PX730WD",
+     "PX800FW",
+     "PX810FW",
+     "PX820FWD",
+     "PX830FWD",
+     "RX500",
+     "RX520",
+     "RX585",
+     "RX685",
+     "SL-D1000",
+     "SL-D1000A",
+     "SL-D3000",
+     "SL-D500",
+     "SL-D700",
+     "SL-D800",
+     "SX100",
+     "SX105",
+     "SX110",
+     "SX115",
+     "SX125",
+     "SX130",
+     "SX200",
+     "SX205",
+     "SX210",
+     "SX215",
+     "SX218",
+     "SX235W",
+     "SX400",
+     "SX405",
+     "SX410",
+     "SX415",
+     "SX425W",
+     "SX435W",
+     "SX438W",
+     "SX445W",
+     "SX510W",
+     "SX515W",
+     "SX525WD",
+     "SX535WD",
+     "SX600FW",
+     "SX610FW",
+     "SX620FW",
+     "WF-100W",
+     "WF-110W",
+     "WF-2010W",
+     "WF-2110W",
+     "WF-2510WF",
+     "WF-2520NF",
+     "WF-2530WF",
+     "WF-2540WF",
+     "WF-2630WF",
+     "WF-2650DWF",
+     "WF-2660DWF",
+     "WF-2750DWF",
+     "WF-2810DWF",
+     "WF-2820DWF",
+     "WF-2830DWF",
+     "WF-2835DWF",
+     "WF-2840DWF",
+     "WF-2845DWF",
+     "WF-2850DWF",
+     "WF-2860DWF",
+     "WF-2865DWF",
+     "WF-2870DWF",
+     "WF-2880DWF",
+     "WF-2885DWF",
+     "WF-2910DWF",
+     "WF-2930DWF",
+     "WF-2935DWF",
+     "WF-2950DWF",
+     "WF-2960DWF",
+     "WF-2965DWF",
+     "WF-3010DW",
+     "WF-3520DWF",
+     "WF-3530DTWF",
+     "WF-3540DTWF",
+     "WF-3620DWF",
+     "WF-3640DTWF",
+     "WF-3720DWF",
+     "WF-3725DWF",
+     "WF-3820DWF",
+     "WF-3920",
+     "WF-4630DWF",
+     "WF-4640DTWF",
+     "WF-4720DWF",
+     "WF-4725DWF",
+     "WF-4730DTWF",
+     "WF-4740DTWF",
+     "WF-4745DTWF",
+     "WF-4820DWF",
+     "WF-4830DTWF",
+     "WF-4920",
+     "WF-4930",
+     "WF-5110",
+     "WF-5190",
+     "WF-5620",
+     "WF-5690",
+     "WF-6090DTWC",
+     "WF-6090DW",
+     "WF-6590DTWFC",
+     "WF-6590DWF",
+     "WF-7015",
+     "WF-7110DTW",
+     "WF-7210DTW",
+     "WF-7310DTW",
+     "WF-7515",
+     "WF-7525",
+     "WF-7610DWF",
+     "WF-7620DTWF",
+     "WF-7710DWF",
+     "WF-7715DWF",
+     "WF-7720DTWF",
+     "WF-7830DTWF",
+     "WF-7840DTWF",
+     "WF-8010",
+     "WF-8090",
+     "WF-8510",
+     "WF-8590",
+     "WF-8590DTWF",
+     "WF-8590DWF",
+     "WF-C17590",
+     "WF-C20590",
+     "WF-C20600",
+     "WF-C20750",
+     "WF-C21000",
+     "WF-C4310DW",
+     "WF-C4810DTWF",
+     "WF-C5210DW",
+     "WF-C5290DW",
+     "WF-C529RDTW",
+     "WF-C529RDW",
+     "WF-C5390DW",
+     "WF-C5710DWF",
+     "WF-C5790DWF",
+     "WF-C579RDTWF",
+     "WF-C579RDWF",
+     "WF-C5890DWF",
+     "WF-C8190DTW",
+     "WF-C8190DTWC",
+     "WF-C8190DW",
+     "WF-C8610DWF",
+     "WF-C8690DTWF",
+     "WF-C8690DTWFC",
+     "WF-C8690DWF",
+     "WF-C869RDTWF",
+     "WF-C869RDTWFC",
+     "WF-C878RDTWF",
+     "WF-C878RDTWFC",
+     "WF-C878RDWF",
+     "WF-C879RDTWF",
+     "WF-C879RDWF",
+     "WF-M21000",
+     "WF-M4119DW",
+     "WF-M4619DWF",
+     "WF-M5190DW",
+     "WF-M5299DW",
+     "WF-M5399DW",
+     "WF-M5690DWF",
+     "WF-M5799DWF",
+     "WF-M5899DWF",
+     "WF-R5190",
+     "WF-R5690",
+     "WF-R8590",
+     "WP-4015",
+     "WP-4025",
+     "WP-4095",
+     "WP-4515",
+     "WP-4525",
+     "WP-4535DWF",
+     "WP-4545",
+     "WP-4595",
+     "WP-M4015",
+     "WP-M4095",
+     "WP-M4525",
+     "WP-M4525DNF",
+     "WP-M4595",
+     "XP-102",
+     "XP-15000",
+     "XP-202",
+     "XP-205",
+     "XP-2100",
+     "XP-2105",
+     "XP-212",
+     "XP-215",
+     "XP-2150",
+     "XP-2155",
+     "XP-2200",
+     "XP-2205",
+     "XP-225",
+     "XP-235",
+     "XP-245",
+     "XP-247",
+     "XP-255",
+     "XP-257",
+     "XP-305",
+     "XP-3100",
+     "XP-3105",
+     "XP-315",
+     "XP-3150",
+     "XP-3155",
+     "XP-3200",
+     "XP-3205",
+     "XP-322",
+     "XP-325",
+     "XP-332",
+     "XP-335",
+     "XP-342",
+     "XP-345",
+     "XP-352",
+     "XP-355",
+     "XP-405",
+     "XP-405WH",
+     "XP-4100",
+     "XP-4105",
+     "XP-412",
+     "XP-415",
+     "XP-4150",
+     "XP-4155",
+     "XP-4200",
+     "XP-4205",
+     "XP-422",
+     "XP-425",
+     "XP-432",
+     "XP-435",
+     "XP-442",
+     "XP-445",
+     "XP-452",
+     "XP-455",
+     "XP-510",
+     "XP-5100",
+     "XP-5105",
+     "XP-5150",
+     "XP-5155",
+     "XP-520",
+     "XP-5200",
+     "XP-5205",
+     "XP-530",
+     "XP-540",
+     "XP-600",
+     "XP-6000",
+     "XP-6005",
+     "XP-605",
+     "XP-610",
+     "XP-6100",
+     "XP-6105",
+     "XP-615",
+     "XP-620",
+     "XP-625",
+     "XP-630",
+     "XP-635",
+     "XP-640",
+     "XP-645",
+     "XP-700",
+     "XP-710",
+     "XP-7100",
+     "XP-720",
+     "XP-750",
+     "XP-760",
+     "XP-800",
+     "XP-810",
+     "XP-820",
+     "XP-830",
+     "XP-850",
+     "XP-8500",
+     "XP-860",
+     "XP-8600",
+     "XP-8605",
+     "XP-8700",
+     "XP-900",
+     "XP-950",
+     "XP-960",
+     "XP-970",
+     "XP-980"
+    ],
+    "IT": [],
+    "NL": []
    }
   },
   "hp-shop": {
    "1F3Y2A": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 361.53,
+     "duty_cycle": 3000,
+     "first_page_s": 14.0,
+     "height_mm": 157.26,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 100,
+     "paper_output": 30,
+     "ppm_iso": 12,
+     "print_dpi": 1200,
+     "scan_dpi": 1200,
+     "weight_kg": 5.03,
+     "width_mm": 434.66
+    }
    },
    "1F3Y3A": {
     "checked": "2026-11-15",
@@ -18714,79 +19285,57 @@
    },
    "1F3Y4A": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "1GP80A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "1KR50B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "1KR51B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "1KR55B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "1KR71B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "1MR71B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "1MR78B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "1TJ09A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "1TJ12A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "1VR14A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "2": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "2225A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "2225B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "2225C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "2225D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "2227A": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 361.53,
+     "duty_cycle": 3000,
+     "first_page_s": 14.0,
+     "height_mm": 157.26,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 100,
+     "paper_output": 30,
+     "ppm_iso": 12,
+     "print_dpi": 1200,
+     "scan_dpi": 1200,
+     "weight_kg": 5.03,
+     "width_mm": 434.66
+    }
    },
    "223N4B": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 361.1,
+     "duty_cycle": 1000,
+     "first_page_s": 18.0,
+     "height_mm": 132.1,
+     "max_paper": "A4",
+     "monthly_volume": 400,
+     "paper_input": 100,
+     "paper_output": 25,
+     "ppm_iso": 10,
+     "print_dpi": 1200,
+     "tec_kwh": 0.31,
+     "weight_kg": 5.22,
+     "width_mm": 432.5
+    }
    },
    "223N5B": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 361.1,
+     "duty_cycle": 1000,
+     "first_page_s": 18.0,
+     "height_mm": 132.1,
+     "max_paper": "A4",
+     "monthly_volume": 400,
+     "paper_input": 100,
+     "paper_output": 25,
+     "ppm_iso": 10,
+     "print_dpi": 1200,
+     "tec_kwh": 0.31,
+     "weight_kg": 5.22,
+     "width_mm": 432.5
+    }
    },
    "223R2B": {
     "checked": "2026-11-15",
@@ -18794,21 +19343,41 @@
    },
    "223R3B": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 361.1,
+     "duty_cycle": 1000,
+     "first_page_s": 18.0,
+     "height_mm": 174.0,
+     "max_paper": "A4",
+     "monthly_volume": 400,
+     "paper_input": 100,
+     "paper_output": 25,
+     "ppm_iso": 10,
+     "print_dpi": 1200,
+     "tec_kwh": 0.31,
+     "weight_kg": 6.16,
+     "width_mm": 432.5
+    }
    },
    "223R4B": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "22A59B": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 361.1,
+     "duty_cycle": 1000,
+     "first_page_s": 18.0,
+     "height_mm": 174.0,
+     "max_paper": "A4",
+     "monthly_volume": 400,
+     "paper_input": 100,
+     "paper_output": 25,
+     "ppm_iso": 10,
+     "print_dpi": 1200,
+     "tec_kwh": 0.31,
+     "weight_kg": 6.16,
+     "width_mm": 432.5
+    }
    },
    "242P6B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "242P6B-CREABOX": {
     "checked": "2026-11-15",
     "record": {}
    },
@@ -18816,31 +19385,7 @@
     "checked": "2026-11-15",
     "record": {}
    },
-   "26K67B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "26K68B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "26K69B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "26K72B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "26Q90B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "26Q91B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "26Q92B": {
     "checked": "2026-11-15",
     "record": {}
    },
@@ -18866,7 +19411,18 @@
    },
    "28B55A": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "duty_cycle": 5000,
+     "first_page_s": 14.0,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 250,
+     "paper_output": 100,
+     "ppm_iso": 15,
+     "print_dpi": 1200,
+     "tec_kwh": 0.3,
+     "weight_kg": 6.38
+    }
    },
    "28B75A": {
     "checked": "2026-11-15",
@@ -18887,7 +19443,18 @@
    },
    "28B76A": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "duty_cycle": 5000,
+     "first_page_s": 14.0,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 250,
+     "paper_output": 100,
+     "ppm_iso": 15,
+     "print_dpi": 1200,
+     "tec_kwh": 0.2,
+     "weight_kg": 7.7
+    }
    },
    "28C02A": {
     "checked": "2026-11-15",
@@ -18923,21 +19490,33 @@
      "weight_kg": 7.7
     }
    },
-   "2A130ER": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "2H1W0A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "2H1W1A": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "duty_cycle": 3000,
+     "first_page_s": 15.0,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 150,
+     "paper_output": 100,
+     "tec_kwh": 0.3,
+     "weight_kg": 6.38
+    }
    },
    "2H1W2A": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "duty_cycle": 3000,
+     "first_page_s": 15.0,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 150,
+     "paper_output": 100,
+     "ppm_iso": 12,
+     "scan_dpi": 1200,
+     "tec_kwh": 0.3,
+     "weight_kg": 6.38
+    }
    },
    "2H2N1B": {
     "checked": "2026-11-15",
@@ -18945,11 +19524,20 @@
    },
    "2H2P6B": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "2H3N5A": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 383.0,
+     "duty_cycle": 1000,
+     "first_page_s": 16.0,
+     "height_mm": 233.0,
+     "max_paper": "A4",
+     "monthly_volume": 400,
+     "paper_input": 125,
+     "paper_output": 60,
+     "ppm_iso": 15,
+     "print_dpi": 1200,
+     "weight_kg": 8.12,
+     "width_mm": 460.0
+    }
    },
    "2K4U7B": {
     "checked": "2026-11-15",
@@ -18963,25 +19551,43 @@
     "checked": "2026-11-15",
     "record": {}
    },
-   "2KY38A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "2R7F3A": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 285.0,
+     "duty_cycle": 25000,
+     "first_page_s": 8.0,
+     "height_mm": 214.8,
+     "max_paper": "A4",
+     "monthly_volume": 2500,
+     "paper_input": 150,
+     "paper_output": 100,
+     "power_w": 354.0,
+     "ppm_iso": 22,
+     "print_dpi": 600,
+     "tec_kwh": 0.197,
+     "weight_kg": 6.2,
+     "width_mm": 348.7
+    }
    },
    "2R7F4A": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "2RY54B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "2Z605E": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 285.0,
+     "duty_cycle": 25000,
+     "first_page_s": 8.0,
+     "height_mm": 214.8,
+     "max_paper": "A4",
+     "monthly_volume": 2500,
+     "paper_input": 250,
+     "paper_output": 250,
+     "power_w": 354.0,
+     "ppm_iso": 22,
+     "print_dpi": 600,
+     "tec_kwh": 0.187,
+     "weight_kg": 6.2,
+     "width_mm": 348.7
+    }
    },
    "2Z605F": {
     "checked": "2026-11-15",
@@ -19008,17 +19614,23 @@
     "checked": "2026-11-15",
     "record": {}
    },
-   "2Z609AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "2Z622E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "2Z622F": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 390.0,
+     "duty_cycle": 80000,
+     "first_page_s": 6.3,
+     "height_mm": 323.0,
+     "max_paper": "A4",
+     "monthly_volume": 4000,
+     "paper_input": 350,
+     "paper_output": 150,
+     "ppm_iso": 40,
+     "print_dpi": 1200,
+     "tec_kwh": 0.4,
+     "weight_kg": 12.6,
+     "width_mm": 420.0
+    }
    },
    "2Z623F": {
     "checked": "2026-11-15",
@@ -19040,39 +19652,28 @@
      "width_mm": 420.0
     }
    },
-   "2Z624E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "2Z624F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "2Z627A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "2Z628A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "2Z628AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "30T64A": {
     "checked": "2026-11-15",
     "record": {}
    },
    "349V2B": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 383.0,
+     "duty_cycle": 1000,
+     "first_page_s": 16.0,
+     "height_mm": 191.0,
+     "max_paper": "A4",
+     "monthly_volume": 400,
+     "paper_input": 125,
+     "paper_output": 60,
+     "ppm_iso": 15,
+     "print_dpi": 1200,
+     "weight_kg": 6.91,
+     "width_mm": 460.0
+    }
    },
    "349W0B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "349W1B": {
     "checked": "2026-11-15",
     "record": {}
    },
@@ -19088,33 +19689,23 @@
     "checked": "2026-11-15",
     "record": {}
    },
-   "38Q66C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "399P0C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "399P1A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "399P2B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3DP65B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3F8P0A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "3G629F": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "adf_capacity": 50,
+     "depth_mm": 398.2,
+     "duty_cycle": 50000,
+     "first_page_s": 7.0,
+     "height_mm": 313.2,
+     "max_paper": "A4",
+     "monthly_volume": 2500,
+     "paper_input": 250,
+     "paper_output": 150,
+     "power_w": 436.0,
+     "tec_kwh": 0.402,
+     "weight_kg": 10.5,
+     "width_mm": 418.0
+    }
    },
    "3G630E": {
     "checked": "2026-11-15",
@@ -19140,25 +19731,22 @@
      "width_mm": 418.0
     }
    },
-   "3G631A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3G638A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3G646A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "3G651F": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "3G652E": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 398.2,
+     "duty_cycle": 50000,
+     "first_page_s": 7.0,
+     "height_mm": 216.2,
+     "max_paper": "A4",
+     "monthly_volume": 2500,
+     "paper_input": 250,
+     "paper_output": 150,
+     "power_w": 484.0,
+     "tec_kwh": 0.3,
+     "weight_kg": 7.5,
+     "width_mm": 367.0
+    }
    },
    "3G652F": {
     "checked": "2026-11-15",
@@ -19177,74 +19765,6 @@
      "width_mm": 367.0
     }
    },
-   "3G653A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3G654A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3GX98AQ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3GY10AQ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3UK83B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3UK86A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3UK86B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3UK91A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3UK91B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3UL05B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3XV14B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3XV18B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3YW70A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3YW73A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "3YW75A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "403X0AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "403X2AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "403X5B": {
     "checked": "2026-11-15",
     "record": {}
@@ -19254,10 +19774,6 @@
     "record": {}
    },
    "403X8B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "404M0AR": {
     "checked": "2026-11-15",
     "record": {}
    },
@@ -19271,25 +19787,39 @@
    },
    "405U3B": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "405U5AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "405U6A": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 337.5,
+     "duty_cycle": 20000,
+     "first_page_s": 15.0,
+     "height_mm": 233.0,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 225,
+     "paper_output": 60,
+     "ppm_iso": 20,
+     "print_dpi": 1200,
+     "weight_kg": 8.0,
+     "width_mm": 460.0
+    }
    },
    "405U7B": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 337.5,
+     "duty_cycle": 20000,
+     "first_page_s": 15.0,
+     "height_mm": 233.0,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 225,
+     "paper_output": 60,
+     "ppm_iso": 20,
+     "print_dpi": 1200,
+     "weight_kg": 8.0,
+     "width_mm": 460.0
+    }
    },
    "405U8B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "40Q35AR": {
     "checked": "2026-11-15",
     "record": {}
    },
@@ -19318,43 +19848,77 @@
    },
    "40Q47B": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "40Q50AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "40Q51AR": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 337.5,
+     "duty_cycle": 20000,
+     "first_page_s": 15.0,
+     "height_mm": 233.0,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 225,
+     "paper_output": 60,
+     "ppm_iso": 20,
+     "print_dpi": 1200,
+     "weight_kg": 8.0,
+     "width_mm": 460.3
+    }
    },
    "499M6A": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "499M7A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "499M8A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "499Q3FR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "499Q5FR": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "adf_capacity": 50,
+     "depth_mm": 419.12,
+     "duty_cycle": 40000,
+     "first_page_s": 10.9,
+     "height_mm": 341.32,
+     "max_paper": "A4",
+     "monthly_volume": 2500,
+     "paper_input": 2,
+     "paper_output": 100,
+     "power_w": 416.0,
+     "ppm_iso": 25,
+     "print_dpi": 600,
+     "scan_dpi": 300,
+     "tec_kwh": 0.338,
+     "weight_kg": 17.1,
+     "width_mm": 418.0
+    }
    },
    "499Q6F": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 419.12,
+     "duty_cycle": 40000,
+     "first_page_s": 10.9,
+     "height_mm": 341.32,
+     "max_paper": "A4",
+     "monthly_volume": 2500,
+     "paper_input": 2,
+     "paper_output": 100,
+     "ppm_iso": 25,
+     "print_dpi": 600,
+     "tec_kwh": 0.338,
+     "weight_kg": 17.1,
+     "width_mm": 418.0
+    }
    },
    "499Q7F": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 419.12,
+     "duty_cycle": 40000,
+     "first_page_s": 10.9,
+     "height_mm": 341.32,
+     "max_paper": "A4",
+     "monthly_volume": 2500,
+     "paper_input": 2,
+     "paper_output": 100,
+     "ppm_iso": 25,
+     "print_dpi": 600,
+     "tec_kwh": 0.338,
+     "weight_kg": 17.1,
+     "width_mm": 418.0
+    }
    },
    "499Q8F": {
     "checked": "2026-11-15",
@@ -19377,10 +19941,6 @@
      "width_mm": 418.0
     }
    },
-   "499Q9FR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "499R0F": {
     "checked": "2026-11-15",
     "record": {
@@ -19401,53 +19961,20 @@
    },
    "4A8D1A": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "4A8D6A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4A8D9A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4D047C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4KJ69B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4PA39A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4PA41A": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 361.53,
+     "duty_cycle": 3000,
+     "first_page_s": 14.0,
+     "height_mm": 157.26,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 100,
+     "paper_output": 30,
+     "weight_kg": 5.03,
+     "width_mm": 434.66
+    }
    },
    "4PA42A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4PA42AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4PZ45A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4PZ47A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4QD21A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4RA83E": {
     "checked": "2026-11-15",
     "record": {}
    },
@@ -19506,10 +20033,6 @@
      "width_mm": 421.0
     }
    },
-   "4RA88E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "4RA88F": {
     "checked": "2026-11-15",
     "record": {
@@ -19527,69 +20050,21 @@
      "width_mm": 421.0
     }
    },
-   "4RA89A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4RY22A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4RY23A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4RY26A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4SB24A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4SR29A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4U561B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4UJ28B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4V2N0B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "4WF66A": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "4ZB77A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4ZB78A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4ZB82A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4ZB83A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4ZB84A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "4ZB94A": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "adf_capacity": 35,
+     "duty_cycle": 6000,
+     "max_paper": "A4",
+     "monthly_volume": 1200,
+     "paper_input": 250,
+     "paper_output": 100,
+     "ppm_iso": 15,
+     "print_dpi": 1200,
+     "scan_dpi": 1200,
+     "tec_kwh": 0.2,
+     "weight_kg": 7.7
+    }
    },
    "4ZB95A": {
     "checked": "2026-11-15",
@@ -19653,10 +20128,6 @@
     "checked": "2026-11-15",
     "record": {}
    },
-   "53N95A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "53N95B": {
     "checked": "2026-11-15",
     "record": {}
@@ -19689,30 +20160,6 @@
     "checked": "2026-11-15",
     "record": {}
    },
-   "58D77A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5A0S0C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5A0S3B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5AR83B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5B227A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5D1A8A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "5D1B1A": {
     "checked": "2026-11-15",
     "record": {
@@ -19731,22 +20178,6 @@
      "width_mm": 434.66
     }
    },
-   "5D1B3A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5D1B7A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5D1B8A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5D1B9A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "5D1C0A": {
     "checked": "2026-11-15",
     "record": {
@@ -19764,22 +20195,6 @@
      "weight_kg": 5.03,
      "width_mm": 434.66
     }
-   },
-   "5HG80A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5HG89A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5HG93A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5HH64E": {
-    "checked": "2026-11-15",
-    "record": {}
    },
    "5HH64F": {
     "checked": "2026-11-15",
@@ -19820,70 +20235,6 @@
      "width_mm": 449.0
     }
    },
-   "5QJ90A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5QJ98A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5QK08A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5QK09A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5QK13A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5SE16B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5SE17B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5SE18B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5SE19B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5SE20B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5SE45B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5SE46B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5SE47B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5SE48B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5UE14A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "5UE15A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "60K25A": {
     "checked": "2026-11-15",
     "record": {}
@@ -19894,19 +20245,20 @@
    },
    "60K30B": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "67Q07A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "67Q08A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "6GW62E": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 332.0,
+     "duty_cycle": 1000,
+     "first_page_s": 15.0,
+     "height_mm": 200.0,
+     "max_paper": "A4",
+     "monthly_volume": 300,
+     "paper_input": 60,
+     "paper_output": 25,
+     "ppm_iso": 8,
+     "print_dpi": 1200,
+     "weight_kg": 4.82,
+     "width_mm": 428.0
+    }
    },
    "6GW62F": {
     "checked": "2026-11-15",
@@ -19928,7 +20280,19 @@
    },
    "6GW99E": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 298.6,
+     "duty_cycle": 20000,
+     "first_page_s": 7.0,
+     "height_mm": 241.9,
+     "max_paper": "A4",
+     "monthly_volume": 2000,
+     "paper_input": 150,
+     "paper_output": 100,
+     "tec_kwh": 0.255,
+     "weight_kg": 7.6,
+     "width_mm": 368.0
+    }
    },
    "6GW99F": {
     "checked": "2026-11-15",
@@ -19947,10 +20311,6 @@
      "weight_kg": 7.6,
      "width_mm": 368.0
     }
-   },
-   "6GX00E": {
-    "checked": "2026-11-15",
-    "record": {}
    },
    "6GX00F": {
     "checked": "2026-11-15",
@@ -19972,10 +20332,6 @@
      "width_mm": 418.0
     }
    },
-   "6GX01E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "6GX01F": {
     "checked": "2026-11-15",
     "record": {
@@ -19996,10 +20352,6 @@
      "width_mm": 418.0
     }
    },
-   "6GX01FR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "6W7E7A": {
     "checked": "2026-11-15",
     "record": {}
@@ -20008,21 +20360,22 @@
     "checked": "2026-11-15",
     "record": {}
    },
-   "6W7F0A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "6W7F4A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "6W7F5A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "714J1B": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 361.0,
+     "duty_cycle": 1000,
+     "first_page_s": 19.0,
+     "height_mm": 136.0,
+     "max_paper": "A4",
+     "monthly_volume": 400,
+     "paper_input": 100,
+     "paper_output": 25,
+     "ppm_iso": 10,
+     "print_dpi": 1200,
+     "weight_kg": 5.13,
+     "width_mm": 433.0
+    }
    },
    "714J2B": {
     "checked": "2026-11-15",
@@ -20030,25 +20383,26 @@
    },
    "714J3B": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "714L6A": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 361.0,
+     "duty_cycle": 1000,
+     "first_page_s": 19.0,
+     "height_mm": 136.0,
+     "max_paper": "A4",
+     "monthly_volume": 400,
+     "paper_input": 100,
+     "paper_output": 25,
+     "ppm_iso": 10,
+     "print_dpi": 1200,
+     "weight_kg": 5.13,
+     "width_mm": 433.0
+    }
    },
    "714L8B": {
     "checked": "2026-11-15",
     "record": {}
    },
    "714L9B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "714M2A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "714N8A": {
     "checked": "2026-11-15",
     "record": {}
    },
@@ -20094,43 +20448,7 @@
      "width_mm": 433.0
     }
    },
-   "7FR50B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "7FR53B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "7FR54B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "7FR55B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "7FS77B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "7FS79B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "7FS81B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "7KW54A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "7KW56A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "7KW63A": {
     "checked": "2026-11-15",
     "record": {}
    },
@@ -20147,18 +20465,6 @@
     "record": {}
    },
    "7KW75A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "7KW75A ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "7KW75AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "7MD66E": {
     "checked": "2026-11-15",
     "record": {}
    },
@@ -20180,14 +20486,6 @@
      "width_mm": 346.0
     }
    },
-   "7MD68A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "7MD72E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "7MD72F": {
     "checked": "2026-11-15",
     "record": {
@@ -20207,61 +20505,22 @@
      "width_mm": 360.0
     }
    },
-   "7MD73A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "7QR88H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "7WN42B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "7ZU86A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "8697445993633": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "89F86C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "89F87C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "89F88A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "89F89A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "89F91A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "89F93A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "89F94A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "89F95A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "89F97B": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 304.0,
+     "duty_cycle": 1000,
+     "first_page_s": 16.0,
+     "height_mm": 154.0,
+     "max_paper": "A4",
+     "monthly_volume": 100,
+     "paper_input": 60,
+     "paper_output": 25,
+     "ppm_iso": 7,
+     "print_dpi": 1200,
+     "weight_kg": 3.42,
+     "width_mm": 425.0
+    }
    },
    "89F98B": {
     "checked": "2026-11-15",
@@ -20283,39 +20542,91 @@
    },
    "89F99B": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "89G03C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "89G05C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "8AF52A": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 304.0,
+     "duty_cycle": 1000,
+     "first_page_s": 16.0,
+     "height_mm": 154.0,
+     "max_paper": "A4",
+     "monthly_volume": 100,
+     "paper_input": 60,
+     "paper_output": 25,
+     "ppm_iso": 7,
+     "print_dpi": 1200,
+     "weight_kg": 3.42,
+     "width_mm": 425.0
+    }
    },
    "8D7L0A": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 419.12,
+     "duty_cycle": 40000,
+     "first_page_s": 10.9,
+     "height_mm": 254.19,
+     "monthly_volume": 2500,
+     "paper_input": 250,
+     "paper_output": 100,
+     "ppm_iso": 25,
+     "print_dpi": 600,
+     "tec_kwh": 0.272,
+     "weight_kg": 13.8,
+     "width_mm": 390.0
+    }
    },
    "8J9K4F": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "8J9K7F": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 298.6,
+     "duty_cycle": 20000,
+     "first_page_s": 7.0,
+     "height_mm": 241.9,
+     "max_paper": "A4",
+     "monthly_volume": 2000,
+     "paper_input": 150,
+     "paper_output": 100,
+     "ppm_iso": 29,
+     "print_dpi": 600,
+     "tec_kwh": 0.267,
+     "weight_kg": 7.6,
+     "width_mm": 368.0
+    }
    },
    "8J9K9F": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 279.5,
+     "duty_cycle": 20000,
+     "first_page_s": 7.0,
+     "height_mm": 205.0,
+     "max_paper": "A4",
+     "monthly_volume": 2000,
+     "paper_input": 150,
+     "paper_output": 100,
+     "ppm_iso": 27,
+     "print_dpi": 600,
+     "tec_kwh": 0.251,
+     "weight_kg": 5.6,
+     "width_mm": 355.0
+    }
    },
    "8J9L0F": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 279.5,
+     "duty_cycle": 20000,
+     "first_page_s": 7.0,
+     "height_mm": 205.0,
+     "max_paper": "A4",
+     "monthly_volume": 2000,
+     "paper_input": 150,
+     "paper_output": 100,
+     "ppm_iso": 29,
+     "print_dpi": 600,
+     "tec_kwh": 0.273,
+     "weight_kg": 5.6,
+     "width_mm": 355.0
+    }
    },
    "8X3D8A": {
     "checked": "2026-11-15",
@@ -20326,10 +20637,6 @@
     "record": {}
    },
    "8X3E1A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "8X3E2A": {
     "checked": "2026-11-15",
     "record": {}
    },
@@ -20345,105 +20652,39 @@
     "checked": "2026-11-15",
     "record": {}
    },
-   "940Y5A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "941P5A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "9A936A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "9B2C6A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "9B2C7A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "9B2D1A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "9B2D3A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "9B2D5A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "9B2D7A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "9B2D9A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "9B5C5A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "9B5C6A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "9B5C8A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "9B5D0A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "9B5D1A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "9G066A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "9YG08A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A0NU1A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24HFA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24HGA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24HHA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24HJA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24HKA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "A24HMB": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 332.0,
+     "duty_cycle": 1000,
+     "first_page_s": 15.0,
+     "height_mm": 200.0,
+     "max_paper": "A4",
+     "monthly_volume": 300,
+     "paper_input": 60,
+     "paper_output": 25,
+     "ppm_iso": 8,
+     "print_dpi": 1200,
+     "weight_kg": 4.81,
+     "width_mm": 428.0
+    }
    },
    "A24HNB": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 332.0,
+     "duty_cycle": 1000,
+     "first_page_s": 15.0,
+     "height_mm": 200.0,
+     "max_paper": "A4",
+     "monthly_volume": 300,
+     "paper_input": 60,
+     "paper_output": 25,
+     "ppm_iso": 8,
+     "print_dpi": 1200,
+     "weight_kg": 4.81,
+     "width_mm": 428.0
+    }
    },
    "A24HPB": {
     "checked": "2026-11-15",
@@ -20463,14 +20704,6 @@
      "weight_kg": 4.81,
      "width_mm": 428.0
     }
-   },
-   "A24HSA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24HTA": {
-    "checked": "2026-11-15",
-    "record": {}
    },
    "A24HVB": {
     "checked": "2026-11-15",
@@ -20492,507 +20725,88 @@
    },
    "A24HWB": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24HXC": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24HYC": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24J1C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24J2C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24J4B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24J6B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24J7B": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 304.0,
+     "duty_cycle": 1000,
+     "first_page_s": 16.0,
+     "height_mm": 154.0,
+     "max_paper": "A4",
+     "monthly_volume": 100,
+     "paper_input": 60,
+     "paper_output": 25,
+     "weight_kg": 3.42,
+     "width_mm": 425.0
+    }
    },
    "A24J8B": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24J9A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24JCB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24JFB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24JGA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24JJC": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A24JKB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A2PS9A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A58WCA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A58WDA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A58WFA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A58WGA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A58WHA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A58WJA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A58WKA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A58WLA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A58WMA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A58WNA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A58WPA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A77L6A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A77L7A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A7F64A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A7F64A-DB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A7F64AA80": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A7F64ABEK": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A7F65A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A8P79A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A8P79ABGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A8P79AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A8P80A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A9J40B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A9T80B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A9U22B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "A9U23C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4V7C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4V8C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4V9A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4W1A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4W2A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4W3C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4W4B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4W7B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4W8B": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 304.0,
+     "duty_cycle": 1000,
+     "first_page_s": 16.0,
+     "height_mm": 154.0,
+     "max_paper": "A4",
+     "monthly_volume": 100,
+     "paper_input": 60,
+     "paper_output": 25,
+     "ppm_iso": 7,
+     "print_dpi": 1200,
+     "scan_dpi": 1200,
+     "weight_kg": 3.42,
+     "width_mm": 425.0
+    }
    },
    "AJ4W9B": {
     "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "adf_capacity": 35,
+     "depth_mm": 332.0,
+     "duty_cycle": 1000,
+     "first_page_s": 15.0,
+     "height_mm": 200.0,
+     "max_paper": "A4",
+     "monthly_volume": 300,
+     "paper_input": 60,
+     "paper_output": 25,
+     "print_dpi": 1200,
+     "scan_dpi": 1200,
+     "weight_kg": 4.81,
+     "width_mm": 428.0
+    }
    },
    "AJ4X0B": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4X1A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4X2A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4X3A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4X7C": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 304.0,
+     "duty_cycle": 1000,
+     "first_page_s": 16.0,
+     "height_mm": 154.0,
+     "max_paper": "A4",
+     "monthly_volume": 100,
+     "paper_input": 60,
+     "paper_output": 25,
+     "ppm_iso": 7,
+     "print_dpi": 1200,
+     "scan_dpi": 1200,
+     "weight_kg": 3.42,
+     "width_mm": 425.0
+    }
    },
    "AJ4X9B": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4Y0A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4Y4A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AJ4Y5A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AM9S9A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AM9T0A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AM9T1A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AM9T2A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AM9T3A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AM9T5A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AM9T6A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AM9T7A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "AM9T8A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B09RYA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B09RZA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B09S0A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0N11B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0N11BBNDL": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0YW7A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0YW8A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0YW9A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0YX0A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0YX1A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0YX2A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0YZ1A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0YZ2A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0YZ3A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0ZA1A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0ZA2A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0ZA3A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0ZA4A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0ZA5A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0ZA6A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B0ZA7A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B18JWA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B18JXA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B18JYA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B18K0C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B2L56B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B2L56BINKBUN": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B2L57C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B3G84A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B3G86A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B3Q10A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B3Q11A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B3Q11A BGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B3ZF3A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B3ZF5A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B3ZF6A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B3ZF7A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B3ZF8A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B3ZG8C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B3ZH3A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B3ZH6A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B3ZJ0C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B4A21A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B4A22A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B4A22A BGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B4L03B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B4L10C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B5L23A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B5L23A-EX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B5L23A-MPS": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B5L23A-U8CG3E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B5L23A/GOLD": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B5L23AD": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B5L23APACCHETTO": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B63JSA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B63JTA": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "adf_capacity": 35,
+     "depth_mm": 332.0,
+     "duty_cycle": 1000,
+     "first_page_s": 15.0,
+     "height_mm": 200.0,
+     "max_paper": "A4",
+     "monthly_volume": 300,
+     "paper_input": 60,
+     "paper_output": 25,
+     "weight_kg": 4.81,
+     "width_mm": 428.0
+    }
    },
    "B63JVB": {
     "checked": "2026-11-15",
@@ -21013,37 +20827,22 @@
      "width_mm": 460.0
     }
    },
-   "B63JWD": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B63JXD": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B63JYD": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B63JZA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "B63K0B": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "B63K1A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B63K3A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B63K4A": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "adf_capacity": 35,
+     "depth_mm": 383.0,
+     "duty_cycle": 1000,
+     "first_page_s": 18.0,
+     "height_mm": 190.5,
+     "max_paper": "A6",
+     "monthly_volume": 400,
+     "paper_input": 125,
+     "paper_output": 60,
+     "power_w": 14.0,
+     "weight_kg": 6.91,
+     "width_mm": 460.0
+    }
    },
    "B63K5B": {
     "checked": "2026-11-15",
@@ -21064,1677 +20863,56 @@
      "width_mm": 460.0
     }
    },
-   "B63K6D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B63K7D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B63K8D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "B63K9B": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "B6JV3B": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "adf_capacity": 35,
+     "depth_mm": 383.0,
+     "duty_cycle": 1000,
+     "first_page_s": 18.0,
+     "height_mm": 233.0,
+     "max_paper": "A6",
+     "monthly_volume": 400,
+     "paper_input": 125,
+     "paper_output": 60,
+     "power_w": 14.0,
+     "weight_kg": 8.0,
+     "width_mm": 460.0
+    }
    },
    "B6JW3B": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "B6JW4D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B6JW5D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B6JW6D": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "adf_capacity": 35,
+     "depth_mm": 383.0,
+     "duty_cycle": 1000,
+     "first_page_s": 18.0,
+     "height_mm": 190.5,
+     "max_paper": "A6",
+     "monthly_volume": 400,
+     "paper_input": 125,
+     "paper_output": 60,
+     "power_w": 14.0,
+     "weight_kg": 6.91,
+     "width_mm": 460.0
+    }
    },
    "B6JX3B": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "B6JX4D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B6JX5D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B6JX6D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B9S59A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B9S64A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B9S65A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B9S79A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B9S79ABHC": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B9S79A_3PZ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "B9S84A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "BA7F64A01": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "BA7F64A1": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "BB5L23A01": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "BCN503B1": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "BE2D7A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "BE3E02A01": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C20YSAV": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C20YTAV": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C20YVAV": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C20YWAV": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2164A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2184A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2185A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2633A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2637A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2675A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2678A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2684B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2685A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2685B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VJ4A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VJ5A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VJ6A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VJ7B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VJ8B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VJ9B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VK1A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VK2A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VK3A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VK5B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VK6B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VK7B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VK8B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VZ0A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VZ1A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VZ2A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VZ3B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VZ4B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VZ5B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VZ6B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2VZ7B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WH0A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WH0B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WH1B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WH2B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WM0A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WM1B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WM2B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WM3B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WR7A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WR8A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WR9A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WS0B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WS1B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WS2B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WS3B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2WS4B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2XF9A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2XF9B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2XG1B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2XR6A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2XR7A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2XR8A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2XR9B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2XS0B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C2XS1B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C3540J": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C3984A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C3985A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C4170A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C4171A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C4172A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C4218A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C4224A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C4228A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C4246A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C4265A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C4266A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C4267A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C4530B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C4548A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C4608B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5901A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5957A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5958A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F92A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F92A-RFB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F93A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F93AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F94A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F94A-RFB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F94AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F95A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F95A-APPROVED ONE": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F95A-EX-DEMO AS NEW": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F95A-U8TM2E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F95A-VISA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F95A/SHOW": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F95ABGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F95APACCHETTO": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F95AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F95ARBGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5F95A_2PACK": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5J91A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5J91A-BUN-PROX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5J91A/SHOW": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5J91AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C5X25A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6411F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6428F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6429B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6430F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6431F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6464A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6466A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6467A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6487A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6487C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6490A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6500A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6692A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6737A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6740B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6749A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C6750A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C7044A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C7045A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C7046A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C7048A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C7052A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C7055A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C7096A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C7097A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C7098A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C7099A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C7131A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C7281A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C7707A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C7834A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8050A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8051A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8052A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8060A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8099A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8100A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8109A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8110A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8115A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8117A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8125A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8126A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8127A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8135A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8140A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8144A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8146A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8147A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8151A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8153A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8154A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8155A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8156A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8157A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8158A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8159B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8163A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8165B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8166B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8167A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8169A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8174A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8177A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8178A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8179A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8184A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8185A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8373A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8375A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8377A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8378A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8388A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8389A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8390A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8402A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8416A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8418A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8425A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8426A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8428A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8436A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8519A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8520A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8521A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8523A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8546A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8547A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8549A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8648A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8658A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8947A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8949A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8952A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8963B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8964A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8969A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8969B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8970B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8973A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C8974A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9016B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9017B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9031B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9034B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9045B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9050A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9062A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9079A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9089B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9093A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9124A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9125A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9126A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9135A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9148A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9151A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9164A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9165A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9166A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9167A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9277A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9282A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9299A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9309A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9656A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9657A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9658A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9659A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9660A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9661A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9662A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9663A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9692A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9705A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9706A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9707A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9727A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9729A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9737A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9738A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "C9739A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB015A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB016A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB022A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB023A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB028A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB029B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB038A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB039A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB041B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB047A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB051A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB057A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB060A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB061A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB092A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB094A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB096A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB366A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB367A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB368A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB369A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB394A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB395A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB410A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB412A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB413A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB415A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB416A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB417A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB419A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB425A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB426A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB427A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB428A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB441A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB442A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB443A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB449A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB450A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB480A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB481A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB482A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB483A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB493A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB494A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB495A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB503A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB504A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB506A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB507A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB509A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB509A-RFB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB510A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB511A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB512A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB514A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB515A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB516A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB517A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB526A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB532A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB533A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB534A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB536A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB537A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB584A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB591A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB592A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB596A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB611A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB632A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB641B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB656B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB662C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB700B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB708A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB725A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB730A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB730B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB730D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB731A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB750A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB755B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB770B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB774B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB780A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB781A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB783A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB815A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB822A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB829A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB850A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB863A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CB867A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC001A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC210B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC215B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC372A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC376A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC377A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC394A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC395A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC430A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC431A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC435A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC436A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC459A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC469A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC470A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC471A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC481A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC482A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC493A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC494A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC495A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC519A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC520A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC522A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC522A-EX DEMO": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC522A-U6W62E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC523A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC524A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC567B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC988B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CC993B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CD028B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CD035B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CD055B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CD646A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE456A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE457A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE457AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE459A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE459A-RFB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE461A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE529A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE538A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE651A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE651A-RFB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE656A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE657A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE658A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE658AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE662A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE663A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE664A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE664AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE665A": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "adf_capacity": 35,
+     "depth_mm": 383.0,
+     "duty_cycle": 1000,
+     "first_page_s": 18.0,
+     "height_mm": 233.0,
+     "max_paper": "A6",
+     "monthly_volume": 400,
+     "paper_input": 125,
+     "paper_output": 60,
+     "power_w": 14.0,
+     "weight_kg": 8.0,
+     "width_mm": 460.0
+    }
    },
    "CE710A": {
     "checked": "2026-11-15",
@@ -22787,647 +20965,7 @@
      "width_mm": 545.0
     }
    },
-   "CE749A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE796A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE799A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE800A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE841A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE844A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE847A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE861A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE862A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE863A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE864A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE865A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE866A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE874A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE875A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE903A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE913A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE914A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE918A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE955A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE956A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE956A-RFB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE957A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE957A-RFB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE957A-UNITY": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE958A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE990A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CE996A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF040A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "CF069A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF144A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF145A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF146A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF147A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF270A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF270A-B19": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF270A-B19-RFB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF274A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF274A-B19": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF274A-RFB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF278A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF285A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF286A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF288A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF288A/KIT": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF346A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF377A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF377AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF378A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF378AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF379A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF379A-STAPLES": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF379AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF385A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF386A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF387A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF388A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF388A-EX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF388A-STAPLES": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF388ABGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF388APACCHETTO": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF388AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF388ARBGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF388ASTAPLES": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF389A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF389A-EX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF389A-REFURBISHED": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF389A-RFB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF389A201": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF389ABGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF389APACCHETTO": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF389AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF389ARBGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF394AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF399A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF455A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF456A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF484A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF484ABGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF485A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF485ABGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF547A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF6P6A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CF6P7A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CH340B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CH346B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CH350B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CH355B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CH366B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CH367A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CH376B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CH376D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CH381B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CH381C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CH393B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CM742A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CM749A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CM750A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CM752A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CM753A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CM755A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CM756A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CN0Z2A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CN216B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CN245B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CN463A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CN503B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CN517B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CN550A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CN551A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CN555A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CN557A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CN583A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CN583AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CN598A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CQ140B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CQ176B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CQ191B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CQ192C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CQ198B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CQ521B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CQ653A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CQ761B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CQ809B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CQ811B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CQ812C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CQ877B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CR231B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CR768A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CR768A B1H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CR768A-EX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CR768A-MPS": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CR768A/KIT": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CR768A_3PZ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CR769A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CR770A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CV037A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CV037A-DO": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CV037A-RFB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CX015B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CX017B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CX017BBHB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CX027B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CX042B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CX052B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CX052C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ022B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ045B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ152B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ152C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ155A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ163A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ165A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ172A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ173A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ181A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ183A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ187A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ271A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ272A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ296B": {
     "checked": "2026-11-15",
     "record": {}
    },
@@ -23449,18 +20987,6 @@
      "width_mm": 380.2
     }
    },
-   "CZ992A-EX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ992AB1H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ992APR-EX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "CZ993A": {
     "checked": "2026-11-15",
     "record": {
@@ -23477,458 +21003,6 @@
      "width_mm": 364.0
     }
    },
-   "CZ993A-EX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "CZ993AB1H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D06BKA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D06BLA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D06FHA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D06FJA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D06FQA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D1MZ0A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D2KG3F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D2KG3FR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D2KG4F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D2KG6F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D2KG8F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D2KG9F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D34F6A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D34F7A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D35XXA": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q16AB1H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q16B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q16B-EX-DEMO AS NEW": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q16B-NEW OPEN BOX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q16BPACCHETTO": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q16BPR-EX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q16BR-RENEW": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q20AB1H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q20B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q20B-EX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q20B-REFURBISHED": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q20B-RFB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q20B/1-EX-DEMO AS NEW": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q20BPACCHETTO": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q20BR-RENEW": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q20D-U8ZW7E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D3Q20D-U8ZW8E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D4H21B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D4H25A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D4J86B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D7Z36A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D7Z36AA80": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L18A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L18A BNDL": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L18A-BUN-PROX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L18A_L0S70AE": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L19A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L19A BNDL": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L19A-EX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L19A/PROX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L20A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L20A BNDL": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L20A/PROX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L21A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L21A X 3 /98851616": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L21A X 3 /99038765": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L21A/PROX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L63A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L63A BNDL": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "D9L63A+J7K34A-KIT": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "E1E94B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "E3E02A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "E3E02A-MPS": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "E3E02AB1H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "E3E03A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "E4W47A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "E4W47ABHC": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F0T92A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F0V63B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F0V70B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F0V72B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F1J00A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F1J07B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F2A69A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F2A69A-EX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F2A69A-RFB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F2A69A-U8PK3E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F2A69A/GOLD": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F2A69AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F2A70A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F2A70A-EX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F2A70A-U8PK3E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F2A70A/GOLD": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F2A70AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F5R95B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F5S01B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F5S02B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F5S03B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F5S20B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F5S40B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F5S43C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F5S44C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F5S49B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F5S50B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F6H93A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F6W13A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F6W14A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F6W15A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F6W15AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "F8B05A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G0V53A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G1X85A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G1X85A-APPROVED ONE": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G1X85A_3PZ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3J47A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3J47A BUNDLE3": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3J47A-EX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3J47A-NEW OPEN BOX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3J47A/KIT": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3J47AB1H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3J47APR-EX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q34A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q35A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q35A B20": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q35A-BUN-PROX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q35AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "G3Q46A": {
     "checked": "2026-11-15",
     "record": {}
@@ -23937,2007 +21011,29 @@
     "checked": "2026-11-15",
     "record": {}
    },
-   "G3Q57A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q58A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q59A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q59ABGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q59AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q60A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q60ABGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q60AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q74A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q75A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q75AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G3Q79A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "G5J38A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "G5J38A-NOB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "HPB5L23A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "HPC5F95A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "HPCF388A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "HPCF389A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "HPCR768A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "HPD3Q16B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "HPD3Q20B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "HPD9L19A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "HPG3J47A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "HPG3Q35A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "IMHPDJD2374UB": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J3P68A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J6U57B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J6U57BPACCHETTO": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J6U59B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J6U60B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J6U61B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J6U64A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J6U66A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J6U67A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J6U70B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J6X76A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J6X77A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J7K33A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J7K34A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J7V18B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J8A12ABGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J8H60A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J8H60A/GOLD": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J8H60APACCHETTO": {
     "checked": "2026-11-15",
     "record": {}
    },
    "J8H61A": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "J8H61A-NEW OPEN BOX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J8H61A/GOLD": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J8H61A/SHOW": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J8H61ABGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J8H61APACCHETTO": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J8H61AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J8H61ARBGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J8J76ABGJ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J9D11A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J9D12A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J9V80B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J9V80B-BUN-PROX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J9V80B-EX-DEMO AS NEW": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J9V80BR-RENEW": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J9V93B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "J9V95B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K4T99B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K4U00B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K4U02B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K4U03B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7C93A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7G21B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7G25B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7G26B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7G87A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7G88A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7G90A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7N78B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7N80B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7S21B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7S34A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7S35A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7S37A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7S43A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7V38A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K7V44B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K9B57B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K9H52A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K9T07B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K9T08B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K9T09B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K9V81B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K9V82B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K9V84B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "K9V85B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "KIT C5F94A+ F6W13A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "KIT G1X85A+CN053AE": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "KIT G3J47A+CN053AE": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "KIT-G3Q57A+G3Q34A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "KIT-G3Q57A+G3Q35A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "KIT-G3Q58A+G3Q34A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "KIT-G3Q58A+G3Q35A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "KIT-G3Q59A+G3Q34A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "KIT-G3Q59A+G3Q35A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "KIT-G3Q60A+G3Q34A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "KIT-G3Q60A+G3Q35A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "L2526B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "L2710A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "L9B95A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "L9D57A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "LETT PACKARD D9L20A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "M127FN": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "M12W": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "M2U81B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "M2U82B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "M2U82B ": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "M2U84B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "M2U88B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "M2U91B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "M2U92B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "M2U94B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "M5H23A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "M5H23AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "M6D61A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "M9L70A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "M9L80A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "N4L14C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "P2035": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "P4C78A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "P4C82A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "P4C85A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q1334A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q1335A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q1336A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q1342A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q1609A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q1638A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q1662A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q1679A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q1860A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q1861A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2425A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2426A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2427A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2428A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2431A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2432A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2433A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2434A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2447A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2460A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2461A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2462A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2488A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2489A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2622A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2665A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2666A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q2669A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3016A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3019A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3068A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3413A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3631A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3632A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3668A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3669A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3670A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3671A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3672A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3702A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3703A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3704A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3713A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3714A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3715A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3716A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3717A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3721A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3722A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3723A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3726A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3728A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3931A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3932A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3934A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3938A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3939A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3942A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3943A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3944A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3945A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3948A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3950A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q3994A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5401A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5402A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5403A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5404A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5406A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5407A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5408A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5409A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5410A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5542B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5560B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5563A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5564A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5569B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5587B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5601A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5611A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5736A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5765A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5789B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5793B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5801B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5806B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5808C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5843B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5863B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5880B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5894A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5911A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5916A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5929A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5930A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5933A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5956A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5957A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5958A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5959A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5960A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5961A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5962A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5981A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5982A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5983A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5986A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5988A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5990A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q5991A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q6466A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q6500A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q6501A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q6502A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q6503A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q6504A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q6510A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q6656A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7047B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7091B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7215B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7491A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7492A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7493A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7494A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7495A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7518A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7533A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7534A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7535A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7536A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7543A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7545A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7546A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7697A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7698A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7699A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7812A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7814A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7815A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7816A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7821A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7822A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7823A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7824A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7829A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q7831A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8081A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8110B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8134A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8140A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8157C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8181B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8186C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8200B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8220B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8232B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8291B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8330B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8388B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8394B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8401B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8418B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8433B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8444B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8531A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8542A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Q8544A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS002B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS002D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS004A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS005B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS006B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS007A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS007C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS009B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS009G": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS014A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS015A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS016B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS016D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS018B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS021B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS022C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS027C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS028C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS031C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS032B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS033C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS037B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS038D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS039B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS040C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS041C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS042C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS043C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS044C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS047B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS048C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS049C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS053H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS054C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS055C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS056C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS058C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS059C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS060B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS070D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS070F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS072A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS072B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS074A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS075D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS076F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS079D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS079H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS079Z": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS080A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS081A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS083A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS084B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS086A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS102A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS103A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS106F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS107D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS108C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS109B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS113D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS113E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS113F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS113G": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS114D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS116A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS118A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS119D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS128A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS140A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS141D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS141K": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS143A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS144A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS147B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS147D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS149A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS150D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS150E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS150F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS150M": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS152B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS154A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS170A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS170B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS170C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS189B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS189E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS191B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS191E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS194A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS196D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS204C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS205E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS208A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS210C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS211C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS213D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS216E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS218B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS220Z": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS230C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS239Z": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS255A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS256D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS257C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS281C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS282C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS293D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS293H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS294F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS298D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS298M": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS335B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS343B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS346A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS352B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS352F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS359B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS359J": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS360B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS365F": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS368D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS373H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS376A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS378D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS379A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS380A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS383H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS384B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS386A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS389G": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS392A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS393A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS396B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS397C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS398C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS399A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS401C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SS404E": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SV859A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SV861A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SV877A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SV878A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SV879A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SV886A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SV887A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SV888A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SV889A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SV890A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SV897A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SV898A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SV900A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SW110A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SW125A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SW222A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SW223A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "SW224A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T0F30A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T0F32A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T0F33A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T0G26A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T0G47A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T0G48A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T0L45A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T0L46A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T0L49A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T0L50A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T6B59A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T6B60A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T6B60AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T6B70A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T6B71A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T6B71A-BUN-PROX": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T6B74AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T6B80A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T6B81A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T6B82A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T6B82AR": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T8W48C": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T8X00B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T8X01B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T8X04B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T8X10B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T8X12B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T8X19B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T8X23B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T8X27B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "T8X39D": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "TT8X04B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "V1N03B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "V1N05B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "V1N06B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "V1N07B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "V6D29B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "V6D30B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W-W-G3J47A": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "depth_mm": 376.0,
+     "duty_cycle": 100000,
+     "first_page_s": 5.8,
+     "height_mm": 289.0,
+     "max_paper": "A4",
+     "monthly_volume": 6000,
+     "paper_input": 650,
+     "paper_output": 250,
+     "ppm_iso": 43,
+     "print_dpi": 600,
+     "tec_kwh": 1.623,
+     "weight_kg": 11.6,
+     "width_mm": 418.0
+    }
    },
    "W1A28A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W1A29A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W1A30A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W1A52A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W1A53A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W1A56A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W1A66A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W1A77A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W1A78A": {
     "checked": "2026-11-15",
     "record": {}
    },
@@ -25949,105 +21045,21 @@
     "checked": "2026-11-15",
     "record": {}
    },
-   "W1B31AB1H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W1Y44A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W1Y45A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W2G50A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W2G51A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W2G54A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W2G55A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W2Z52BPACCHETTO": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W2Z53B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "W2Z53BPACCHETTO": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
    "Y0F74A": {
     "checked": "2026-11-15",
-    "record": {}
-   },
-   "Y0G50B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Y0S18A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Y0S18AB1H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Y0S19A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Y3Z54B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Y3Z54B/SHOW": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Y3Z55AB1H": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Y3Z55B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Y3Z55B/SHOW": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Z3M47B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Z3M48B": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Z4B18A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Z4B56A": {
-    "checked": "2026-11-15",
-    "record": {}
-   },
-   "Z7E54A": {
-    "checked": "2026-11-15",
-    "record": {}
+    "record": {
+     "adf_capacity": 35,
+     "depth_mm": 373.0,
+     "first_page_s": 14.0,
+     "height_mm": 198.0,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 100,
+     "paper_output": 30,
+     "tec_kwh": 0.17,
+     "weight_kg": 6.19,
+     "width_mm": 449.0
+    }
    }
   },
   "hp.com": {},
@@ -103202,7 +98214,7 @@
     "status": "walled"
    },
    "canon-uk:ALL": {
-    "found": 27,
+    "found": 0,
     "status": "ok"
    },
    "epson:BE": {
@@ -103234,7 +98246,7 @@
     "status": "ok"
    },
    "hp-shop:ALL": {
-    "found": 2,
+    "found": 31,
     "status": "ok"
    },
    "hp.com:DE": {
@@ -103254,7 +98266,7 @@
     "status": "ok"
    },
    "kyocera:ALL": {
-    "found": 1,
+    "found": 0,
     "status": "ok"
    },
    "lexmark:BE": {
