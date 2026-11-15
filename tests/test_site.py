@@ -8,6 +8,7 @@ HTTP, as GitHub Pages serves it. Screenshots land in ``_site-shots/``.
 
 import functools
 import http.server
+import os
 import threading
 from pathlib import Path
 
@@ -102,6 +103,12 @@ def old_printer(i, release):
 def site(tmp_path_factory):
     root = tmp_path_factory.mktemp("site")
     data = root / "data"
+    if os.environ.get("SITE_DATA"):
+        # `SITE_DATA=data uv run pytest tests/test_site.py -k every`: the
+        # control checks on the real catalogue
+        data = Path(os.environ["SITE_DATA"]).resolve()
+        yield from serve(data, root / "out")
+        return
     products = {str(1000 + i): printer(i) for i in range(60)}
     # two models from 2010 and 2012, hidden by default, and one with no date
     products |= {
@@ -128,7 +135,10 @@ def site(tmp_path_factory):
             },
         },
     )
-    out = root / "out"
+    yield from serve(data, root / "out")
+
+
+def serve(data, out):
     cli.main(["--data", str(data), "build", "--out", str(out)])
     handler = functools.partial(Quiet, directory=str(out))
     server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
