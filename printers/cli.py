@@ -28,6 +28,27 @@ def update(args: argparse.Namespace) -> None:
         print(f"  {where}: {outcome['status']} {outcome.get('found', '')}")
 
 
+#: what the detail view and the comparison need, fetched only when opened
+DETAIL_FIELDS = ("consumables", "supplies", "confirmed", "differs")
+#: detail fields the list needs as well: the "confirmed" filter and badge
+LIST_DETAIL_FIELDS = frozenset({"confirmed"})
+#: sent although false: "mono" is a filter value, not an unknown
+KEPT_FALSE = frozenset({"color"})
+
+
+def lean(record: dict) -> dict:
+    """The row of the list: no detail field, nothing false, null or empty.
+
+    The page reads a missing flag as "no"; leaving them out halves the file.
+    """
+    return {
+        key: value
+        for key, value in record.items()
+        if (key not in DETAIL_FIELDS or key in LIST_DETAIL_FIELDS)
+        and (value not in (False, None, "", [], {}) or key in KEPT_FALSE)
+    }
+
+
 def build(args: argparse.Namespace) -> None:
     catalog = Catalog(args.data)
     out: Path = args.out
@@ -35,38 +56,46 @@ def build(args: argparse.Namespace) -> None:
         shutil.rmtree(out)
     shutil.copytree(ROOT / "site", out)
     site = catalog.site()
-    # the page reads a missing field as "no": dropping them halves the download
-    site["printers"] = [
-        {k: v for k, v in record.items() if v not in (False, None, "", [])}
+    details = {
+        record["id"]: {key: record[key] for key in DETAIL_FIELDS if record.get(key)}
         for record in site["printers"]
-    ]
-    payload = json.dumps(site, ensure_ascii=False, separators=(",", ":"))
-    (out / "printers.json").write_text(payload, encoding="utf-8")
+    }
+    site["printers"] = [lean(record) for record in site["printers"]]
+    for name, payload in (("printers.json", site), ("details.json", details)):
+        text = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+        (out / name).write_text(text, encoding="utf-8")
     bust_caches(out)
-    print(f"site written to {out}")
+    print(f"site written to {out}: {len(site['printers'])} printers")
+
+
+#: each file and the files that name it, in an order where a file is
+#: versioned only once every file it names has been
+REFERENCES = (
+    ("printers.json", ("app.js", "index.html")),
+    ("details.json", ("app.js",)),
+    ("i18n.js", ("app.js",)),
+    ("logic.js", ("app.js",)),
+    ("style.css", ("index.html",)),
+    ("app.js", ("index.html",)),
+)
 
 
 def bust_caches(out: Path) -> None:
     """Point the page at its files by content hash.
 
     GitHub Pages lets browsers keep a file for ten minutes; a fresh deploy
-    would otherwise show the new page with the old script or data.
+    would otherwise show the new page with the old script or data. A script
+    is hashed after its own references are rewritten, so a new data file
+    gives the script that loads it a new name too.
     """
-    versions: dict[str, str] = {}
-    # app.js names the data file: it is rewritten before its own hash is taken
-    for name, referrer in (
-        ("printers.json", "app.js"),
-        ("style.css", "index.html"),
-        ("printers.json", "index.html"),
-        ("app.js", "index.html"),
-    ):
-        if name not in versions:
-            content = (out / name).read_bytes()
-            versions[name] = hashlib.sha256(content).hexdigest()[:10]
-        path = out / referrer
-        text = path.read_text(encoding="utf-8")
-        text = text.replace(f'"{name}"', f'"{name}?v={versions[name]}"')
-        path.write_text(text, encoding="utf-8")
+    for name, referrers in REFERENCES:
+        version = hashlib.sha256((out / name).read_bytes()).hexdigest()[:10]
+        for referrer in referrers:
+            path = out / referrer
+            text = path.read_text(encoding="utf-8")
+            for quoted in (f'"{name}"', f'"./{name}"'):
+                text = text.replace(quoted, f'{quoted[:-1]}?v={version}"')
+            path.write_text(text, encoding="utf-8")
 
 
 def check(args: argparse.Namespace) -> None:
