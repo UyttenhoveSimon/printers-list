@@ -32,9 +32,11 @@ I could not find an easy way to find a printer with the specs I wanted, so I bui
 
 - 🔁 **Two-sided printing and scanning**: automatic duplex only. A "manual duplex" that asks you to turn the stack over does not count.
 - 🧰 **Every spec is a filter** in the side panel: technology (laser, LED, inkjet, ink tank), colour, scan, copy, fax, ADF, borderless, A3, paper capacity, connectivity (Wi-Fi, Wi-Fi Direct, Ethernet, USB, AirPrint, Mopria, NFC, Bluetooth), display, speed, time to first page, duty cycle, resolution, size, weight, noise, power, release year, country and brand.
-- 🖋️ **Cartridges**: the ink, toner and drums each printer takes, with the starter cartridge yield.
+- 📅 **The last ten years by default**, newest first, by release date or else the date Icecat added the model. One click shows older models too.
+- ↕️ **Sorting**: newest, oldest, name, fastest (black or colour), largest paper tray, lightest, smallest, quietest, lowest energy use.
+- 🖋️ **Cartridges**: the brand's own ink, toner and drums each printer takes, then compatible supplies from other brands set apart. The starter cartridge yield is shown too.
 - 🌍 **Where it is sold**: the countries each model is marketed in, with country names in your language.
-- ✅ **Cross-checked**: printers whose maker's site states the same specs as Icecat are marked as confirmed, and any disagreement is shown.
+- 🔎 **Cross-checked**: where a maker's own spec sheet disagrees with Icecat, the printer's detail says so.
 - ⚖️ **Comparator**: tick up to four printers and compare them side by side, all specs or only the differences.
 - 🗣️ **International**: English, French, Dutch and German, picked from your browser.
 - 📄 **Paginated**: 48 printers a page, so thousands of models stay fast.
@@ -61,14 +63,17 @@ A printer stays **on sale** while one of its sources still lists it. When a sour
 
 ## 🔎 Sources
 
+The page lists these sources too, at the bottom, with how each one answered in the latest weekly run.
+
 | Source | What it gives | Status |
 | --- | --- | --- |
-| Icecat on-market index | Every printer from the brands that sponsor Open Icecat (HP, Canon, Brother, Epson, Kyocera, Xerox...) with its countries | ✅ needs an Icecat account |
-| epson.co.uk, .be, .nl, .fr, .de, .it, .es | Epson's catalogue per country, with its spec sheets to cross-check Icecat | ✅ |
-| lexmark.com (GB, BE, NL, FR, DE, CH, IT, ES, US) | Lexmark's printers and full specs; Lexmark is not in Open Icecat | ✅ |
-| hp.com (GB, FR, DE) | HP's shop list | ⛔ refuses non-browser clients |
-| brother.* (GB, BE, FR, DE) | Brother's support sitemap | ⛔ 403 |
-| Canon, Galaxus, Digitec | | ⛔ 403 |
+| [Open Icecat](https://icecat.biz) on-market index | Every printer still on the market from the brands that sponsor Open Icecat (HP, Canon, Epson, Brother, Kyocera, Samsung, Ricoh, Xerox, Dell...), with the countries it is sold in and the date Icecat added it | ✅ needs a free Icecat account |
+| [Open Icecat](https://icecat.biz) product data sheets | Specifications, images, release and end-of-life dates, related cartridges with their brand | ✅ |
+| [epson.co.uk, .be, .nl, .fr, .de, .it, .es](https://www.epson.eu) | Epson's catalogue per country, with its spec sheets to cross-check Icecat | ✅ |
+| [lexmark.com](https://www.lexmark.com) (GB, BE, NL, FR, DE, CH, IT, ES, US) | Lexmark's printers and full specs; Lexmark is not in Open Icecat | ✅ |
+| [hp.com](https://www.hp.com) (GB, FR, DE) | HP's shop list | ⛔ refuses non-browser clients (HP is covered by Icecat) |
+| [brother.*](https://www.brother.eu) (GB, BE, FR, DE) | Brother's support sitemap | ⛔ 403 (Brother is covered by Icecat) |
+| Canon, Galaxus, Digitec | | ⛔ 403 (Canon is covered by Icecat) |
 | Amazon | | ⛔ forbids automated access |
 | Kyocera | Pages answer, but list no product code Icecat knows | 🔜 |
 
@@ -130,6 +135,8 @@ site/                index.html, app.js (DOM), logic.js (filters, URL, pages), i
 data/                products.json, state.json (rewritten weekly)
 tests/fixtures/      real captures, trimmed
 ```
+
+Agents and contributors: [AGENTS.md](AGENTS.md) has the map, the rules and the pitfalls already met.
 
 **Adding a source:** write a module in `printers/sources/` with `NAME`, `MARKETS` and `discover(fetcher, market, cache)` returning `Candidate`s. A candidate is found by brand and code, EAN or Icecat id. Register the module in `all_sources()`, then add a trimmed capture to `tests/fixtures/` and a test.
 
