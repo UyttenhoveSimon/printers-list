@@ -452,3 +452,37 @@ def test_a_maker_page_that_does_not_parse_fails_alone(tmp_path, icecat, monkeypa
     catalog, report = run(tmp_path, DAY, [index(Candidate("icecat", icecat_id=3))])
     assert report.sources["fake-support:ALL"]["status"] == "error"
     assert "3" in catalog.products
+
+
+def epson(catalog, product_id, code, name, **fields):
+    """Synthetic Epson records, shaped like the WF-M5399DW's SKUs in Icecat."""
+    catalog.store(
+        product_id, record(int(product_id), name) | {"brand": "Epson", "code": code}
+    )
+    catalog.products[product_id].update(fields)
+
+
+def test_one_model_under_several_names_is_one_row(tmp_path):
+    catalog = Catalog(tmp_path, today=DAY)
+    epson(catalog, "1", "C11CK77401", "Epson Pro WF-M5399DW inkjet printer")
+    epson(catalog, "2", "C11CK77301", "Epson WorkForce Pro WF-M5399DW", weight_kg=15.0)
+    epson(catalog, "3", "C11CK77201", "Epson WorkForce Pro WF-M5399")
+    rows = {p["name"]: p for p in catalog.site()["printers"]}
+    assert set(rows) == {
+        "Epson Pro WF-M5399DW inkjet printer",
+        "Epson WorkForce Pro WF-M5399",
+    }
+    assert rows["Epson Pro WF-M5399DW inkjet printer"]["weight_kg"] == 15.0
+
+
+def test_a_bare_sheet_joins_the_model_its_siblings_name(tmp_path):
+    catalog = Catalog(tmp_path, today=DAY)
+    epson(catalog, "1", "C11CK77401", "Epson Pro WF-M5399DW", weight_kg=15.0)
+    epson(catalog, "2", "C11CK77401BM", "Epson C11CK77401BM inkjet printer")
+    # two models share this base: a bare sheet of it stays on its own
+    epson(catalog, "3", "C11CB74001BW", "Epson AcuLaser C2900DN")
+    epson(catalog, "4", "C11CB74001BY", "Epson AcuLaser C2900N")
+    epson(catalog, "5", "C11CB74001BZ", "Epson C11CB74001BZ laser printer")
+    rows = {p["name"]: p for p in catalog.site()["printers"]}
+    assert rows["Epson Pro WF-M5399DW"]["variants"] == 2
+    assert "Epson C11CB74001BZ laser printer" in rows

@@ -17,6 +17,7 @@ therefore leaves its products as they were instead of retiring them all.
 
 import json
 import logging
+import re
 import threading
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
@@ -492,8 +493,66 @@ def variant_key(record: dict[str, Any]) -> str | None:
     return None
 
 
+#: the part of a code shared by a model's pack variants: Epson's C11CK77401BM
+#: is the C11CK77401, the WF-M5399DW
+BASE_CODE = {"Epson": re.compile(r"^(C1[01]C[A-Z0-9]{6})[A-Z0-9]{1,3}$")}
+#: a model in a name: "WF-M5399DW", "ET-2850", "MFC-L3740CDW"
+MODEL_IN_NAME = re.compile(r"\b[A-Z]{1,4}-?[A-Z]?\d{3,5}[A-Z]*\b")
+
+
+def bare(record: dict[str, Any]) -> bool:
+    """A sheet Icecat names after its code alone: "Epson C11CK77401BM printer"."""
+    code = record.get("code") or ""
+    return bool(code) and code in record["name"]
+
+
+def base_code(record: dict[str, Any]) -> str:
+    pattern = BASE_CODE.get(record["brand"])
+    code = (record.get("code") or "").upper()
+    match = pattern.match(code) if pattern else None
+    return match.group(1) if match else code if pattern else ""
+
+
+def bare_siblings(records: list[dict[str, Any]]) -> dict[int, int]:
+    """Bare sheet -> a named record of its model, when its siblings agree.
+
+    Siblings share the base code; a bare sheet joins them only when every
+    named sibling names the same model, as old ranges reuse a base for two.
+    """
+    named: dict[tuple[str, str], dict[str, int]] = defaultdict(dict)
+    for i, record in enumerate(records):
+        base = base_code(record)
+        models = MODEL_IN_NAME.findall(record["name"].upper())
+        if base and models and not bare(record):
+            named[(record["brand"], base)].setdefault(models[0], i)
+    joined = {}
+    for i, record in enumerate(records):
+        models = named.get((record["brand"], base_code(record)), {})
+        if bare(record) and len(models) == 1:
+            joined[i] = next(iter(models.values()))
+    return joined
+
+
+def same_model_keys(record: dict[str, Any]) -> list[tuple[str, ...]]:
+    """What two records of one model can share; one match is enough."""
+    brand = record["brand"].lower()
+    keys = [("name", brand, record["name"].lower())]
+    # Icecat names one model several ways: "Epson Expression XP-630",
+    # "Epson Premium XP-630"; the model code says they are one
+    models = MODEL_IN_NAME.findall(record["name"].upper())
+    if models:
+        keys.append(("model", brand, models[0]))
+    if record["brand"] == "HP":
+        keys.append(("hp", variant_key(record) or (record.get("code") or "").upper()))
+    return keys
+
+
 def variant_groups(records: list[dict[str, Any]]) -> list[list[dict[str, Any]]]:
-    """Records that are one model: the same name, or HP's same base code."""
+    """Records that are one model.
+
+    They share a name, a model code in their names, HP's base code, or are a
+    bare sheet whose siblings name one model.
+    """
     parent = list(range(len(records)))
 
     def root(i: int) -> int:
@@ -504,18 +563,14 @@ def variant_groups(records: list[dict[str, Any]]) -> list[list[dict[str, Any]]]:
 
     first: dict[tuple[str, ...], int] = {}
     for i, record in enumerate(records):
-        brand = record["brand"].lower()
-        keys = [("name", brand, record["name"].lower())]
-        base = variant_key(record)
-        if base:
-            keys.append(("hp", base))
-        if base is None and record["brand"] == "HP":
-            keys.append(("hp", (record.get("code") or "").upper()))
+        keys = same_model_keys(record)
         for key in keys:
             if key in first:
                 parent[root(i)] = root(first[key])
             else:
                 first[key] = i
+    for i, sibling in bare_siblings(records).items():
+        parent[root(i)] = root(sibling)
     groups: dict[int, list[dict[str, Any]]] = defaultdict(list)
     for i, record in enumerate(records):
         groups[root(i)].append(record)
