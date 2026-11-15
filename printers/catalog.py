@@ -423,23 +423,12 @@ class Catalog:
 
         Icecat files a model once per regional SKU (the same DCP-T430W sold in
         Europe and in Mexico): they share a brand and a name, and only their
-        markets differ.
+        markets differ. HP's SKUs of one model differ only after a ``#`` (its
+        localisation), whatever Icecat names them. A field one variant's sheet
+        leaves empty is taken from another's.
         """
-        groups: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
-        for product_id, product in self.products.items():
-            record = self.site_record(product_id, product)
-            groups[(record["brand"].lower(), record["name"].lower())].append(record)
-        printers = []
-        for variants in groups.values():
-            variants.sort(key=lambda r: (not r["available"], -len(r["markets"])))
-            merged = dict(variants[0])
-            merged["markets"] = sorted({m for v in variants for m in v["markets"]})
-            merged["available"] = any(v["available"] for v in variants)
-            merged["first_seen"] = min(v["first_seen"] for v in variants)
-            merged["sources"] = sorted({s for v in variants for s in v["sources"]})
-            merged["confirmed"] = sorted({s for v in variants for s in v["confirmed"]})
-            merged["variants"] = len(variants)
-            printers.append(merged)
+        records = [self.site_record(i, p) for i, p in self.products.items()]
+        printers = [fold(variants) for variants in variant_groups(records)]
         printers.sort(key=lambda r: (r["brand"], r["name"]))
         return {
             "updated": self.state.get("report", {}).get("date"),
@@ -447,3 +436,68 @@ class Catalog:
             "report": self.state.get("report", {}),
             "printers": printers,
         }
+
+
+def variant_key(record: dict[str, Any]) -> str | None:
+    """What HP's regional SKUs of one model share: the code before the ``#``."""
+    code = record.get("code") or ""
+    if record["brand"] == "HP" and "#" in code:
+        return code.split("#")[0].upper()
+    return None
+
+
+def variant_groups(records: list[dict[str, Any]]) -> list[list[dict[str, Any]]]:
+    """Records that are one model: the same name, or HP's same base code."""
+    parent = list(range(len(records)))
+
+    def root(i: int) -> int:
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    first: dict[tuple[str, ...], int] = {}
+    for i, record in enumerate(records):
+        brand = record["brand"].lower()
+        keys = [("name", brand, record["name"].lower())]
+        base = variant_key(record)
+        if base:
+            keys.append(("hp", base))
+        if base is None and record["brand"] == "HP":
+            keys.append(("hp", (record.get("code") or "").upper()))
+        for key in keys:
+            if key in first:
+                parent[root(i)] = root(first[key])
+            else:
+                first[key] = i
+    groups: dict[int, list[dict[str, Any]]] = defaultdict(list)
+    for i, record in enumerate(records):
+        groups[root(i)].append(record)
+    return list(groups.values())
+
+
+def fold(variants: list[dict[str, Any]]) -> dict[str, Any]:
+    """One row for a model's variants: the most sold one, its gaps filled."""
+    variants.sort(key=lambda r: (not r["available"], -len(r["markets"])))
+    merged = dict(variants[0])
+    merged["filled"] = dict(merged.get("filled") or {})
+    for other in variants[1:]:
+        for name, value in other.items():
+            if merged.get(name) is None and value is not None:
+                merged[name] = value
+                if name in (other.get("filled") or {}):
+                    merged["filled"][name] = other["filled"][name]
+    # Icecat names a bare sheet after its code ("HP 58D77A multifunction
+    # printer"): a variant with a real model name names the row
+    named = [v for v in variants if (v.get("code") or "") not in v["name"]]
+    if named:
+        merged["name"] = named[0]["name"]
+    merged["markets"] = sorted({m for v in variants for m in v["markets"]})
+    merged["available"] = any(v["available"] for v in variants)
+    # a sign of a copier on one variant's sheet holds for the model
+    merged["office"] = any(v["office"] for v in variants)
+    merged["first_seen"] = min(v["first_seen"] for v in variants)
+    merged["sources"] = sorted({s for v in variants for s in v["sources"]})
+    merged["confirmed"] = sorted({s for v in variants for s in v["confirmed"]})
+    merged["variants"] = len(variants)
+    return merged

@@ -170,6 +170,46 @@ def test_regional_skus_fold_into_one_row(tmp_path, icecat):
     assert "sightings" not in printer
 
 
+def test_a_folded_row_takes_the_fields_its_variants_have(tmp_path, icecat):
+    catalog, _ = run(
+        tmp_path,
+        DAY,
+        [
+            index(
+                Candidate("icecat", icecat_id=1, markets=("BE", "NL")),
+                Candidate("icecat", icecat_id=2, markets=("MX",)),
+            )
+        ],
+    )
+    catalog.products["2"]["weight_kg"] = 6.1
+    (printer,) = catalog.site()["printers"]
+    assert printer["id"] == "1"
+    assert printer["weight_kg"] == 6.1
+
+
+def test_hp_skus_of_one_model_fold_whatever_their_names(tmp_path, icecat):
+    """Synthetic HP records: one named after its code, one localised (#B19)."""
+    catalog = Catalog(tmp_path, today=DAY)
+    for product_id, code, name, weight in (
+        ("7", "58D77A", "HP 58D77A multifunction printer", 43.2),
+        ("8", "58D77A#B19", "HP LJ Ent MFP X728dn Printer:EUR", None),
+        ("9", "58D78A", "HP LaserJet X729dn", None),
+    ):
+        catalog.store(
+            product_id,
+            record(int(product_id), name)
+            | {
+                "brand": "HP",
+                "code": code,
+                "weight_kg": weight,
+            },
+        )
+    printers = {p["name"]: p for p in catalog.site()["printers"]}
+    assert set(printers) == {"HP LJ Ent MFP X728dn Printer:EUR", "HP LaserJet X729dn"}
+    assert printers["HP LJ Ent MFP X728dn Printer:EUR"]["weight_kg"] == 43.2
+    assert printers["HP LJ Ent MFP X728dn Printer:EUR"]["variants"] == 2
+
+
 def test_records_under_an_older_mapping_are_read_again(tmp_path, icecat):
     found = [index(Candidate("icecat", icecat_id=1))]
     catalog, _ = run(tmp_path, DAY, found)
