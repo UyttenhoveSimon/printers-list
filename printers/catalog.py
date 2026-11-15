@@ -2,8 +2,10 @@
 
 Two files under ``data/``, both rewritten by every run:
 
-- ``products.json``: one record per Icecat id with its specifications and
-  its *sightings*, the ``source:market`` pairs that listed it and when.
+- ``products.json``: one record per product (its Icecat id, or
+  ``source:code`` for a printer only its maker's site describes) with its
+  specifications, its *sightings* (the ``source:market`` pairs that listed it
+  and when) and its *checks* (the fields a maker's site states otherwise).
 - ``state.json``: what Icecat answered for each lookup (so a code Icecat does
   not know is not asked again every week), the sources' own caches, and the
   date each ``source:market`` last answered.
@@ -24,6 +26,7 @@ from typing import Any
 from . import icecat
 from .fetch import BotWallError, Fetcher, FetchError
 from .sources import Candidate, Source
+from .specs import SCHEMA, disagreements, out_of_scope
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +34,8 @@ logger = logging.getLogger(__name__)
 RETRY_AFTER = timedelta(days=30)
 #: lookups between two saves of the catalogue during a run
 CHECKPOINT = 500
+#: brands Open Icecat does not carry: their makers' pages are the record
+NOT_IN_OPEN_ICECAT = frozenset({"Lexmark"})
 
 
 def load(path: Path, default: dict[str, Any]) -> dict[str, Any]:
@@ -107,22 +112,28 @@ class Catalog:
 
     # lookups -----------------------------------------------------------------
 
-    def resolve(
+    def resolve(  # noqa: PLR0911 - each way out is one case of the cache
         self, fetcher: Fetcher, candidate: Candidate, budget: list[int]
     ) -> str | None:
         """Return the Icecat id of a candidate in scope, looking it up if needed.
 
         ``budget`` is a one-item list of lookups still allowed in this run;
-        candidates past it stay unresolved until the next run.
+        candidates past it stay unresolved until the next run. A product read
+        under an older mapping (``schema``) is read again.
         """
+        if candidate.brand in NOT_IN_OPEN_ICECAT:
+            return None
         known = self.state["lookups"].get(candidate.key)
         if known is not None:
             product_id = str(known.get("id"))
-            if not known.get("reason") and product_id in self.products:
-                return product_id
-            checked = date.fromisoformat(known["checked"])
-            if known.get("id") is not None or self.today - checked < RETRY_AFTER:
-                return None
+            product = self.products.get(product_id)
+            if not known.get("reason") and product is not None:
+                if product.get("schema", 1) >= SCHEMA:
+                    return product_id
+            else:
+                checked = date.fromisoformat(known["checked"])
+                if known.get("id") is not None or self.today - checked < RETRY_AFTER:
+                    return None
         if budget[0] <= 0:
             return None
         budget[0] -= 1
@@ -145,13 +156,34 @@ class Catalog:
         }
         if record is None or result.reason:
             return None
-        product_id = str(record["icecat_id"])
+        return self.store(str(record["icecat_id"]), record)
+
+    def store(self, product_id: str, record: dict[str, Any]) -> str:
+        """Put a fresh record in, keeping what earlier runs learnt about it."""
         previous = self.products.get(product_id, {})
         self.products[product_id] = record | {
             "first_seen": previous.get("first_seen", self.today.isoformat()),
             "sightings": previous.get("sightings", {}),
+            "checks": previous.get("checks", {}),
         }
         return product_id
+
+    def adopt(self, candidate: Candidate) -> str | None:
+        """A printer Icecat lacks, described by its maker's own page."""
+        record = candidate.record
+        if not record or "name" not in record or out_of_scope(record):
+            return None
+        return self.store(f"{candidate.source}:{candidate.code}", record)
+
+    def check(self, product_id: str, candidate: Candidate) -> None:
+        """Compare the maker's page with Icecat, field by field."""
+        if not candidate.record or not product_id.isdigit():
+            return
+        product = self.products[product_id]
+        product.setdefault("checks", {})[candidate.source] = {
+            "date": self.today.isoformat(),
+            "differ": disagreements(product, candidate.record),
+        }
 
     # the run -----------------------------------------------------------------
 
@@ -168,6 +200,10 @@ class Catalog:
             for count, candidate in enumerate(candidates, 1):
                 spent = budget[0]
                 product_id = self.resolve(fetcher, candidate, budget)
+                if product_id is None and candidate.brand in NOT_IN_OPEN_ICECAT:
+                    product_id = self.adopt(candidate)
+                elif product_id is not None:
+                    self.check(product_id, candidate)
                 if budget[0] != spent and budget[0] % CHECKPOINT == 0:
                     # a first fill takes hours: a crash must not lose it all
                     self.save()
@@ -206,21 +242,31 @@ class Catalog:
     def current(self, where: str, sighting: dict[str, Any]) -> bool:
         return sighting["date"] == self.state["runs"].get(where)
 
-    def site_record(self, product: dict[str, Any]) -> dict[str, Any]:
+    def site_record(self, product_id: str, product: dict[str, Any]) -> dict[str, Any]:
         sightings = product["sightings"]
         live = {w: s for w, s in sightings.items() if self.current(w, s)}
         markets = sorted({m for s in live.values() for m in s["markets"]})
-        urls = [s["url"] for s in sightings.values() if s.get("url")]
+        urls = [s["url"] for w, s in sightings.items() if s.get("url")]
+        checks = product.get("checks", {})
         record = {
             key: value
             for key, value in product.items()
-            if key not in {"sightings", "title", "category", "gtin"}
+            if key not in {"sightings", "checks", "title", "category", "gtin", "schema"}
         }
+        icecat_id = product.get("icecat_id")
         return record | {
+            "id": product_id,
             "available": bool(live),
             "markets": markets,
             "sources": sorted({w.split(":")[0] for w in sightings}),
-            "url": urls[0] if urls else icecat.product_url(product["icecat_id"]),
+            "url": urls[0]
+            if urls
+            else icecat.product_url(icecat_id)
+            if icecat_id
+            else "",
+            # the makers' sites that state the same as Icecat on every field
+            "confirmed": sorted(s for s, c in checks.items() if not c["differ"]),
+            "differs": {s: c["differ"] for s, c in checks.items() if c["differ"]},
         }
 
     def site(self) -> dict[str, Any]:
@@ -231,8 +277,8 @@ class Catalog:
         markets differ.
         """
         groups: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
-        for product in self.products.values():
-            record = self.site_record(product)
+        for product_id, product in self.products.items():
+            record = self.site_record(product_id, product)
             groups[(record["brand"].lower(), record["name"].lower())].append(record)
         printers = []
         for variants in groups.values():
@@ -242,6 +288,7 @@ class Catalog:
             merged["available"] = any(v["available"] for v in variants)
             merged["first_seen"] = min(v["first_seen"] for v in variants)
             merged["sources"] = sorted({s for v in variants for s in v["sources"]})
+            merged["confirmed"] = sorted({s for v in variants for s in v["confirmed"]})
             merged["variants"] = len(variants)
             printers.append(merged)
         printers.sort(key=lambda r: (r["brand"], r["name"]))

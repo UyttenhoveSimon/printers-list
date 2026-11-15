@@ -14,12 +14,14 @@ from printers.catalog import Catalog
 from printers.fetch import BotWallError, FetchError
 from printers.icecat import Lookup
 from printers.sources import Candidate
+from printers.specs import SCHEMA
 
 DAY = date(2026, 11, 16)
 
 
 def record(icecat_id, name="Brother DCP-T430W", markets=()):
     return {
+        "schema": SCHEMA,
         "icecat_id": icecat_id,
         "brand": "Brother",
         "name": name,
@@ -160,3 +162,84 @@ def test_regional_skus_fold_into_one_row(tmp_path, icecat):
     assert printer["markets"] == ["BE", "MX"]
     assert printer["variants"] == 2
     assert "sightings" not in printer
+
+
+def test_records_under_an_older_mapping_are_read_again(tmp_path, icecat):
+    found = [index(Candidate("icecat", icecat_id=1))]
+    catalog, _ = run(tmp_path, DAY, found)
+    catalog.products["1"]["schema"] = SCHEMA - 1
+    catalog.save()
+    catalog, report = run(tmp_path, DAY + timedelta(days=7), found)
+    assert icecat == [1, 1]
+    assert report.lookups == 1
+    assert catalog.products["1"]["schema"] == SCHEMA
+    assert catalog.products["1"]["first_seen"] == DAY.isoformat()
+
+
+def lexmark_page(code="40N9163", workgroup="Small-Medium Workgroup"):
+    return {
+        "schema": SCHEMA,
+        "brand": "Lexmark",
+        "name": "Lexmark MC3326adwe",
+        "title": "Lexmark MC3326adwe Colour Laser",
+        "code": code,
+        "category": "Multifunction Printers",
+        "workgroup": workgroup,
+        "duplex_print": True,
+    }
+
+
+def test_a_brand_icecat_lacks_is_described_by_its_maker(tmp_path, icecat):
+    lexmark = source(
+        "lexmark",
+        ("GB", "BE"),
+        {
+            "GB": [
+                Candidate(
+                    "lexmark",
+                    "Lexmark",
+                    "40N9163",
+                    record=lexmark_page(),
+                    markets=("GB",),
+                )
+            ],
+            "BE": [
+                Candidate(
+                    "lexmark",
+                    "Lexmark",
+                    "40N9163",
+                    record=lexmark_page(),
+                    markets=("BE",),
+                )
+            ],
+        },
+    )
+    catalog, report = run(tmp_path, DAY, [lexmark])
+    assert icecat == []  # Lexmark is not in Open Icecat: no lookup is wasted
+    assert report.new == ["lexmark:40N9163"]
+    (printer,) = catalog.site()["printers"]
+    assert printer["markets"] == ["BE", "GB"]
+    assert printer["id"] == "lexmark:40N9163"
+    assert printer["duplex_print"] is True
+
+
+def test_large_workgroup_machines_are_left_out(tmp_path, icecat):
+    big = lexmark_page(workgroup="Large Workgroup")
+    lexmark = source(
+        "lexmark", ("GB",), {"GB": [Candidate("lexmark", "Lexmark", "X1", record=big)]}
+    )
+    catalog, _ = run(tmp_path, DAY, [lexmark])
+    assert catalog.products == {}
+
+
+def test_a_maker_page_confirms_or_contradicts_icecat(tmp_path, icecat):
+    agrees = Candidate("epson", icecat_id=1, record={"duplex_print": True})
+    disagrees = Candidate("epson", icecat_id=3, record={"duplex_print": False})
+    catalog, _ = run(
+        tmp_path, DAY, [source("epson", ("GB",), {"GB": [agrees, disagrees]})]
+    )
+    printers = {p["id"]: p for p in catalog.site()["printers"]}
+    assert printers["1"]["confirmed"] == ["epson"]
+    assert printers["1"]["differs"] == {}
+    assert printers["3"]["confirmed"] == []
+    assert printers["3"]["differs"] == {"epson": {"duplex_print": [True, False]}}
