@@ -94,7 +94,8 @@ function renderPanel() {
       ${brands.map(([b, n]) => `<label class="check"><input type="checkbox" data-brand="${esc(b)}"> ${esc(b)} <span class="n">${formatNumber(n)}</span></label>`).join("")}
       </div></details>`);
   }
-  groups.push(`<button type="button" id="reset" class="ghost wide">${esc(t("reset"))}</button>`);
+  // first, and sticky: the panel runs long once the country and brand lists open
+  groups.unshift(`<button type="button" id="reset" class="ghost wide reset">${esc(t("reset"))}</button>`);
   $("#filters").innerHTML = groups.join("");
 }
 
