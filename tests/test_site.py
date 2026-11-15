@@ -117,6 +117,15 @@ def site(tmp_path_factory):
         "2000": old_printer(0, "2010-05-01"),
         "2001": old_printer(1, "2012-01-01"),
         "2002": old_printer(2, ""),
+        # an office copier, hidden by the default class
+        "2003": old_printer(3, "2024-02-01")
+        | {
+            "name": "Ricoh IM C3000",
+            "title": "Ricoh IM C3000",
+            "technology": "laser",
+            "max_paper": "A3",
+            "paper_input": 1200,
+        },
     }
     save(data / "products.json", products)
     save(
@@ -202,11 +211,11 @@ def test_url_state_round_trips(page):
         page,
         """
         const s = L.emptyState();
-        s.duplex_scan = true; s.technology = 'laser'; s.ppm_black = 20;
+        s.duplex_scan = true; s.technology = 'laser'; s.ppm_black = [20, null]; s.weight_kg = [null, 9.5]; s.class = '';
         s.markets.add('BE'); s.brands.add('HP'); s.sort = 'fastest'; s.page = 3;
         s.compare = ['1', '2']; s.available = false;
         const back = L.decode('#' + L.encode(s));
-        return back.duplex_scan && back.technology === 'laser' && back.ppm_black === 20
+        return back.duplex_scan && back.technology === 'laser' && back.ppm_black.join() === '20,' && back.weight_kg.join() === ',9.5' && back.class === ''
           && back.markets.has('BE') && back.brands.has('HP') && back.sort === 'fastest'
           && back.page === 3 && back.compare.join() === '1,2' && back.available === false;
         """,
@@ -217,9 +226,9 @@ def test_bad_url_values_fall_back_to_defaults(page):
     assert logic(
         page,
         """
-        const s = L.decode('#technology=plasma&sort=random&page=-4&ppm_black=abc');
+        const s = L.decode('#technology=plasma&sort=random&page=-4&ppm_black=abc&class=space');
         return s.technology === '' && s.sort === 'newest' && s.page === 1
-          && s.ppm_black === 0 && s.available === true;
+          && s.ppm_black.join() === ',' && s.available === true && s.class === 'home';
         """,
     )
 
@@ -231,14 +240,14 @@ def test_matching_rules(page):
         const s = L.emptyState();
         const p = {brand: 'HP', name: 'X', available: true, color: false,
                    technology: 'inkjet', ppm_black: 20, weight_kg: 8, markets: ['BE'],
-                   _text: 'hp x', _year: 2022};
+                   _text: 'hp x', _year: 2022, class: 'home'};
         const out = {};
         out.plain = L.matches(p, s);
         s.color = '0'; out.mono = L.matches(p, s);
         s.color = '1'; out.colour = L.matches(p, s); s.color = '';
-        s.ppm_black = 25; out.tooSlow = L.matches(p, s); s.ppm_black = 0;
-        s.weight_kg = 10; out.lightEnough = L.matches(p, s); s.weight_kg = 0;
-        s.ppm_color = 5; out.unknownSpeed = L.matches(p, s); s.ppm_color = 0;
+        s.ppm_black = [25, null]; out.tooSlow = L.matches(p, s); s.ppm_black = [null, null];
+        s.weight_kg = [null, 10]; out.lightEnough = L.matches(p, s); s.weight_kg = [null, null];
+        s.ppm_color = [5, null]; out.unknownSpeed = L.matches(p, s); s.ppm_color = [null, null];
         s.markets.add('FR'); out.otherCountry = L.matches(p, s); s.markets.clear();
         s.year = '2023'; out.older = L.matches(p, s); s.year = '';
         s.q = 'hp  x'; out.search = L.matches(p, s);
@@ -315,7 +324,7 @@ def test_language_is_picked_from_the_browser(page):
 
 
 def test_first_page_shows_48_of_60(page):
-    assert count(page) == "61 of 63 printers"
+    assert count(page) == "61 of 64 printers"
     assert len(page.query_selector_all(".card")) == 48
     assert "Page 1 of 2" in page.text_content("#pager")
     shot(page, "desktop")
@@ -329,37 +338,54 @@ def test_next_page(page):
 
 def test_two_sided_scanning_filter(page):
     page.check('input[data-key="duplex_scan"]')
-    assert count(page) == "15 of 63 printers"
+    assert count(page) == "15 of 64 printers"
     chips = page.text_content("#active")
     assert "Two-sided scanning" in chips
     page.click('#active button[data-clear="duplex_scan"]')
-    assert count(page) == "61 of 63 printers"
+    assert count(page) == "61 of 64 printers"
 
 
 def test_technology_and_colour_choices(page):
     page.click('.seg[data-key="technology"] button[data-value="laser"]')
-    assert count(page) == "20 of 63 printers"
+    assert count(page) == "20 of 64 printers"
     page.click('.seg[data-key="color"] button[data-value="0"]')
     # lasers (every 3rd) that are mono (every 5th): 0, 15, 30, 45
-    assert count(page) == "4 of 63 printers"
+    assert count(page) == "4 of 64 printers"
     page.click('#active button[data-clear="all"]')
-    assert count(page) == "61 of 63 printers"
+    assert count(page) == "61 of 64 printers"
 
 
-def test_speed_slider(page):
-    page.eval_on_selector(
-        'input[data-key="ppm_black"]',
-        "el => { el.value = 60; el.dispatchEvent(new Event('input', {bubbles: true})); }",
-    )
-    assert count(page) == "10 of 63 printers"
-    assert "≥ 60" in page.text_content('output[data-out="ppm_black"]')
+def type_bound(page, key, side, value):
+    """Type into a from (0) or to (1) box and let the page's debounce pass."""
+    page.fill(f'input[data-range="{key}"][data-side="{side}"]', str(value))
+    page.wait_for_timeout(400)
+
+
+def test_speed_from_and_to(page):
+    open_all(page)
+    type_bound(page, "ppm_black", 0, 60)
+    assert count(page) == "10 of 64 printers"
+    type_bound(page, "ppm_black", 1, 64)
+    assert count(page) == "5 of 64 printers"
+    assert "60\u201364" in page.text_content("#active")  # en dash
+    assert "ppm_black=60%7E64" in hash_of(page)
+    type_bound(page, "ppm_black", 0, "")
+    assert count(page) == "55 of 64 printers"  # 10 to 64 ppm
+    assert "≤ 64" in page.text_content("#active")
+
+
+def test_lighter_than(page):
+    """A machine that fits on a desk: weight at most 10 kg."""
+    open_all(page)
+    type_bound(page, "weight_kg", 1, 10)
+    assert count(page) == "11 of 64 printers"  # 5 + i/2 <= 10: models 0 to 10
 
 
 def test_country_and_brand(page):
     page.check('input[data-market="BE"]')
-    assert count(page) == "30 of 63 printers"
+    assert count(page) == "30 of 64 printers"
     page.check('input[data-brand="HP"]')
-    assert count(page) == "0 of 63 printers"  # HP is every 4th: even, so never BE
+    assert count(page) == "0 of 64 printers"  # HP is every 4th: even, so never BE
     assert "No printer matches" in page.text_content("#results")
 
 
@@ -416,7 +442,7 @@ def test_url_restores_the_view(page, site):
     page.goto(site + "#duplex_print=1&technology=inkjet&sort=fastest")
     page.reload()
     page.wait_for_selector(".card")
-    assert count(page) == "20 of 63 printers"
+    assert count(page) == "20 of 64 printers"
     assert page.is_checked('input[data-key="duplex_print"]')
     first = page.text_content(".card h3")
     assert first == "Model 58"
@@ -424,11 +450,11 @@ def test_url_restores_the_view(page, site):
 
 def test_french(page):
     page.select_option("#lang", "fr")
-    assert page.text_content("#count") == "61 imprimantes sur 63"
+    assert page.text_content("#count") == "61 imprimantes sur 64"
     assert "Recto verso" in page.text_content("#filters")
     assert "Belgique" in page.text_content("#filters")
     assert page.evaluate("document.documentElement.lang") == "fr"
-    assert page.text_content("#count") == "61 imprimantes sur 63"
+    assert page.text_content("#count") == "61 imprimantes sur 64"
     page.select_option("#lang", "en")
 
 
@@ -487,21 +513,21 @@ def test_the_last_ten_years_by_default(page):
     assert page.input_value('select[data-key="year"]') == "2016"
     assert (
         "Old printer 2" in page.text_content("#results")
-        or count(page) == "61 of 63 printers"
+        or count(page) == "61 of 64 printers"
     )
     page.select_option('select[data-key="year"]', "")
-    assert count(page) == "63 of 63 printers"
+    assert count(page) == "63 of 64 printers"
     assert "Any year" in page.text_content("#active")
     assert "year=all" in hash_of(page)
     page.click('#active button[data-clear="year"]')
-    assert count(page) == "61 of 63 printers"
+    assert count(page) == "61 of 64 printers"
 
 
 def test_older_years_from_the_url(page, site):
     page.goto(site + "#year=2011")
     page.reload()
     page.wait_for_selector(".card")
-    assert count(page) == "62 of 63 printers"
+    assert count(page) == "62 of 64 printers"
 
 
 def test_other_brands_supplies_are_set_apart(page):
@@ -536,15 +562,16 @@ def year(p):
     return int(date[:4]) if date else None
 
 
-def shown(p):
-    """The default view: on sale, and from the last ten years or undated."""
+def shown(p, cls="home"):
+    """The default view: on sale, home and small office, last ten years or undated."""
     y = year(p)
-    return p.get("available") and (y is None or y >= DEFAULT_YEAR)
+    in_class = cls == "" or (cls == "office") == bool(p.get("office"))
+    return p.get("available") and in_class and (y is None or y >= DEFAULT_YEAR)
 
 
-def expected(data, keep):
+def expected(data, keep, cls="home"):
     """The count line as the page writes it in English: "1,880 of 7,440 printers"."""
-    return f"{sum(1 for p in data if shown(p) and keep(p)):,} of {len(data):,} printers"
+    return f"{sum(1 for p in data if shown(p, cls) and keep(p)):,} of {len(data):,} printers"
 
 
 def is_new(page):
@@ -608,7 +635,7 @@ def test_every_flag(page):
 def test_on_sale_only_can_be_unticked(page):
     page.uncheck('input[data-key="available"]')
     assert (
-        count(page) == "61 of 63 printers"
+        count(page) == "61 of 64 printers"
     )  # all on sale here; the year still applies
     assert "Not on sale" in page.text_content("#active")
 
@@ -632,46 +659,53 @@ def test_every_choice(page):
                 expected(data, keep),
             )
         )
+    home = '.seg[data-key="class"] button[data-value="home"]'
+    for value in ["office", ""]:
+        button = f'.seg[data-key="class"] button[data-value="{value}"]'
+        cases.append(
+            (
+                f"class={value or 'any'}",
+                lambda b=button: page.click(b),
+                lambda: page.click(home),
+                expected(data, lambda p: True, cls=value),
+            )
+        )
     assert check_each(page, cases) == []
 
 
-def test_every_slider(page):
+def test_every_range_both_ways(page):
     data = rows(page)
-    sliders = page.eval_on_selector_all(
-        "#filters input[type=range]",
-        "els => els.map((e) => ({key: e.dataset.key, min: +e.min, max: +e.max, step: +e.step}))",
+    boxes = page.eval_on_selector_all(
+        '#filters input[data-range][data-side="0"]',
+        "els => els.map((e) => ({key: e.dataset.range, min: +e.min, max: +e.max}))",
     )
-    kinds = page.evaluate(
-        "async () => Object.fromEntries((await import('./logic.js')).FILTERS.map((f) => [f.key, f.type]))"
-    )
-    assert {s["key"] for s in sliders} >= {"ppm_black", "weight_kg"}
+    assert {b["key"] for b in boxes} >= {"ppm_black", "weight_kg"}
     cases = []
-    for s in sliders:
-        key, kind = s["key"], kinds[s["key"]]
-        middle = s["min"] + round((s["max"] - s["min"]) / 2 / s["step"]) * s["step"]
-        selector = f'input[data-key="{key}"]'
-        off = s["min"] if kind == "min" else s["max"]
-
-        def move(sel=selector, value=middle):
-            page.eval_on_selector(
-                sel,
-                f"el => {{ el.value = {value}; el.dispatchEvent(new Event('input', {{bubbles: true}})); }}",
-            )
-
-        def keep(p, key=key, kind=kind, value=middle):
-            v = p.get(key)
-            if not isinstance(v, (int, float)):
-                return False
-            return v >= value if kind == "min" else v <= value
-
-        cases.append(
+    for b in boxes:
+        key = b["key"]
+        middle = round((b["min"] + b["max"]) / 2, 1)
+        for side, keep in (
             (
-                key,
-                move,
-                lambda sel=selector, value=off: move(sel, value),
-                expected(data, keep),
+                0,
+                lambda p, k=key, m=middle: (
+                    isinstance(p.get(k), (int, float)) and p[k] >= m
+                ),
+            ),
+            (
+                1,
+                lambda p, k=key, m=middle: (
+                    isinstance(p.get(k), (int, float)) and p[k] <= m
+                ),
+            ),
+        ):
+            cases.append(
+                (
+                    f"{key}[{side}]",
+                    lambda k=key, s=side, m=middle: type_bound(page, k, s, m),
+                    lambda k=key, s=side: type_bound(page, k, s, ""),
+                    expected(data, keep),
+                )
             )
-        )
     assert check_each(page, cases) == []
 
 
@@ -721,7 +755,11 @@ def test_every_year(page):
 
         def keep(p, y=int(value)):
             known = year(p)
-            return p.get("available") and (known is None or known >= y)
+            return (
+                p.get("available")
+                and not p.get("office")
+                and (known is None or known >= y)
+            )
 
         want = f"{sum(1 for p in data if keep(p)):,} of {len(data):,} printers"
         cases.append(
@@ -792,12 +830,12 @@ def test_reset_and_clear_all_undo_everything(page):
     page.check('input[data-market="BE"]')
     page.select_option('select[data-key="year"]', "")
     page.click("#reset")
-    assert count(page) == "61 of 63 printers"
+    assert count(page) == "61 of 64 printers"
     assert page.text_content("#active") == ""
     page.check('input[data-key="fax"]')
     page.check('input[data-brand="HP"]')
     page.click('#active button[data-clear="all"]')
-    assert count(page) == "61 of 63 printers"
+    assert count(page) == "61 of 64 printers"
     assert not page.is_checked('input[data-key="fax"]')
     assert not page.is_checked('input[data-brand="HP"]')
 

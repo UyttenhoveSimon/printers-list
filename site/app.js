@@ -33,6 +33,7 @@ function value(key, v) {
 
 function tags(p) {
   const out = [];
+  if (p.office) out.push([t("class_office"), "office"]);
   if (p.new) out.push([t("new"), "new"]);
   if (!p.available) out.push([t("not_on_sale"), "off"]);
   if (p.technology) out.push([p.technology === "laser" && p.led ? "LED" : t(p.technology), ""]);
@@ -59,12 +60,13 @@ function filterControl(f) {
   }
   const r = bounds[f.key];
   if (!r || r.min === r.max) return "";
-  // min filters start at their lowest value, max filters at their highest: both mean "off"
-  const start = f.type === "min" ? r.min : r.max;
-  return `<label class="range">
-    <span class="range-head"><span>${esc(label)}</span><output data-out="${f.key}"></output></span>
-    <input type="range" data-key="${f.key}" min="${r.min}" max="${r.max}" step="${r.step}" value="${start}">
-  </label>`;
+  // from and to: either may stay empty; the hints show what the data holds
+  const box = (side, hint) => `<input type="number" inputmode="decimal" data-range="${f.key}" data-side="${side}"
+      min="${r.min}" max="${r.max}" step="any" placeholder="${formatNumber(hint)}" aria-label="${esc(label)}: ${esc(t(side ? "to" : "from"))}">`;
+  return `<div class="range" role="group" aria-label="${esc(label)}">
+    <span class="range-head">${esc(label)}</span>
+    <span class="range-boxes">${box(0, r.min)}<span aria-hidden="true">–</span>${box(1, r.max)}</span>
+  </div>`;
 }
 
 function renderPanel() {
@@ -105,13 +107,11 @@ function syncPanel() {
     } else if (f.type === "choice") {
       panel.querySelectorAll(`.seg[data-key="${f.key}"] button`).forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.value === state[f.key])));
     } else {
-      const el = panel.querySelector(`input[data-key="${f.key}"]`);
-      const out = panel.querySelector(`output[data-out="${f.key}"]`);
-      if (!el) continue;
-      const r = bounds[f.key];
-      const off = f.type === "min" ? r.min : r.max;
-      el.value = state[f.key] || off;
-      out.textContent = state[f.key] ? t(f.type === "min" ? "at_least" : "at_most", { value: formatNumber(state[f.key]) }) : t("any");
+      panel.querySelectorAll(`input[data-range="${f.key}"]`).forEach((el) => {
+        const v = state[f.key][Number(el.dataset.side)];
+        // leave a box alone while it is being typed in
+        if (document.activeElement !== el) el.value = v === null ? "" : String(v);
+      });
     }
   }
   const year = panel.querySelector('select[data-key="year"]');
@@ -151,6 +151,11 @@ function renderPager(page, pages) {
     <span class="page-of">${esc(t("page", { n: page, pages }))}</span>`;
 }
 
+function rangeText([lo, hi]) {
+  if (lo !== null && hi !== null) return `${formatNumber(lo)}–${formatNumber(hi)}`;
+  return lo !== null ? t("at_least", { value: formatNumber(lo) }) : t("at_most", { value: formatNumber(hi) });
+}
+
 function renderActive() {
   const chips = L.activeFilters(state).map(([key, v]) => {
     let label;
@@ -163,7 +168,7 @@ function renderActive() {
       const f = L.FILTERS.find((x) => x.key === key);
       if (f.type === "choice") label = key === "color" ? t(v === "1" ? "colour_yes" : "colour_no") : t(v);
       else if (f.type === "flag") label = t(f.label || key);
-      else label = `${t(key)} ${t(f.type === "min" ? "at_least" : "at_most", { value: formatNumber(v) })}`;
+      else label = `${t(key)} ${rangeText(v)}`;
     }
     return `<button type="button" data-clear="${esc(key)}" data-value="${esc(v)}" title="${esc(t("remove_filter"))}">${esc(label)}</button>`;
   });
@@ -331,15 +336,18 @@ function bind() {
     state.page = 1;
     render();
   });
+  let ranging;
   panel.addEventListener("input", (e) => {
     const el = e.target;
-    if (el.type !== "range") return;
-    const f = L.FILTERS.find((x) => x.key === el.dataset.key);
-    const r = bounds[f.key];
-    const v = Number(el.value);
-    state[f.key] = (f.type === "min" && v <= r.min) || (f.type === "max" && v >= r.max) ? 0 : v;
-    state.page = 1;
-    render();
+    if (!el.dataset.range) return;
+    clearTimeout(ranging);
+    ranging = setTimeout(() => {
+      const bounds = [...state[el.dataset.range]];
+      bounds[Number(el.dataset.side)] = el.value.trim() === "" ? null : Number(el.value);
+      state[el.dataset.range] = bounds;
+      state.page = 1;
+      render();
+    }, 250);
   });
   panel.addEventListener("click", (e) => {
     const b = e.target.closest("button");

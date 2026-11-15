@@ -13,9 +13,13 @@ export function defaultYear(data) {
 }
 
 // Every filter of the side panel, by group. A flag keeps printers that have
-// the feature; a choice keeps one value; min/max keep printers at or beyond a
-// threshold (a printer whose sheet does not state the value is left out).
+// the feature; a choice keeps one value; a range keeps printers between a
+// lowest and a highest value, either side optional (a printer whose sheet
+// does not state the value is left out once a bound is set).
 export const GROUPS = [
+  { id: "class", open: true, filters: [
+    { key: "class", type: "choice", values: ["home", "office"], labels: ["class_home", "class_office"], default: "home" },
+  ] },
   { id: "availability", open: true, filters: [
     { key: "available", type: "flag", default: true },
     { key: "new", label: "new_week", type: "flag" },
@@ -50,38 +54,38 @@ export const GROUPS = [
   ] },
   { id: "paper", filters: [
     { key: "a3", type: "flag" },
-    { key: "paper_input", type: "min", step: 50 },
-    { key: "paper_output", type: "min", step: 25 },
-    { key: "adf_capacity", type: "min", step: 10 },
-    { key: "trays", type: "min", step: 1 },
+    { key: "paper_input", type: "range", step: 50 },
+    { key: "paper_output", type: "range", step: 25 },
+    { key: "adf_capacity", type: "range", step: 10 },
+    { key: "trays", type: "range", step: 1 },
   ] },
   { id: "controls", filters: [
     { key: "display", type: "flag" },
     { key: "touchscreen", type: "flag" },
   ] },
   { id: "speed", filters: [
-    { key: "ppm_black", type: "min", step: 5 },
-    { key: "ppm_color", type: "min", step: 5 },
-    { key: "first_page_s", type: "max", step: 1 },
+    { key: "ppm_black", type: "range", step: 5 },
+    { key: "ppm_color", type: "range", step: 5 },
+    { key: "first_page_s", type: "range", step: 1 },
   ] },
   { id: "workload", filters: [
-    { key: "duty_cycle", type: "min", step: 5000 },
-    { key: "monthly_volume", type: "min", step: 500 },
+    { key: "duty_cycle", type: "range", step: 5000 },
+    { key: "monthly_volume", type: "range", step: 500 },
   ] },
   { id: "quality", filters: [
-    { key: "print_dpi", type: "min", step: 600 },
-    { key: "scan_dpi", type: "min", step: 600 },
+    { key: "print_dpi", type: "range", step: 600 },
+    { key: "scan_dpi", type: "range", step: 600 },
   ] },
   { id: "size", filters: [
-    { key: "width_mm", type: "max", step: 10 },
-    { key: "depth_mm", type: "max", step: 10 },
-    { key: "height_mm", type: "max", step: 10 },
-    { key: "weight_kg", type: "max", step: 1 },
+    { key: "width_mm", type: "range", step: 10 },
+    { key: "depth_mm", type: "range", step: 10 },
+    { key: "height_mm", type: "range", step: 10 },
+    { key: "weight_kg", type: "range", step: 1 },
   ] },
   { id: "energy", filters: [
-    { key: "noise_db", type: "max", step: 1 },
-    { key: "power_w", type: "max", step: 10 },
-    { key: "tec_kwh", type: "max", step: 0.1 },
+    { key: "noise_db", type: "range", step: 1 },
+    { key: "power_w", type: "range", step: 10 },
+    { key: "tec_kwh", type: "range", step: 0.1 },
   ] },
 ];
 
@@ -100,9 +104,21 @@ export const SPEC_ROWS = [
   "added", "end_of_life",
 ];
 
+// The value of a filter that filters nothing.
+export function offValue(f) {
+  if (f.type === "flag") return Boolean(f.default);
+  if (f.type === "choice") return f.default ?? "";
+  return [null, null];
+}
+
+export function isOff(f, v) {
+  if (f.type === "range") return v[0] === null && v[1] === null;
+  return v === offValue(f);
+}
+
 export function emptyState(defaultYear = "") {
   const state = { q: "", year: defaultYear, defaultYear, markets: new Set(), brands: new Set(), sort: DEFAULT_SORT, page: 1, compare: [] };
-  for (const f of FILTERS) state[f.key] = f.type === "flag" ? Boolean(f.default) : f.type === "choice" ? "" : 0;
+  for (const f of FILTERS) state[f.key] = offValue(f);
   return state;
 }
 
@@ -120,15 +136,16 @@ export function prepare(data) {
     p._date = p.release_date || p.added || "";
     p._year = p._date ? Number(p._date.slice(0, 4)) : null;
     p._footprint = p.width_mm && p.depth_mm ? p.width_mm * p.depth_mm : null;
+    p.class = p.office ? "office" : "home";
   }
   return data.printers;
 }
 
-// The slider bounds of the min/max filters, from the values the data holds.
+// The bounds of the range filters, from the values the data holds.
 export function ranges(printers) {
   const out = {};
   for (const f of FILTERS) {
-    if (f.type !== "min" && f.type !== "max") continue;
+    if (f.type !== "range") continue;
     let lo = Infinity, hi = -Infinity;
     for (const p of printers) {
       const v = p[f.key];
@@ -150,11 +167,13 @@ export function matches(p, state) {
       if (want === "") continue;
       if (f.key === "color") { if (Boolean(p.color) !== (want === "1")) return false; }
       else if (p[f.key] !== want) return false;
-    } else if (want) {
+    } else {
+      const [lo, hi] = want;
+      if (lo === null && hi === null) continue;
       const v = p[f.key];
       if (typeof v !== "number") return false;
-      if (f.type === "min" && v < want) return false;
-      if (f.type === "max" && v > want) return false;
+      if (lo !== null && v < lo) return false;
+      if (hi !== null && v > hi) return false;
     }
   }
   // a printer whose sheet gives no date at all is kept: it may well be recent
@@ -229,8 +248,7 @@ export function activeFilters(state) {
   if (state.q) out.push(["q", state.q]);
   for (const f of FILTERS) {
     const v = state[f.key];
-    const off = f.type === "flag" ? Boolean(f.default) : f.type === "choice" ? "" : 0;
-    if (v !== off) out.push([f.key, v]);
+    if (!isOff(f, v)) out.push([f.key, v]);
   }
   if (state.year !== state.defaultYear) out.push(["year", state.year]);
   for (const m of state.markets) out.push(["market", m]);
@@ -243,10 +261,7 @@ export function clearFilter(state, key, value) {
   else if (key === "year") state.year = state.defaultYear;
   else if (key === "market") state.markets.delete(value);
   else if (key === "brand") state.brands.delete(value);
-  else if (BY_KEY[key]) {
-    const f = BY_KEY[key];
-    state[key] = f.type === "flag" ? Boolean(f.default) : f.type === "choice" ? "" : 0;
-  }
+  else if (BY_KEY[key]) state[key] = offValue(BY_KEY[key]);
   state.page = 1;
   return state;
 }
@@ -258,8 +273,10 @@ export function encode(state) {
   if (state.q) h.set("q", state.q);
   for (const f of FILTERS) {
     const v = state[f.key];
-    if (f.type === "flag") { if (v !== Boolean(f.default)) h.set(f.key, v ? "1" : "0"); }
-    else if (v !== "" && v !== 0) h.set(f.key, String(v));
+    if (isOff(f, v)) continue;
+    if (f.type === "flag") h.set(f.key, v ? "1" : "0");
+    else if (f.type === "choice") h.set(f.key, v || "all");
+    else h.set(f.key, `${v[0] ?? ""}~${v[1] ?? ""}`);
   }
   if (state.year !== state.defaultYear) h.set("year", state.year || "all");
   if (state.markets.size) h.set("in", [...state.markets].join(","));
@@ -278,8 +295,8 @@ export function decode(hash, defaultYear = "") {
     if (!h.has(f.key)) continue;
     const raw = h.get(f.key);
     if (f.type === "flag") state[f.key] = raw === "1";
-    else if (f.type === "choice") state[f.key] = f.values.includes(raw) ? raw : "";
-    else state[f.key] = Number(raw) || 0;
+    else if (f.type === "choice") state[f.key] = raw === "all" ? "" : f.values.includes(raw) ? raw : offValue(f);
+    else state[f.key] = parseRange(raw);
   }
   if (h.has("year")) state.year = h.get("year") === "all" ? "" : h.get("year");
   state.markets = new Set((h.get("in") || "").split(",").filter(Boolean));
@@ -288,6 +305,13 @@ export function decode(hash, defaultYear = "") {
   state.page = Math.max(1, Number(h.get("page")) || 1);
   state.compare = (h.get("cmp") || "").split(",").filter(Boolean).slice(0, COMPARE_MAX);
   return state;
+}
+
+// "100~250", "~250" or "100~": either bound may be left out.
+export function parseRange(raw) {
+  const [lo, hi] = String(raw).split("~");
+  const read = (s) => (s === undefined || s.trim() === "" || Number.isNaN(Number(s)) ? null : Number(s));
+  return [read(lo), read(hi)];
 }
 
 // Rows where the compared printers do not all agree.
