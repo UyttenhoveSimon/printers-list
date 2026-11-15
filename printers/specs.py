@@ -46,6 +46,7 @@ FILLABLE = (
     "print_dpi",
     "scan_dpi",
     "power_w",
+    "tec_kwh",
     "max_paper",
 )
 
