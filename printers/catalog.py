@@ -34,6 +34,9 @@ logger = logging.getLogger(__name__)
 
 #: how long a lookup that found nothing is trusted before Icecat is asked again
 RETRY_AFTER = timedelta(days=30)
+#: how long a record with empty fields is trusted: Icecat sheets start thin
+#: and editors fill them in later
+REFRESH_AFTER = timedelta(days=30)
 #: candidates between two saves of the catalogue during a run
 CHECKPOINT = 500
 #: Icecat lookups in flight at once, each with its own courtesy pause
@@ -125,8 +128,9 @@ class Catalog:
     def needs_lookup(self, candidate: Candidate) -> bool:
         """Whether Icecat must be asked about a candidate.
 
-        It must when it never was, when a miss has gone stale, or when the
-        product was read under an older mapping (``schema``).
+        It must when it never was, when a miss has gone stale, when the
+        product was read under an older mapping (``schema``), or when its
+        record still has empty fields a month on (``refreshing``).
         """
         if candidate.brand in NOT_IN_OPEN_ICECAT:
             return False
@@ -135,10 +139,25 @@ class Catalog:
             return True
         product = self.products.get(str(known.get("id")))
         if not known.get("reason") and product is not None:
-            return product.get("schema", 1) < SCHEMA
+            return product.get("schema", 1) < SCHEMA or self.refreshing(candidate)
         if known.get("id") is not None:
             return False  # a product Icecat has, out of scope: it stays so
         return self.today - date.fromisoformat(known["checked"]) >= RETRY_AFTER
+
+    def refreshing(self, candidate: Candidate) -> bool:
+        """Whether a known record with gaps is due to be read again from Icecat.
+
+        A field a maker's page filled counts too: Icecat may have it now,
+        and Icecat's value is the one the page prefers.
+        """
+        known = self.state["lookups"].get(candidate.key) or {}
+        product = self.products.get(str(known.get("id")))
+        if product is None or known.get("reason"):
+            return False
+        if self.today - date.fromisoformat(known["checked"]) < REFRESH_AFTER:
+            return False
+        filled = product.get("filled", {})
+        return any(product.get(f) is None or f in filled for f in FILLABLE)
 
     def lookup_all(self, candidates: list[Candidate]) -> dict[str, icecat.Lookup]:
         """Ask Icecat about several candidates at once, a few at a time.
@@ -285,14 +304,25 @@ class Catalog:
         report = Report()
         known_before = set(self.products)
         found = self.discover(fetcher, sources, report)
-        budget = max_lookups
+        # new models come first: refreshes only take what they leave
+        first = sum(
+            1
+            for candidates in found.values()
+            for c in candidates
+            if self.needs_lookup(c) and not self.refreshing(c)
+        )
+        budget, refreshes = max_lookups, max(max_lookups - first, 0)
         for where, candidates in found.items():
             # the source answered: what it lists now is what is on sale
             self.state["runs"][where] = self.today.isoformat()
             for start in range(0, len(candidates), CHECKPOINT):
                 chunk = candidates[start : start + CHECKPOINT]
                 asked = {c.key: c for c in chunk if self.needs_lookup(c)}
-                wanted = list(asked.values())[: max(budget, 0)]
+                new = [c for c in asked.values() if not self.refreshing(c)]
+                again = [c for c in asked.values() if self.refreshing(c)]
+                again = again[:refreshes]
+                refreshes -= len(again)
+                wanted = (new + again)[: max(budget, 0)]
                 budget -= len(wanted)
                 fresh = self.lookup_all(wanted) if wanted else {}
                 for candidate in chunk:

@@ -336,3 +336,21 @@ def test_a_support_site_that_fails_is_reported(tmp_path, icecat, monkeypatch):
     catalog, report = run(tmp_path, DAY, [index(Candidate("icecat", icecat_id=3))])
     assert report.sources["fake-support:ALL"]["status"] == "error"
     assert "weight_kg" not in catalog.products["3"]
+
+
+def test_records_with_gaps_are_read_again_after_a_month(tmp_path, icecat):
+    printer = [index(Candidate("icecat", icecat_id=1))]
+    run(tmp_path, DAY, printer)
+    run(tmp_path, DAY + timedelta(days=7), printer)
+    assert icecat == [1]
+    run(tmp_path, DAY + timedelta(days=31), printer)
+    assert icecat == [1, 1]
+    run(tmp_path, DAY + timedelta(days=38), printer)
+    assert icecat == [1, 1]
+
+
+def test_new_models_go_before_refreshes(tmp_path, icecat):
+    run(tmp_path, DAY, [index(Candidate("icecat", icecat_id=1))])
+    later = [index(*(Candidate("icecat", icecat_id=i) for i in (1, 2, 3)))]
+    run(tmp_path, DAY + timedelta(days=31), later, max_lookups=2)
+    assert icecat == [1, 2, 3]
