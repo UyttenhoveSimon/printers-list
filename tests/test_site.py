@@ -501,3 +501,281 @@ def test_other_brands_supplies_are_set_apart(page):
     other = page.text_content("#detail-body .supplies-other")
     assert "Compatible, other brands (1)" in other
     assert "Xerox" in other
+
+
+# --- every control, against an independent count ---------------------------
+#
+# The expected numbers are computed here in Python from the very file the page
+# loads, with the page's documented rules, then each control is operated and
+# the page's count compared. A control that does nothing, or the wrong thing,
+# shows up as a mismatch.
+
+DEFAULT_YEAR = 2016  # ten years before the catalogue's date
+
+
+def rows(page):
+    return page.evaluate(
+        "async () => (await (await fetch('printers.json')).json()).printers"
+    )
+
+
+def year(p):
+    date = p.get("release_date") or p.get("added") or ""
+    return int(date[:4]) if date else None
+
+
+def shown(p):
+    """The default view: on sale, and from the last ten years or undated."""
+    y = year(p)
+    return p.get("available") and (y is None or y >= DEFAULT_YEAR)
+
+
+def expected(data, keep):
+    return f"{sum(1 for p in data if shown(p) and keep(p))} of {len(data)} printers"
+
+
+def open_all(page):
+    """Open every section of the panel, as someone looking for a filter would."""
+    for summary in page.query_selector_all("#filters details:not([open]) summary"):
+        summary.click()
+
+
+def check_each(page, cases):
+    """Run (name, act, undo, expected) cases; return the mismatches."""
+    open_all(page)
+    wrong = []
+    for name, act, undo, want in cases:
+        act()
+        got = count(page)
+        if got != want:
+            wrong.append((name, got, want))
+        undo()
+    return wrong
+
+
+def test_every_flag(page):
+    data = rows(page)
+    flags = page.evaluate(
+        "async () => (await import('./logic.js')).FILTERS.filter((f) => f.type === 'flag' && !f.default).map((f) => f.key)"
+    )
+    assert len(flags) >= 20
+
+    def case(key):
+        selector = f'input[data-key="{key}"]'
+        keep = (lambda p: True) if key == "new" else (lambda p: bool(p.get(key)))
+        if key == "a3":
+            keep = lambda p: p.get("max_paper") == "A3"  # noqa: E731
+        return (
+            key,
+            lambda: page.check(selector),
+            lambda: page.uncheck(selector),
+            expected(data, keep),
+        )
+
+    assert check_each(page, [case(key) for key in flags]) == []
+
+
+def test_on_sale_only_can_be_unticked(page):
+    page.uncheck('input[data-key="available"]')
+    assert (
+        count(page) == "61 of 63 printers"
+    )  # all on sale here; the year still applies
+    assert "Not on sale" in page.text_content("#active")
+
+
+def test_every_choice(page):
+    data = rows(page)
+    cases = []
+    for key, value, keep in [
+        ("technology", "laser", lambda p: p.get("technology") == "laser"),
+        ("technology", "inkjet", lambda p: p.get("technology") == "inkjet"),
+        ("color", "1", lambda p: bool(p.get("color"))),
+        ("color", "0", lambda p: not p.get("color")),
+    ]:
+        button = f'.seg[data-key="{key}"] button[data-value="{value}"]'
+        anyone = f'.seg[data-key="{key}"] button[data-value=""]'
+        cases.append(
+            (
+                f"{key}={value}",
+                lambda b=button: page.click(b),
+                lambda a=anyone: page.click(a),
+                expected(data, keep),
+            )
+        )
+    assert check_each(page, cases) == []
+
+
+def test_every_slider(page):
+    data = rows(page)
+    sliders = page.eval_on_selector_all(
+        "#filters input[type=range]",
+        "els => els.map((e) => ({key: e.dataset.key, min: +e.min, max: +e.max, step: +e.step}))",
+    )
+    kinds = page.evaluate(
+        "async () => Object.fromEntries((await import('./logic.js')).FILTERS.map((f) => [f.key, f.type]))"
+    )
+    assert {s["key"] for s in sliders} >= {"ppm_black", "weight_kg"}
+    cases = []
+    for s in sliders:
+        key, kind = s["key"], kinds[s["key"]]
+        middle = s["min"] + round((s["max"] - s["min"]) / 2 / s["step"]) * s["step"]
+        selector = f'input[data-key="{key}"]'
+        off = s["min"] if kind == "min" else s["max"]
+
+        def move(sel=selector, value=middle):
+            page.eval_on_selector(
+                sel,
+                f"el => {{ el.value = {value}; el.dispatchEvent(new Event('input', {{bubbles: true}})); }}",
+            )
+
+        def keep(p, key=key, kind=kind, value=middle):
+            v = p.get(key)
+            if not isinstance(v, (int, float)):
+                return False
+            return v >= value if kind == "min" else v <= value
+
+        cases.append(
+            (
+                key,
+                move,
+                lambda sel=selector, value=off: move(sel, value),
+                expected(data, keep),
+            )
+        )
+    assert check_each(page, cases) == []
+
+
+def test_every_country_and_brand(page):
+    data = rows(page)
+    cases = []
+    for box in page.query_selector_all("#filters input[data-market]"):
+        market = box.get_attribute("data-market")
+        selector = f'input[data-market="{market}"]'
+        keep = lambda p, m=market: m in p.get("markets", [])  # noqa: E731
+        cases.append(
+            (
+                market,
+                lambda s=selector: page.check(s),
+                lambda s=selector: page.uncheck(s),
+                expected(data, keep),
+            )
+        )
+    for box in page.query_selector_all("#filters input[data-brand]"):
+        brand = box.get_attribute("data-brand")
+        selector = f'input[data-brand="{brand}"]'
+        keep = lambda p, b=brand: p["brand"] == b  # noqa: E731
+        cases.append(
+            (
+                brand,
+                lambda s=selector: page.check(s),
+                lambda s=selector: page.uncheck(s),
+                expected(data, keep),
+            )
+        )
+    assert len(cases) >= 9
+    assert check_each(page, cases) == []
+
+
+def test_every_year(page):
+    data = rows(page)
+    sel = 'select[data-key="year"]'
+    years = [
+        v
+        for v in page.eval_on_selector_all(
+            sel + " option", "os => os.map((o) => o.value)"
+        )
+        if v
+    ]
+    cases = []
+    for value in years:
+
+        def keep(p, y=int(value)):
+            known = year(p)
+            return p.get("available") and (known is None or known >= y)
+
+        want = f"{sum(1 for p in data if keep(p))} of {len(data)} printers"
+        cases.append(
+            (value, lambda v=value: page.select_option(sel, v), lambda: None, want)
+        )
+    # picking one year after another must keep refreshing the list
+    assert check_each(page, cases + list(reversed(cases))) == []
+
+
+def test_every_sort(page):
+    data = [p for p in rows(page) if shown(p)]
+    by_name = lambda p: (p["brand"], p["name"])  # noqa: E731
+    sorts = page.eval_on_selector_all("#sort option", "os => os.map((o) => o.value)")
+    assert len(sorts) >= 8
+    fields = {
+        "newest": ("_date", -1),
+        "oldest": ("_date", 1),
+        "fastest": ("ppm_black", -1),
+        "fastest_colour": ("ppm_color", -1),
+        "most_paper": ("paper_input", -1),
+        "lightest": ("weight_kg", 1),
+        "quietest": ("noise_db", 1),
+        "greenest": ("tec_kwh", 1),
+    }
+    wrong = []
+    for name in sorts:
+        page.select_option("#sort", name)
+        first = page.eval_on_selector_all(
+            ".card h3", "hs => hs.slice(0, 5).map((h) => h.textContent)"
+        )
+        if name in {"name", "smallest"}:  # nothing has a size here: by name
+            want = sorted(data, key=by_name)
+        else:
+            key, direction = fields[name]
+            known = [
+                p
+                for p in data
+                if (
+                    p.get(key)
+                    if key != "_date"
+                    else (p.get("release_date") or p.get("added"))
+                )
+                is not None
+            ]
+            unknown = sorted((p for p in data if p not in known), key=by_name)
+            if key == "_date":
+                known.sort(key=by_name)
+                known.sort(
+                    key=lambda p: p.get("release_date") or p.get("added"),
+                    reverse=direction < 0,
+                )
+            else:
+                known.sort(key=by_name)
+                known.sort(key=lambda p: p[key], reverse=direction < 0)
+            want = known + unknown
+        if first != [p["name"] for p in want[:5]]:
+            wrong.append((name, first, [p["name"] for p in want[:5]]))
+    assert wrong == []
+
+
+def test_reset_and_clear_all_undo_everything(page):
+    page.check('input[data-key="duplex_print"]')
+    page.click('.seg[data-key="technology"] button[data-value="inkjet"]')
+    page.check('input[data-market="BE"]')
+    page.select_option('select[data-key="year"]', "")
+    page.click("#reset")
+    assert count(page) == "61 of 63 printers"
+    assert page.text_content("#active") == ""
+    page.check('input[data-key="fax"]')
+    page.check('input[data-brand="HP"]')
+    page.click('#active button[data-clear="all"]')
+    assert count(page) == "61 of 63 printers"
+    assert not page.is_checked('input[data-key="fax"]')
+    assert not page.is_checked('input[data-brand="HP"]')
+
+
+def test_every_language(page):
+    for lang, word in [
+        ("fr", "Filtres"),
+        ("nl", "Filters"),
+        ("de", "Filter"),
+        ("en", "Filters"),
+    ]:
+        page.select_option("#lang", lang)
+        assert page.evaluate("document.documentElement.lang") == lang
+        assert page.text_content("#toggle-filters") == word
+        assert page.query_selector_all(".card")
