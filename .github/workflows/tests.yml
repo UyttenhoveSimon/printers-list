@@ -14,6 +14,8 @@ jobs:
         with:
           enable-cache: true
       - run: uv sync --locked --dev
+      # the page is tested in a real browser
+      - run: uv run python -m rustwright install chromium
       - run: uv run pytest -q --cov --cov-report=term-missing --cov-fail-under=90
 
   hooks:

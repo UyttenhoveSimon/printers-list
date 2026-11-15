@@ -20,6 +20,7 @@ dev = [
     "pytest>=9.1.1",
     "pytest-cov>=7.1.0",
     "ruff>=0.17.2",
+    "rustwright>=0.3.0,<0.4",
     "ty>=0.0.91",
 ]
 
@@ -49,6 +50,10 @@ ignore = [
     "INP001",   # tests are not a package
     "FBT",      # boolean fakes
     "SLF001",   # tests may look inside
+    "PT018",    # one assertion per line would split facts that belong together
+]
+"tests/test_site.py" = [
+    "E501",  # the JavaScript run in the browser is kept on readable lines
 ]
 "printers/sources/*.py" = [
     "ARG001",  # every source has the same discover() signature, used or not

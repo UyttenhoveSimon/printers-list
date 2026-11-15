@@ -1,269 +1,388 @@
-"use strict";
+// The page itself: builds the panel from logic.GROUPS, renders a page of
+// results, the comparison and the detail view. All decisions live in logic.js.
 
-// The catalogue omits false and empty fields to stay small: a missing flag is "no".
-const FLAGS = [
-  "available", "new", "duplex_print", "duplex_scan", "ink_tank", "scan", "copy",
-  "fax", "adf", "a3", "wifi", "ethernet", "wifi_direct", "airprint", "nfc",
-];
-const PAGE = 48;
-const MARKET_NAMES = {
-  BE: "Belgium", NL: "Netherlands", LU: "Luxembourg", FR: "France", DE: "Germany",
-  GB: "United Kingdom", CH: "Switzerland", AT: "Austria", IT: "Italy", ES: "Spain",
-  US: "United States", PL: "Poland", SE: "Sweden", DK: "Denmark",
-};
-const SHOWN_MARKETS = ["BE", "NL", "LU", "FR", "DE", "GB", "CH", "AT", "IT", "ES", "US"];
+import * as L from "./logic.js";
+import { LANGUAGES, countryName, formatNumber, language, pickLanguage, setLanguage, t } from "./i18n.js";
 
-const $ = (sel) => document.querySelector(sel);
-const filtersEl = $("#filters");
-const state = { q: "", technology: "", color: "", ppm: 0, year: "", markets: new Set(), brands: new Set(), sort: "name" };
-FLAGS.forEach((f) => (state[f] = f === "available"));
-
-let all = [];
-let matches = [];
-let shown = 0;
-let newSince = "";
-
+const $ = (sel, root = document) => root.querySelector(sel);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-function year(p) {
-  return p.release_date ? Number(p.release_date.slice(0, 4)) : null;
-}
+let all = [];
+let byId = new Map();
+let bounds = {};
+let data = {};
+let state = L.emptyState();
+let details = null; // details.json, fetched the first time a detail is opened
+let onlyDifferences = false;
 
-function prepare(data) {
-  // "new" means first seen in the latest week, but not on the very first fill
-  const updated = data.updated ? new Date(data.updated) : new Date();
-  const week = new Date(updated - 7 * 864e5).toISOString().slice(0, 10);
-  newSince = data.started && data.started > week ? data.started : week;
-  for (const p of data.printers) {
-    p.new = p.first_seen > newSince;
-    p.a3 = p.max_paper ? p.max_paper.replace("A", "") <= 3 : false;
-    p._text = `${p.brand} ${p.name} ${p.code || ""}`.toLowerCase();
-    p._year = year(p);
-  }
-  return data.printers;
-}
-
-function test(p) {
-  for (const f of FLAGS) if (state[f] && !p[f]) return false;
-  if (state.technology && p.technology !== state.technology) return false;
-  if (state.color === "1" && !p.color) return false;
-  if (state.color === "0" && p.color) return false;
-  if (state.ppm && !((p.ppm_black || 0) >= state.ppm)) return false;
-  if (state.year && !(p._year >= Number(state.year))) return false;
-  if (state.brands.size && !state.brands.has(p.brand)) return false;
-  if (state.markets.size && !(p.markets || []).some((m) => state.markets.has(m))) return false;
-  if (state.q) {
-    for (const word of state.q.toLowerCase().split(/\s+/)) if (word && !p._text.includes(word)) return false;
-  }
-  return true;
-}
-
-const SORTS = {
-  name: (a, b) => a.brand.localeCompare(b.brand) || a.name.localeCompare(b.name),
-  newest: (a, b) => (b.release_date || b.first_seen).localeCompare(a.release_date || a.first_seen),
-  fastest: (a, b) => (b.ppm_black || 0) - (a.ppm_black || 0),
+const storage = {
+  get(key) { try { return localStorage.getItem(key); } catch { return null; } },
+  set(key, value) { try { localStorage.setItem(key, value); } catch { /* private mode */ } },
 };
 
-function tags(p) {
-  const t = [];
-  if (p.new) t.push(["New", "new"]);
-  if (!p.available) t.push(["Not on sale", "off"]);
-  t.push([p.technology === "laser" ? (p.led ? "LED" : "Laser") : p.technology === "inkjet" ? "Inkjet" : p.technology, ""]);
-  if (p.ink_tank) t.push(["Ink tank", ""]);
-  t.push([p.color ? "Colour" : "Mono", ""]);
-  if (p.duplex_print) t.push(["2-sided print", "good"]);
-  if (p.duplex_scan) t.push(["2-sided scan", "good"]);
-  if (p.scan) t.push(["Scan", ""]);
-  if (p.fax) t.push(["Fax", ""]);
-  if (p.adf) t.push(["ADF", ""]);
-  if (p.wifi) t.push(["Wi-Fi", ""]);
-  if (p.ethernet) t.push(["Ethernet", ""]);
-  if (p.airprint) t.push(["AirPrint", ""]);
-  if (p.a3) t.push(["A3", ""]);
-  return t.map(([label, cls]) => `<span class="tag ${cls}">${esc(label)}</span>`).join("");
+// --- formatting ---------------------------------------------------------------
+
+function value(key, v) {
+  if (v === undefined || v === null || v === "") return t("unknown");
+  if (typeof v === "boolean") return v ? t("yes") : t("no");
+  if (key === "technology") return t(v);
+  if (key === "color") return v ? t("colour_yes") : t("colour_no");
+  if (typeof v === "number") return formatNumber(v);
+  return String(v);
 }
+
+function tags(p) {
+  const out = [];
+  if (p.new) out.push([t("new"), "new"]);
+  if (!p.available) out.push([t("not_on_sale"), "off"]);
+  if (p.technology) out.push([p.technology === "laser" && p.led ? "LED" : t(p.technology), ""]);
+  if (p.ink_tank) out.push([t("ink_tank"), ""]);
+  out.push([p.color ? t("colour_yes") : t("colour_no"), ""]);
+  if (p.duplex_print) out.push([t("duplex_print"), "good"]);
+  if (p.duplex_scan) out.push([t("duplex_scan"), "good"]);
+  for (const k of ["scan", "fax", "adf", "wifi", "ethernet", "airprint", "a3"]) if (p[k]) out.push([t(k), ""]);
+  if (p.confirmed) out.push(["✓ " + (p.brand || ""), "good"]);
+  return out.map(([label, cls]) => `<span class="tag ${cls}">${esc(label)}</span>`).join("");
+}
+
+// --- the side panel -------------------------------------------------------------
+
+function filterControl(f) {
+  const label = t(f.label || f.key);
+  if (f.type === "flag") {
+    return `<label class="check"><input type="checkbox" data-key="${f.key}"> ${esc(label)}</label>`;
+  }
+  if (f.type === "choice") {
+    const names = f.labels || f.values;
+    const buttons = [`<button type="button" data-value="">${esc(t("any"))}</button>`]
+      .concat(f.values.map((v, i) => `<button type="button" data-value="${v}">${esc(t(names[i]))}</button>`));
+    return `<div class="seg" data-key="${f.key}" role="group" aria-label="${esc(label)}">${buttons.join("")}</div>`;
+  }
+  const r = bounds[f.key];
+  if (!r || r.min === r.max) return "";
+  // min filters start at their lowest value, max filters at their highest: both mean "off"
+  const start = f.type === "min" ? r.min : r.max;
+  return `<label class="range">
+    <span class="range-head"><span>${esc(label)}</span><output data-out="${f.key}"></output></span>
+    <input type="range" data-key="${f.key}" min="${r.min}" max="${r.max}" step="${r.step}" value="${start}">
+  </label>`;
+}
+
+function renderPanel() {
+  const groups = L.GROUPS.map((g) => {
+    const body = g.filters.map(filterControl).join("");
+    if (!body.trim()) return "";
+    return `<details class="group" ${g.open ? "open" : ""}><summary>${esc(t("g_" + g.id))}</summary>${body}</details>`;
+  });
+  const years = [...new Set(all.map((p) => p._year).filter(Boolean))].sort((a, b) => b - a);
+  if (years.length) {
+    groups.push(`<details class="group" open><summary>${esc(t("g_year"))}</summary>
+      <select data-key="year" aria-label="${esc(t("g_year"))}"><option value="">${esc(t("any_year"))}</option>
+      ${years.map((y) => `<option value="${y}">${esc(t("or_later", { year: y }))}</option>`).join("")}</select></details>`);
+  }
+  const markets = L.markets(all);
+  if (markets.length) {
+    const named = markets.map(([m, n]) => [m, countryName(m), n]).sort((a, b) => a[1].localeCompare(b[1], language()));
+    groups.push(`<details class="group" open><summary>${esc(t("g_markets"))}</summary><div class="scroll-list">
+      ${named.map(([m, name, n]) => `<label class="check"><input type="checkbox" data-market="${m}"> ${esc(name)} <span class="n">${formatNumber(n)}</span></label>`).join("")}
+      </div></details>`);
+  }
+  const brands = L.brands(all);
+  if (brands.length) {
+    groups.push(`<details class="group" open><summary>${esc(t("g_brands"))}</summary><div class="scroll-list">
+      ${brands.map(([b, n]) => `<label class="check"><input type="checkbox" data-brand="${esc(b)}"> ${esc(b)} <span class="n">${formatNumber(n)}</span></label>`).join("")}
+      </div></details>`);
+  }
+  groups.push(`<button type="button" id="reset" class="ghost wide">${esc(t("reset"))}</button>`);
+  $("#filters").innerHTML = groups.join("");
+}
+
+function syncPanel() {
+  const panel = $("#filters");
+  for (const f of L.FILTERS) {
+    if (f.type === "flag") {
+      const el = panel.querySelector(`input[data-key="${f.key}"]`);
+      if (el) el.checked = state[f.key];
+    } else if (f.type === "choice") {
+      panel.querySelectorAll(`.seg[data-key="${f.key}"] button`).forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.value === state[f.key])));
+    } else {
+      const el = panel.querySelector(`input[data-key="${f.key}"]`);
+      const out = panel.querySelector(`output[data-out="${f.key}"]`);
+      if (!el) continue;
+      const r = bounds[f.key];
+      const off = f.type === "min" ? r.min : r.max;
+      el.value = state[f.key] || off;
+      out.textContent = state[f.key] ? t(f.type === "min" ? "at_least" : "at_most", { value: formatNumber(state[f.key]) }) : t("any");
+    }
+  }
+  const year = panel.querySelector('select[data-key="year"]');
+  if (year) year.value = state.year;
+  panel.querySelectorAll("input[data-market]").forEach((i) => (i.checked = state.markets.has(i.dataset.market)));
+  panel.querySelectorAll("input[data-brand]").forEach((i) => (i.checked = state.brands.has(i.dataset.brand)));
+  $("#q").value = state.q;
+  $("#sort").value = state.sort;
+}
+
+// --- results --------------------------------------------------------------------
 
 function card(p) {
   const meta = [];
   if (p.ppm_black) meta.push(`${p.ppm_black} ppm`);
-  if (p._year) meta.push(`${p._year}`);
-  if (p.markets?.length) meta.push(p.markets.length > 6 ? `${p.markets.length} countries` : p.markets.join(" · "));
+  if (p._year) meta.push(String(p._year));
+  if (p.markets?.length) meta.push(p.markets.length > 4 ? t("countries", { n: p.markets.length }) : p.markets.map(countryName).join(", "));
   const img = p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy" decoding="async" width="200" height="150">` : "";
-  return `<li class="card">
-    <div class="img">${img}</div>
-    <h3><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.name)}</a></h3>
-    <div class="meta">${meta.map(esc).join("<span aria-hidden>·</span>")}</div>
+  const picked = state.compare.includes(p.id);
+  return `<li class="card" data-id="${esc(p.id)}">
+    <button type="button" class="img" data-open="${esc(p.id)}" aria-label="${esc(t("details"))}: ${esc(p.name)}">${img}</button>
+    <h3><button type="button" class="linkish" data-open="${esc(p.id)}">${esc(p.name)}</button></h3>
+    <div class="meta">${meta.map(esc).join(" · ")}</div>
     <div class="tags">${tags(p)}</div>
+    <label class="check compare-check"><input type="checkbox" data-compare="${esc(p.id)}" ${picked ? "checked" : ""}> ${esc(t("compare"))}</label>
   </li>`;
 }
 
-function renderMore() {
-  const next = matches.slice(shown, shown + PAGE);
-  $("#results").insertAdjacentHTML("beforeend", next.map(card).join(""));
-  shown += next.length;
+function renderPager(page, pages) {
+  if (pages <= 1) return "";
+  const nums = L.pageNumbers(page, pages).map((n) => n === null
+    ? '<span class="gap">…</span>'
+    : `<button type="button" data-page="${n}" ${n === page ? 'aria-current="page"' : ""}>${n}</button>`);
+  return `<button type="button" data-page="${page - 1}" ${page === 1 ? "disabled" : ""}>${esc(t("previous"))}</button>
+    ${nums.join("")}
+    <button type="button" data-page="${page + 1}" ${page === pages ? "disabled" : ""}>${esc(t("next"))}</button>
+    <span class="page-of">${esc(t("page", { n: page, pages }))}</span>`;
 }
-
-// --- the active filters, as chips above the results --------------------------
-
-const FLAG_LABELS = {
-  available: "On sale", new: "New this week", duplex_print: "2-sided print",
-  duplex_scan: "2-sided scan", ink_tank: "Ink tank", scan: "Scan", copy: "Copy",
-  fax: "Fax", adf: "ADF", a3: "A3", wifi: "Wi-Fi", ethernet: "Ethernet",
-  wifi_direct: "Wi-Fi Direct", airprint: "AirPrint", nfc: "NFC",
-};
-
-function activeFilters() {
-  // [label, how to clear it]; "on sale" is the default, so only its absence shows
-  const out = [];
-  if (state.q) out.push([`“${state.q}”`, () => (state.q = "")]);
-  if (!state.available) out.push(["Includes not on sale", () => (state.available = true)]);
-  for (const f of FLAGS) if (f !== "available" && state[f]) out.push([FLAG_LABELS[f], () => (state[f] = false)]);
-  if (state.technology) out.push([state.technology === "laser" ? "Laser / LED" : "Inkjet", () => (state.technology = "")]);
-  if (state.color) out.push([state.color === "1" ? "Colour" : "Mono", () => (state.color = "")]);
-  if (state.ppm) out.push([`≥ ${state.ppm} ppm`, () => (state.ppm = 0)]);
-  if (state.year) out.push([`${state.year} or later`, () => (state.year = "")]);
-  for (const m of state.markets) out.push([`Sold in ${m}`, () => state.markets.delete(m)]);
-  for (const b of state.brands) out.push([b, () => state.brands.delete(b)]);
-  return out;
-}
-
-let clearers = [];
 
 function renderActive() {
-  const filters = activeFilters();
-  clearers = filters.map(([, clear]) => clear);
-  const chips = filters.map(([label], i) => `<button data-i="${i}" title="Remove this filter">${esc(label)}</button>`);
-  if (filters.length > 1) chips.push('<button class="clear" data-i="all">Clear all</button>');
+  const chips = L.activeFilters(state).map(([key, v]) => {
+    let label;
+    if (key === "q") label = `“${v}”`;
+    else if (key === "market") label = countryName(v);
+    else if (key === "brand") label = v;
+    else if (key === "year") label = t("or_later", { year: v });
+    else if (key === "available" && !v) label = t("not_on_sale");
+    else {
+      const f = L.FILTERS.find((x) => x.key === key);
+      if (f.type === "choice") label = key === "color" ? t(v === "1" ? "colour_yes" : "colour_no") : t(v);
+      else if (f.type === "flag") label = t(f.label || key);
+      else label = `${t(key)} ${t(f.type === "min" ? "at_least" : "at_most", { value: formatNumber(v) })}`;
+    }
+    return `<button type="button" data-clear="${esc(key)}" data-value="${esc(v)}" title="${esc(t("remove_filter"))}">${esc(label)}</button>`;
+  });
+  if (chips.length > 1) chips.push(`<button type="button" class="clear" data-clear="all">${esc(t("clear_all"))}</button>`);
   $("#active").innerHTML = chips.join("");
 }
 
-function apply() {
-  matches = all.filter(test).sort(SORTS[state.sort]);
-  shown = 0;
-  $("#results").innerHTML = matches.length ? "" : '<li class="empty">No printer matches these filters.</li>';
-  renderMore();
-  $("#count").textContent = `${matches.length.toLocaleString()} of ${all.length.toLocaleString()} printers`;
-  $("#ppm-out").textContent = state.ppm ? `≥ ${state.ppm} ppm` : "any";
+function renderTray() {
+  const tray = $("#tray");
+  const picked = state.compare.map((id) => byId.get(id)).filter(Boolean);
+  tray.hidden = picked.length === 0;
+  $("#tray-items").innerHTML = picked.map((p) => `<li>${esc(p.name)} <button type="button" data-uncompare="${esc(p.id)}" aria-label="${esc(t("remove"))}">✕</button></li>`).join("");
+  $("#open-compare").textContent = t("compare_n", { n: picked.length });
+  $("#open-compare").disabled = picked.length < 2;
+}
+
+function render({ scroll = false } = {}) {
+  const found = L.search(all, state);
+  const { page, pages, items } = L.paginate(found, state.page);
+  state.page = page;
+  $("#results").innerHTML = items.length ? items.map(card).join("") : `<li class="empty">${esc(t("none"))}</li>`;
+  $("#pager").innerHTML = renderPager(page, pages);
+  $("#count").textContent = t("count", { n: formatNumber(found.length), total: formatNumber(all.length) });
   renderActive();
-  writeHash();
+  renderTray();
+  syncPanel();
+  const hash = L.encode(state);
+  history.replaceState(null, "", hash ? `#${hash}` : location.pathname + location.search);
+  if (scroll) $("#results").scrollIntoView({ block: "start", behavior: "smooth" });
 }
 
-// --- URL state, so a filtered list can be shared -----------------------------
+// --- the detail view and the comparison ----------------------------------------------
 
-function writeHash() {
-  const h = new URLSearchParams();
-  if (state.q) h.set("q", state.q);
-  for (const f of FLAGS) if (state[f] !== (f === "available")) h.set(f, state[f] ? "1" : "0");
-  for (const k of ["technology", "color", "year"]) if (state[k]) h.set(k, state[k]);
-  if (state.ppm) h.set("ppm", state.ppm);
-  if (state.sort !== "name") h.set("sort", state.sort);
-  if (state.markets.size) h.set("in", [...state.markets].join(","));
-  if (state.brands.size) h.set("brand", [...state.brands].join(","));
-  const s = h.toString();
-  history.replaceState(null, "", s ? `#${s}` : location.pathname);
-}
-
-function readHash() {
-  const h = new URLSearchParams(location.hash.slice(1));
-  state.q = h.get("q") || "";
-  for (const f of FLAGS) state[f] = h.has(f) ? h.get(f) === "1" : f === "available";
-  for (const k of ["technology", "color", "year"]) state[k] = h.get(k) || "";
-  state.ppm = Number(h.get("ppm")) || 0;
-  state.sort = h.get("sort") || "name";
-  state.markets = new Set((h.get("in") || "").split(",").filter(Boolean));
-  state.brands = new Set((h.get("brand") || "").split(",").filter(Boolean));
-}
-
-function syncControls() {
-  $("#q").value = state.q;
-  for (const f of FLAGS) {
-    const el = filtersEl.querySelector(`input[name="${f}"]`);
-    if (el) el.checked = state[f];
+async function loadDetails() {
+  if (details) return details;
+  try {
+    const response = await fetch("details.json");
+    details = await response.json();
+  } catch {
+    details = {};
   }
-  filtersEl.querySelectorAll(".seg").forEach((seg) => {
-    seg.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.value === state[seg.dataset.name]));
-  });
-  filtersEl.querySelector('[name="ppm"]').value = state.ppm;
-  filtersEl.querySelector('[name="year"]').value = state.year;
-  document.querySelector('[name="sort"]').value = state.sort;
-  document.querySelectorAll("#markets button").forEach((b) => b.classList.toggle("on", state.markets.has(b.dataset.value)));
-  document.querySelectorAll("#brands input").forEach((i) => (i.checked = state.brands.has(i.value)));
+  return details;
 }
 
-// --- controls built from the data ---------------------------------------------
+function suppliesList(id) {
+  const extra = (details && details[id]) || {};
+  const items = extra.consumables || [];
+  const lines = items.map((c) => `<li><span class="tag">${esc(t("kind_" + c.kind))}</span> <code>${esc(c.code)}</code> ${c.name !== c.code ? esc(c.name) : ""}</li>`);
+  if (extra.supplies) lines.push(`<li>${esc(extra.supplies)}</li>`);
+  return lines.length ? `<ul class="supplies">${lines.join("")}</ul>` : `<p class="muted">${esc(t("supplies_none"))}</p>`;
+}
 
-function buildChoices() {
-  const brands = new Map();
-  const years = new Set();
-  for (const p of all) {
-    brands.set(p.brand, (brands.get(p.brand) || 0) + 1);
-    if (p._year) years.add(p._year);
+function checksNote(p) {
+  const extra = (details && details[p.id]) || {};
+  const notes = [];
+  if (p.confirmed) notes.push(`<p class="ok">✓ ${esc(t("confirmed_by", { sources: (extra.confirmed || []).join(", ") }))}</p>`);
+  for (const [source, differ] of Object.entries(extra.differs || {})) {
+    const fields = Object.entries(differ).map(([k, [ours, theirs]]) => `${t(k)}: ${value(k, ours)} → ${value(k, theirs)}`).join("; ");
+    notes.push(`<p class="warn">⚠ ${esc(t("differs", { source, fields }))}</p>`);
   }
-  $("#brands").innerHTML = [...brands.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .map(([b, n]) => `<label class="check"><input type="checkbox" value="${esc(b)}"> ${esc(b)} <span class="n">${n}</span></label>`)
-    .join("");
-  $("#markets").innerHTML = SHOWN_MARKETS.map((m) => `<button data-value="${m}" title="${MARKET_NAMES[m]}">${m}</button>`).join("");
-  const yearSelect = filtersEl.querySelector('[name="year"]');
-  [...years].sort((a, b) => b - a).forEach((y) => yearSelect.insertAdjacentHTML("beforeend", `<option value="${y}">${y} or later</option>`));
-  // a filter with nothing to choose from is noise: hide it until the data has some
-  $("#brands").closest("section").hidden = brands.size === 0;
-  yearSelect.closest("section").hidden = years.size === 0;
+  return notes.join("");
+}
+
+async function openDetail(id) {
+  const p = byId.get(id);
+  if (!p) return;
+  await loadDetails();
+  const rows = L.SPEC_ROWS.filter((k) => p[k] !== undefined && p[k] !== null)
+    .map((k) => `<tr><th scope="row">${esc(t(k))}</th><td>${esc(value(k, p[k]))}</td></tr>`).join("");
+  const countries = (p.markets || []).map(countryName).sort((a, b) => a.localeCompare(b, language()));
+  const links = [`<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(t("maker_page"))}</a>`];
+  if (p.icecat_id) links.push(`<a href="https://icecat.biz/p/vendorName/mpn/desc-${p.icecat_id}.html" target="_blank" rel="noopener">${esc(t("icecat_page"))}</a>`);
+  $("#detail-body").innerHTML = `
+    <div class="detail-head">
+      ${p.image ? `<img src="${esc(p.image)}" alt="" width="240" height="180">` : ""}
+      <div><h2 id="detail-title">${esc(p.name)}</h2><div class="tags">${tags(p)}</div>${checksNote(p)}<p class="links">${links.join(" · ")}</p></div>
+    </div>
+    <h3>${esc(t("supplies"))}</h3>${suppliesList(p.id)}
+    <h3>${esc(t("sold_in"))}</h3><p>${countries.length ? countries.map(esc).join(", ") : esc(t("unknown"))}</p>
+    <h3>${esc(t("details"))}</h3><table class="specs">${rows}</table>`;
+  $("#detail").showModal();
+}
+
+async function openCompare() {
+  const picked = state.compare.map((id) => byId.get(id)).filter(Boolean);
+  if (picked.length < 2) return;
+  await loadDetails();
+  const rows = onlyDifferences ? L.differingRows(picked) : L.SPEC_ROWS;
+  const head = picked.map((p) => `<th scope="col">${p.image ? `<img src="${esc(p.image)}" alt="" width="120" height="90">` : ""}<span>${esc(p.name)}</span>
+    <button type="button" class="ghost small" data-uncompare="${esc(p.id)}">${esc(t("remove"))}</button></th>`).join("");
+  const differing = new Set(L.differingRows(picked));
+  const body = rows.map((k) => `<tr class="${differing.has(k) ? "diff" : ""}"><th scope="row">${esc(t(k))}</th>${picked.map((p) => `<td>${esc(value(k, p[k]))}</td>`).join("")}</tr>`).join("");
+  const sold = `<tr><th scope="row">${esc(t("sold_in"))}</th>${picked.map((p) => `<td>${esc((p.markets || []).map(countryName).join(", ") || t("unknown"))}</td>`).join("")}</tr>`;
+  const supplies = `<tr><th scope="row">${esc(t("supplies"))}</th>${picked.map((p) => `<td>${suppliesList(p.id)}</td>`).join("")}</tr>`;
+  $("#compare-body").innerHTML = `<div class="table-scroll"><table class="compare"><thead><tr><th></th>${head}</tr></thead><tbody>${body}${supplies}${sold}</tbody></table></div>`;
+  $("#only-diff").checked = onlyDifferences;
+  if (!$("#compare").open) $("#compare").showModal();
+}
+
+// --- strings and events -----------------------------------------------------------
+
+function applyStrings() {
+  document.documentElement.lang = language();
+  document.title = t("title");
+  document.querySelectorAll("[data-i18n]").forEach((el) => (el.textContent = t(el.dataset.i18n)));
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => (el.placeholder = t(el.dataset.i18nPlaceholder)));
+  document.querySelectorAll("[data-i18n-label]").forEach((el) => el.setAttribute("aria-label", t(el.dataset.i18nLabel)));
+  $("#sort").innerHTML = Object.keys(L.SORTS).map((k) => `<option value="${k}">${esc(t("sort_" + k))}</option>`).join("");
+  if (data.updated) $("#updated").textContent = t("updated", { date: new Intl.DateTimeFormat(language(), { dateStyle: "long" }).format(new Date(data.updated)) });
 }
 
 function bind() {
-  let typing;
-  $("#q").addEventListener("input", (e) => {
-    clearTimeout(typing);
-    typing = setTimeout(() => ((state.q = e.target.value.trim()), apply()), 120);
-  });
-  filtersEl.addEventListener("change", (e) => {
+  const panel = $("#filters");
+  panel.addEventListener("change", (e) => {
     const el = e.target;
-    if (FLAGS.includes(el.name)) state[el.name] = el.checked;
-    else if (el.name === "year") state.year = el.value;
-    else if (el.closest("#brands")) el.checked ? state.brands.add(el.value) : state.brands.delete(el.value);
+    if (el.dataset.market) el.checked ? state.markets.add(el.dataset.market) : state.markets.delete(el.dataset.market);
+    else if (el.dataset.brand) el.checked ? state.brands.add(el.dataset.brand) : state.brands.delete(el.dataset.brand);
+    else if (el.dataset.key === "year") state.year = el.value;
+    else if (el.type === "checkbox" && el.dataset.key) state[el.dataset.key] = el.checked;
     else return;
-    apply();
+    state.page = 1;
+    render();
   });
-  filtersEl.querySelector('[name="ppm"]').addEventListener("input", (e) => ((state.ppm = Number(e.target.value)), apply()));
-  filtersEl.addEventListener("click", (e) => {
+  panel.addEventListener("input", (e) => {
+    const el = e.target;
+    if (el.type !== "range") return;
+    const f = L.FILTERS.find((x) => x.key === el.dataset.key);
+    const r = bounds[f.key];
+    const v = Number(el.value);
+    state[f.key] = (f.type === "min" && v <= r.min) || (f.type === "max" && v >= r.max) ? 0 : v;
+    state.page = 1;
+    render();
+  });
+  panel.addEventListener("click", (e) => {
     const b = e.target.closest("button");
     if (!b) return;
     const seg = b.closest(".seg");
-    if (seg) state[seg.dataset.name] = b.dataset.value;
-    else if (b.closest("#markets")) state.markets.has(b.dataset.value) ? state.markets.delete(b.dataset.value) : state.markets.add(b.dataset.value);
-    else if (b.id === "reset") { location.hash = ""; readHash(); }
+    if (seg) state[seg.dataset.key] = b.dataset.value;
+    else if (b.id === "reset") state = { ...L.emptyState(), compare: state.compare };
     else return;
-    syncControls();
-    apply();
+    state.page = 1;
+    render();
   });
+  let typing;
+  $("#q").addEventListener("input", (e) => {
+    clearTimeout(typing);
+    typing = setTimeout(() => { state.q = e.target.value.trim(); state.page = 1; render(); }, 150);
+  });
+  $("#sort").addEventListener("change", (e) => { state.sort = e.target.value; state.page = 1; render(); });
   $("#active").addEventListener("click", (e) => {
     const b = e.target.closest("button");
     if (!b) return;
-    if (b.dataset.i === "all") { location.hash = ""; readHash(); }
-    else clearers[Number(b.dataset.i)]?.();
-    syncControls();
-    apply();
+    if (b.dataset.clear === "all") state = { ...L.emptyState(), compare: state.compare };
+    else L.clearFilter(state, b.dataset.clear, b.dataset.value);
+    render();
   });
-  document.querySelector('[name="sort"]').addEventListener("change", (e) => ((state.sort = e.target.value), apply()));
+  $("#pager").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-page]");
+    if (!b || b.disabled) return;
+    state.page = Number(b.dataset.page);
+    render({ scroll: true });
+  });
+  $("#results").addEventListener("click", (e) => {
+    const open = e.target.closest("[data-open]");
+    if (open) openDetail(open.dataset.open);
+  });
+  $("#results").addEventListener("change", (e) => {
+    const id = e.target.dataset.compare;
+    if (!id) return;
+    const { list, full } = L.toggleCompare(state.compare, id);
+    if (full) { e.target.checked = false; alert(t("compare_max", { n: L.COMPARE_MAX })); return; }
+    state.compare = list;
+    render();
+  });
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-uncompare]");
+    if (!b) return;
+    state.compare = state.compare.filter((x) => x !== b.dataset.uncompare);
+    render();
+    if ($("#compare").open) state.compare.length < 2 ? $("#compare").close() : openCompare();
+  });
+  $("#open-compare").addEventListener("click", openCompare);
+  $("#only-diff").addEventListener("change", (e) => { onlyDifferences = e.target.checked; openCompare(); });
+  document.querySelectorAll("dialog [data-close]").forEach((b) => b.addEventListener("click", () => b.closest("dialog").close()));
   $("#toggle-filters").addEventListener("click", (e) => {
-    const open = filtersEl.classList.toggle("open");
-    e.currentTarget.setAttribute("aria-expanded", open);
+    const open = $("#filters").classList.toggle("open");
+    e.currentTarget.setAttribute("aria-expanded", String(open));
   });
-  new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && shown < matches.length) renderMore();
-  }, { rootMargin: "800px" }).observe($("#sentinel"));
+  $("#lang").addEventListener("change", (e) => {
+    setLanguage(e.target.value);
+    storage.set("lang", e.target.value);
+    applyStrings();
+    renderPanel();
+    render();
+  });
 }
+
+function start(payload) {
+  data = payload;
+  all = L.prepare(payload);
+  byId = new Map(all.map((p) => [p.id, p]));
+  bounds = L.ranges(all);
+  state = L.decode(location.hash);
+  applyStrings();
+  renderPanel();
+  bind();
+  render();
+}
+
+setLanguage(pickLanguage(storage.get("lang"), navigator.languages));
+$("#lang").innerHTML = Object.entries(LANGUAGES).map(([k, name]) => `<option value="${k}" ${k === language() ? "selected" : ""}>${name}</option>`).join("");
+applyStrings();
+$("#count").textContent = t("loading");
 
 fetch("printers.json")
   .then((r) => r.json())
-  .then((data) => {
-    all = prepare(data);
-    if (data.updated) $("#updated").textContent = `Updated ${data.updated}. New models are checked every week.`;
-    buildChoices();
-    readHash();
-    syncControls();
-    bind();
-    apply();
-  })
-  .catch(() => ($("#count").textContent = "The printer list could not be loaded."));
+  .then(start)
+  .catch((error) => {
+    console.error(error);
+    $("#count").textContent = t("load_error");
+  });
