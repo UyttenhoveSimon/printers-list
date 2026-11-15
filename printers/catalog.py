@@ -17,7 +17,9 @@ therefore leaves its products as they were instead of retiring them all.
 
 import json
 import logging
+import threading
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from datetime import date, timedelta
 from pathlib import Path
@@ -32,8 +34,10 @@ logger = logging.getLogger(__name__)
 
 #: how long a lookup that found nothing is trusted before Icecat is asked again
 RETRY_AFTER = timedelta(days=30)
-#: lookups between two saves of the catalogue during a run
+#: candidates between two saves of the catalogue during a run
 CHECKPOINT = 500
+#: Icecat lookups in flight at once, each with its own courtesy pause
+WORKERS = 4
 #: brands Open Icecat does not carry: their makers' pages are the record
 NOT_IN_OPEN_ICECAT = frozenset({"Lexmark"})
 
@@ -112,51 +116,75 @@ class Catalog:
 
     # lookups -----------------------------------------------------------------
 
-    def resolve(  # noqa: PLR0911 - each way out is one case of the cache
-        self, fetcher: Fetcher, candidate: Candidate, budget: list[int]
-    ) -> str | None:
-        """Return the Icecat id of a candidate in scope, looking it up if needed.
+    def needs_lookup(self, candidate: Candidate) -> bool:
+        """Whether Icecat must be asked about a candidate.
 
-        ``budget`` is a one-item list of lookups still allowed in this run;
-        candidates past it stay unresolved until the next run. A product read
-        under an older mapping (``schema``) is read again.
+        It must when it never was, when a miss has gone stale, or when the
+        product was read under an older mapping (``schema``).
         """
         if candidate.brand in NOT_IN_OPEN_ICECAT:
-            return None
+            return False
         known = self.state["lookups"].get(candidate.key)
-        if known is not None:
-            product_id = str(known.get("id"))
-            product = self.products.get(product_id)
-            if not known.get("reason") and product is not None:
-                if product.get("schema", 1) >= SCHEMA:
-                    return product_id
-            else:
-                checked = date.fromisoformat(known["checked"])
-                if known.get("id") is not None or self.today - checked < RETRY_AFTER:
-                    return None
-        if budget[0] <= 0:
+        if known is None:
+            return True
+        product = self.products.get(str(known.get("id")))
+        if not known.get("reason") and product is not None:
+            return product.get("schema", 1) < SCHEMA
+        if known.get("id") is not None:
+            return False  # a product Icecat has, out of scope: it stays so
+        return self.today - date.fromisoformat(known["checked"]) >= RETRY_AFTER
+
+    def lookup_all(self, candidates: list[Candidate]) -> dict[str, icecat.Lookup]:
+        """Ask Icecat about several candidates at once, a few at a time.
+
+        Each worker has its own session and keeps the courtesy pause between
+        its own requests; a lookup that fails on the network is left for the
+        next run.
+        """
+        local = threading.local()
+
+        def one(candidate: Candidate) -> tuple[str, icecat.Lookup | None]:
+            if not hasattr(local, "fetcher"):
+                local.fetcher = Fetcher()
+            try:
+                return candidate.key, icecat.lookup(
+                    local.fetcher,
+                    icecat_id=candidate.icecat_id,
+                    brand=candidate.brand,
+                    code=candidate.code,
+                    gtin=candidate.gtin,
+                )
+            except FetchError as error:
+                logger.debug(f"{candidate.key}: {error}")
+                return candidate.key, None
+
+        with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+            return {key: found for key, found in pool.map(one, candidates) if found}
+
+    def resolve(
+        self, candidate: Candidate, fresh: dict[str, icecat.Lookup]
+    ) -> str | None:
+        """The product id of a candidate in scope, or ``None``.
+
+        It comes from this run's lookups or from the cache; ``None`` means out
+        of scope, or not known yet.
+        """
+        result = fresh.get(candidate.key)
+        if result is not None:
+            record = result.record
+            self.state["lookups"][candidate.key] = {
+                "id": record["icecat_id"] if record else None,
+                "reason": result.reason,
+                "checked": self.today.isoformat(),
+            }
+            if record is None or result.reason:
+                return None
+            return self.store(str(record["icecat_id"]), record)
+        known = self.state["lookups"].get(candidate.key)
+        if known is None or known.get("reason"):
             return None
-        budget[0] -= 1
-        try:
-            result = icecat.lookup(
-                fetcher,
-                icecat_id=candidate.icecat_id,
-                brand=candidate.brand,
-                code=candidate.code,
-                gtin=candidate.gtin,
-            )
-        except FetchError as error:
-            logger.debug(f"{candidate.key}: {error}")
-            return None
-        record = result.record
-        self.state["lookups"][candidate.key] = {
-            "id": record["icecat_id"] if record else None,
-            "reason": result.reason,
-            "checked": self.today.isoformat(),
-        }
-        if record is None or result.reason:
-            return None
-        return self.store(str(record["icecat_id"]), record)
+        product_id = str(known.get("id"))
+        return product_id if product_id in self.products else None
 
     def store(self, product_id: str, record: dict[str, Any]) -> str:
         """Put a fresh record in, keeping what earlier runs learnt about it."""
@@ -193,49 +221,60 @@ class Catalog:
         report = Report()
         known_before = set(self.products)
         found = self.discover(fetcher, sources, report)
-        budget = [max_lookups]
-        today = self.today.isoformat()
-        sightings: dict[tuple[str, str], dict[str, Any]] = {}
+        budget = max_lookups
         for where, candidates in found.items():
-            for count, candidate in enumerate(candidates, 1):
-                spent = budget[0]
-                product_id = self.resolve(fetcher, candidate, budget)
-                if product_id is None and candidate.brand in NOT_IN_OPEN_ICECAT:
-                    product_id = self.adopt(candidate)
-                elif product_id is not None:
-                    self.check(product_id, candidate)
-                if budget[0] != spent and budget[0] % CHECKPOINT == 0:
-                    # a first fill takes hours: a crash must not lose it all
-                    self.save()
-                if count % 250 == 0:
-                    logger.info(f"{where}: {count}/{len(candidates)} resolved")
-                if product_id is None:
-                    continue
-                sighting = sightings.setdefault(
-                    (product_id, where),
-                    {"date": today, "markets": set(), "url": candidate.url},
-                )
-                sighting["markets"].update(candidate.markets)
-            self.state["runs"][where] = today
-        for (product_id, where), sighting in sightings.items():
-            sighting["markets"] = sorted(sighting["markets"])
-            self.products[product_id]["sightings"][where] = sighting
-        report.lookups = max_lookups - budget[0]
+            # the source answered: what it lists now is what is on sale
+            self.state["runs"][where] = self.today.isoformat()
+            for start in range(0, len(candidates), CHECKPOINT):
+                chunk = candidates[start : start + CHECKPOINT]
+                asked = {c.key: c for c in chunk if self.needs_lookup(c)}
+                wanted = list(asked.values())[: max(budget, 0)]
+                budget -= len(wanted)
+                fresh = self.lookup_all(wanted) if wanted else {}
+                for candidate in chunk:
+                    self.place(where, candidate, fresh)
+                # a first fill takes hours: a crash must not lose it all
+                self.save()
+                done = min(start + CHECKPOINT, len(candidates))
+                logger.info(f"{where}: {done}/{len(candidates)} resolved")
+        report.lookups = max_lookups - max(budget, 0)
         report.new = sorted(set(self.products) - known_before)
         report.pending = sum(
             1
             for candidates in found.values()
             for candidate in candidates
-            if candidate.key not in self.state["lookups"]
+            if self.needs_lookup(candidate)
         )
         self.state["report"] = {
-            "date": today,
+            "date": self.today.isoformat(),
             "sources": report.sources,
             "lookups": report.lookups,
             "new": len(report.new),
             "pending": report.pending,
         }
         return report
+
+    def place(self, where: str, candidate: Candidate, fresh: dict) -> None:
+        """Resolve one candidate and record where it was seen today."""
+        product_id = self.resolve(candidate, fresh)
+        if product_id is None and candidate.brand in NOT_IN_OPEN_ICECAT:
+            product_id = self.adopt(candidate)
+        elif product_id is not None:
+            self.check(product_id, candidate)
+        if product_id is None:
+            return
+        today = self.today.isoformat()
+        sightings = self.products[product_id]["sightings"]
+        previous = sightings.get(where)
+        markets = set(candidate.markets)
+        if previous and previous["date"] == today:
+            # several regional SKUs of the source fold into one product
+            markets |= set(previous["markets"])
+        sightings[where] = {
+            "date": today,
+            "markets": sorted(markets),
+            "url": (previous or {}).get("url") or candidate.url,
+        }
 
     # the page ----------------------------------------------------------------
 
