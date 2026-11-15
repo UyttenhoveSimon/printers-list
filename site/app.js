@@ -103,6 +103,40 @@ function renderMore() {
   shown += next.length;
 }
 
+// --- the active filters, as chips above the results --------------------------
+
+const FLAG_LABELS = {
+  available: "On sale", new: "New this week", duplex_print: "2-sided print",
+  duplex_scan: "2-sided scan", ink_tank: "Ink tank", scan: "Scan", copy: "Copy",
+  fax: "Fax", adf: "ADF", a3: "A3", wifi: "Wi-Fi", ethernet: "Ethernet",
+  wifi_direct: "Wi-Fi Direct", airprint: "AirPrint", nfc: "NFC",
+};
+
+function activeFilters() {
+  // [label, how to clear it]; "on sale" is the default, so only its absence shows
+  const out = [];
+  if (state.q) out.push([`“${state.q}”`, () => (state.q = "")]);
+  if (!state.available) out.push(["Includes not on sale", () => (state.available = true)]);
+  for (const f of FLAGS) if (f !== "available" && state[f]) out.push([FLAG_LABELS[f], () => (state[f] = false)]);
+  if (state.technology) out.push([state.technology === "laser" ? "Laser / LED" : "Inkjet", () => (state.technology = "")]);
+  if (state.color) out.push([state.color === "1" ? "Colour" : "Mono", () => (state.color = "")]);
+  if (state.ppm) out.push([`≥ ${state.ppm} ppm`, () => (state.ppm = 0)]);
+  if (state.year) out.push([`${state.year} or later`, () => (state.year = "")]);
+  for (const m of state.markets) out.push([`Sold in ${m}`, () => state.markets.delete(m)]);
+  for (const b of state.brands) out.push([b, () => state.brands.delete(b)]);
+  return out;
+}
+
+let clearers = [];
+
+function renderActive() {
+  const filters = activeFilters();
+  clearers = filters.map(([, clear]) => clear);
+  const chips = filters.map(([label], i) => `<button data-i="${i}" title="Remove this filter">${esc(label)}</button>`);
+  if (filters.length > 1) chips.push('<button class="clear" data-i="all">Clear all</button>');
+  $("#active").innerHTML = chips.join("");
+}
+
 function apply() {
   matches = all.filter(test).sort(SORTS[state.sort]);
   shown = 0;
@@ -110,6 +144,7 @@ function apply() {
   renderMore();
   $("#count").textContent = `${matches.length.toLocaleString()} of ${all.length.toLocaleString()} printers`;
   $("#ppm-out").textContent = state.ppm ? `≥ ${state.ppm} ppm` : "any";
+  renderActive();
   writeHash();
 }
 
@@ -199,6 +234,14 @@ function bind() {
     else if (b.closest("#markets")) state.markets.has(b.dataset.value) ? state.markets.delete(b.dataset.value) : state.markets.add(b.dataset.value);
     else if (b.id === "reset") { location.hash = ""; readHash(); }
     else return;
+    syncControls();
+    apply();
+  });
+  $("#active").addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    if (b.dataset.i === "all") { location.hash = ""; readHash(); }
+    else clearers[Number(b.dataset.i)]?.();
     syncControls();
     apply();
   });
