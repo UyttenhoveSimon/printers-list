@@ -10,10 +10,12 @@ from printers.sources import (
     all_sources,
     brother,
     brother_support,
+    canon_uk,
     epson,
     hp,
     hp_shop,
     icecat_index,
+    kyocera,
     lexmark,
     pages,
 )
@@ -328,3 +330,71 @@ def test_hp_power_is_the_printing_figure_or_nothing():
     assert hp_shop.watts("Active Printing: 282 W; Ready: 27 W; Sleep: 1.0 W") == 282
     assert hp_shop.watts("900 watts (printing), 100 watts (ready)") == 900
     assert hp_shop.watts("0.109 watts (manual-Off), 3.023 watts (ready)") is None
+
+
+def test_canon_uk_reads_an_inkjet_and_a_laser_spec_page():
+    inkjet = canon_uk.spec_list(fixture_text("canon_uk_pixma_g3510.html"))
+    assert canon_uk.specifications(inkjet) == {
+        "ppm_iso": 9,
+        "print_dpi": 4800,
+        "paper_input": 100,
+        "weight_kg": 6.3,
+        "noise_db": 53.5,
+        "power_w": 11.0,
+        "scan_dpi": 600,
+        "max_paper": "A4",
+        "width_mm": 445.0,
+        "depth_mm": 330.0,
+        "height_mm": 163.0,
+    }
+    laser = canon_uk.specifications(
+        canon_uk.spec_list(fixture_text("canon_uk_lbp361dw.html"))
+    )
+    assert laser["paper_input"] == 650  # cassette and multi-purpose tray
+    assert laser["noise_db"] == 55.0  # sound pressure, not power
+    assert (laser["monthly_volume"], laser["duty_cycle"]) == (16000, 275000)
+    assert laser["width_mm"] == 430.0
+
+
+def test_canon_uk_matches_models_and_series():
+    sitemap = (
+        "<loc>https://www.canon.co.uk/printers/pixma-g3510/specifications/</loc>"
+        "<loc>https://www.canon.co.uk/printers/pixma-ts6050-series/specifications/</loc>"
+        "<loc>https://www.canon.co.uk/printers/inkjet/pixma/photo-paper/pp-201/specifications/</loc>"
+    )
+    pages = canon_uk.spec_pages(FakeFetcher({canon_uk.SITEMAP: sitemap}))
+    assert canon_uk.key({"name": "Canon PIXMA G3510"}) == "pixmag3510"
+    assert (canon_uk.page_for("pixmag3510", pages) or "").endswith(
+        "pixma-g3510/specifications/"
+    )
+    assert (canon_uk.page_for("pixmats6051", pages) or "").endswith(
+        "series/specifications/"
+    )
+    assert canon_uk.page_for("pixmapp201", pages) is None
+    assert canon_uk.key({"name": "Canon 7063C013 laser printer"}) == ""
+
+
+def test_kyocera_reads_its_icon_row_and_tabs():
+    page = fixture_text("kyocera_ecosys_pa2100cwx.html")
+    assert kyocera.specifications(kyocera.spec_list(page)) == {
+        "ppm_black": 21,
+        "print_dpi": 1200,
+        "weight_kg": 21.0,
+        "power_w": 345.0,
+        "paper_input": 300,  # 50-sheet tray and 250-sheet cassette
+        "paper_output": 150,
+        "max_paper": "A4",
+        "width_mm": 410.0,
+        "depth_mm": 410.0,
+        "height_mm": 329.0,
+    }
+
+
+def test_kyocera_matches_names_with_or_without_the_range():
+    sitemap = (
+        "<loc>https://www.kyoceradocumentsolutions.eu/en/products/printers/"
+        "ECOSYSPA2100CWX.html</loc>"
+    )
+    pages = kyocera.product_pages(FakeFetcher({kyocera.SITEMAP: sitemap}))
+    for name in ("KYOCERA ECOSYS PA2100cwx", "KYOCERA PA2100CWX laser printer"):
+        assert pages.get(kyocera.key({"name": name}), "").endswith("CWX.html")

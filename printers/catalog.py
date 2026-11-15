@@ -29,7 +29,7 @@ from typing import Any
 from . import icecat
 from .browser import Browser
 from .fetch import BotWallError, Fetcher, FetchError, Reader
-from .sources import Candidate, Source, brother_support, hp_shop
+from .sources import Candidate, Source, brother_support, canon_uk, hp_shop, kyocera
 from .specs import FILLABLE, SCHEMA, disagreements, office_copier, out_of_scope
 
 logger = logging.getLogger(__name__)
@@ -44,7 +44,12 @@ CHECKPOINT = 500
 #: Icecat lookups in flight at once, each with its own courtesy pause
 WORKERS = 4
 #: makers' sites that fill the gaps Icecat leaves, by brand
-ENRICHERS = {"Brother": brother_support, "HP": hp_shop}
+ENRICHERS = {
+    "Brother": brother_support,
+    "HP": hp_shop,
+    "Canon": canon_uk,
+    "KYOCERA": kyocera,
+}
 #: how long a maker page read for its gaps is trusted
 ENRICH_AGAIN_AFTER = timedelta(days=90)
 #: maker pages read per run for gaps at most

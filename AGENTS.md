@@ -55,6 +55,8 @@ printers/
     lexmark.py      Lexmark, 9 countries: the record itself (not in Open Icecat)
     brother_support.py  support.brother.com spec pages: fills Brother's gaps
     hp_shop.py      HP's UK shop spec sheets, through browser.py: fills HP's gaps
+    canon_uk.py     canon.co.uk spec pages, through browser.py: fills Canon's gaps
+    kyocera.py      Kyocera Europe's product pages: fills Kyocera's gaps
     hp.py, brother.py  model lists; both refuse non-browser clients today
 site/
   index.html        the shell; strings filled from i18n.js
@@ -143,8 +145,9 @@ tests/              offline; fixtures/ holds trimmed real captures
 - Release dates are rare in Icecat (about one printer in five).
 - Brother's spec pages cover a model family: a cell lists values per model
   group, and a row's label may name the models it applies to (the ADF row).
-- Canon refuses honest clients on every regional site tried; HP's support
-  site keeps its spec data behind paths its robots.txt disallows.
+- Canon refuses plain HTTP clients on every regional site tried: canon_uk
+  reads it through Chromium. HP's support site keeps its spec data behind
+  paths its robots.txt disallows; the UK shop has the same sheets.
 - Office copiers are classed (`specs.office_copier`) by range name, Icecat
   positioning, any A3 laser, or 50 kg+: any one sign.
 - rustwright's `page.url` does not follow `history.replaceState`: tests read

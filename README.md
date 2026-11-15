@@ -77,10 +77,11 @@ The page lists these sources too, at the bottom, with how each one answered in t
 | [brother.*](https://www.brother.eu) (GB, BE, FR, DE) | Brother's support sitemap | ⛔ 403 (Brother is covered by Icecat) |
 | [support.brother.com](https://support.brother.com) | Brother's spec pages: weight, noise, paper trays and ADF size where Icecat leaves them empty | ✅ |
 | [HP's UK shop](https://www.hp.com/gb-en/shop) | HP's spec sheets: speed, energy use, duty cycle and paper capacity where Icecat leaves them empty; read through headless Chromium, as hp.com answers browsers only | ✅ |
-| Canon (Europe, US, Asia, Australia), Galaxus, Digitec | | ⛔ 403 (Canon is covered by Icecat) |
+| [canon.co.uk](https://www.canon.co.uk) spec pages | Canon's specs: power, noise, volumes, paper capacity and size where Icecat leaves them empty; read through headless Chromium, as Canon's sites refuse plain HTTP clients | ✅ |
+| Galaxus, Digitec | | ⛔ 403 |
 | support.hp.com | | ⛔ its spec data sits behind paths its robots.txt disallows |
 | Amazon | | ⛔ forbids automated access |
-| Kyocera | Pages answer, but list no product code Icecat knows | 🔜 |
+| [kyoceradocumentsolutions.eu](https://www.kyoceradocumentsolutions.eu) | Kyocera's product pages: power, size, weight and paper capacity where Icecat leaves them empty, matched by model name | ✅ |
 
 The fetcher pauses between requests and reports a site that walls it off. The weekly [update](.github/workflows/update.yml) ends with `printers check`, which fails the run when a source that used to answer stops, so a broken site is reported rather than silently shrinking the list.
 
