@@ -144,6 +144,6 @@ tests/              offline; fixtures/ holds trimmed real captures
 - Canon refuses honest clients on every regional site tried; HP's support
   site keeps its spec data behind paths its robots.txt disallows.
 - Office copiers are classed (`specs.office_copier`) by range name, Icecat
-  positioning, A3 laser with 1,000+ sheets, or 50 kg+: any one sign.
+  positioning, any A3 laser, or 50 kg+: any one sign.
 - rustwright's `page.url` does not follow `history.replaceState`: tests read
   `location.hash`.

@@ -148,26 +148,20 @@ COPIER_RANGES = re.compile(
 )
 #: kilograms from which a printer is not carried to a desk
 COPIER_WEIGHT_KG = 50
-#: sheets an A3 laser holds when it is a copier with paper drawers
-COPIER_A3_SHEETS = 1000
 
 
 def office_copier(record: dict) -> bool:
     """Whether a printer is an office copier rather than a home or small-office one.
 
     Any one sign is enough: a copier range by name, Icecat positioning it for
-    enterprises or workgroups, an A3 laser holding a thousand sheets or more,
-    or a weight no one puts on a desk.
+    enterprises or workgroups, an A3 laser (no home printer is one: they are
+    department machines, 20 kg and more), or a weight no one puts on a desk.
     """
     name = f"{record.get('name') or ''} {record.get('title') or ''}"
     a3 = (record.get("max_paper") or "").replace("SR", "").startswith("A3")
     return bool(
         COPIER_RANGES.search(name)
         or record.get("market_positioning") in {"Enterprise", "Workgroup"}
-        or (
-            a3
-            and record.get("technology") == "laser"
-            and (record.get("paper_input") or 0) >= COPIER_A3_SHEETS
-        )
+        or (a3 and record.get("technology") == "laser")
         or (record.get("weight_kg") or 0) >= COPIER_WEIGHT_KG
     )

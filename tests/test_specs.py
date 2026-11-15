@@ -106,7 +106,7 @@ def test_out_of_scope():
                 "max_paper": "A3",
                 "paper_input": 250,
             },
-            False,
+            True,
         ),
         ({"name": "Heavy", "weight_kg": 62.5}, True),
         ({"name": "Light", "weight_kg": 12}, False),
