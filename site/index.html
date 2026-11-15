@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Printers List</title>
+<meta name="description" content="Every home and small-office printer on sale, filterable by two-sided printing and scanning, technology, functions, connectivity, speed, year and country. Refreshed every week.">
+<link rel="preload" href="printers.json" as="fetch" crossorigin>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232f6fde' d='M6 2h12v5H6zM4 8h16a2 2 0 0 1 2 2v7h-4v5H6v-5H2v-7a2 2 0 0 1 2-2zm4 9v3h8v-3z'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-row">
+    <h1>Printers List</h1>
+    <input id="q" type="search" placeholder="Search a model, e.g. MFC-L8900" aria-label="Search" autocomplete="off">
+    <button id="toggle-filters" class="ghost" aria-expanded="false" aria-controls="filters">Filters</button>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <aside id="filters" class="filters" aria-label="Filters">
+    <section>
+      <label class="check"><input type="checkbox" name="available" checked> On sale only</label>
+      <label class="check"><input type="checkbox" name="new"> New this week</label>
+    </section>
+
+    <section>
+      <h2>Two-sided</h2>
+      <label class="check"><input type="checkbox" name="duplex_print"> Two-sided printing</label>
+      <label class="check"><input type="checkbox" name="duplex_scan"> Two-sided scanning</label>
+    </section>
+
+    <section>
+      <h2>Technology</h2>
+      <div class="seg" data-name="technology">
+        <button data-value="" class="on">Any</button><button data-value="laser">Laser / LED</button><button data-value="inkjet">Inkjet</button>
+      </div>
+      <label class="check"><input type="checkbox" name="ink_tank"> Ink tank (refillable)</label>
+    </section>
+
+    <section>
+      <h2>Colour</h2>
+      <div class="seg" data-name="color">
+        <button data-value="" class="on">Any</button><button data-value="1">Colour</button><button data-value="0">Mono</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Functions</h2>
+      <label class="check"><input type="checkbox" name="scan"> Scan</label>
+      <label class="check"><input type="checkbox" name="copy"> Copy</label>
+      <label class="check"><input type="checkbox" name="fax"> Fax</label>
+      <label class="check"><input type="checkbox" name="adf"> Document feeder (ADF)</label>
+      <label class="check"><input type="checkbox" name="a3"> Prints A3</label>
+    </section>
+
+    <section>
+      <h2>Connectivity</h2>
+      <label class="check"><input type="checkbox" name="wifi"> Wi-Fi</label>
+      <label class="check"><input type="checkbox" name="ethernet"> Ethernet</label>
+      <label class="check"><input type="checkbox" name="wifi_direct"> Wi-Fi Direct</label>
+      <label class="check"><input type="checkbox" name="airprint"> AirPrint</label>
+      <label class="check"><input type="checkbox" name="nfc"> NFC</label>
+    </section>
+
+    <section>
+      <h2>Speed <output id="ppm-out">any</output></h2>
+      <input type="range" name="ppm" min="0" max="60" step="5" value="0" aria-label="Minimum pages per minute">
+    </section>
+
+    <section>
+      <h2>Released from</h2>
+      <select name="year" aria-label="Released from year"><option value="">Any year</option></select>
+    </section>
+
+    <section>
+      <h2>Sold in</h2>
+      <div id="markets" class="chips"></div>
+    </section>
+
+    <section>
+      <h2>Brand</h2>
+      <div id="brands" class="brand-list"></div>
+    </section>
+
+    <button id="reset" class="ghost wide">Reset filters</button>
+  </aside>
+
+  <main>
+    <div class="bar">
+      <p id="count" aria-live="polite">Loading…</p>
+      <label class="sort">Sort
+        <select name="sort">
+          <option value="name">Name</option>
+          <option value="newest">Newest</option>
+          <option value="fastest">Fastest</option>
+        </select>
+      </label>
+    </div>
+    <ul id="results" class="grid"></ul>
+    <div id="sentinel"></div>
+  </main>
+</div>
+
+<footer class="wrap foot">
+  <p id="updated"></p>
+  <p>Specifications from <a href="https://icecat.biz">Open Icecat</a> and the manufacturers' sites. Source on <a href="https://github.com/UyttenhoveSimon/printers-list">GitHub</a>.</p>
+</footer>
+<script src="app.js" defer></script>
+</body>
+</html>
