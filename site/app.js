@@ -250,8 +250,13 @@ async function openDetail(id) {
   const p = byId.get(id);
   if (!p) return;
   await loadDetails();
+  const filled = ((details && details[p.id]) || {}).filled || {};
   const rows = L.SPEC_ROWS.filter((k) => p[k] !== undefined && p[k] !== null)
-    .map((k) => `<tr><th scope="row">${esc(t(k))}</th><td>${esc(value(k, p[k]))}</td></tr>`).join("");
+    .map((k) => {
+      // a value Icecat lacked, read from the maker's own page, says so
+      const from = filled[k] ? ` <span class="from">${esc(t("from_source", { source: SOURCE_LABELS[filled[k]] || filled[k] }))}</span>` : "";
+      return `<tr><th scope="row">${esc(t(k))}</th><td>${esc(value(k, p[k]))}${from}</td></tr>`;
+    }).join("");
   const countries = (p.markets || []).map(countryName).sort((a, b) => a.localeCompare(b, language()));
   const links = [`<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(t("maker_page"))}</a>`];
   if (p.icecat_id) links.push(`<a href="https://icecat.biz/p/vendorName/mpn/desc-${p.icecat_id}.html" target="_blank" rel="noopener">${esc(t("icecat_page"))}</a>`);
@@ -292,7 +297,10 @@ const SOURCES = [
   { name: "lexmark", url: "https://www.lexmark.com", label: "Lexmark", gives: "source_lexmark" },
   { name: "hp.com", url: "https://www.hp.com", label: "HP", gives: "source_hp" },
   { name: "brother", url: "https://www.brother.eu", label: "Brother", gives: "source_brother" },
+  { name: "brother-support", url: "https://support.brother.com", label: "Brother support", gives: "source_brother_support" },
 ];
+
+const SOURCE_LABELS = { epson: "Epson", lexmark: "Lexmark", "brother-support": "Brother support" };
 
 function renderSources() {
   const report = (data.report && data.report.sources) || {};

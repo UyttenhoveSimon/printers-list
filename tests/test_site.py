@@ -68,6 +68,7 @@ def printer(i):
                 "url": f"https://example.com/{i}",
             }
         },
+        "filled": {"weight_kg": "brother-support"} if i == 6 else {},
         # Model 03 is confirmed by Epson's site; Model 06 is not
         "checks": {"epson": {"date": DAY, "differ": {}}}
         if i == 3
@@ -405,6 +406,7 @@ def test_detail_shows_supplies_and_countries(page):
     page.click('.card[data-id="1006"] [data-open]')
     page.wait_for_selector("#detail[open]")
     body = page.text_content("#detail-body")
+    assert "from Brother support" in body  # Model 06's weight came from Brother
     assert "T6BK" in body and "Drum" in body
     assert "Germany" in body and "Switzerland" in body
     assert "epson states otherwise" in body

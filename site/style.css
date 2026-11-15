@@ -214,6 +214,7 @@ dialog h3 { font-size: 14px; text-transform: uppercase; letter-spacing: .05em; c
 .links { margin: 10px 0 0; }
 .ok { color: var(--good); margin: 8px 0 0; }
 .warn { color: var(--warn); background: var(--warn-soft); padding: 6px 10px; border-radius: 8px; margin: 8px 0 0; }
+.from { color: var(--muted); font-size: 12px; }
 .supplies { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
 .supplies code { font-size: 13px; }
 .supplies-text { margin: 6px 0; }
