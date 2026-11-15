@@ -123,9 +123,20 @@ def specifications(spec: dict[str, str], url: str) -> dict[str, Any]:
             "noise_db": decimal(
                 first(r"([\d.]+)\s*dB\s*\(A\)", spec.get("Noise Level"))
             ),
+            "print_dpi": number(spec.get("Printing Resolution")),
+            "scan_dpi": number(spec.get("Optical Resolution")),
+            # the first figure is printing or copying; sleep and ready follow
+            "power_w": decimal(first(r"([\d.]+)\s*Watt", spec.get("Energy Use"))),
+            "max_paper": largest_paper(spec.get("Paper Formats")),
             **dimensions(spec.get("Product dimensions", "")),
         }
     )
+
+
+def largest_paper(text: str | None) -> str | None:
+    """The largest A size a printer takes: "A4 (21.0x29.7 cm), A5, A6" is A4."""
+    sizes = [int(n) for n in re.findall(r"\bA(\d)\b", text or "")]
+    return f"A{min(sizes)}" if sizes else None
 
 
 def first(pattern: str, text: str | None) -> str | None:

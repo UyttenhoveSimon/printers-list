@@ -19,7 +19,7 @@ LOC = re.compile(r"<loc>([^<]+)</loc>")
 #: product pages read per run at most, so a first run stays reasonable
 MAX_PAGES = 400
 #: bumped when a reader takes more from its pages: older entries are read again
-PAGE_VERSION = 2
+PAGE_VERSION = 3
 
 #: html -> (product code, specifications), or None when the page is no printer
 ReadPage = Callable[[str, str], tuple[str, dict[str, Any]] | None]

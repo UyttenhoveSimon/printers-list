@@ -43,6 +43,10 @@ FILLABLE = (
     "ppm_color",
     "ppm_iso",
     "first_page_s",
+    "print_dpi",
+    "scan_dpi",
+    "power_w",
+    "max_paper",
 )
 
 NUMBER = re.compile(r"\d+(?:[.,]\d+)?")
