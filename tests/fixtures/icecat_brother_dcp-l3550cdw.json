@@ -1,0 +1,204 @@
+{
+ "msg": "OK",
+ "data": {
+  "GeneralInfo": {
+   "IcecatId": 59243891,
+   "ReleaseDate": "",
+   "EndOfLifeDate": "",
+   "Title": "Brother DCP-L3550CDW multifunction printer LED A4 2400 x 600 DPI 18 ppm Wi-Fi",
+   "Brand": "Brother",
+   "GTIN": [
+    "4977766790475",
+    "4977766790185",
+    "4977766790482",
+    "4977766790192",
+    "4977766790215",
+    "4977766790208",
+    "4977766790499"
+   ],
+   "TitleInfo": {
+    "GeneratedIntTitle": "Brother DCP-L3550CDW multifunction printer"
+   },
+   "Category": {
+    "CategoryID": "304",
+    "Name": {
+     "Value": "Multifunction Printers"
+    }
+   }
+  },
+  "Image": {
+   "Pic500x500": "https://images.icecat.biz/img/gallery_mediums/e706a924473cfa7515eae47aef4983bfb3af5344.jpg",
+   "ThumbPic": "https://images.icecat.biz/img/gallery_thumbs/9c37ab9c4507337be7020e3f29a3e17c1f359e75.jpg"
+  },
+  "FeaturesGroups": [
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Duplex printing mode"
+       }
+      },
+      "PresentationValue": "Auto"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Print technology"
+       }
+      },
+      "PresentationValue": "LED"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Duplex printing"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Print speed (black, normal quality, A4/US Letter)"
+       }
+      },
+      "PresentationValue": "18 ppm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Print speed (colour, normal quality, A4/US Letter)"
+       }
+      },
+      "PresentationValue": "18 ppm"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Copying"
+       }
+      },
+      "PresentationValue": "Colour copying"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Scanning"
+       }
+      },
+      "PresentationValue": "Colour scanning"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Faxing"
+       }
+      },
+      "PresentationValue": "No"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Printing colours"
+       }
+      },
+      "PresentationValue": "Black, Cyan, Magenta, Yellow"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Auto document feeder (ADF)"
+       }
+      },
+      "PresentationValue": "Yes"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum ISO A-series paper size"
+       }
+      },
+      "PresentationValue": "A4"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "USB port"
+       }
+      },
+      "PresentationValue": "Yes"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Wi-Fi"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Ethernet LAN"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Mobile printing technologies"
+       }
+      },
+      "PresentationValue": "Apple AirPrint, Brother iPrint & Scan, Google Cloud Print, Mopria Print Service"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Market positioning"
+       }
+      },
+      "PresentationValue": "Home & office"
+     }
+    ]
+   }
+  ]
+ }
+}

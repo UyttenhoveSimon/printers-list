@@ -1,0 +1,198 @@
+{
+ "msg": "OK",
+ "data": {
+  "GeneralInfo": {
+   "IcecatId": 147708171,
+   "ReleaseDate": "",
+   "EndOfLifeDate": "",
+   "Title": "Epson EcoTank L3360 Inkjet A4 5760 x 1440 DPI 33 ppm Wi-Fi",
+   "Brand": "Epson",
+   "GTIN": [
+    "8715946741284"
+   ],
+   "TitleInfo": {
+    "GeneratedIntTitle": "Epson EcoTank L3360"
+   },
+   "Category": {
+    "CategoryID": "304",
+    "Name": {
+     "Value": "Multifunction Printers"
+    }
+   }
+  },
+  "Image": {
+   "Pic500x500": "",
+   "ThumbPic": "https://images.icecat.biz/img/gallery_thumbs/4841bb5b5f651c3c1e3910bd9708ebdb67ec8079.jpg"
+  },
+  "FeaturesGroups": [
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Print technology"
+       }
+      },
+      "PresentationValue": "Inkjet"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Duplex printing"
+       }
+      },
+      "PresentationValue": "No"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Print speed (black, normal quality, A4/US Letter)"
+       }
+      },
+      "PresentationValue": "33 ppm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Print speed (colour, normal quality, A4/US Letter)"
+       }
+      },
+      "PresentationValue": "15 ppm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Print speed (ISO/IEC 24734) black"
+       }
+      },
+      "PresentationValue": "11 ppm"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Copying"
+       }
+      },
+      "PresentationValue": "Colour copying"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Duplex scanning"
+       }
+      },
+      "PresentationValue": "No"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Scanning"
+       }
+      },
+      "PresentationValue": "Colour scanning"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Faxing"
+       }
+      },
+      "PresentationValue": "No"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Ink tank system"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Printing colours"
+       }
+      },
+      "PresentationValue": "Black, Cyan, Magenta, Yellow"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum ISO A-series paper size"
+       }
+      },
+      "PresentationValue": "A4"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Wi-Fi"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Ethernet LAN"
+       }
+      },
+      "PresentationValue": "No"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Wi-Fi Direct"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Mobile printing technologies"
+       }
+      },
+      "PresentationValue": "Apple AirPrint, Epson Smart Panel, Google Cloud Print, Epson Connect"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Market positioning"
+       }
+      },
+      "PresentationValue": "Home & office"
+     }
+    ]
+   }
+  ]
+ }
+}

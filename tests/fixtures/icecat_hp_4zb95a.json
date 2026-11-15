@@ -1,0 +1,209 @@
+{
+ "msg": "OK",
+ "data": {
+  "GeneralInfo": {
+   "IcecatId": 67458087,
+   "ReleaseDate": "01-07-2019",
+   "EndOfLifeDate": "01-06-2030",
+   "Title": "HP Color Laser Laser 150nw Wireless Color Printer, Duplex",
+   "Brand": "HP",
+   "GTIN": [
+    "0193015507111",
+    "193015507111",
+    "0193015507142",
+    "193015507142",
+    "0193015507159",
+    "193015507159",
+    "0193424931446",
+    "193424931446",
+    "0193424702626",
+    "193424702626",
+    "0193015507104",
+    "193015507104",
+    "0193015507098",
+    "193015507098",
+    "0193015507081",
+    "193015507081",
+    "0193015507074",
+    "193015507074",
+    "0193015507067",
+    "193015507067",
+    "0193015507050",
+    "193015507050",
+    "0193015507043",
+    "193015507043",
+    "0193015507036",
+    "193015507036",
+    "0193424051823",
+    "193424051823",
+    "0193015507135",
+    "193015507135",
+    "0198122709595",
+    "198122709595",
+    "0198122709601",
+    "198122709601",
+    "1930155071282",
+    "5715063742563"
+   ],
+   "TitleInfo": {
+    "GeneratedIntTitle": "HP Color Laser 150nw"
+   },
+   "Category": {
+    "CategoryID": "235",
+    "Name": {
+     "Value": "Laser Printers"
+    }
+   }
+  },
+  "Image": {
+   "Pic500x500": "https://images.icecat.biz/img/gallery_mediums/442b95ea0b8f135b38bf8af2e88deeb9b4e79a9b.jpg",
+   "ThumbPic": "https://images.icecat.biz/img/gallery_thumbs/779bed8570dbbde92171c71439fe0dcd55e21406.jpg"
+  },
+  "FeaturesGroups": [
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Duplex printing mode"
+       }
+      },
+      "PresentationValue": "Manual"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Print speed (colour, normal quality, A4/US Letter)"
+       }
+      },
+      "PresentationValue": "4 ppm"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Colour"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Print technology"
+       }
+      },
+      "PresentationValue": "Laser"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Duplex printing"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Print speed (black, normal quality, A4/US Letter)"
+       }
+      },
+      "PresentationValue": "18 ppm"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum duty cycle"
+       }
+      },
+      "PresentationValue": "20000 pages per month"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Printing colours"
+       }
+      },
+      "PresentationValue": "Black, Cyan, Magenta, Yellow"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Maximum ISO A-series paper size"
+       }
+      },
+      "PresentationValue": "A4"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "USB port"
+       }
+      },
+      "PresentationValue": "Yes"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Wi-Fi"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Ethernet LAN"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Wi-Fi Direct"
+       }
+      },
+      "PresentationValue": "Yes"
+     },
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Mobile printing technologies"
+       }
+      },
+      "PresentationValue": "Mopria Print Service, Apple AirPrint, Google Cloud Print"
+     }
+    ]
+   },
+   {
+    "Features": [
+     {
+      "Feature": {
+       "Name": {
+        "Value": "Market positioning"
+       }
+      },
+      "PresentationValue": "Home & office"
+     }
+    ]
+   }
+  ]
+ }
+}
