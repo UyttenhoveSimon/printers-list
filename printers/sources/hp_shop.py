@@ -100,7 +100,8 @@ def watts(text: str | None) -> float | None:
 def specifications(sheet: dict[str, str]) -> dict[str, Any]:
     """The fields HP's sheet states, in catalogue terms; silence is unknown."""
     tec = re.search(
-        r"([\d.]+)\s*kWh", sheet.get("Typical electricity consumption (TEC) number", "")
+        r"(\d+(?:\.\d+)?)\s*kWh",
+        sheet.get("Typical electricity consumption (TEC) number", ""),
     )
     return compact(
         {

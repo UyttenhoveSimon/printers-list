@@ -115,18 +115,20 @@ def specifications(spec: dict[str, str], url: str) -> dict[str, Any]:
             "ppm_black": number(after_word(spec.get("Printing Speed"), "Monochrome")),
             "ppm_color": number(after_word(spec.get("Printing Speed"), "Colour")),
             "first_page_s": decimal(
-                first(r"Monochrome\s*([\d.]+)", spec.get("First Page Out"))
+                first(r"Monochrome\s*(\d+(?:\.\d+)?)", spec.get("First Page Out"))
             ),
             "paper_input": number(spec.get("Paper Tray Capacity")),
             "paper_output": number(spec.get("Output Tray Capacity")),
             "weight_kg": decimal(spec.get("Product weight")),
             "noise_db": decimal(
-                first(r"([\d.]+)\s*dB\s*\(A\)", spec.get("Noise Level"))
+                first(r"(\d+(?:\.\d+)?)\s*dB\s*\(A\)", spec.get("Noise Level"))
             ),
             "print_dpi": number(spec.get("Printing Resolution")),
             "scan_dpi": number(spec.get("Optical Resolution")),
             # the first figure is printing or copying; sleep and ready follow
-            "power_w": decimal(first(r"([\d.]+)\s*Watt", spec.get("Energy Use"))),
+            "power_w": decimal(
+                first(r"(\d+(?:\.\d+)?)\s*Watt", spec.get("Energy Use"))
+            ),
             "max_paper": largest_paper(spec.get("Paper Formats")),
             **dimensions(spec.get("Product dimensions", "")),
         }

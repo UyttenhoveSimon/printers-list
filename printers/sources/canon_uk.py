@@ -126,7 +126,7 @@ def first(pattern: str, text: str) -> str | None:
 def specifications(spec: dict[str, str]) -> dict[str, Any]:
     """The fields Canon's page states, in catalogue terms; silence is unknown."""
     speed = find(spec, "Mono Print Speed", "Print Speed")
-    weight = first(r"([\d.]+)\s*kg", find(spec, "Weight") + " ; ")
+    weight = first(r"(\d+(?:\.\d+)?)\s*kg", find(spec, "Weight") + " ; ")
     noise = find(spec, "Noise Levels", "Acoustic Noise")
     # sound pressure, as Icecat gives it; Canon lists sound power first
     pressure = noise.lower().split("pressure", 1)[-1]
@@ -134,13 +134,14 @@ def specifications(spec: dict[str, str]) -> dict[str, Any]:
     return compact(
         {
             "ppm_iso": round(float(n))
-            if (n := first(r"([\d.]+)\s*ipm", speed))
+            if (n := first(r"(\d+(?:\.\d+)?)\s*ipm", speed))
             else None,
             "ppm_black": number(first(r"(\d+)\s*ppm", speed)),
             "print_dpi": number(find(spec, "Print Resolution")),
             "first_page_s": decimal(
                 first(
-                    r"([\d.]+)\s*sec", find(spec, "First-Print-Out", "First Print Out")
+                    r"(\d+(?:\.\d+)?)\s*sec",
+                    find(spec, "First-Print-Out", "First Print Out"),
                 )
             ),
             "paper_input": sheets(
@@ -154,15 +155,17 @@ def specifications(spec: dict[str, str]) -> dict[str, Any]:
             ),
             "duty_cycle": number(find(spec, "Duty Cycle")),
             "weight_kg": decimal(weight),
-            "noise_db": decimal(first(r"([\d.]+)\s*dB", pressure)),
+            "noise_db": decimal(first(r"(\d+(?:\.\d+)?)\s*dB", pressure)),
             "power_w": decimal(
                 first(
-                    r"(?:Active|Printing|Copying|Operating)[^;:]*:\s*(?:Approx\.\s*)?([\d.]+)\s*W",
+                    r"(?:Active|Printing|Copying|Operating)[^;:]*:\s*(?:Approx\.\s*)?(\d+(?:\.\d+)?)\s*W",
                     find(spec, "Power Consumption"),
                 )
             ),
             "tec_kwh": decimal(
-                first(r"([\d.]+)\s*kWh", find(spec, "Typical Electricity", "TEC"))
+                first(
+                    r"(\d+(?:\.\d+)?)\s*kWh", find(spec, "Typical Electricity", "TEC")
+                )
             ),
             "scan_dpi": number(first(r"Optical[^0-9]*(\d[\d,]*)", scan) or scan),
             "max_paper": largest_paper(find(spec, "Media Sizes", "Paper Sizes")),

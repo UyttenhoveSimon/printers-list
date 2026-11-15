@@ -444,3 +444,11 @@ def test_a_maker_whose_page_list_fails_is_reported(tmp_path, icecat, monkeypatch
     monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": UnlistedEnricher()})
     _, report = run(tmp_path, DAY, [index(Candidate("icecat", icecat_id=3))])
     assert report.sources["fake-support:ALL"]["status"] == "error"
+
+
+def test_a_maker_page_that_does_not_parse_fails_alone(tmp_path, icecat, monkeypatch):
+    enricher = FakeEnricher(error=ValueError("could not convert '.13.0'"))
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": enricher})
+    catalog, report = run(tmp_path, DAY, [index(Candidate("icecat", icecat_id=3))])
+    assert report.sources["fake-support:ALL"]["status"] == "error"
+    assert "3" in catalog.products

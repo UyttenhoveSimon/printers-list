@@ -312,7 +312,8 @@ class Catalog:
                 budget -= 1
                 try:
                     record = enricher.enrich(reader, product) or {}
-                except FetchError as error:
+                # a page laid out unexpectedly fails alone, not the whole run
+                except (FetchError, ValueError) as error:
                     failures += 1
                     logger.debug(f"{enricher.NAME} {key}: {error}")
                     continue

@@ -71,13 +71,15 @@ def spec_list(page: str) -> dict[str, str]:
 
 def specifications(spec: dict[str, str]) -> dict[str, Any]:
     """The fields Kyocera's page states, in catalogue terms; silence is unknown."""
-    power = first(r"Printing:\s*([\d.,]+)\s*W", find(spec, "Power consumption"))
+    power = first(r"Printing:\s*(\d+(?:[.,]\d+)?)\s*W", find(spec, "Power consumption"))
     paper = first(r"\bA(\d)\b", find(spec, "General type"))
     return compact(
         {
             "ppm_black": number(find(spec, "Engine speed")),
             "print_dpi": number(find(spec, "Resolution")),
-            "weight_kg": decimal(first(r"([\d.,]+)\s*kg", find(spec, "Weight"))),
+            "weight_kg": decimal(
+                first(r"(\d+(?:[.,]\d+)?)\s*kg", find(spec, "Weight"))
+            ),
             "power_w": decimal(power.replace(",", ".") if power else None),
             "paper_input": sheets(find(spec, "Input capacity")),
             "paper_output": number(

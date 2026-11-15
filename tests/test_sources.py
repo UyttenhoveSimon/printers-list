@@ -398,3 +398,10 @@ def test_kyocera_matches_names_with_or_without_the_range():
     pages = kyocera.product_pages(FakeFetcher({kyocera.SITEMAP: sitemap}))
     for name in ("KYOCERA ECOSYS PA2100cwx", "KYOCERA PA2100CWX laser printer"):
         assert pages.get(kyocera.key({"name": name}), "").endswith("CWX.html")
+
+
+def test_canon_uk_reads_a_number_after_a_stray_dot():
+    """Synthetic value, the shape of the one that broke a run: "Approx. .13.0"."""
+    assert canon_uk.specifications({"Mono Print Speed": "Approx .13.0 ipm"}) == {
+        "ppm_iso": 13
+    }
