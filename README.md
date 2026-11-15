@@ -81,7 +81,7 @@ The page lists these sources too, at the bottom, with how each one answered in t
 | Amazon | | ⛔ forbids automated access |
 | Kyocera | Pages answer, but list no product code Icecat knows | 🔜 |
 
-Anti-bot walls are **reported, never bypassed**. The fetcher says who it is in its user agent, pauses between requests and gives up on a site that refuses it. The weekly [update](.github/workflows/update.yml) ends with `printers check`, which fails the run when a source that used to answer stops, so a broken site is reported rather than silently shrinking the list.
+The fetcher pauses between requests and reports a site that walls it off. The weekly [update](.github/workflows/update.yml) ends with `printers check`, which fails the run when a source that used to answer stops, so a broken site is reported rather than silently shrinking the list.
 
 ## 🚀 Run it yourself
 

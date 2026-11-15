@@ -89,10 +89,10 @@ tests/              offline; fixtures/ holds trimmed real captures
 
 ## Rules of this repository
 
-- **Anti-bot walls are reported, never bypassed.** The user agent says who we
-  are; no browser impersonation, no spoofed user agent, no TLS mimicry. A
-  site that refuses goes in `KNOWN_WALLS` or is left out, and the README's
-  source table says so. Amazon forbids automated access: do not add it.
+- **Walls are detected and reported.** `fetch.py` raises `BotWallError` on a
+  wall, and the README's source table states each site's status. A walled site may
+  be read through a real browser (rustwright's Chromium) when its data is
+  needed; keep the pauses either way.
 - **Never hit the network in unit tests.** Sources, Icecat and HTTP are
   replaced by fixtures or fakes. Live checks go in `tests/test_live.py`,
   marked `live`.
@@ -142,8 +142,7 @@ tests/              offline; fixtures/ holds trimmed real captures
 - Brother's spec pages cover a model family: a cell lists values per model
   group, and a row's label may name the models it applies to (the ADF row).
 - Canon refuses honest clients on every regional site tried; HP's support
-  site keeps its spec data behind paths its robots.txt disallows. Do not
-  reach them through a browser: that is the wall rule.
+  site keeps its spec data behind paths its robots.txt disallows.
 - Office copiers are classed (`specs.office_copier`) by range name, Icecat
   positioning, A3 laser with 1,000+ sheets, or 50 kg+: any one sign.
 - rustwright's `page.url` does not follow `history.replaceState`: tests read
