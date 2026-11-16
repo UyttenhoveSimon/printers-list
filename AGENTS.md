@@ -54,8 +54,10 @@ printers/
     epson.py        Epson, 7 countries: SKU and spec sheet (cross-checks Icecat)
     lexmark.py      Lexmark, 9 countries: the record itself (not in Open Icecat)
     brother_support.py  support.brother.com spec pages: fills Brother's gaps
-    hp_shop.py      HP's shop spec sheets (7 countries), through browser.py: fills HP's gaps
+    hp_shop.py      HP's shop spec sheets (7 countries, then Asia and Latin America), through browser.py
     canon_uk.py     canon.co.uk spec pages, through browser.py: fills Canon's gaps
+    canon_asia.py   sg.canon / in.canon product pages, through browser.py: what Canon UK lacks
+    epson_au.py     epson.com.au spec pages: power, noise, duty cycle Epson Europe leaves out
     kyocera.py      Kyocera Europe's product pages: fills Kyocera's gaps
     hp.py, brother.py  model lists; both refuse non-browser clients today
 site/
@@ -66,6 +68,7 @@ site/
 data/
   products.json     one record per product, its sightings and checks (committed)
   state.json        Icecat answers per lookup, source caches, last run per source
+docs/maker-sites.md which makers' sites outside Europe answer, and why most are not read
 tests/              offline; fixtures/ holds trimmed real captures
 .github/workflows/  tests (push, PR); update (weekly: update, commit, deploy, check)
 ```
@@ -80,8 +83,9 @@ tests/              offline; fixtures/ holds trimmed real captures
    each with its own session and pause. It saves every 500 candidates.
 3. A candidate is *placed*: resolved to a product, cross-checked against the
    maker's record, and given a sighting (`source:market`, date, countries).
-4. `Catalog.enrich` then reads makers' support pages (`ENRICHERS`, Brother
-   today) for printers whose `FIELDS` Icecat left empty, cached 90 days. A
+4. `Catalog.enrich` then reads makers' own pages (`ENRICHERS`: one or more
+   readers per brand, in order) for printers whose `FIELDS` Icecat left
+   empty, cached 90 days. A
    maker's page only ever fills an empty field (`fill`), never overwrites
    Icecat, and the record notes the source in `filled`.
 5. A product is available when one of its sightings is as recent as the last
@@ -152,3 +156,12 @@ tests/              offline; fixtures/ holds trimmed real captures
   positioning, any A3 laser, or 50 kg+: any one sign.
 - rustwright's `page.url` does not follow `history.replaceState`: tests read
   `location.hash`.
+- Chromium may drop a redirected page's body ("evicted from inspector
+  cache"): `Browser.text` then returns the rendered page.
+- HP's global product sitemap is full of stale links (legacy `product.aspx`
+  pages lead home): it says where to look, never that HP still sells a SKU.
+- A brand's "listed by its maker" is any of its readers' `listed` (or
+  `covers`); a reader with `listed = None` never marks it (Epson Australia
+  keeps models long gone).
+- Before adding a regional reader, read `docs/maker-sites.md`: most sites
+  outside Europe were tried in November 2026.

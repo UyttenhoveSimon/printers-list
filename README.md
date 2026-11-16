@@ -76,12 +76,16 @@ The page lists these sources too, at the bottom, with how each one answered in t
 | [hp.com](https://www.hp.com) (GB, FR, DE) | HP's shop list | ⛔ refuses non-browser clients (HP is covered by Icecat) |
 | [brother.*](https://www.brother.eu) (GB, BE, FR, DE) | Brother's support sitemap | ⛔ 403 (Brother is covered by Icecat) |
 | [support.brother.com](https://support.brother.com) | Brother's spec pages: weight, noise, paper trays and ADF size where Icecat leaves them empty | ✅ |
-| [HP's shops](https://www.hp.com/gb-en/shop) (GB, CA, IN, DE, CH, FR, ES) | HP's spec sheets: speed, energy use, duty cycle and paper capacity where Icecat leaves them empty; read through headless Chromium, as hp.com answers browsers only | ✅ |
+| [HP's shops](https://www.hp.com/gb-en/shop) (GB, CA, IN, DE, CH, FR, ES, then Asia, Oceania and Latin America) | HP's spec sheets: speed, energy use, duty cycle and paper capacity where Icecat leaves them empty; read through headless Chromium, as hp.com answers browsers only. A SKU the European shops do not sell is looked up in HP's global product sitemap and read from Argentina, Chile, Colombia, Brazil, Singapore, Thailand... | ✅ |
 | [canon.co.uk](https://www.canon.co.uk) spec pages | Canon's specs: power, noise, volumes, paper capacity and size where Icecat leaves them empty; read through headless Chromium, as Canon's sites refuse plain HTTP clients | ✅ |
+| [sg.canon](https://sg.canon), [in.canon](https://in.canon) | Canon Asia's product pages, for the models Canon UK has no page for (Asian codes such as the PIXMA G3010 or MAXIFY GX7170, and current lasers); through headless Chromium | ✅ |
+| [epson.com.au](https://www.epson.com.au) spec pages | Epson Australia's older site, which keeps a spec page per model: power, noise, duty cycle and paper capacity Epson Europe leaves out | ✅ |
 | Galaxus, Digitec | | ⛔ 403 |
 | support.hp.com | | ⛔ its spec data sits behind paths its robots.txt disallows |
 | Amazon | | ⛔ forbids automated access |
 | [kyoceradocumentsolutions.eu](https://www.kyoceradocumentsolutions.eu) | Kyocera's product pages: power, size, weight and paper capacity where Icecat leaves them empty, matched by model name | ✅ |
+
+Makers' sites outside Europe were all tried, through a real browser too: [docs/maker-sites.md](docs/maker-sites.md) says which answer, what they state and why most are not read.
 
 The fetcher pauses between requests and reports a site that walls it off. The weekly [update](.github/workflows/update.yml) ends with `printers check`, which fails the run when a source that used to answer stops, so a broken site is reported rather than silently shrinking the list.
 
