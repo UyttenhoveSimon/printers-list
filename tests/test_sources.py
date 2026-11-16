@@ -14,6 +14,7 @@ from printers.sources import (
     canon_asia,
     canon_uk,
     epson,
+    epson_au,
     hp,
     hp_shop,
     icecat_index,
@@ -567,3 +568,41 @@ def test_canon_asia_matches_model_codes_and_generations():
     assert canon_asia.covers(fetcher, {"name": "Canon i-SENSYS LBP246dw II"})
     assert not canon_asia.covers(fetcher, {"name": "Canon i-SENSYS LBP246dw"})
 
+
+def test_epson_au_reads_a_spec_page():
+    record = epson_au.specifications(
+        epson_au.spec_list(fixture_text("epson_au_et2850.html"))
+    )
+    assert record == {
+        "ppm_iso": 10,
+        "print_dpi": 5760,
+        "weight_kg": 5.5,
+        "paper_input": 100,
+        "monthly_volume": 500,  # "Up to 500 pages recommended / max 3,000"
+        "duty_cycle": 3000,
+        "power_w": 12.0,
+        "scan_dpi": 2400,
+        "max_paper": "A4",
+        # closed, as stored, not opened for printing
+        "width_mm": 375.0,
+        "depth_mm": 347.0,
+        "height_mm": 187.0,
+    }
+    older = epson_au.specifications(
+        epson_au.spec_list(fixture_text("epson_au_et16600.html"))
+    )
+    assert older["noise_db"] == 47.0  # pressure, not the 6.7 B(A) of power
+    assert older["paper_input"] == 550  # "2 x 250 sheet cassette", 50-sheet tray
+
+
+def test_epson_au_reads_models_run_into_a_range():
+    assert "XP-2200" in epson_au.page_models("ExpressionHomeXP-2200")
+    sitemap = (
+        "<loc>https://www.epson.com.au/products/multifunctional/"
+        "ExpressionHomeXP-2200_Specs.asp?groupid=133&amp;grouptypeid=33</loc>"
+        "<loc>https://www.epson.com.au/products/multifunctional/XP-2200.asp</loc>"
+    )
+    fetcher = FakeFetcher(dict.fromkeys(epson_au.SITEMAPS, sitemap))
+    pages = epson_au.spec_pages(fetcher)
+    assert pages["XP-2200"].endswith("_Specs.asp?groupid=133&grouptypeid=33")
+    assert epson_au.covers(fetcher, {"name": "Epson Expression Home XP-2200"})

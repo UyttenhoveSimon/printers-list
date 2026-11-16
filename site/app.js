@@ -324,9 +324,10 @@ const SOURCES = [
   { name: "canon-uk", url: "https://www.canon.co.uk", label: "Canon UK", gives: "source_canon_uk" },
   { name: "kyocera", url: "https://www.kyoceradocumentsolutions.eu", label: "Kyocera", gives: "source_kyocera" },
   { name: "canon-asia", url: "https://sg.canon", label: "Canon Asia", gives: "source_canon_asia" },
+  { name: "epson-au", url: "https://www.epson.com.au", label: "Epson Australia", gives: "source_epson_au" },
 ];
 
-const SOURCE_LABELS = { epson: "Epson", lexmark: "Lexmark", "brother-support": "Brother support", "hp-shop": "HP shop", "canon-uk": "Canon UK", "canon-asia": "Canon Asia", kyocera: "Kyocera" };
+const SOURCE_LABELS = { epson: "Epson", lexmark: "Lexmark", "brother-support": "Brother support", "hp-shop": "HP shop", "canon-uk": "Canon UK", "canon-asia": "Canon Asia", "epson-au": "Epson Australia", kyocera: "Kyocera" };
 
 function renderSources() {
   const report = (data.report && data.report.sources) || {};

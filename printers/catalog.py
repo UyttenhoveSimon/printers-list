@@ -36,6 +36,7 @@ from .sources import (
     brother_support,
     canon_asia,
     canon_uk,
+    epson_au,
     hp_shop,
     kyocera,
 )
@@ -59,6 +60,7 @@ ENRICHERS: dict[str, tuple[ModuleType, ...]] = {
     # Canon UK first: Canon Asia only fills what the UK pages leave empty
     "Canon": (canon_uk, canon_asia),
     "KYOCERA": (kyocera,),
+    "Epson": (epson_au,),
 }
 #: how long a maker page read for its gaps is trusted
 ENRICH_AGAIN_AFTER = timedelta(days=90)
