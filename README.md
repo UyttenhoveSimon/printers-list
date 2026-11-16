@@ -87,7 +87,7 @@ The page lists these sources too, at the bottom, with how each one answered in t
 
 Makers' sites outside Europe were all tried, through a real browser too: [docs/maker-sites.md](docs/maker-sites.md) says which answer, what they state and why most are not read.
 
-The fetcher pauses between requests and reports a site that walls it off. The weekly [update](.github/workflows/update.yml) ends with `printers check`, which fails the run when a source that used to answer stops, so a broken site is reported rather than silently shrinking the list.
+The fetcher pauses between requests and reports a site that walls it off. The weekly [update](.github/workflows/update.yml) ends with `printers check`, which fails the run when a source that used to answer stops, so a broken site is reported rather than silently shrinking the list. That check runs last: by then the run has already committed and deployed what the other sources gave. A source that failed keeps its printers and filled fields from earlier runs, so a red run means "look at this source", not "nothing was updated".
 
 ## 🚀 Run it yourself
 
