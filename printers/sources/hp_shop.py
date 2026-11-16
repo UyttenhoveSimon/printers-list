@@ -10,8 +10,16 @@ Each shop sells its own range, so the English shops come first, then the
 German, French and Spanish ones, whose labels are mapped to the English ones
 (paired by their values on SKUs two shops share) and whose figures are
 written the local way ("80.000 Seiten", "8,56 kg").
+
+A SKU none of those shops lists may still have a page on the shops of Asia,
+Oceania and Latin America, which run another platform: HP's global sitemap
+of product pages names each SKU's page in every country. Those pages state
+the sheet as label and value pairs (``<dd data-th="Peso">``), in English,
+Spanish or Portuguese. Many of the links are stale, redirecting to a
+category page, so a few are tried in turn.
 """
 
+import html
 import json
 import re
 from functools import cache
@@ -46,6 +54,20 @@ FIELDS = (
 LIST_URL = "https://www.hp.com/{locale}/shop/media/facets_url/products_url_{suffix}.txt"
 #: the shops read, English ones first: a SKU takes its first shop's page
 LOCALES = ("gb-en", "ca-en", "in-en", "de-de", "ch-de", "fr-fr", "es-es")
+#: every country's page for each SKU, one sitemap per country
+STORE_INDEX = "https://www.hp.com/sitemap-index-store-global-hreflang-pdp.xml"
+#: a page on the other platform; the legacy ``product.aspx`` links lead home
+STORE_PAGE = re.compile(
+    r'hreflang="(?P<lang>[a-z]{2})-[a-z]{2}" href="(?P<url>https://www\.hp\.com/'
+    r'[a-z]{2}-[a-z]{2}/shop/[a-z0-9-]+?-(?P<sku>[a-z0-9]{6})(?:-[a-z0-9]{3})?\.html)"'
+)
+#: the languages whose labels are mapped, in the order their pages are tried
+STORE_LANGUAGES = ("en", "es", "pt")
+#: pages tried per SKU at most: most stale links of a SKU go together
+STORE_TRIES = 4
+STORE_SPEC = re.compile(
+    r'<dd data-th="([^"]+)">\s*<h4 class="value">(.*?)</h4>', re.DOTALL
+)
 #: HP's German, French and Spanish labels, as the English ones (HP writes
 #: some with an en dash, kept as \u2013)
 LABELS = {
@@ -104,6 +126,40 @@ LABELS = {
     "Unterstützte Medienformate": "Media sizes supported",
     "Formats de supports pris en charge": "Media sizes supported",
     "Tamaños de soportes compatibles": "Media sizes supported",
+    # the shops of Asia and Oceania: English, under other labels
+    "Minimum dimensions (W x D x H)": "Dimensions (W x D x H)",
+    "Print speed black (ISO)": "Print speed black (ISO, A4)",
+    "Scan Resolution, Optical": "Scan resolution, optical",
+    "Power Consumption Description": "Power consumption",
+    # Latin America's Spanish shops
+    "Dimensiones mínimas (anch. x prof. x alt.)": "Dimensions (W x D x H)",
+    "Capacidad de salida": "Output capacity",
+    "Ciclo de trabajo (mensual, A4)": "Duty cycle (monthly, A4)",
+    "Velocidad de impresión monocromática (ISO)": "Print speed black (ISO, A4)",
+    "Salida de primera página impresa en negro (A4, preparada)": (
+        "First page out black (A4, ready)"
+    ),
+    "Calidad de impresión en negro (óptima)": "Print quality black (best)",
+    "Consumo de energía": "Power consumption",
+    "Número de Consumo eléctrico típico (TEC)": (
+        "Typical electricity consumption (TEC) number"
+    ),
+    "Tamaños de soportes de impresión admitidos": "Media sizes supported",
+    # Brazil's
+    "Dimensões mínimas (L x P x A)": "Dimensions (W x D x H)",
+    "Capacidade de entrada": "Input capacity",
+    "Capacidade de saída": "Output capacity",
+    "Consumo de energia": "Power consumption",
+    "Capacidade do alimentador automático de documentos": (
+        "Automatic document feeder capacity"
+    ),
+    "Ciclo de trabalho (mensal, A4)": "Duty cycle (monthly, A4)",
+    "Volume mensal de páginas recomendado": "Recommended monthly page volume",
+    "Saída da primeira página em preto (A4, pronta)": (
+        "First page out black (A4, ready)"
+    ),
+    "Qualidade de impressão preto (ótima)": "Print quality black (best)",
+    "Tamanhos de mídia suportados": "Media sizes supported",
 }
 #: HP's local sheets keep some values in English ("Up to 3,000 pages")
 ENGLISH_VALUE = re.compile(r"\b(?:up to|pages|sheets|watts)\b", re.IGNORECASE)
@@ -148,12 +204,65 @@ def product_urls(fetcher: Reader) -> dict[str, str]:
     return found
 
 
+@cache
+def store_pages(fetcher: Reader) -> dict[str, list[str]]:
+    """SKU -> its pages on the other platform, best language first.
+
+    Read once per run; a sitemap that fails is skipped: the shops above
+    are read all the same.
+    """
+    found: dict[str, dict[str, list[str]]] = {}
+    try:
+        index = fetcher.text(STORE_INDEX)
+    except FetchError:
+        return {}
+    for sitemap in re.findall(r"<loc>([^<]+)</loc>", index):
+        try:
+            body = fetcher.text(sitemap)
+        except FetchError:
+            continue
+        for match in STORE_PAGE.finditer(body):
+            if match["lang"] in STORE_LANGUAGES:
+                pages = found.setdefault(match["sku"].upper(), {})
+                urls = pages.setdefault(match["lang"], [])
+                if match["url"] not in urls:
+                    urls.append(match["url"])
+    return {
+        sku: [url for lang in STORE_LANGUAGES for url in pages.get(lang, [])]
+        for sku, pages in found.items()
+    }
+
+
 def english_figures(value: str) -> str:
-    """Write "80.000 Seiten" as "80000 Seiten" and "8,56 kg" as "8.56 kg"."""
+    """Write "80.000 Seiten" as "80000 Seiten" and "8,56 kg" as "8.56 kg".
+
+    Latin America's sheets also write thousands the English way ("20,000
+    páginas", "1,200 dpi"): a comma before three digits is one, except in a
+    weight or an energy figure ("1,144 kWh"), which is a decimal.
+    """
     if ENGLISH_VALUE.search(value):
         return value
     value = re.sub(r"\b([1-9]\d{0,2})[.\u202f\u00a0 ](\d{3})(?!\d)", r"\1\2", value)
+    value = re.sub(
+        r"\b([1-9]\d{0,2}),(\d{3})(?![\d,])(?!\s*(?:kWh|kg))", r"\1\2", value
+    )
     return re.sub(r"(?<=\d),(?=\d)", ".", value)
+
+
+def input_sheets(text: str | None) -> int | None:
+    """The standard trays together: "1 hoja en la Bandeja 1; hasta 250 hojas" is 251.
+
+    A tray the sheet calls optional, or a maximum, is left out, and so is a
+    breakdown in brackets ("Up to 650 sheets (MP Tray: Up to 100 sheets...)").
+    """
+    total = re.sub(r"\(.*?\)", "", text or "")
+    trays = [
+        int(count)
+        for clause in re.split(r";| and | y | e ", total)
+        if not re.search(r"optional|opcional|max", clause, re.IGNORECASE)
+        for count in re.findall(r"(\d+)[\s-]*(?:sheets?|hojas?|folhas?)\b", clause)
+    ]
+    return sum(trays) if trays else number(text)
 
 
 def spec_sheet(html: str, *, english: bool = True) -> dict[str, str]:
@@ -188,6 +297,23 @@ def spec_sheet(html: str, *, english: bool = True) -> dict[str, str]:
     return sheet
 
 
+def store_sheet(page: str) -> dict[str, str]:
+    """The sheet of a page on the other platform, under the English labels."""
+    sheet: dict[str, str] = {}
+    for raw_name, raw_value in STORE_SPEC.findall(page):
+        name = html.unescape(raw_name).strip()
+        value = html.unescape(re.sub(r"<[^>]+>", " ", raw_value))
+        value = re.sub(r"\s*\[\d+\]", "", re.sub(r"\s+", " ", value)).strip()
+        english = LABELS.get(name)
+        if english:
+            raw, name, value = name, english, english_figures(value)
+            # the A4 figure wins over the letter one mapped to the same label
+            if "A4" in raw:
+                sheet[name] = value
+        sheet.setdefault(name, value)
+    return sheet
+
+
 def watts(text: str | None) -> float | None:
     """Power while printing, "Active Printing: 282 W" or "900 watts (printing)".
 
@@ -195,7 +321,8 @@ def watts(text: str | None) -> float | None:
     """
     match = re.search(
         r"(?:Printing|Drucken|Druckbetrieb|Impression|Impresión):\s*(\d+(?:\.\d+)?)\s*W"
-        r"|(\d+(?:\.\d+)?)\s*(?:watts?|vatios)\s*\((?:printing|impression|impresión)",
+        r"|(\d+(?:\.\d+)?)\s*(?:watts?|vatios)\s*"
+        r"\((?:active\s+)?(?:printing|impression|impresión|impressão)",
         text or "",
         re.IGNORECASE,
     )
@@ -212,11 +339,14 @@ def specifications(sheet: dict[str, str]) -> dict[str, Any]:
         {
             "weight_kg": decimal(sheet.get("Weight")),
             # "Up to 650 sheets": all standard trays; the other label names each
-            "paper_input": number(
+            "paper_input": input_sheets(
                 sheet.get("Input capacity")
                 or sheet.get("Paper handling input, standard")
             ),
-            "paper_output": number(sheet.get("Paper handling output, standard")),
+            "paper_output": number(
+                sheet.get("Paper handling output, standard")
+                or sheet.get("Output capacity")
+            ),
             "adf_capacity": number(sheet.get("Automatic document feeder capacity")),
             "duty_cycle": number(sheet.get("Duty cycle (monthly, A4)")),
             "monthly_volume": upper_bound(sheet.get("Recommended monthly page volume")),
@@ -232,15 +362,30 @@ def specifications(sheet: dict[str, str]) -> dict[str, Any]:
     )
 
 
-def covers(reader: Reader, product: dict[str, Any]) -> bool:
-    """Whether the shop sells the printer: only those have a page to read."""
+def listed(reader: Reader, product: dict[str, Any]) -> bool:
+    """Whether a European, Canadian or Indian shop sells the printer.
+
+    The global sitemap is no sign of sale: many of its links are stale.
+    """
     return key(product) in product_urls(reader)
 
 
+def covers(reader: Reader, product: dict[str, Any]) -> bool:
+    """Whether a shop has a page for the printer: only those can be read."""
+    return listed(reader, product) or key(product) in store_pages(reader)
+
+
 def enrich(fetcher: Reader, product: dict[str, Any]) -> dict[str, Any] | None:
-    """Specs for an HP printer from the UK shop, or None if it does not sell it."""
+    """Specs for an HP printer from HP's shops, or None if none has its sheet."""
     url = product_urls(fetcher).get(key(product))
-    if not url:
-        return None
-    english = re.search(r"/[a-z]{2}-en/", url) is not None
-    return specifications(spec_sheet(fetcher.text(url), english=english)) or None
+    if url:
+        english = re.search(r"/[a-z]{2}-en/", url) is not None
+        return specifications(spec_sheet(fetcher.text(url), english=english)) or None
+    for url in store_pages(fetcher).get(key(product), [])[:STORE_TRIES]:
+        try:
+            sheet = store_sheet(fetcher.text(url))
+        except FetchError:
+            continue
+        if sheet:
+            return specifications(sheet) or None
+    return None

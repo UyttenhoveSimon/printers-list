@@ -321,6 +321,7 @@ def test_hp_shop_finds_a_printer_by_its_sku_in_the_shop_list():
                 hp_shop.list_url(locale): FetchError("refused")
                 for locale in hp_shop.LOCALES[1:]
             },
+            hp_shop.STORE_INDEX: FetchError("refused"),
             url: fixture_text("hp_shop_m776dn.html"),
         }
     )
@@ -456,3 +457,73 @@ def test_epson_model_codes_in_page_urls():
     )
     assert epson.models_in(url) == {"WF-3920"}
     assert epson.models_in("https://x/inkjet/consumer/ecotank-l3351/p/2") == {"L3351"}
+
+
+def test_hp_store_reads_a_latin_american_sheet():
+    """Argentina's page for the LaserJet M111w: Spanish labels, mixed figures."""
+    sheet = hp_shop.store_sheet(fixture_text("hp_store_ar_4ry23a.html"))
+    assert hp_shop.specifications(sheet) == {
+        "weight_kg": 6.95,  # "6,95 kg"
+        "paper_input": 150,
+        "paper_output": 100,
+        "duty_cycle": 25000,  # the A4 figure, not the letter one ("20,000")
+        "monthly_volume": 2500,
+        "first_page_s": 7.6,  # "Apenas 7,6 segundos"
+        "print_dpi": 600,
+        "power_w": 365.0,  # "365vatios (impresión activa)"
+        "max_paper": "A4",
+        "width_mm": 380.5,
+        "depth_mm": 293.4,
+        "height_mm": 211.0,
+    }
+
+
+def test_hp_store_reads_an_asian_sheet():
+    sheet = hp_shop.store_sheet(fixture_text("hp_store_sg_m501dn.html"))
+    record = hp_shop.specifications(sheet)
+    assert record["power_w"] == 660.0  # "660 watts (active printing)"
+    assert record["tec_kwh"] == 1.623
+    assert (record["paper_input"], record["duty_cycle"]) == (650, 100000)
+
+
+def test_hp_figures_with_english_thousands_in_a_local_sheet():
+    assert hp_shop.english_figures("Hasta 1,200 x 1,200 dpi") == "Hasta 1200 x 1200 dpi"
+    assert hp_shop.english_figures("1,144 kWh/semana") == "1.144 kWh/semana"
+    assert hp_shop.english_figures("18,9 kg") == "18.9 kg"
+
+
+def test_hp_input_adds_the_standard_trays():
+    assert hp_shop.input_sheets("Up to 650 sheets (MP Tray: Up to 100 sheets)") == 650
+    text = "1 hoja en la Bandeja 1; hasta 250 hojas (altura de pila) en la Bandeja 2"
+    assert hp_shop.input_sheets(text) == 251
+    text = "100-sheet multipurpose tray and 550-sheet main cassette"
+    assert hp_shop.input_sheets(text) == 650
+
+
+def test_hp_store_pages_are_tried_until_one_has_a_sheet():
+    """Synthetic sitemaps, shaped like HP's global one; the pages are real."""
+    stale = "https://www.hp.com/th-en/shop/hp-laserjet-m111w-4ry23a.html"
+    live = "https://www.hp.com/ar-es/shop/impresora-hp-laserjet-m111w-4ry23a.html"
+    sitemap = (
+        f'<url><xhtml:link rel="alternate" hreflang="en-th" href="{stale}"/>'
+        f'<xhtml:link rel="alternate" hreflang="es-ar" href="{live}"/>'
+        '<xhtml:link rel="alternate" hreflang="en-gb" href="https://www.hp.com/'
+        'gb-en/shop/product.aspx?id=4RY23A&amp;opt=B19&amp;sel=DEF"/></url>'
+    )
+    fetcher = FakeFetcher(
+        {
+            **{hp_shop.list_url(locale): "" for locale in hp_shop.LOCALES},
+            hp_shop.STORE_INDEX: "<loc>https://www.hp.com/sitemap-hreflang-pdp-ar-es.xml</loc>",
+            "https://www.hp.com/sitemap-hreflang-pdp-ar-es.xml": sitemap,
+            stale: "<html><title>Printers - Shop HP.com Thailand</title></html>",
+            live: fixture_text("hp_store_ar_4ry23a.html"),
+        }
+    )
+    product = {"code": "4RY23A#BGJ"}
+    assert hp_shop.covers(fetcher, product)
+    assert not hp_shop.listed(fetcher, product)  # no European shop sells it
+    record = hp_shop.enrich(fetcher, product)
+    assert record is not None
+    assert record["weight_kg"] == 6.95
+    assert fetcher.calls[-2:] == [stale, live]
+
