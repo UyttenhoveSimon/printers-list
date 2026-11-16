@@ -2333,9 +2333,37 @@
    }
   },
   "canon-asia": {
+   "1643iii": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 464.0,
+     "height_mm": 452.0,
+     "max_paper": "A4",
+     "paper_output": 150,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 20.0,
+     "width_mm": 480.0
+    }
+   },
    "200": {
     "checked": "2026-11-16",
     "record": {}
+   },
+   "2425": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 627.0,
+     "height_mm": 665.0,
+     "max_paper": "A3",
+     "paper_input": 330,
+     "paper_output": 250,
+     "ppm_black": 11,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 34.9,
+     "width_mm": 1.0
+    }
    },
    "4925i": {
     "checked": "2026-11-16",
@@ -2443,6 +2471,37 @@
      "width_mm": 723.0
     }
    },
+   "g1010": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 330.0,
+     "height_mm": 135.0,
+     "max_paper": "A4",
+     "noise_db": 54.5,
+     "paper_input": 100,
+     "power_w": 11.0,
+     "ppm_iso": 9,
+     "print_dpi": 4800,
+     "weight_kg": 4.8,
+     "width_mm": 445.0
+    }
+   },
+   "g2010": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 330.0,
+     "height_mm": 163.0,
+     "max_paper": "A4",
+     "noise_db": 53.5,
+     "paper_input": 100,
+     "power_w": 9.0,
+     "ppm_iso": 9,
+     "print_dpi": 4800,
+     "scan_dpi": 600,
+     "weight_kg": 6.3,
+     "width_mm": 445.0
+    }
+   },
    "g4770": {
     "checked": "2026-11-16",
     "record": {
@@ -2544,6 +2603,22 @@
      "width_mm": 399.0
     }
    },
+   "lbp325x": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 376.0,
+     "duty_cycle": 150000,
+     "first_page_s": 5.7,
+     "height_mm": 275.0,
+     "max_paper": "A4",
+     "paper_output": 250,
+     "power_w": 600.0,
+     "ppm_black": 43,
+     "print_dpi": 600,
+     "weight_kg": 11.5,
+     "width_mm": 417.0
+    }
+   },
    "lbp361dw": {
     "checked": "2026-11-16",
     "record": {
@@ -2571,6 +2646,38 @@
    "lbp6030w": {
     "checked": "2026-11-16",
     "record": {}
+   },
+   "lbp621cw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 418.0,
+     "duty_cycle": 30000,
+     "first_page_s": 10.5,
+     "height_mm": 287.0,
+     "max_paper": "A4",
+     "paper_output": 100,
+     "power_w": 390.0,
+     "ppm_black": 18,
+     "print_dpi": 600,
+     "weight_kg": 12.8,
+     "width_mm": 430.0
+    }
+   },
+   "lbp623cdw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 418.0,
+     "duty_cycle": 30000,
+     "first_page_s": 10.5,
+     "height_mm": 287.0,
+     "max_paper": "A4",
+     "paper_output": 100,
+     "power_w": 390.0,
+     "ppm_black": 21,
+     "print_dpi": 600,
+     "weight_kg": 14.0,
+     "width_mm": 430.0
+    }
    },
    "lbp646cdw": {
     "checked": "2026-11-16",
@@ -2759,6 +2866,71 @@
      "width_mm": 420.0
     }
    },
+   "mf543x": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 464.0,
+     "duty_cycle": 150000,
+     "first_page_s": 5.7,
+     "height_mm": 452.0,
+     "max_paper": "A4",
+     "paper_output": 250,
+     "power_w": 590.0,
+     "ppm_black": 43,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 19.0,
+     "width_mm": 480.0
+    }
+   },
+   "mf641cw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 460.0,
+     "duty_cycle": 30000,
+     "first_page_s": 10.5,
+     "height_mm": 360.0,
+     "max_paper": "A4",
+     "paper_output": 100,
+     "ppm_black": 18,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 16.8,
+     "width_mm": 451.0
+    }
+   },
+   "mf643cdw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 460.0,
+     "duty_cycle": 30000,
+     "first_page_s": 10.5,
+     "height_mm": 413.0,
+     "max_paper": "A4",
+     "paper_output": 100,
+     "ppm_black": 21,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 20.5,
+     "width_mm": 451.0
+    }
+   },
+   "mf645cx": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 460.0,
+     "duty_cycle": 30000,
+     "first_page_s": 10.5,
+     "height_mm": 413.0,
+     "max_paper": "A4",
+     "paper_output": 100,
+     "ppm_black": 21,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 20.5,
+     "width_mm": 451.0
+    }
+   },
    "mf664cdw": {
     "checked": "2026-11-16",
     "record": {
@@ -2774,6 +2946,23 @@
      "print_dpi": 600,
      "scan_dpi": 600,
      "weight_kg": 18.71,
+     "width_mm": 425.0
+    }
+   },
+   "mf752cdw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 461.0,
+     "duty_cycle": 50000,
+     "first_page_s": 7.1,
+     "height_mm": 430.0,
+     "max_paper": "A4",
+     "paper_output": 150,
+     "power_w": 700.0,
+     "ppm_black": 33,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 21.7,
      "width_mm": 425.0
     }
    },
@@ -2809,6 +2998,21 @@
      "scan_dpi": 600,
      "weight_kg": 22.0,
      "width_mm": 425.0
+    }
+   },
+   "mg2570s": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 306.0,
+     "height_mm": 145.0,
+     "max_paper": "A4",
+     "paper_input": 60,
+     "power_w": 9.0,
+     "ppm_iso": 8,
+     "print_dpi": 4800,
+     "scan_dpi": 600,
+     "weight_kg": 3.5,
+     "width_mm": 426.0
     }
    }
   },
@@ -19244,10 +19448,16 @@
      "C3900N",
      "C3900TN",
      "C4200DN",
+     "C4200DNPC6",
      "C4200DTN",
+     "C4200DTNPC5",
+     "C4200DTNPC6",
+     "C9200D3TNC",
      "C9200DN",
      "C9200DTN",
      "C9200N",
+     "C9300D2TN",
+     "C9300D3TNC",
      "C9300DN",
      "C9300DTN",
      "C9300N",
@@ -19279,6 +19489,7 @@
      "EPL-6200N",
      "EPL-N2550",
      "EPL-N2550D",
+     "EPL-N2550D2T",
      "EPL-N2550DT",
      "EPL-N2550T",
      "EPL-N3000",
@@ -19435,6 +19646,7 @@
      "M4000DTN",
      "M4000N",
      "M4000TN",
+     "M7000D2TN",
      "M7000DN",
      "M7000DTN",
      "M7000N",
@@ -19545,8 +19757,10 @@
      "WF-5190",
      "WF-5620",
      "WF-5690",
+     "WF-6090D2TWC",
      "WF-6090DTWC",
      "WF-6090DW",
+     "WF-6590D2TWFC",
      "WF-6590DTWFC",
      "WF-6590DWF",
      "WF-7015",
@@ -19566,6 +19780,7 @@
      "WF-8090",
      "WF-8510",
      "WF-8590",
+     "WF-8590D3TWFC",
      "WF-8590DTWF",
      "WF-8590DWF",
      "WF-C17590",
@@ -19582,21 +19797,27 @@
      "WF-C5390DW",
      "WF-C5710DWF",
      "WF-C5790DWF",
+     "WF-C579RD2TWF",
      "WF-C579RDTWF",
      "WF-C579RDWF",
      "WF-C5890DWF",
+     "WF-C8190D3TWC",
      "WF-C8190DTW",
      "WF-C8190DTWC",
      "WF-C8190DW",
      "WF-C8610DWF",
+     "WF-C8690D3TWFC",
      "WF-C8690DTWF",
      "WF-C8690DTWFC",
      "WF-C8690DWF",
+     "WF-C869RD3TWFC",
      "WF-C869RDTWF",
      "WF-C869RDTWFC",
+     "WF-C878RD3TWFC",
      "WF-C878RDTWF",
      "WF-C878RDTWFC",
      "WF-C878RDWF",
+     "WF-C879RD3TWFC",
      "WF-C879RDTWF",
      "WF-C879RDWF",
      "WF-M21000",
@@ -19611,6 +19832,7 @@
      "WF-R5190",
      "WF-R5690",
      "WF-R8590",
+     "WF-R8590D3TWFC",
      "WP-4015",
      "WP-4025",
      "WP-4095",
@@ -100505,6 +100727,22 @@
     "found": 0,
     "status": "ok"
    },
+   "brother:BE": {
+    "detail": "www.brother.be refused the request (403)",
+    "status": "walled"
+   },
+   "brother:DE": {
+    "detail": "www.brother.de refused the request (403)",
+    "status": "walled"
+   },
+   "brother:FR": {
+    "detail": "www.brother.fr refused the request (403)",
+    "status": "walled"
+   },
+   "brother:GB": {
+    "detail": "www.brother.co.uk refused the request (403)",
+    "status": "walled"
+   },
    "canon-asia:ALL": {
     "found": 12,
     "status": "ok"
@@ -100514,12 +100752,52 @@
     "status": "ok"
    },
    "epson-au:ALL": {
-    "found": 260,
+    "found": 0,
+    "status": "error"
+   },
+   "epson:BE": {
+    "found": 376,
+    "status": "ok"
+   },
+   "epson:DE": {
+    "found": 473,
+    "status": "ok"
+   },
+   "epson:ES": {
+    "found": 472,
+    "status": "ok"
+   },
+   "epson:FR": {
+    "found": 474,
+    "status": "ok"
+   },
+   "epson:GB": {
+    "found": 505,
+    "status": "ok"
+   },
+   "epson:IT": {
+    "found": 470,
+    "status": "ok"
+   },
+   "epson:NL": {
+    "found": 459,
     "status": "ok"
    },
    "hp-shop:ALL": {
-    "found": 97,
-    "status": "ok"
+    "found": 0,
+    "status": "error"
+   },
+   "hp.com:DE": {
+    "detail": "https://www.hp.com/de-de/shop/media/facets_url/products_url_de_de.txt: HTTPSConnectionPool(host='www.hp.com', port=443): Read timed out. (read timeout=30)",
+    "status": "error"
+   },
+   "hp.com:FR": {
+    "detail": "https://www.hp.com/fr-fr/shop/media/facets_url/products_url_fr_fr.txt: HTTPSConnectionPool(host='www.hp.com', port=443): Read timed out. (read timeout=30)",
+    "status": "error"
+   },
+   "hp.com:GB": {
+    "detail": "https://www.hp.com/gb-en/shop/media/facets_url/products_url_gb_en.txt: HTTPSConnectionPool(host='www.hp.com', port=443): Read timed out. (read timeout=30)",
+    "status": "error"
    },
    "icecat:ALL": {
     "found": 10990,
@@ -100527,6 +100805,42 @@
    },
    "kyocera:ALL": {
     "found": 0,
+    "status": "ok"
+   },
+   "lexmark:BE": {
+    "found": 570,
+    "status": "ok"
+   },
+   "lexmark:CH": {
+    "found": 558,
+    "status": "ok"
+   },
+   "lexmark:DE": {
+    "found": 589,
+    "status": "ok"
+   },
+   "lexmark:ES": {
+    "found": 588,
+    "status": "ok"
+   },
+   "lexmark:FR": {
+    "found": 593,
+    "status": "ok"
+   },
+   "lexmark:GB": {
+    "found": 598,
+    "status": "ok"
+   },
+   "lexmark:IT": {
+    "found": 584,
+    "status": "ok"
+   },
+   "lexmark:NL": {
+    "found": 525,
+    "status": "ok"
+   },
+   "lexmark:US": {
+    "found": 534,
     "status": "ok"
    }
   }
@@ -100536,25 +100850,25 @@
   "canon-asia:ALL": "2026-11-16",
   "canon-uk:ALL": "2026-11-16",
   "epson-au:ALL": "2026-11-16",
-  "epson:BE": "2026-11-15",
-  "epson:DE": "2026-11-15",
-  "epson:ES": "2026-11-15",
-  "epson:FR": "2026-11-15",
-  "epson:GB": "2026-11-15",
-  "epson:IT": "2026-11-15",
-  "epson:NL": "2026-11-15",
+  "epson:BE": "2026-11-16",
+  "epson:DE": "2026-11-16",
+  "epson:ES": "2026-11-16",
+  "epson:FR": "2026-11-16",
+  "epson:GB": "2026-11-16",
+  "epson:IT": "2026-11-16",
+  "epson:NL": "2026-11-16",
   "hp-shop:ALL": "2026-11-16",
   "icecat:ALL": "2026-11-16",
   "kyocera:ALL": "2026-11-16",
-  "lexmark:BE": "2026-11-15",
-  "lexmark:CH": "2026-11-15",
-  "lexmark:DE": "2026-11-15",
-  "lexmark:ES": "2026-11-15",
-  "lexmark:FR": "2026-11-15",
-  "lexmark:GB": "2026-11-15",
-  "lexmark:IT": "2026-11-15",
-  "lexmark:NL": "2026-11-15",
-  "lexmark:US": "2026-11-15"
+  "lexmark:BE": "2026-11-16",
+  "lexmark:CH": "2026-11-16",
+  "lexmark:DE": "2026-11-16",
+  "lexmark:ES": "2026-11-16",
+  "lexmark:FR": "2026-11-16",
+  "lexmark:GB": "2026-11-16",
+  "lexmark:IT": "2026-11-16",
+  "lexmark:NL": "2026-11-16",
+  "lexmark:US": "2026-11-16"
  },
  "started": "2026-11-15"
 }
