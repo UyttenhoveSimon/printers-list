@@ -2332,6 +2332,486 @@
     "record": {}
    }
   },
+  "canon-asia": {
+   "200": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "4925i": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 565.0,
+     "height_mm": 692.0,
+     "max_paper": "A3",
+     "paper_input": 1200,
+     "paper_output": 250,
+     "ppm_black": 45,
+     "print_dpi": 1200,
+     "scan_dpi": 600,
+     "weight_kg": 62.0,
+     "width_mm": 3.0
+    }
+   },
+   "4935i": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 565.0,
+     "height_mm": 692.0,
+     "max_paper": "A3",
+     "paper_input": 1200,
+     "paper_output": 250,
+     "ppm_black": 45,
+     "print_dpi": 1200,
+     "scan_dpi": 600,
+     "weight_kg": 62.0,
+     "width_mm": 3.0
+    }
+   },
+   "5200": {
+    "checked": "2026-11-16",
+    "record": {
+     "print_dpi": 2400
+    }
+   },
+   "5610": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 285.0,
+     "height_mm": 720.0,
+     "power_w": 65.0,
+     "print_dpi": 2400,
+     "weight_kg": 50.0,
+     "width_mm": 1.0
+    }
+   },
+   "619i": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 598.0,
+     "height_mm": 617.0,
+     "max_paper": "A4",
+     "paper_input": 650,
+     "paper_output": 500,
+     "ppm_black": 61,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 37.0,
+     "width_mm": 500.0
+    }
+   },
+   "c3326i": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 565.0,
+     "height_mm": 659.0,
+     "max_paper": "A3",
+     "paper_input": 1200,
+     "paper_output": 250,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 71.0,
+     "width_mm": 3.0
+    }
+   },
+   "c359i": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 658.0,
+     "height_mm": 638.0,
+     "max_paper": "A4",
+     "paper_input": 650,
+     "paper_output": 250,
+     "ppm_black": 35,
+     "print_dpi": 1200,
+     "scan_dpi": 600,
+     "weight_kg": 49.0,
+     "width_mm": 519.0
+    }
+   },
+   "c7165": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 722.0,
+     "height_mm": 937.0,
+     "max_paper": "A3",
+     "paper_input": 1200,
+     "paper_output": 3450,
+     "ppm_black": 70,
+     "print_dpi": 4800,
+     "scan_dpi": 600,
+     "weight_kg": 115.0,
+     "width_mm": 723.0
+    }
+   },
+   "g4770": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 337.0,
+     "duty_cycle": 3000,
+     "height_mm": 212.0,
+     "max_paper": "A4",
+     "noise_db": 48.0,
+     "ppm_iso": 11,
+     "scan_dpi": 600,
+     "weight_kg": 7.2,
+     "width_mm": 416.0
+    }
+   },
+   "ix6770": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "ix6870": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 310.0,
+     "height_mm": 159.0,
+     "max_paper": "A3",
+     "noise_db": 44.0,
+     "paper_input": 150,
+     "power_w": 24.0,
+     "ppm_iso": 14,
+     "print_dpi": 9600,
+     "weight_kg": 8.1,
+     "width_mm": 584.0
+    }
+   },
+   "lbp243dw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 373.0,
+     "duty_cycle": 80000,
+     "first_page_s": 5.0,
+     "height_mm": 249.0,
+     "max_paper": "A4",
+     "paper_input": 350,
+     "paper_output": 150,
+     "power_w": 480.0,
+     "ppm_black": 36,
+     "print_dpi": 600,
+     "weight_kg": 8.7,
+     "width_mm": 399.0
+    }
+   },
+   "lbp243dwii": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 373.0,
+     "duty_cycle": 80000,
+     "first_page_s": 5.0,
+     "height_mm": 249.0,
+     "max_paper": "A4",
+     "paper_input": 350,
+     "paper_output": 150,
+     "power_w": 480.0,
+     "ppm_black": 36,
+     "print_dpi": 600,
+     "weight_kg": 8.8,
+     "width_mm": 399.0
+    }
+   },
+   "lbp246dw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 373.0,
+     "duty_cycle": 80000,
+     "first_page_s": 5.0,
+     "height_mm": 249.0,
+     "max_paper": "A4",
+     "paper_input": 350,
+     "paper_output": 150,
+     "power_w": 480.0,
+     "ppm_black": 40,
+     "print_dpi": 600,
+     "weight_kg": 8.7,
+     "width_mm": 399.0
+    }
+   },
+   "lbp246dwii": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 373.0,
+     "duty_cycle": 80000,
+     "first_page_s": 5.0,
+     "height_mm": 249.0,
+     "max_paper": "A4",
+     "paper_input": 350,
+     "paper_output": 150,
+     "power_w": 480.0,
+     "ppm_black": 40,
+     "print_dpi": 600,
+     "weight_kg": 8.8,
+     "width_mm": 399.0
+    }
+   },
+   "lbp361dw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 465.0,
+     "duty_cycle": 275000,
+     "first_page_s": 4.9,
+     "height_mm": 370.0,
+     "max_paper": "A4",
+     "paper_output": 500,
+     "power_w": 772.0,
+     "ppm_black": 61,
+     "print_dpi": 600,
+     "weight_kg": 20.0,
+     "width_mm": 430.0
+    }
+   },
+   "lbp6030": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "lbp6030b": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "lbp6030w": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "lbp646cdw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 418.0,
+     "duty_cycle": 30000,
+     "first_page_s": 10.5,
+     "height_mm": 265.0,
+     "max_paper": "A4",
+     "paper_output": 100,
+     "power_w": 580.0,
+     "ppm_black": 25,
+     "print_dpi": 600,
+     "weight_kg": 12.47,
+     "width_mm": 425.0
+    }
+   },
+   "lbp647cdw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 418.0,
+     "duty_cycle": 30000,
+     "first_page_s": 10.5,
+     "height_mm": 265.0,
+     "max_paper": "A4",
+     "paper_output": 100,
+     "power_w": 580.0,
+     "ppm_black": 25,
+     "print_dpi": 600,
+     "weight_kg": 12.47,
+     "width_mm": 425.0
+    }
+   },
+   "lbp673cdwii": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 427.0,
+     "duty_cycle": 50000,
+     "first_page_s": 7.1,
+     "height_mm": 300.0,
+     "max_paper": "A4",
+     "paper_input": 300,
+     "paper_output": 150,
+     "ppm_black": 33,
+     "print_dpi": 600,
+     "weight_kg": 15.5,
+     "width_mm": 425.0
+    }
+   },
+   "lbp674cx": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 427.0,
+     "duty_cycle": 50000,
+     "first_page_s": 7.1,
+     "height_mm": 380.0,
+     "max_paper": "A4",
+     "paper_output": 150,
+     "power_w": 700.0,
+     "ppm_black": 33,
+     "print_dpi": 600,
+     "weight_kg": 16.1,
+     "width_mm": 425.0
+    }
+   },
+   "mf272dw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 320.0,
+     "first_page_s": 5.4,
+     "height_mm": 271.0,
+     "max_paper": "A4",
+     "paper_output": 100,
+     "power_w": 530.0,
+     "ppm_black": 29,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 8.5,
+     "width_mm": 372.0
+    }
+   },
+   "mf275dw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 374.0,
+     "duty_cycle": 20000,
+     "first_page_s": 5.4,
+     "height_mm": 368.0,
+     "max_paper": "A4",
+     "paper_output": 100,
+     "power_w": 530.0,
+     "ppm_black": 29,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 11.1,
+     "width_mm": 390.0
+    }
+   },
+   "mf289dw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 399.0,
+     "duty_cycle": 50000,
+     "first_page_s": 5.0,
+     "height_mm": 394.0,
+     "max_paper": "A4",
+     "paper_input": 250,
+     "paper_output": 100,
+     "power_w": 410.0,
+     "ppm_black": 33,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 13.4,
+     "width_mm": 390.0
+    }
+   },
+   "mf3010": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "mf461dw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 460.0,
+     "duty_cycle": 80000,
+     "first_page_s": 5.0,
+     "height_mm": 375.0,
+     "max_paper": "A4",
+     "paper_output": 150,
+     "power_w": 480.0,
+     "ppm_black": 36,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 15.6,
+     "width_mm": 420.0
+    }
+   },
+   "mf461dwii": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 460.0,
+     "duty_cycle": 80000,
+     "first_page_s": 5.0,
+     "height_mm": 375.0,
+     "max_paper": "A4",
+     "paper_output": 150,
+     "power_w": 480.0,
+     "ppm_black": 36,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 16.2,
+     "width_mm": 420.0
+    }
+   },
+   "mf465dw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 460.0,
+     "duty_cycle": 80000,
+     "first_page_s": 5.0,
+     "height_mm": 375.0,
+     "max_paper": "A4",
+     "paper_output": 150,
+     "power_w": 480.0,
+     "ppm_black": 40,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 15.6,
+     "width_mm": 420.0
+    }
+   },
+   "mf465dwii": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 460.0,
+     "duty_cycle": 80000,
+     "first_page_s": 5.0,
+     "height_mm": 375.0,
+     "max_paper": "A4",
+     "paper_output": 150,
+     "power_w": 480.0,
+     "ppm_black": 40,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 16.2,
+     "width_mm": 420.0
+    }
+   },
+   "mf664cdw": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 461.0,
+     "duty_cycle": 30000,
+     "first_page_s": 10.5,
+     "height_mm": 397.0,
+     "max_paper": "A4",
+     "paper_input": 250,
+     "paper_output": 100,
+     "power_w": 580.0,
+     "ppm_black": 25,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 18.71,
+     "width_mm": 425.0
+    }
+   },
+   "mf752cdwii": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 461.0,
+     "duty_cycle": 50000,
+     "first_page_s": 7.1,
+     "height_mm": 430.0,
+     "max_paper": "A4",
+     "paper_output": 150,
+     "power_w": 700.0,
+     "ppm_black": 33,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 21.71,
+     "width_mm": 425.0
+    }
+   },
+   "mf756cx": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 461.0,
+     "duty_cycle": 50000,
+     "first_page_s": 7.1,
+     "height_mm": 430.0,
+     "max_paper": "A4",
+     "paper_output": 150,
+     "power_w": 700.0,
+     "ppm_black": 33,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 22.0,
+     "width_mm": 425.0
+    }
+   }
+  },
   "canon-uk": {
    "isensyslbp112": {
     "checked": "2026-11-15",
@@ -19246,9 +19726,1375 @@
     "NL": []
    }
   },
+  "epson-au": {
+   "EM-C800": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 535.0,
+     "duty_cycle": 5000,
+     "height_mm": 513.0,
+     "max_paper": "A4",
+     "noise_db": 51.0,
+     "paper_input": 2580,
+     "paper_output": 150,
+     "power_w": 30.0,
+     "scan_dpi": 1200,
+     "tec_kwh": 0.18,
+     "weight_kg": 21.3,
+     "width_mm": 425.0
+    }
+   },
+   "EP-C800": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 535.0,
+     "duty_cycle": 5000,
+     "height_mm": 513.0,
+     "max_paper": "A4",
+     "noise_db": 54.0,
+     "paper_input": 2580,
+     "paper_output": 150,
+     "power_w": 24.0,
+     "tec_kwh": 0.16,
+     "weight_kg": 17.6,
+     "width_mm": 425.0
+    }
+   },
+   "ET-1110": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 53.0,
+     "paper_input": 100
+    }
+   },
+   "ET-16500": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A3",
+     "noise_db": 48.0,
+     "paper_input": 500,
+     "power_w": 20.0,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-16600": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 500.0,
+     "duty_cycle": 3000,
+     "height_mm": 350.0,
+     "max_paper": "A3",
+     "monthly_volume": 500,
+     "noise_db": 47.0,
+     "paper_input": 550,
+     "scan_dpi": 1200,
+     "weight_kg": 20.2,
+     "width_mm": 515.0
+    }
+   },
+   "ET-1810": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 347.0,
+     "duty_cycle": 3000,
+     "height_mm": 169.0,
+     "max_paper": "A4",
+     "monthly_volume": 500,
+     "paper_input": 100,
+     "power_w": 12.0,
+     "ppm_iso": 10,
+     "print_dpi": 5760,
+     "weight_kg": 2.7,
+     "width_mm": 375.0
+    }
+   },
+   "ET-2500": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 38.0,
+     "paper_input": 100,
+     "power_w": 11.0,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-2550": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 37.0,
+     "paper_input": 100,
+     "power_w": 13.0,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-2650": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 36.0,
+     "paper_input": 100,
+     "power_w": 13.0,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-2700": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 51.0,
+     "paper_input": 100,
+     "power_w": 12.0,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-2710": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "paper_input": 120,
+     "power_w": 11.0,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-2720": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "paper_input": 120,
+     "power_w": 11.0,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-2750": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 50.0,
+     "paper_input": 100,
+     "power_w": 12.0,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-2810": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 347.0,
+     "duty_cycle": 3000,
+     "height_mm": 179.0,
+     "max_paper": "A4",
+     "monthly_volume": 500,
+     "paper_input": 100,
+     "power_w": 12.0,
+     "ppm_iso": 10,
+     "print_dpi": 5760,
+     "scan_dpi": 1200,
+     "weight_kg": 3.9,
+     "width_mm": 375.0
+    }
+   },
+   "ET-2811": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 347.0,
+     "duty_cycle": 3000,
+     "height_mm": 179.0,
+     "max_paper": "A4",
+     "monthly_volume": 500,
+     "paper_input": 100,
+     "power_w": 12.0,
+     "ppm_iso": 10,
+     "print_dpi": 5760,
+     "scan_dpi": 1200,
+     "weight_kg": 3.9,
+     "width_mm": 375.0
+    }
+   },
+   "ET-2820": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 347.0,
+     "duty_cycle": 3000,
+     "height_mm": 179.0,
+     "max_paper": "A4",
+     "monthly_volume": 500,
+     "paper_input": 100,
+     "power_w": 12.0,
+     "ppm_iso": 10,
+     "print_dpi": 5760,
+     "scan_dpi": 1200,
+     "weight_kg": 4.0,
+     "width_mm": 375.0
+    }
+   },
+   "ET-2850": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 347.0,
+     "duty_cycle": 3000,
+     "height_mm": 187.0,
+     "max_paper": "A4",
+     "monthly_volume": 500,
+     "paper_input": 100,
+     "power_w": 12.0,
+     "ppm_iso": 10,
+     "print_dpi": 5760,
+     "scan_dpi": 2400,
+     "weight_kg": 5.5,
+     "width_mm": 375.0
+    }
+   },
+   "ET-3600": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 46.0,
+     "paper_input": 150,
+     "power_w": 11.0,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-3700": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 53.0,
+     "paper_input": 30,
+     "power_w": 12.0,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-4500": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 45.0,
+     "paper_input": 100,
+     "power_w": 11.0,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-4550": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 50.0,
+     "paper_input": 150,
+     "power_w": 11.0,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-4700": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 52.0,
+     "paper_input": 100,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-4750": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 52.0,
+     "paper_input": 110542,
+     "power_w": 12.0,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-4800": {
+    "checked": "2026-11-16",
+    "record": {
+     "adf_capacity": 30,
+     "depth_mm": 347.0,
+     "duty_cycle": 3000,
+     "height_mm": 237.0,
+     "max_paper": "A4",
+     "monthly_volume": 500,
+     "paper_input": 100,
+     "power_w": 12.0,
+     "ppm_iso": 10,
+     "print_dpi": 5760,
+     "scan_dpi": 1200,
+     "weight_kg": 5.0,
+     "width_mm": 375.0
+    }
+   },
+   "ET-4810": {
+    "checked": "2026-11-16",
+    "record": {
+     "adf_capacity": 30,
+     "depth_mm": 347.0,
+     "duty_cycle": 5000,
+     "height_mm": 237.0,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 100,
+     "power_w": 12.0,
+     "ppm_iso": 16,
+     "print_dpi": 4800,
+     "scan_dpi": 1200,
+     "weight_kg": 5.2,
+     "width_mm": 375.0
+    }
+   },
+   "ET-4850": {
+    "checked": "2026-11-16",
+    "record": {
+     "adf_capacity": 30,
+     "depth_mm": 347.0,
+     "duty_cycle": 5000,
+     "height_mm": 231.0,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 250,
+     "power_w": 12.0,
+     "ppm_iso": 16,
+     "print_dpi": 4800,
+     "scan_dpi": 2400,
+     "weight_kg": 6.8,
+     "width_mm": 375.0
+    }
+   },
+   "ET-5150": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 347.0,
+     "duty_cycle": 33000,
+     "height_mm": 346.0,
+     "max_paper": "A4",
+     "monthly_volume": 1600,
+     "paper_input": 250,
+     "scan_dpi": 1200,
+     "weight_kg": 7.3,
+     "width_mm": 375.0
+    }
+   },
+   "ET-5170": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 347.0,
+     "duty_cycle": 33000,
+     "height_mm": 346.0,
+     "max_paper": "A4",
+     "monthly_volume": 1600,
+     "paper_input": 250,
+     "scan_dpi": 1200,
+     "weight_kg": 7.3,
+     "width_mm": 375.0
+    }
+   },
+   "ET-5800": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 500.0,
+     "duty_cycle": 66000,
+     "height_mm": 350.0,
+     "max_paper": "A4",
+     "monthly_volume": 3300,
+     "noise_db": 51.0,
+     "paper_input": 600,
+     "power_w": 19.0,
+     "scan_dpi": 1200,
+     "weight_kg": 17.5,
+     "width_mm": 425.0
+    }
+   },
+   "ET-7700": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 46.0,
+     "paper_input": 1,
+     "power_w": 16.0,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-7750": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 47.0,
+     "paper_input": 10,
+     "power_w": 13.0,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-8500": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 369.0,
+     "duty_cycle": 16000,
+     "height_mm": 162.0,
+     "monthly_volume": 800,
+     "noise_db": 47.0,
+     "paper_input": 51,
+     "print_dpi": 5760,
+     "scan_dpi": 1200,
+     "weight_kg": 8.4,
+     "width_mm": 403.0
+    }
+   },
+   "ET-8550": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 379.0,
+     "duty_cycle": 16000,
+     "height_mm": 169.0,
+     "monthly_volume": 800,
+     "noise_db": 47.0,
+     "paper_input": 51,
+     "print_dpi": 5760,
+     "scan_dpi": 1200,
+     "weight_kg": 11.1,
+     "width_mm": 523.0
+    }
+   },
+   "ET-M1100": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 53.0,
+     "paper_input": 150
+    }
+   },
+   "ET-M1120": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 53.0,
+     "paper_input": 150
+    }
+   },
+   "ET-M1170": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 56.0,
+     "paper_input": 250
+    }
+   },
+   "ET-M1180": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 56.0,
+     "paper_input": 250
+    }
+   },
+   "ET-M2170": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 56.0,
+     "paper_input": 250,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-M3170": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 56.0,
+     "paper_input": 250,
+     "scan_dpi": 1200
+    }
+   },
+   "ET-M3180": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 56.0,
+     "paper_input": 250,
+     "scan_dpi": 1200
+    }
+   },
+   "WF-100": {
+    "checked": "2026-11-16",
+    "record": {
+     "duty_cycle": 500,
+     "max_paper": "A4",
+     "monthly_volume": 250,
+     "noise_db": 45.0,
+     "paper_input": 25,
+     "power_w": 11.0
+    }
+   },
+   "WF-2510": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "WF-2630": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 36.0,
+     "paper_input": 100,
+     "power_w": 11.0,
+     "scan_dpi": 1200
+    }
+   },
+   "WF-2650": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 45.0,
+     "paper_input": 150,
+     "power_w": 14.0,
+     "scan_dpi": 1200
+    }
+   },
+   "WF-2660": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 45.0,
+     "paper_input": 150,
+     "power_w": 14.0,
+     "scan_dpi": 1200
+    }
+   },
+   "WF-2750": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 45.0,
+     "paper_input": 150,
+     "power_w": 14.0,
+     "scan_dpi": 1200
+    }
+   },
+   "WF-2760": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 45.0,
+     "paper_input": 150,
+     "power_w": 14.0,
+     "scan_dpi": 1200
+    }
+   },
+   "WF-2810": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "paper_input": 100,
+     "scan_dpi": 1200
+    }
+   },
+   "WF-2830": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 300.0,
+     "height_mm": 218.0,
+     "max_paper": "A4",
+     "paper_input": 100,
+     "scan_dpi": 1200,
+     "weight_kg": 5.2,
+     "width_mm": 375.0
+    }
+   },
+   "WF-2850": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "paper_input": 100,
+     "scan_dpi": 1200
+    }
+   },
+   "WF-2910": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 300.0,
+     "height_mm": 170.0,
+     "max_paper": "A4",
+     "noise_db": 52.0,
+     "paper_input": 100,
+     "power_w": 12.0,
+     "scan_dpi": 1200,
+     "weight_kg": 4.4,
+     "width_mm": 375.0
+    }
+   },
+   "WF-2930": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 300.0,
+     "height_mm": 170.0,
+     "max_paper": "A4",
+     "noise_db": 52.0,
+     "paper_input": 100,
+     "power_w": 12.0,
+     "scan_dpi": 1200,
+     "weight_kg": 5.2,
+     "width_mm": 375.0
+    }
+   },
+   "WF-2950": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 300.0,
+     "height_mm": 218.0,
+     "max_paper": "A4",
+     "noise_db": 52.0,
+     "paper_input": 100,
+     "power_w": 12.0,
+     "scan_dpi": 1200,
+     "weight_kg": 5.3,
+     "width_mm": 375.0
+    }
+   },
+   "WF-2960": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 347.0,
+     "height_mm": 231.0,
+     "max_paper": "A4",
+     "noise_db": 54.0,
+     "paper_input": 150,
+     "power_w": 12.0,
+     "scan_dpi": 1200,
+     "weight_kg": 6.4,
+     "width_mm": 375.0
+    }
+   },
+   "WF-3620": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 53.0,
+     "paper_input": 250,
+     "power_w": 15.0,
+     "scan_dpi": 1200
+    }
+   },
+   "WF-3640": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 48.0,
+     "paper_input": 500,
+     "power_w": 18.0,
+     "scan_dpi": 1200
+    }
+   },
+   "WF-3820": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 379.0,
+     "height_mm": 249.0,
+     "max_paper": "A4",
+     "noise_db": 53.0,
+     "paper_input": 250,
+     "power_w": 15.0,
+     "scan_dpi": 1200,
+     "weight_kg": 8.8,
+     "width_mm": 425.0
+    }
+   },
+   "WF-3825": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 379.0,
+     "height_mm": 249.0,
+     "max_paper": "A4",
+     "noise_db": 53.0,
+     "paper_input": 250,
+     "power_w": 15.0,
+     "scan_dpi": 1200,
+     "weight_kg": 8.8,
+     "width_mm": 425.0
+    }
+   },
+   "WF-4630": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "WF-4640": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "WF-4720": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 378.0,
+     "height_mm": 249.0,
+     "max_paper": "A4",
+     "noise_db": 64.4,
+     "paper_input": 280,
+     "power_w": 15.0,
+     "scan_dpi": 1200,
+     "weight_kg": 9.1,
+     "width_mm": 425.0
+    }
+   },
+   "WF-4830": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 388.0,
+     "duty_cycle": 33000,
+     "height_mm": 330.0,
+     "max_paper": "A4",
+     "monthly_volume": 1600,
+     "noise_db": 53.0,
+     "paper_input": 500,
+     "power_w": 20.0,
+     "scan_dpi": 1200,
+     "weight_kg": 11.9,
+     "width_mm": 425.0
+    }
+   },
+   "WF-4835": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 388.0,
+     "duty_cycle": 33000,
+     "height_mm": 330.0,
+     "max_paper": "A4",
+     "monthly_volume": 1600,
+     "noise_db": 53.0,
+     "paper_input": 500,
+     "power_w": 20.0,
+     "scan_dpi": 1200,
+     "weight_kg": 11.9,
+     "width_mm": 425.0
+    }
+   },
+   "WF-5190": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 422.0,
+     "height_mm": 284.0,
+     "max_paper": "A4",
+     "noise_db": 34.0,
+     "paper_input": 250,
+     "power_w": 17.0,
+     "weight_kg": 10.9,
+     "width_mm": 461.0
+    }
+   },
+   "WF-5690": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 422.0,
+     "height_mm": 342.0,
+     "max_paper": "A4",
+     "noise_db": 34.0,
+     "paper_input": 250,
+     "power_w": 17.0,
+     "scan_dpi": 1200,
+     "weight_kg": 13.8,
+     "width_mm": 461.0
+    }
+   },
+   "WF-C20590": {
+    "checked": "2026-11-16",
+    "record": {
+     "adf_capacity": 100,
+     "duty_cycle": 400000,
+     "noise_db": 75.0,
+     "paper_input": 350,
+     "power_w": 180.0,
+     "print_dpi": 600,
+     "scan_dpi": 1200,
+     "weight_kg": 178.99
+    }
+   },
+   "WF-C5290": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 535.0,
+     "height_mm": 342.0,
+     "max_paper": "A4",
+     "noise_db": 54.0,
+     "paper_input": 330,
+     "power_w": 25.0,
+     "tec_kwh": 0.2,
+     "weight_kg": 11.4,
+     "width_mm": 425.0
+    }
+   },
+   "WF-C529R": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 535.0,
+     "duty_cycle": 50000,
+     "height_mm": 513.0,
+     "max_paper": "A4",
+     "noise_db": 52.0,
+     "paper_input": 750,
+     "paper_output": 150,
+     "power_w": 24.0,
+     "weight_kg": 11.4,
+     "width_mm": 425.0
+    }
+   },
+   "WF-C5390": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 535.0,
+     "duty_cycle": 5000,
+     "height_mm": 342.0,
+     "max_paper": "A4",
+     "noise_db": 54.0,
+     "paper_input": 2310,
+     "power_w": 25.0,
+     "tec_kwh": 0.17,
+     "weight_kg": 15.3,
+     "width_mm": 425.0
+    }
+   },
+   "WF-C5790": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 535.0,
+     "height_mm": 357.0,
+     "max_paper": "A4",
+     "noise_db": 54.0,
+     "paper_input": 330,
+     "power_w": 25.0,
+     "scan_dpi": 1200,
+     "tec_kwh": 0.2,
+     "weight_kg": 12.8,
+     "width_mm": 425.0
+    }
+   },
+   "WF-C579R": {
+    "checked": "2026-11-16",
+    "record": {
+     "adf_capacity": 35,
+     "depth_mm": 535.0,
+     "duty_cycle": 50000,
+     "height_mm": 513.0,
+     "max_paper": "A4",
+     "noise_db": 52.0,
+     "paper_input": 750,
+     "paper_output": 150,
+     "power_w": 29.0,
+     "scan_dpi": 1200,
+     "weight_kg": 25.8,
+     "width_mm": 425.0
+    }
+   },
+   "WF-C878R": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 656.0,
+     "height_mm": 768.0,
+     "noise_db": 51.0,
+     "paper_input": 330,
+     "paper_output": 250,
+     "power_w": 42.0,
+     "ppm_iso": 25,
+     "print_dpi": 4800,
+     "tec_kwh": 0.21,
+     "weight_kg": 63.4,
+     "width_mm": 621.0
+    }
+   },
+   "WF-C879R": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 751.0,
+     "height_mm": 837.0,
+     "noise_db": 51.0,
+     "paper_input": 400,
+     "paper_output": 250,
+     "power_w": 54.0,
+     "ppm_iso": 26,
+     "print_dpi": 4800,
+     "scan_dpi": 1200,
+     "tec_kwh": 0.27,
+     "weight_kg": 79.3,
+     "width_mm": 621.0
+    }
+   },
+   "WF-C879RTC": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "WF-M5299": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 535.0,
+     "height_mm": 357.0,
+     "max_paper": "A4",
+     "noise_db": 54.0,
+     "paper_input": 330,
+     "power_w": 25.0,
+     "tec_kwh": 0.2,
+     "weight_kg": 12.8,
+     "width_mm": 425.0
+    }
+   },
+   "WF-M5399": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 535.0,
+     "height_mm": 357.0,
+     "max_paper": "A4",
+     "noise_db": 54.0,
+     "paper_input": 330,
+     "power_w": 23.0,
+     "tec_kwh": 0.16,
+     "weight_kg": 14.9,
+     "width_mm": 425.0
+    }
+   },
+   "WF-M5799": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 535.0,
+     "height_mm": 357.0,
+     "max_paper": "A4",
+     "noise_db": 54.0,
+     "paper_input": 330,
+     "power_w": 25.0,
+     "scan_dpi": 1200,
+     "tec_kwh": 0.2,
+     "weight_kg": 12.8,
+     "width_mm": 425.0
+    }
+   },
+   "WF-M5899": {
+    "checked": "2026-11-16",
+    "record": {
+     "adf_capacity": 30,
+     "depth_mm": 535.0,
+     "height_mm": 357.0,
+     "max_paper": "A4",
+     "noise_db": 50.0,
+     "paper_input": 330,
+     "power_w": 25.0,
+     "scan_dpi": 1200,
+     "tec_kwh": 0.2,
+     "weight_kg": 19.1,
+     "width_mm": 425.0
+    }
+   },
+   "WF-R5190": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 435.0,
+     "duty_cycle": 45000,
+     "height_mm": 413.0,
+     "max_paper": "A4",
+     "noise_db": 52.0,
+     "paper_input": 500,
+     "paper_output": 150,
+     "power_w": 17.0,
+     "weight_kg": 24.25,
+     "width_mm": 664.0
+    }
+   },
+   "WF-R5690": {
+    "checked": "2026-11-16",
+    "record": {
+     "adf_capacity": 35,
+     "depth_mm": 656.0,
+     "duty_cycle": 45000,
+     "height_mm": 514.0,
+     "max_paper": "A4",
+     "noise_db": 52.0,
+     "paper_input": 500,
+     "paper_output": 150,
+     "power_w": 17.0,
+     "scan_dpi": 1200,
+     "weight_kg": 24.25,
+     "width_mm": 664.0
+    }
+   },
+   "WF-R8590": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 902.0,
+     "duty_cycle": 75000,
+     "height_mm": 689.0,
+     "noise_db": 50.0,
+     "paper_input": 1662,
+     "paper_output": 250,
+     "power_w": 40.0,
+     "ppm_iso": 24,
+     "print_dpi": 4800,
+     "scan_dpi": 1200,
+     "weight_kg": 53.5,
+     "width_mm": 768.0
+    }
+   },
+   "XP-15000": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A3",
+     "paper_input": 250,
+     "print_dpi": 5760
+    }
+   },
+   "XP-2100": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 300.0,
+     "height_mm": 146.0,
+     "noise_db": 46.0,
+     "paper_input": 60,
+     "print_dpi": 5760,
+     "scan_dpi": 1200,
+     "weight_kg": 4.0,
+     "width_mm": 390.0
+    }
+   },
+   "XP-2105": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 300.0,
+     "height_mm": 146.0,
+     "noise_db": 46.0,
+     "paper_input": 60,
+     "print_dpi": 5760,
+     "scan_dpi": 1200,
+     "weight_kg": 4.0,
+     "width_mm": 390.0
+    }
+   },
+   "XP-220": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 41.0,
+     "paper_input": 50,
+     "power_w": 11.0
+    }
+   },
+   "XP-2200": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 300.0,
+     "height_mm": 146.0,
+     "max_paper": "A4",
+     "noise_db": 49.0,
+     "paper_input": 50,
+     "power_w": 12.0,
+     "print_dpi": 5760,
+     "scan_dpi": 1200,
+     "weight_kg": 4.0,
+     "width_mm": 390.0
+    }
+   },
+   "XP-2205": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 300.0,
+     "height_mm": 146.0,
+     "max_paper": "A4",
+     "noise_db": 49.0,
+     "paper_input": 50,
+     "power_w": 12.0,
+     "print_dpi": 5760,
+     "scan_dpi": 1200,
+     "weight_kg": 4.0,
+     "width_mm": 390.0
+    }
+   },
+   "XP-235": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 44.0,
+     "paper_input": 50,
+     "power_w": 11.0
+    }
+   },
+   "XP-245": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 41.0,
+     "paper_input": 60,
+     "power_w": 12.0
+    }
+   },
+   "XP-3100": {
+    "checked": "2026-11-16",
+    "record": {
+     "paper_input": 120,
+     "scan_dpi": 1200
+    }
+   },
+   "XP-3105": {
+    "checked": "2026-11-16",
+    "record": {
+     "paper_input": 120,
+     "scan_dpi": 1200
+    }
+   },
+   "XP-320": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 36.0,
+     "paper_input": 100,
+     "power_w": 13.0
+    }
+   },
+   "XP-3200": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 300.0,
+     "height_mm": 146.0,
+     "max_paper": "A4",
+     "noise_db": 52.0,
+     "paper_input": 100,
+     "power_w": 12.0,
+     "print_dpi": 5760,
+     "scan_dpi": 1200,
+     "weight_kg": 4.0,
+     "width_mm": 390.0
+    }
+   },
+   "XP-4100": {
+    "checked": "2026-11-16",
+    "record": {
+     "paper_input": 120,
+     "scan_dpi": 1200
+    }
+   },
+   "XP-4105": {
+    "checked": "2026-11-16",
+    "record": {
+     "paper_input": 120,
+     "scan_dpi": 1200
+    }
+   },
+   "XP-420": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 37.0,
+     "paper_input": 100,
+     "power_w": 13.0
+    }
+   },
+   "XP-4200": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 300.0,
+     "height_mm": 146.0,
+     "max_paper": "A4",
+     "noise_db": 52.0,
+     "paper_input": 100,
+     "power_w": 12.0,
+     "print_dpi": 5760,
+     "scan_dpi": 1200,
+     "weight_kg": 4.0,
+     "width_mm": 390.0
+    }
+   },
+   "XP-4205": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 300.0,
+     "height_mm": 146.0,
+     "max_paper": "A4",
+     "noise_db": 52.0,
+     "paper_input": 100,
+     "power_w": 12.0,
+     "print_dpi": 5760,
+     "scan_dpi": 1200,
+     "weight_kg": 4.0,
+     "width_mm": 390.0
+    }
+   },
+   "XP-432": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 44.0,
+     "paper_input": 100,
+     "power_w": 12.0
+    }
+   },
+   "XP-442": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 44.0,
+     "paper_input": 100,
+     "power_w": 13.0
+    }
+   },
+   "XP-5100": {
+    "checked": "2026-11-16",
+    "record": {
+     "max_paper": "A4",
+     "noise_db": 51.0,
+     "paper_input": 150,
+     "power_w": 12.0,
+     "scan_dpi": 1200
+    }
+   },
+   "XP-5200": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 347.0,
+     "height_mm": 187.0,
+     "max_paper": "A4",
+     "noise_db": 54.0,
+     "paper_input": 150,
+     "power_w": 12.0,
+     "print_dpi": 4800,
+     "scan_dpi": 1200,
+     "weight_kg": 5.4,
+     "width_mm": 375.0
+    }
+   },
+   "XP-530": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 37.0,
+     "paper_input": 100,
+     "power_w": 15.0
+    }
+   },
+   "XP-540": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 37.0,
+     "paper_input": 100,
+     "power_w": 15.0
+    }
+   },
+   "XP-6000": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 47.0,
+     "paper_input": 120,
+     "power_w": 16.0
+    }
+   },
+   "XP-6100": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 47.0,
+     "paper_input": 120,
+     "power_w": 16.0
+    }
+   },
+   "XP-620": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 37.0,
+     "paper_input": 100,
+     "power_w": 18.0
+    }
+   },
+   "XP-630": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 37.0,
+     "paper_input": 100,
+     "power_w": 15.0
+    }
+   },
+   "XP-640": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 37.0,
+     "paper_input": 100,
+     "power_w": 15.0
+    }
+   },
+   "XP-720": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 37.0,
+     "paper_input": 100,
+     "power_w": 19.0
+    }
+   },
+   "XP-820": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 36.0,
+     "paper_input": 100,
+     "power_w": 20.0,
+     "scan_dpi": 4800,
+     "weight_kg": 8.4
+    }
+   },
+   "XP-8500": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 49.0,
+     "paper_input": 120,
+     "power_w": 16.0,
+     "scan_dpi": 1200,
+     "weight_kg": 6.7
+    }
+   },
+   "XP-860": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 37.0,
+     "paper_input": 100,
+     "power_w": 21.0,
+     "scan_dpi": 4800,
+     "weight_kg": 8.7
+    }
+   },
+   "XP-8600": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 49.0,
+     "paper_input": 120,
+     "power_w": 16.0,
+     "scan_dpi": 1200,
+     "weight_kg": 6.8
+    }
+   },
+   "XP-8700": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 527.0,
+     "height_mm": 184.0,
+     "max_paper": "A4",
+     "noise_db": 49.0,
+     "paper_input": 120,
+     "power_w": 16.0,
+     "print_dpi": 5760,
+     "scan_dpi": 1200,
+     "weight_kg": 6.8,
+     "width_mm": 349.0
+    }
+   },
+   "XP-900": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 50.0,
+     "paper_input": 100,
+     "power_w": 15.0,
+     "scan_dpi": 1200,
+     "weight_kg": 8.3
+    }
+   },
+   "XP-950": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "XP-960": {
+    "checked": "2026-11-16",
+    "record": {
+     "noise_db": 36.0,
+     "paper_input": 100,
+     "power_w": 17.0
+    }
+   },
+   "XP-970": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 356.0,
+     "height_mm": 148.0,
+     "max_paper": "A3",
+     "noise_db": 36.0,
+     "paper_input": 100,
+     "power_w": 17.0,
+     "print_dpi": 5760,
+     "scan_dpi": 1200,
+     "weight_kg": 8.7,
+     "width_mm": 479.0
+    }
+   }
+  },
   "hp-shop": {
    "1F3Y2A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 361.53,
      "duty_cycle": 3000,
@@ -19266,7 +21112,7 @@
     }
    },
    "1F3Y3A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 361.53,
      "duty_cycle": 3000,
@@ -19284,7 +21130,7 @@
     }
    },
    "1F3Y4A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 361.53,
      "duty_cycle": 3000,
@@ -19301,8 +21147,12 @@
      "width_mm": 434.66
     }
    },
+   "1TJ09A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
    "223N4B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 361.1,
      "duty_cycle": 1000,
@@ -19320,7 +21170,7 @@
     }
    },
    "223N5B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 361.1,
      "duty_cycle": 1000,
@@ -19338,11 +21188,11 @@
     }
    },
    "223R2B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "223R3B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 361.1,
      "duty_cycle": 1000,
@@ -19360,7 +21210,7 @@
     }
    },
    "223R4B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 361.1,
      "duty_cycle": 1000,
@@ -19378,23 +21228,23 @@
     }
    },
    "242P6B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "242Q0B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "26Q90B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "26Q93B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "28B54A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "duty_cycle": 5000,
      "first_page_s": 14.0,
@@ -19410,7 +21260,7 @@
     }
    },
    "28B55A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "duty_cycle": 5000,
      "first_page_s": 14.0,
@@ -19425,7 +21275,7 @@
     }
    },
    "28B75A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "duty_cycle": 5000,
@@ -19442,7 +21292,7 @@
     }
    },
    "28B76A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "duty_cycle": 5000,
      "first_page_s": 14.0,
@@ -19457,7 +21307,7 @@
     }
    },
    "28C02A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "duty_cycle": 6000,
@@ -19474,7 +21324,7 @@
     }
    },
    "28C03A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "duty_cycle": 6000,
@@ -19491,7 +21341,7 @@
     }
    },
    "2H1W1A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "duty_cycle": 3000,
      "first_page_s": 15.0,
@@ -19504,7 +21354,7 @@
     }
    },
    "2H1W2A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "duty_cycle": 3000,
      "first_page_s": 15.0,
@@ -19513,17 +21363,18 @@
      "paper_input": 150,
      "paper_output": 100,
      "ppm_iso": 12,
+     "print_dpi": 1200,
      "scan_dpi": 1200,
      "tec_kwh": 0.3,
      "weight_kg": 6.38
     }
    },
    "2H2N1B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "2H2P6B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 383.0,
      "duty_cycle": 1000,
@@ -19540,19 +21391,19 @@
     }
    },
    "2K4U7B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "2K4U8B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "2K4U9B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "2R7F3A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 285.0,
      "duty_cycle": 25000,
@@ -19571,7 +21422,7 @@
     }
    },
    "2R7F4A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 285.0,
      "duty_cycle": 25000,
@@ -19590,7 +21441,7 @@
     }
    },
    "2Z605F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 357.0,
      "duty_cycle": 80000,
@@ -19599,6 +21450,7 @@
      "monthly_volume": 4000,
      "paper_input": 350,
      "paper_output": 150,
+     "power_w": 495.0,
      "ppm_iso": 40,
      "print_dpi": 1200,
      "tec_kwh": 0.36,
@@ -19607,15 +21459,15 @@
     }
    },
    "2Z606E": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "2Z606F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "2Z622F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 390.0,
      "duty_cycle": 80000,
@@ -19633,7 +21485,7 @@
     }
    },
    "2Z623F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 50,
      "depth_mm": 390.0,
@@ -19644,6 +21496,7 @@
      "monthly_volume": 4000,
      "paper_input": 350,
      "paper_output": 150,
+     "power_w": 510.0,
      "ppm_iso": 40,
      "print_dpi": 1200,
      "scan_dpi": 1200,
@@ -19653,11 +21506,11 @@
     }
    },
    "2Z624F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "349V2B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 383.0,
      "duty_cycle": 1000,
@@ -19674,23 +21527,23 @@
     }
    },
    "349W0B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "381L0A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "381V0A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "381V1A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "3G629F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 50,
      "depth_mm": 398.2,
@@ -19708,11 +21561,11 @@
     }
    },
    "3G630E": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "3G630F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 50,
      "depth_mm": 398.2,
@@ -19723,6 +21576,7 @@
      "monthly_volume": 2500,
      "paper_input": 250,
      "paper_output": 150,
+     "power_w": 436.0,
      "ppm_iso": 33,
      "print_dpi": 1200,
      "scan_dpi": 300,
@@ -19732,7 +21586,7 @@
     }
    },
    "3G651F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 398.2,
      "duty_cycle": 50000,
@@ -19749,7 +21603,7 @@
     }
    },
    "3G652F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 398.2,
      "duty_cycle": 50000,
@@ -19759,34 +21613,54 @@
      "monthly_volume": 2500,
      "paper_input": 250,
      "paper_output": 150,
+     "power_w": 484.0,
      "ppm_iso": 33,
      "print_dpi": 1200,
      "weight_kg": 7.5,
      "width_mm": 367.0
     }
    },
+   "3YW73A": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 373.0,
+     "duty_cycle": 1000,
+     "first_page_s": 14.0,
+     "height_mm": 158.0,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 100,
+     "paper_output": 30,
+     "ppm_iso": 11,
+     "print_dpi": 1200,
+     "scan_dpi": 1200,
+     "tec_kwh": 0.13,
+     "weight_kg": 5.14,
+     "width_mm": 447.0
+    }
+   },
    "403X5B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "403X7B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "403X8B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "404M5B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "404M6B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "405U3B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 337.5,
      "duty_cycle": 20000,
@@ -19803,7 +21677,7 @@
     }
    },
    "405U7B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 337.5,
      "duty_cycle": 20000,
@@ -19820,18 +21694,18 @@
     }
    },
    "405U8B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "40Q45B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "depth_mm": 337.5,
      "duty_cycle": 20000,
      "first_page_s": 15.0,
      "height_mm": 233.0,
-     "max_paper": "A2",
+     "max_paper": "A4",
      "monthly_volume": 800,
      "paper_input": 225,
      "paper_output": 60,
@@ -19843,11 +21717,11 @@
     }
    },
    "40Q46B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "40Q47B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 337.5,
      "duty_cycle": 20000,
@@ -19864,7 +21738,7 @@
     }
    },
    "499M6A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 50,
      "depth_mm": 419.12,
@@ -19873,7 +21747,7 @@
      "height_mm": 341.32,
      "max_paper": "A4",
      "monthly_volume": 2500,
-     "paper_input": 2,
+     "paper_input": 250,
      "paper_output": 100,
      "power_w": 416.0,
      "ppm_iso": 25,
@@ -19885,7 +21759,7 @@
     }
    },
    "499Q6F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 419.12,
      "duty_cycle": 40000,
@@ -19903,7 +21777,7 @@
     }
    },
    "499Q7F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 419.12,
      "duty_cycle": 40000,
@@ -19921,7 +21795,7 @@
     }
    },
    "499Q8F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 50,
      "depth_mm": 419.12,
@@ -19930,7 +21804,7 @@
      "height_mm": 341.32,
      "max_paper": "A4",
      "monthly_volume": 2500,
-     "paper_input": 2,
+     "paper_input": 250,
      "paper_output": 100,
      "power_w": 416.0,
      "ppm_iso": 25,
@@ -19942,7 +21816,7 @@
     }
    },
    "499R0F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 419.12,
      "duty_cycle": 40000,
@@ -19960,7 +21834,7 @@
     }
    },
    "4A8D1A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 361.53,
      "duty_cycle": 3000,
@@ -19974,12 +21848,20 @@
      "width_mm": 434.66
     }
    },
+   "4PA41A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
    "4PA42A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "4QD21A": {
+    "checked": "2026-11-16",
     "record": {}
    },
    "4RA83F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 50,
      "depth_mm": 435.0,
@@ -19989,6 +21871,7 @@
      "monthly_volume": 4000,
      "paper_input": 300,
      "paper_output": 150,
+     "power_w": 585.0,
      "ppm_iso": 33,
      "print_dpi": 600,
      "scan_dpi": 1200,
@@ -19998,7 +21881,7 @@
     }
    },
    "4RA84F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 50,
      "depth_mm": 435.0,
@@ -20008,6 +21891,7 @@
      "monthly_volume": 4000,
      "paper_input": 300,
      "paper_output": 150,
+     "power_w": 585.0,
      "ppm_iso": 33,
      "print_dpi": 600,
      "scan_dpi": 1200,
@@ -20017,7 +21901,7 @@
     }
    },
    "4RA87F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 427.0,
      "duty_cycle": 50000,
@@ -20026,6 +21910,7 @@
      "monthly_volume": 4000,
      "paper_input": 300,
      "paper_output": 150,
+     "power_w": 580.0,
      "ppm_iso": 33,
      "print_dpi": 600,
      "tec_kwh": 0.37,
@@ -20034,7 +21919,7 @@
     }
    },
    "4RA88F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 427.0,
      "duty_cycle": 50000,
@@ -20043,6 +21928,7 @@
      "monthly_volume": 4000,
      "paper_input": 300,
      "paper_output": 150,
+     "power_w": 580.0,
      "ppm_iso": 33,
      "print_dpi": 600,
      "tec_kwh": 0.37,
@@ -20050,8 +21936,71 @@
      "width_mm": 421.0
     }
    },
+   "4RY22A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "4RY23A": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 293.4,
+     "duty_cycle": 25000,
+     "first_page_s": 7.6,
+     "height_mm": 211.0,
+     "max_paper": "A4",
+     "monthly_volume": 2500,
+     "paper_input": 150,
+     "paper_output": 100,
+     "power_w": 365.0,
+     "print_dpi": 600,
+     "weight_kg": 6.95,
+     "width_mm": 380.5
+    }
+   },
+   "4RY26A": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 293.4,
+     "duty_cycle": 20000,
+     "first_page_s": 7.6,
+     "height_mm": 287.0,
+     "max_paper": "A4",
+     "monthly_volume": 2500,
+     "paper_input": 150,
+     "paper_output": 100,
+     "power_w": 325.0,
+     "print_dpi": 600,
+     "scan_dpi": 600,
+     "weight_kg": 8.73,
+     "width_mm": 380.5
+    }
+   },
+   "4SB24A": {
+    "checked": "2026-11-16",
+    "record": {
+     "adf_capacity": 35,
+     "depth_mm": 373.0,
+     "duty_cycle": 1000,
+     "first_page_s": 14.0,
+     "height_mm": 198.0,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 100,
+     "paper_output": 30,
+     "ppm_iso": 11,
+     "print_dpi": 1200,
+     "scan_dpi": 1200,
+     "tec_kwh": 0.14,
+     "weight_kg": 6.19,
+     "width_mm": 449.0
+    }
+   },
+   "4SR29A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
    "4WF66A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "duty_cycle": 6000,
@@ -20066,8 +22015,104 @@
      "weight_kg": 7.7
     }
    },
+   "4ZB77A": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 215.0,
+     "duty_cycle": 10000,
+     "first_page_s": 8.3,
+     "height_mm": 178.0,
+     "max_paper": "A4",
+     "monthly_volume": 1500,
+     "paper_input": 150,
+     "paper_output": 100,
+     "power_w": 320.0,
+     "print_dpi": 1200,
+     "weight_kg": 4.16,
+     "width_mm": 331.0
+    }
+   },
+   "4ZB78A": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 215.0,
+     "duty_cycle": 10000,
+     "first_page_s": 8.3,
+     "height_mm": 178.0,
+     "max_paper": "A4",
+     "monthly_volume": 1500,
+     "paper_input": 150,
+     "paper_output": 100,
+     "power_w": 320.0,
+     "print_dpi": 1200,
+     "weight_kg": 4.16,
+     "width_mm": 331.0
+    }
+   },
+   "4ZB82A": {
+    "checked": "2026-11-16",
+    "record": {
+     "adf_capacity": 40,
+     "depth_mm": 359.6,
+     "duty_cycle": 10000,
+     "first_page_s": 8.3,
+     "height_mm": 253.0,
+     "max_paper": "A4",
+     "monthly_volume": 2000,
+     "paper_input": 150,
+     "paper_output": 100,
+     "print_dpi": 1200,
+     "weight_kg": 7.46,
+     "width_mm": 406.0
+    }
+   },
+   "4ZB83A": {
+    "checked": "2026-11-16",
+    "record": {
+     "adf_capacity": 40,
+     "depth_mm": 359.6,
+     "duty_cycle": 10000,
+     "first_page_s": 8.3,
+     "height_mm": 253.0,
+     "max_paper": "A4",
+     "monthly_volume": 2000,
+     "paper_input": 150,
+     "paper_output": 100,
+     "print_dpi": 1200,
+     "scan_dpi": 600,
+     "weight_kg": 7.46,
+     "width_mm": 406.0
+    }
+   },
+   "4ZB84A": {
+    "checked": "2026-11-16",
+    "record": {
+     "duty_cycle": 10000,
+     "max_paper": "A4",
+     "monthly_volume": 2000,
+     "paper_input": 150,
+     "paper_output": 100,
+     "power_w": 300.0,
+     "print_dpi": 1200,
+     "scan_dpi": 600,
+     "tec_kwh": 0.876
+    }
+   },
+   "4ZB94A": {
+    "checked": "2026-11-16",
+    "record": {
+     "duty_cycle": 20000,
+     "max_paper": "A4",
+     "monthly_volume": 500,
+     "paper_input": 150,
+     "paper_output": 50,
+     "power_w": 282.0,
+     "print_dpi": 600,
+     "tec_kwh": 0.873
+    }
+   },
    "4ZB95A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 309.0,
      "duty_cycle": 20000,
@@ -20086,7 +22131,7 @@
     }
    },
    "4ZB96A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 363.0,
      "duty_cycle": 20000,
@@ -20096,6 +22141,7 @@
      "monthly_volume": 500,
      "paper_input": 150,
      "paper_output": 50,
+     "power_w": 300.0,
      "ppm_iso": 18,
      "print_dpi": 600,
      "scan_dpi": 600,
@@ -20105,7 +22151,7 @@
     }
    },
    "4ZB97A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 40,
      "depth_mm": 363.0,
@@ -20116,6 +22162,7 @@
      "monthly_volume": 500,
      "paper_input": 150,
      "paper_output": 50,
+     "power_w": 300.0,
      "ppm_iso": 18,
      "print_dpi": 600,
      "scan_dpi": 600,
@@ -20125,43 +22172,43 @@
     }
    },
    "537P6B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "53N95B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "588K4B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "588K9B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "588Q0B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "588Q2B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "588R4B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "588R6B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "588S0B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "5D1B1A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 361.53,
      "duty_cycle": 3000,
@@ -20179,7 +22226,7 @@
     }
    },
    "5D1C0A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 361.53,
      "duty_cycle": 3000,
@@ -20196,8 +22243,16 @@
      "width_mm": 434.66
     }
    },
+   "5HG80A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "5HG93A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
    "5HH64F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 50,
      "depth_mm": 435.0,
@@ -20207,6 +22262,7 @@
      "monthly_volume": 4000,
      "paper_input": 300,
      "paper_output": 150,
+     "power_w": 585.0,
      "ppm_iso": 33,
      "print_dpi": 600,
      "scan_dpi": 1200,
@@ -20216,7 +22272,7 @@
     }
    },
    "5HX14A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "depth_mm": 373.0,
@@ -20236,15 +22292,15 @@
     }
    },
    "60K25A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "60K29B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "60K30B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 332.0,
      "duty_cycle": 1000,
@@ -20261,7 +22317,7 @@
     }
    },
    "6GW62F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 279.5,
      "duty_cycle": 20000,
@@ -20271,6 +22327,7 @@
      "monthly_volume": 2000,
      "paper_input": 150,
      "paper_output": 100,
+     "power_w": 420.0,
      "ppm_iso": 29,
      "print_dpi": 600,
      "tec_kwh": 0.224,
@@ -20279,7 +22336,7 @@
     }
    },
    "6GW99E": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 298.6,
      "duty_cycle": 20000,
@@ -20295,7 +22352,7 @@
     }
    },
    "6GW99F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 298.6,
      "duty_cycle": 20000,
@@ -20305,6 +22362,7 @@
      "monthly_volume": 2000,
      "paper_input": 150,
      "paper_output": 100,
+     "power_w": 453.0,
      "ppm_iso": 29,
      "print_dpi": 600,
      "tec_kwh": 0.255,
@@ -20313,7 +22371,7 @@
     }
    },
    "6GX00F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 40,
      "depth_mm": 308.0,
@@ -20324,6 +22382,7 @@
      "monthly_volume": 2000,
      "paper_input": 150,
      "paper_output": 100,
+     "power_w": 453.0,
      "ppm_iso": 29,
      "print_dpi": 600,
      "scan_dpi": 600,
@@ -20333,7 +22392,7 @@
     }
    },
    "6GX01F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 40,
      "depth_mm": 308.0,
@@ -20344,6 +22403,7 @@
      "monthly_volume": 2000,
      "paper_input": 150,
      "paper_output": 100,
+     "power_w": 453.0,
      "ppm_iso": 29,
      "print_dpi": 600,
      "scan_dpi": 600,
@@ -20353,15 +22413,15 @@
     }
    },
    "6W7E7A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "6W7E8A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "714J1B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 361.0,
      "duty_cycle": 1000,
@@ -20378,11 +22438,11 @@
     }
    },
    "714J2B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "714J3B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 361.0,
      "duty_cycle": 1000,
@@ -20399,19 +22459,19 @@
     }
    },
    "714L8B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "714L9B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "714N9B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "714P0B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "depth_mm": 361.0,
@@ -20430,7 +22490,7 @@
     }
    },
    "714P1B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "depth_mm": 361.0,
@@ -20448,28 +22508,46 @@
      "width_mm": 433.0
     }
    },
+   "7KW54A": {
+    "checked": "2026-11-16",
+    "record": {
+     "duty_cycle": 30000,
+     "max_paper": "A4",
+     "monthly_volume": 1500,
+     "paper_input": 150,
+     "paper_output": 100,
+     "power_w": 313.0,
+     "print_dpi": 600,
+     "scan_dpi": 1200,
+     "tec_kwh": 0.531
+    }
+   },
    "7KW56A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "7KW63A": {
+    "checked": "2026-11-16",
     "record": {}
    },
    "7KW64A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "7KW72A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "7KW74A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "7KW75A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "7MD66F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 189.0,
      "duty_cycle": 8000,
@@ -20479,6 +22557,7 @@
      "monthly_volume": 1000,
      "paper_input": 150,
      "paper_output": 100,
+     "power_w": 361.0,
      "ppm_iso": 20,
      "print_dpi": 600,
      "tec_kwh": 0.256,
@@ -20487,7 +22566,7 @@
     }
    },
    "7MD72F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 264.0,
      "duty_cycle": 8000,
@@ -20505,8 +22584,12 @@
      "width_mm": 360.0
     }
    },
+   "7ZU86A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
    "89F97B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 304.0,
      "duty_cycle": 1000,
@@ -20523,7 +22606,7 @@
     }
    },
    "89F98B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 304.0,
      "duty_cycle": 1000,
@@ -20541,7 +22624,7 @@
     }
    },
    "89F99B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 304.0,
      "duty_cycle": 1000,
@@ -20558,7 +22641,7 @@
     }
    },
    "8D7L0A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 419.12,
      "duty_cycle": 40000,
@@ -20575,7 +22658,7 @@
     }
    },
    "8J9K4F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 298.6,
      "duty_cycle": 20000,
@@ -20593,7 +22676,7 @@
     }
    },
    "8J9K9F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 279.5,
      "duty_cycle": 20000,
@@ -20611,7 +22694,7 @@
     }
    },
    "8J9L0F": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 279.5,
      "duty_cycle": 20000,
@@ -20629,31 +22712,31 @@
     }
    },
    "8X3D8A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "8X3E0A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "8X3E1A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "8X3F6A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "8X3F8A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "8X3G0A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "A24HMB": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 332.0,
      "duty_cycle": 1000,
@@ -20670,7 +22753,7 @@
     }
    },
    "A24HNB": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 332.0,
      "duty_cycle": 1000,
@@ -20687,7 +22770,7 @@
     }
    },
    "A24HPB": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "depth_mm": 332.0,
@@ -20706,7 +22789,7 @@
     }
    },
    "A24HVB": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 304.0,
      "duty_cycle": 1000,
@@ -20724,7 +22807,7 @@
     }
    },
    "A24HWB": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 304.0,
      "duty_cycle": 1000,
@@ -20739,7 +22822,7 @@
     }
    },
    "A24J8B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 304.0,
      "duty_cycle": 1000,
@@ -20756,8 +22839,32 @@
      "width_mm": 425.0
     }
    },
+   "A8P79A": {
+    "checked": "2026-11-16",
+    "record": {
+     "adf_capacity": 50,
+     "depth_mm": 465.0,
+     "duty_cycle": 75000,
+     "first_page_s": 8.0,
+     "height_mm": 508.0,
+     "max_paper": "A4",
+     "monthly_volume": 6000,
+     "paper_input": 600,
+     "paper_output": 250,
+     "power_w": 760.0,
+     "print_dpi": 1200,
+     "scan_dpi": 300,
+     "tec_kwh": 2.812,
+     "weight_kg": 22.3,
+     "width_mm": 465.0
+    }
+   },
+   "A8P80A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
    "AJ4W9B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "depth_mm": 332.0,
@@ -20775,7 +22882,7 @@
     }
    },
    "AJ4X0B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 304.0,
      "duty_cycle": 1000,
@@ -20793,7 +22900,7 @@
     }
    },
    "AJ4X9B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "depth_mm": 332.0,
@@ -20808,17 +22915,21 @@
      "width_mm": 428.0
     }
    },
+   "B5L23A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
    "B63JVB": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "depth_mm": 383.0,
      "duty_cycle": 1000,
      "first_page_s": 18.0,
      "height_mm": 190.5,
-     "max_paper": "A2",
+     "max_paper": "A4",
      "monthly_volume": 400,
-     "paper_input": 125,
+     "paper_input": 140,
      "paper_output": 60,
      "power_w": 14.0,
      "print_dpi": 1200,
@@ -20828,7 +22939,7 @@
     }
    },
    "B63K0B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "depth_mm": 383.0,
@@ -20845,14 +22956,14 @@
     }
    },
    "B63K5B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "depth_mm": 383.0,
      "duty_cycle": 1000,
      "first_page_s": 18.0,
      "height_mm": 233.0,
-     "max_paper": "A2",
+     "max_paper": "A4",
      "monthly_volume": 400,
      "paper_input": 125,
      "paper_output": 60,
@@ -20864,7 +22975,7 @@
     }
    },
    "B63K9B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "depth_mm": 383.0,
@@ -20881,7 +22992,7 @@
     }
    },
    "B6JW3B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "depth_mm": 383.0,
@@ -20898,7 +23009,7 @@
     }
    },
    "B6JX3B": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "depth_mm": 383.0,
@@ -20915,7 +23026,7 @@
     }
    },
    "CE710A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 599.0,
      "duty_cycle": 75000,
@@ -20923,7 +23034,7 @@
      "height_mm": 338.0,
      "max_paper": "A3",
      "monthly_volume": 5000,
-     "paper_input": 100,
+     "paper_input": 350,
      "paper_output": 250,
      "ppm_iso": 20,
      "print_dpi": 600,
@@ -20932,7 +23043,7 @@
     }
    },
    "CE711A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 599.0,
      "duty_cycle": 75000,
@@ -20949,7 +23060,7 @@
     }
    },
    "CE712A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 599.0,
      "duty_cycle": 75000,
@@ -20966,18 +23077,39 @@
     }
    },
    "CF069A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "CR768A": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 419.0,
+     "duty_cycle": 12000,
+     "first_page_s": 15.0,
+     "height_mm": 189.0,
+     "max_paper": "A4",
+     "monthly_volume": 800,
+     "paper_input": 250,
+     "paper_output": 75,
+     "ppm_iso": 15,
+     "print_dpi": 600,
+     "weight_kg": 8.5,
+     "width_mm": 585.0
+    }
+   },
+   "CZ272A": {
+    "checked": "2026-11-16",
     "record": {}
    },
    "CZ992A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 10,
      "depth_mm": 198.3,
      "duty_cycle": 500,
      "first_page_s": 13.0,
      "height_mm": 91.3,
-     "max_paper": "A2",
+     "max_paper": "A4",
      "monthly_volume": 300,
      "paper_input": 50,
      "ppm_iso": 10,
@@ -20988,13 +23120,13 @@
     }
    },
    "CZ993A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 186.0,
      "duty_cycle": 500,
      "first_page_s": 12.0,
      "height_mm": 69.0,
-     "max_paper": "A2",
+     "max_paper": "A4",
      "monthly_volume": 300,
      "paper_input": 50,
      "ppm_iso": 10,
@@ -21003,20 +23135,100 @@
      "width_mm": 364.0
     }
    },
+   "D9L20A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "D9L63A": {
+    "checked": "2026-11-16",
+    "record": {
+     "depth_mm": 420.0,
+     "duty_cycle": 30000,
+     "first_page_s": 9.0,
+     "height_mm": 203.0,
+     "max_paper": "A4",
+     "monthly_volume": 1500,
+     "paper_input": 250,
+     "paper_output": 150,
+     "ppm_iso": 22,
+     "print_dpi": 1200,
+     "tec_kwh": 0.22,
+     "weight_kg": 8.62,
+     "width_mm": 496.0
+    }
+   },
+   "E3E03A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "G3J47A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "G3Q34A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "G3Q35A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
    "G3Q46A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "G3Q47A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
+   "G3Q57A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "G3Q58A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "G3Q59A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "G3Q60A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "G3Q74A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "G3Q75A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "G3Q79A": {
+    "checked": "2026-11-16",
+    "record": {
+     "duty_cycle": 30000,
+     "max_paper": "A4",
+     "monthly_volume": 2500,
+     "paper_input": 260,
+     "paper_output": 150,
+     "power_w": 475.0,
+     "print_dpi": 1200,
+     "scan_dpi": 300,
+     "tec_kwh": 0.941
+    }
+   },
    "G5J38A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "J8H60A": {
+    "checked": "2026-11-16",
     "record": {}
    },
    "J8H61A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "depth_mm": 376.0,
      "duty_cycle": 100000,
@@ -21033,20 +23245,108 @@
      "width_mm": 418.0
     }
    },
+   "T0L45A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "T0L49A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "T6B60A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "T6B71A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "T6B82A": {
+    "checked": "2026-11-16",
+    "record": {
+     "adf_capacity": 50,
+     "depth_mm": 421.7,
+     "duty_cycle": 40000,
+     "first_page_s": 10.6,
+     "height_mm": 334.1,
+     "max_paper": "A4",
+     "monthly_volume": 2500,
+     "paper_input": 251,
+     "paper_output": 100,
+     "power_w": 342.0,
+     "print_dpi": 600,
+     "scan_dpi": 300,
+     "tec_kwh": 0.759,
+     "weight_kg": 18.7,
+     "width_mm": 420.0
+    }
+   },
    "W1A28A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "W1A29A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "W1A30A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "W1A52A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "W1A53A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "W1A56A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "W1A77A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "W1A78A": {
+    "checked": "2026-11-16",
     "record": {}
    },
    "W1A79A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {}
    },
    "W1A80A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "W1Y44A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "W1Y45A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "W2G50A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "W2G51A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "W2G54A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "W2G55A": {
+    "checked": "2026-11-16",
     "record": {}
    },
    "Y0F74A": {
-    "checked": "2026-11-15",
+    "checked": "2026-11-16",
     "record": {
      "adf_capacity": 35,
      "depth_mm": 373.0,
@@ -21060,6 +23360,14 @@
      "weight_kg": 6.19,
      "width_mm": 449.0
     }
+   },
+   "Y0S18A": {
+    "checked": "2026-11-16",
+    "record": {}
+   },
+   "Y0S19A": {
+    "checked": "2026-11-16",
+    "record": {}
    }
   },
   "hp.com": {},
@@ -98188,7 +100496,7 @@
   }
  },
  "report": {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "lookups": 0,
   "new": 0,
   "pending": 0,
@@ -98197,69 +100505,21 @@
     "found": 0,
     "status": "ok"
    },
-   "brother:BE": {
-    "detail": "www.brother.be refused the request (403)",
-    "status": "walled"
-   },
-   "brother:DE": {
-    "detail": "www.brother.de refused the request (403)",
-    "status": "walled"
-   },
-   "brother:FR": {
-    "detail": "www.brother.fr refused the request (403)",
-    "status": "walled"
-   },
-   "brother:GB": {
-    "detail": "www.brother.co.uk refused the request (403)",
-    "status": "walled"
+   "canon-asia:ALL": {
+    "found": 12,
+    "status": "ok"
    },
    "canon-uk:ALL": {
     "found": 0,
     "status": "ok"
    },
-   "epson:BE": {
-    "found": 376,
-    "status": "ok"
-   },
-   "epson:DE": {
-    "found": 473,
-    "status": "ok"
-   },
-   "epson:ES": {
-    "found": 472,
-    "status": "ok"
-   },
-   "epson:FR": {
-    "found": 474,
-    "status": "ok"
-   },
-   "epson:GB": {
-    "found": 505,
-    "status": "ok"
-   },
-   "epson:IT": {
-    "found": 470,
-    "status": "ok"
-   },
-   "epson:NL": {
-    "found": 459,
+   "epson-au:ALL": {
+    "found": 260,
     "status": "ok"
    },
    "hp-shop:ALL": {
-    "found": 31,
+    "found": 97,
     "status": "ok"
-   },
-   "hp.com:DE": {
-    "detail": "https://www.hp.com/de-de/shop/media/facets_url/products_url_de_de.txt: HTTPSConnectionPool(host='www.hp.com', port=443): Read timed out. (read timeout=30)",
-    "status": "error"
-   },
-   "hp.com:FR": {
-    "detail": "https://www.hp.com/fr-fr/shop/media/facets_url/products_url_fr_fr.txt: HTTPSConnectionPool(host='www.hp.com', port=443): Read timed out. (read timeout=30)",
-    "status": "error"
-   },
-   "hp.com:GB": {
-    "detail": "https://www.hp.com/gb-en/shop/media/facets_url/products_url_gb_en.txt: HTTPSConnectionPool(host='www.hp.com', port=443): Read timed out. (read timeout=30)",
-    "status": "error"
    },
    "icecat:ALL": {
     "found": 10990,
@@ -98268,48 +100528,14 @@
    "kyocera:ALL": {
     "found": 0,
     "status": "ok"
-   },
-   "lexmark:BE": {
-    "found": 570,
-    "status": "ok"
-   },
-   "lexmark:CH": {
-    "found": 558,
-    "status": "ok"
-   },
-   "lexmark:DE": {
-    "found": 589,
-    "status": "ok"
-   },
-   "lexmark:ES": {
-    "found": 588,
-    "status": "ok"
-   },
-   "lexmark:FR": {
-    "found": 593,
-    "status": "ok"
-   },
-   "lexmark:GB": {
-    "found": 598,
-    "status": "ok"
-   },
-   "lexmark:IT": {
-    "found": 584,
-    "status": "ok"
-   },
-   "lexmark:NL": {
-    "found": 525,
-    "status": "ok"
-   },
-   "lexmark:US": {
-    "found": 534,
-    "status": "ok"
    }
   }
  },
  "runs": {
-  "brother-support:ALL": "2026-11-15",
-  "canon-uk:ALL": "2026-11-15",
+  "brother-support:ALL": "2026-11-16",
+  "canon-asia:ALL": "2026-11-16",
+  "canon-uk:ALL": "2026-11-16",
+  "epson-au:ALL": "2026-11-16",
   "epson:BE": "2026-11-15",
   "epson:DE": "2026-11-15",
   "epson:ES": "2026-11-15",
@@ -98317,9 +100543,9 @@
   "epson:GB": "2026-11-15",
   "epson:IT": "2026-11-15",
   "epson:NL": "2026-11-15",
-  "hp-shop:ALL": "2026-11-15",
-  "icecat:ALL": "2026-11-15",
-  "kyocera:ALL": "2026-11-15",
+  "hp-shop:ALL": "2026-11-16",
+  "icecat:ALL": "2026-11-16",
+  "kyocera:ALL": "2026-11-16",
   "lexmark:BE": "2026-11-15",
   "lexmark:CH": "2026-11-15",
   "lexmark:DE": "2026-11-15",
