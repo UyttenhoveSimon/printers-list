@@ -559,6 +559,8 @@ def test_canon_asia_matches_model_codes_and_generations():
     slug = "imagerunner-advance-dx-4945i-4935i-4925i"
     assert canon_asia.codes_in_slug(slug) == ["4945i", "4935i", "4925i"]
     assert canon_asia.codes_in_name("Canon i-SENSYS LBP246dw II") == ["lbp246dwii"]
+    assert canon_asia.codes_in_slug("imageforce-1440") == []  # a copier range
+    assert canon_asia.codes_in_slug("as-2600") == []  # a calculator
     sitemap = (
         "<loc>https://sg.canon/en/business/imageclass-lbp246dw-ii/main/product</loc>"
         "<loc>https://sg.canon/en/consumer/pixma-g3010/main/product</loc>"

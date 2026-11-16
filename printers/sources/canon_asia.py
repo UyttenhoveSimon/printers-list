@@ -56,6 +56,8 @@ CODE = r"[a-z]{0,4}\d{3,5}[a-z]*"
 #: a code in a printer's name, with the generation that follows it ("MF275dw II")
 NAMED_CODE = re.compile(rf"\b({CODE})(?:\s+(II|III|IV))?\b", re.IGNORECASE)
 GENERATIONS = frozenset({"ii", "iii", "iv"})
+#: the first word of a printer's page name
+PRINTER_RANGES = frozenset({"pixma", "maxify", "imageclass", "i", "imagerunner"})
 ROW = re.compile(r"<tr>(.*?)</tr>", re.DOTALL)
 CELL = re.compile(r"<td[^>]*>(.*?)</td>", re.DOTALL)
 
@@ -69,8 +71,14 @@ def codes_in_name(name: str) -> list[str]:
 
 
 def codes_in_slug(slug: str) -> list[str]:
-    """The models a page covers: "imagerunner-advance-dx-4945i-4935i-4925i" is three."""
+    """The models a page covers: "imagerunner-advance-dx-4945i-4935i-4925i" is three.
+
+    Only a printer range's pages count: scanners, cameras and imageFORCE
+    copiers carry codes too ("imageforce-1440", "as-2600").
+    """
     codes: list[str] = []
+    if slug.split("-", maxsplit=1)[0] not in PRINTER_RANGES:
+        return codes
     for word in slug.split("-"):
         if word in GENERATIONS and codes:
             codes[-1] += word
