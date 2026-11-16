@@ -120,9 +120,9 @@ def check(args: argparse.Namespace) -> None:
     }
     for where, outcome in sorted(sources.items()):
         mark = "FAIL" if where in broken else outcome["status"]
-        print(
-            f"{mark:>7}  {where}  {outcome.get('detail') or outcome.get('found', '')}"
-        )
+        found = outcome.get("found", "")
+        detail = f"  ({outcome['detail']})" if outcome.get("detail") else ""
+        print(f"{mark:>7}  {where}  {found}{detail}")
     if broken:
         raise SystemExit(f"{len(broken)} source(s) broke: {', '.join(sorted(broken))}")
 

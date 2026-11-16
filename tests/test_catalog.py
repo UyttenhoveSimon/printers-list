@@ -450,7 +450,11 @@ def test_a_maker_page_that_does_not_parse_fails_alone(tmp_path, icecat, monkeypa
     enricher = FakeEnricher(error=ValueError("could not convert '.13.0'"))
     monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": (enricher,)})
     catalog, report = run(tmp_path, DAY, [index(Candidate("icecat", icecat_id=3))])
-    assert report.sources["fake-support:ALL"]["status"] == "error"
+    outcome = report.sources["fake-support:ALL"]
+    assert outcome["status"] == "error"
+    assert outcome["detail"] == (
+        "1 of 1 pages failed, first: HL-L2445DW: could not convert '.13.0'"
+    )
     assert "3" in catalog.products
 
 

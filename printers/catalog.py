@@ -329,7 +329,8 @@ class Catalog:
     ) -> None:
         """One maker's pages, at most ``ENRICH_PAGES`` read, the rest cached."""
         cache = self.state["caches"].setdefault(enricher.NAME, {})
-        budget, filled, failures = ENRICH_PAGES, 0, 0
+        budget, filled = ENRICH_PAGES, 0
+        failures: list[str] = []
         for product_id, product in self.products.items():
             key = gap_key(brand, enricher, product)
             if not key:
@@ -362,8 +363,9 @@ class Catalog:
                     record = enricher.enrich(reader, product) or {}
                 # a page laid out unexpectedly fails alone, not the whole run
                 except (FetchError, ValueError) as error:
-                    failures += 1
-                    logger.debug(f"{enricher.NAME} {key}: {error}")
+                    failures.append(f"{key}: {error}")
+                    # a warning, so a red run's log says what each site answered
+                    logger.warning(f"{enricher.NAME} {key}: {error}")
                     continue
                 entry = cache[key] = {
                     "checked": self.today.isoformat(),
@@ -372,10 +374,19 @@ class Catalog:
             if self.fill(product_id, enricher.NAME, entry["record"]):
                 filled += 1
         read = ENRICH_PAGES - budget
-        status = "error" if read and failures == read else "ok"
-        report.sources[f"{enricher.NAME}:ALL"] = {"status": status, "found": filled}
+        status = "error" if read and len(failures) == read else "ok"
+        outcome: dict[str, Any] = {"status": status, "found": filled}
+        if failures:
+            # kept in state.json's report, so a run can be analysed afterwards
+            outcome["detail"] = (
+                f"{len(failures)} of {read} pages failed, first: {failures[0]}"
+            )
+        report.sources[f"{enricher.NAME}:ALL"] = outcome
         self.state["runs"][f"{enricher.NAME}:ALL"] = self.today.isoformat()
-        logger.info(f"{enricher.NAME}: {read} pages read, {filled} printers filled")
+        logger.info(
+            f"{enricher.NAME}: {read} pages read, {len(failures)} failed, "
+            f"{filled} printers filled"
+        )
 
     # the run -----------------------------------------------------------------
 
