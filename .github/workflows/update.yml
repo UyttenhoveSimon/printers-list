@@ -100,4 +100,12 @@ jobs:
         with:
           enable-cache: true
       - run: uv sync --locked --no-dev
-      - run: uv run printers check
+      # on the run's page too, each failing source with its first error
+      - name: Check the sources
+        shell: bash
+        run: |
+          status=0
+          uv run printers check > check.txt 2>&1 || status=$?
+          cat check.txt
+          { echo '```'; cat check.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          exit "$status"
