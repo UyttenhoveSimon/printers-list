@@ -3,6 +3,7 @@
 import pytest
 import requests
 
+from printers.browser import Browser
 from printers.fetch import BotWallError, Fetcher, FetchError
 
 
@@ -82,3 +83,25 @@ def test_a_page_carrying_the_imperva_script_is_not_a_wall():
     blocked = Response(text="Request unsuccessful. Incapsula incident ID: 123")
     with pytest.raises(BotWallError):
         fetcher(blocked).text("https://a.example/")
+
+
+class EvictedResponse:
+    status = 200
+
+    def text(self):
+        raise RuntimeError("Request content was evicted from inspector cache")
+
+
+class RenderedPage:
+    def goto(self, url, timeout):
+        return EvictedResponse()
+
+    def content(self):
+        return "<html>rendered</html>"
+
+
+def test_the_browser_falls_back_to_the_page_when_chromium_drops_the_body():
+    """Fakes for rustwright's page: a redirect's body is often gone from its cache."""
+    browser = Browser(delay=0)
+    browser._page = RenderedPage()  # no Chromium in unit tests
+    assert browser.text("https://www.hp.com/x") == "<html>rendered</html>"

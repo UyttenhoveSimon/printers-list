@@ -76,7 +76,10 @@ class Browser:
             raise BotWallError(f"{host} refused the browser ({response.status})")
         if response.status >= FIRST_ERROR_STATUS:
             raise FetchError(f"{url}: HTTP {response.status}")
-        body = response.text()
+        try:
+            body = response.text()
+        except Exception:  # noqa: BLE001 - Chromium may evict a large or redirected body
+            body = self._page.content()
         for marker in BOT_WALL_MARKERS:
             if marker in body:
                 raise BotWallError(f"{host} served an anti-bot page ({marker})")
