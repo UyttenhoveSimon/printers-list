@@ -100744,7 +100744,7 @@
     "status": "walled"
    },
    "canon-asia:ALL": {
-    "found": 12,
+    "found": 0,
     "status": "ok"
    },
    "canon-uk:ALL": {
@@ -100752,6 +100752,7 @@
     "status": "ok"
    },
    "epson-au:ALL": {
+    "detail": "3 of 3 pages failed, first: WF-C5890: https://www.epson.com.au/products/BusinessPrinters/WorkforcePro_WF-C5890_Specs.asp?groupid=75&grouptypeid=46: HTTP 404",
     "found": 0,
     "status": "error"
    },
@@ -100784,6 +100785,7 @@
     "status": "ok"
    },
    "hp-shop:ALL": {
+    "detail": "7 of 7 pages failed, first: A58WHA: https://www.hp.com/in-en/shop/products/printers/hp-laser-mfp-323dnw-printer-a58wha-460: HTTP 500",
     "found": 0,
     "status": "error"
    },
