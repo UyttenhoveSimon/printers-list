@@ -11,6 +11,7 @@ from printers.sources import (
     all_sources,
     brother,
     brother_support,
+    canon_asia,
     canon_uk,
     epson,
     hp,
@@ -526,4 +527,43 @@ def test_hp_store_pages_are_tried_until_one_has_a_sheet():
     assert record is not None
     assert record["weight_kg"] == 6.95
     assert fetcher.calls[-2:] == [stale, live]
+
+
+def test_canon_asia_reads_an_inkjet_and_a_laser_page():
+    inkjet = canon_asia.spec_list(fixture_text("canon_asia_gx7170.html"))
+    assert canon_asia.specifications(inkjet) == {
+        "ppm_iso": 24,  # "Document (ESAT/Simplex): 24 / 15.5 ipm (Mono/Colour)"
+        "print_dpi": 600,
+        "paper_input": 350,  # rear tray and cassette, plain paper
+        "duty_cycle": 45000,
+        "weight_kg": 13.1,
+        "noise_db": 49.0,
+        "power_w": 21.0,
+        "scan_dpi": 1200,
+        "max_paper": "A4",
+        "width_mm": 399.0,
+        "depth_mm": 410.0,
+        "height_mm": 314.0,
+    }
+    laser = canon_asia.specifications(
+        canon_asia.spec_list(fixture_text("canon_asia_lbp246dw_ii.html"))
+    )
+    assert laser["ppm_black"] == 40
+    assert laser["paper_input"] == 350  # cassette and tray, not the option
+    assert laser["power_w"] == 480.0
+
+
+def test_canon_asia_matches_model_codes_and_generations():
+    assert canon_asia.codes_in_slug("imageclass-lbp246dw-ii") == ["lbp246dwii"]
+    slug = "imagerunner-advance-dx-4945i-4935i-4925i"
+    assert canon_asia.codes_in_slug(slug) == ["4945i", "4935i", "4925i"]
+    assert canon_asia.codes_in_name("Canon i-SENSYS LBP246dw II") == ["lbp246dwii"]
+    sitemap = (
+        "<loc>https://sg.canon/en/business/imageclass-lbp246dw-ii/main/product</loc>"
+        "<loc>https://sg.canon/en/consumer/pixma-g3010/main/product</loc>"
+    )
+    fetcher = FakeFetcher(dict.fromkeys(canon_asia.SITEMAPS, sitemap))
+    assert canon_asia.covers(fetcher, {"name": "Canon G3010"})
+    assert canon_asia.covers(fetcher, {"name": "Canon i-SENSYS LBP246dw II"})
+    assert not canon_asia.covers(fetcher, {"name": "Canon i-SENSYS LBP246dw"})
 

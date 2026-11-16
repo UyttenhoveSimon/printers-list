@@ -33,7 +33,7 @@ function value(key, v) {
 
 // the maker sites read for each brand: where "not on the maker's site" looked
 const MAKER_SITES = {
-  Epson: "epson.eu", Lexmark: "lexmark.com", HP: "hp.com", Canon: "canon.co.uk", KYOCERA: "kyoceradocumentsolutions.eu",
+  Epson: "epson.eu", Lexmark: "lexmark.com", HP: "hp.com", Canon: "canon.co.uk, sg.canon, in.canon", KYOCERA: "kyoceradocumentsolutions.eu",
 };
 
 function unlistedNote(p) {
@@ -323,9 +323,10 @@ const SOURCES = [
   { name: "hp-shop", url: "https://www.hp.com/gb-en/shop", label: "HP shops", gives: "source_hp_shop" },
   { name: "canon-uk", url: "https://www.canon.co.uk", label: "Canon UK", gives: "source_canon_uk" },
   { name: "kyocera", url: "https://www.kyoceradocumentsolutions.eu", label: "Kyocera", gives: "source_kyocera" },
+  { name: "canon-asia", url: "https://sg.canon", label: "Canon Asia", gives: "source_canon_asia" },
 ];
 
-const SOURCE_LABELS = { epson: "Epson", lexmark: "Lexmark", "brother-support": "Brother support", "hp-shop": "HP shop", "canon-uk": "Canon UK", kyocera: "Kyocera" };
+const SOURCE_LABELS = { epson: "Epson", lexmark: "Lexmark", "brother-support": "Brother support", "hp-shop": "HP shop", "canon-uk": "Canon UK", "canon-asia": "Canon Asia", kyocera: "Kyocera" };
 
 function renderSources() {
   const report = (data.report && data.report.sources) || {};
