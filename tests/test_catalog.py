@@ -353,7 +353,7 @@ def test_gaps_are_filled_from_the_support_site_and_cached(
     tmp_path, icecat, monkeypatch
 ):
     enricher = FakeEnricher({"weight_kg": 21.5, "noise_db": 47.0})
-    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": enricher})
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": (enricher,)})
     found = [index(Candidate("icecat", icecat_id=3))]
     catalog, report = run(tmp_path, DAY, found)
     assert catalog.products["3"]["weight_kg"] == 21.5
@@ -372,7 +372,7 @@ def test_gaps_are_filled_from_the_support_site_and_cached(
 
 def test_a_support_site_that_fails_is_reported(tmp_path, icecat, monkeypatch):
     enricher = FakeEnricher(error=FetchError("down"))
-    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": enricher})
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": (enricher,)})
     catalog, report = run(tmp_path, DAY, [index(Candidate("icecat", icecat_id=3))])
     assert report.sources["fake-support:ALL"]["status"] == "error"
     assert "weight_kg" not in catalog.products["3"]
@@ -408,7 +408,7 @@ def test_a_maker_that_needs_a_browser_is_read_only_through_it(
     tmp_path, icecat, monkeypatch
 ):
     enricher = BrowserEnricher({"weight_kg": 21.5})
-    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": enricher})
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": (enricher,)})
     found = [index(Candidate("icecat", icecat_id=3))]
     run(tmp_path, DAY, found)
     assert enricher.calls == []  # no browser in this run: skipped
@@ -426,7 +426,7 @@ class CoveringEnricher(FakeEnricher):
 
 def test_printers_a_maker_does_not_cover_cost_no_page(tmp_path, icecat, monkeypatch):
     enricher = CoveringEnricher({"weight_kg": 21.5})
-    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": enricher})
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": (enricher,)})
     monkeypatch.setattr(catalog_module, "ENRICH_PAGES", 1)
     found = [index(*(Candidate("icecat", icecat_id=i) for i in (1, 2, 3)))]
     catalog, _ = run(tmp_path, DAY, found)
@@ -441,14 +441,14 @@ class UnlistedEnricher(FakeEnricher):
 
 
 def test_a_maker_whose_page_list_fails_is_reported(tmp_path, icecat, monkeypatch):
-    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": UnlistedEnricher()})
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": (UnlistedEnricher(),)})
     _, report = run(tmp_path, DAY, [index(Candidate("icecat", icecat_id=3))])
     assert report.sources["fake-support:ALL"]["status"] == "error"
 
 
 def test_a_maker_page_that_does_not_parse_fails_alone(tmp_path, icecat, monkeypatch):
     enricher = FakeEnricher(error=ValueError("could not convert '.13.0'"))
-    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": enricher})
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": (enricher,)})
     catalog, report = run(tmp_path, DAY, [index(Candidate("icecat", icecat_id=3))])
     assert report.sources["fake-support:ALL"]["status"] == "error"
     assert "3" in catalog.products
@@ -491,12 +491,31 @@ def test_a_bare_sheet_joins_the_model_its_siblings_name(tmp_path):
 def test_a_maker_that_lists_its_pages_marks_the_printers_it_still_lists(
     tmp_path, icecat, monkeypatch
 ):
-    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": CoveringEnricher()})
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": (CoveringEnricher(),)})
     found = [index(*(Candidate("icecat", icecat_id=i) for i in (1, 3)))]
     catalog, _ = run(tmp_path, DAY, found)
     rows = {p["name"]: p for p in catalog.site()["printers"]}
     assert rows["Brother HL-L2445DW"]["maker_listed"] is True
     assert rows["Brother DCP-T430W"]["maker_listed"] is False
+
+
+class OtherSiteEnricher(FakeEnricher):
+    NAME = "fake-asia"
+
+    def covers(self, reader, product):
+        return product["name"].endswith("DCP-T430W")
+
+
+def test_a_printer_any_of_its_makers_sites_lists_is_listed(
+    tmp_path, icecat, monkeypatch
+):
+    enrichers = (CoveringEnricher(), OtherSiteEnricher())
+    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": enrichers})
+    found = [index(*(Candidate("icecat", icecat_id=i) for i in (1, 3)))]
+    catalog, _ = run(tmp_path, DAY, found)
+    rows = {p["name"]: p for p in catalog.site()["printers"]}
+    assert rows["Brother HL-L2445DW"]["maker_listed"] is True
+    assert rows["Brother DCP-T430W"]["maker_listed"] is True
 
 
 def test_epson_lists_a_model_whatever_sku_its_page_carries(tmp_path):
@@ -516,7 +535,9 @@ class PartialListEnricher(CoveringEnricher):
 def test_a_maker_listing_part_of_its_range_never_marks_absence(
     tmp_path, icecat, monkeypatch
 ):
-    monkeypatch.setattr(catalog_module, "ENRICHERS", {"Brother": PartialListEnricher()})
+    monkeypatch.setattr(
+        catalog_module, "ENRICHERS", {"Brother": (PartialListEnricher(),)}
+    )
     found = [index(*(Candidate("icecat", icecat_id=i) for i in (1, 3)))]
     catalog, _ = run(tmp_path, DAY, found)
     rows = {p["name"]: p for p in catalog.site()["printers"]}

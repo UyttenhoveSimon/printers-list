@@ -30,7 +30,14 @@ from typing import Any
 from . import icecat
 from .browser import Browser
 from .fetch import BotWallError, Fetcher, FetchError, Reader
-from .sources import Candidate, Source, brother_support, canon_uk, hp_shop, kyocera
+from .sources import (
+    Candidate,
+    Source,
+    brother_support,
+    canon_uk,
+    hp_shop,
+    kyocera,
+)
 from .specs import FILLABLE, SCHEMA, disagreements, office_copier, out_of_scope
 
 logger = logging.getLogger(__name__)
@@ -45,11 +52,11 @@ CHECKPOINT = 500
 #: Icecat lookups in flight at once, each with its own courtesy pause
 WORKERS = 4
 #: makers' sites that fill the gaps Icecat leaves, by brand
-ENRICHERS = {
-    "Brother": brother_support,
-    "HP": hp_shop,
-    "Canon": canon_uk,
-    "KYOCERA": kyocera,
+ENRICHERS: dict[str, tuple[ModuleType, ...]] = {
+    "Brother": (brother_support,),
+    "HP": (hp_shop,),
+    "Canon": (canon_uk,),
+    "KYOCERA": (kyocera,),
 }
 #: how long a maker page read for its gaps is trusted
 ENRICH_AGAIN_AFTER = timedelta(days=90)
@@ -273,34 +280,45 @@ class Catalog:
         A maker that refuses plain HTTP (``BROWSER``) is read through
         ``browser``, and skipped when the run has none.
         """
-        for brand, enricher in ENRICHERS.items():
-            reader: Reader = fetcher
-            if getattr(enricher, "BROWSER", False):
-                if browser is None:
-                    continue
-                reader = browser
-            self.mark_listed(brand, enricher, reader)
-            self.enrich_brand(brand, enricher, reader, report)
+        for brand, enrichers in ENRICHERS.items():
+            readers: list[tuple[ModuleType, Reader]] = []
+            for enricher in enrichers:
+                if not getattr(enricher, "BROWSER", False):
+                    readers.append((enricher, fetcher))
+                elif browser is not None:
+                    readers.append((enricher, browser))
+            self.mark_listed(brand, readers)
+            for enricher, reader in readers:
+                self.enrich_brand(brand, enricher, reader, report)
 
-    def mark_listed(self, brand: str, enricher: ModuleType, reader: Reader) -> None:
+    def mark_listed(self, brand: str, readers: list[tuple[ModuleType, Reader]]) -> None:
         """Note, for a maker that lists its pages, which printers it still lists.
 
-        A printer its maker no longer lists is likely discontinued, or sold
-        elsewhere under another code: the page says so. An unreadable list
-        leaves the marks of the last run.
+        A printer none of its maker's sites lists is likely discontinued, or
+        sold elsewhere under another code: the page says so. A list that
+        cannot be read leaves the marks of the last run, since a printer only
+        it lists would otherwise look unlisted.
         """
-        covers = getattr(enricher, "covers", None)
-        if covers is None:
-            return
-        lists_all = getattr(enricher, "LISTS_ALL", True)
-        try:
-            for product in self.products.values():
-                if product.get("brand") != brand:
-                    continue
-                listed = covers(reader, product)
-                product["maker_listed"] = listed or (False if lists_all else None)
-        except FetchError as error:
-            logger.warning(f"{enricher.NAME}: {error}")
+        marks: dict[str, bool] = {}
+        lists_all = False
+        for enricher, reader in readers:
+            # a maker may say what it lists apart from what it has pages for
+            covers = getattr(enricher, "listed", getattr(enricher, "covers", None))
+            if covers is None:
+                continue
+            try:
+                for product_id, product in self.products.items():
+                    if product.get("brand") == brand:
+                        listed = covers(reader, product)
+                        marks[product_id] = marks.get(product_id, False) or listed
+            except FetchError as error:
+                logger.warning(f"{enricher.NAME}: {error}")
+                return
+            lists_all = lists_all or getattr(enricher, "LISTS_ALL", True)
+        for product_id, listed in marks.items():
+            self.products[product_id]["maker_listed"] = listed or (
+                False if lists_all else None
+            )
 
     def enrich_brand(
         self, brand: str, enricher: ModuleType, reader: Reader, report: Report
