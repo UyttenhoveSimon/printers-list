@@ -57506,6 +57506,16 @@
    "id": 146169462,
    "reason": "Enterprise range"
   },
+  "icecat:146210009": {
+   "checked": "2026-11-23",
+   "id": 146210009,
+   "reason": ""
+  },
+  "icecat:146210010": {
+   "checked": "2026-11-23",
+   "id": 146210010,
+   "reason": ""
+  },
   "icecat:146240062": {
    "checked": "2026-11-15",
    "id": 146240062,
@@ -58256,6 +58266,11 @@
    "id": 14779168,
    "reason": ""
   },
+  "icecat:147912528": {
+   "checked": "2026-11-23",
+   "id": 147912528,
+   "reason": ""
+  },
   "icecat:147918685": {
    "checked": "2026-11-15",
    "id": 147918685,
@@ -58369,6 +58384,11 @@
   "icecat:14843558": {
    "checked": "2026-11-15",
    "id": 14843558,
+   "reason": ""
+  },
+  "icecat:148454678": {
+   "checked": "2026-11-23",
+   "id": 148454678,
    "reason": ""
   },
   "icecat:14846438": {
@@ -58639,6 +58659,11 @@
   "icecat:14962977": {
    "checked": "2026-11-15",
    "id": 14962977,
+   "reason": ""
+  },
+  "icecat:149633126": {
+   "checked": "2026-11-23",
+   "id": 149633126,
    "reason": ""
   },
   "icecat:14979423": {
@@ -59244,6 +59269,51 @@
   "icecat:15536205": {
    "checked": "2026-11-15",
    "id": 15536205,
+   "reason": ""
+  },
+  "icecat:155468009": {
+   "checked": "2026-11-23",
+   "id": 155468009,
+   "reason": ""
+  },
+  "icecat:155468011": {
+   "checked": "2026-11-23",
+   "id": 155468011,
+   "reason": ""
+  },
+  "icecat:155468016": {
+   "checked": "2026-11-23",
+   "id": 155468016,
+   "reason": "Enterprise range"
+  },
+  "icecat:155468020": {
+   "checked": "2026-11-23",
+   "id": 155468020,
+   "reason": "Enterprise range"
+  },
+  "icecat:155468021": {
+   "checked": "2026-11-23",
+   "id": 155468021,
+   "reason": ""
+  },
+  "icecat:155468024": {
+   "checked": "2026-11-23",
+   "id": 155468024,
+   "reason": "Enterprise range"
+  },
+  "icecat:155468026": {
+   "checked": "2026-11-23",
+   "id": 155468026,
+   "reason": "Enterprise range"
+  },
+  "icecat:155468027": {
+   "checked": "2026-11-23",
+   "id": 155468027,
+   "reason": ""
+  },
+  "icecat:155468028": {
+   "checked": "2026-11-23",
+   "id": 155468028,
    "reason": ""
   },
   "icecat:15551669": {
@@ -91186,6 +91256,11 @@
    "id": 76910006,
    "reason": ""
   },
+  "icecat:76910817": {
+   "checked": "2026-11-23",
+   "id": 76910817,
+   "reason": ""
+  },
   "icecat:76910818": {
    "checked": "2026-11-15",
    "id": 76910818,
@@ -100718,9 +100793,9 @@
   }
  },
  "report": {
-  "date": "2026-11-16",
-  "lookups": 0,
-  "new": 0,
+  "date": "2026-11-23",
+  "lookups": 15,
+  "new": 11,
   "pending": 0,
   "sources": {
    "brother-support:ALL": {
@@ -100802,7 +100877,7 @@
     "status": "error"
    },
    "icecat:ALL": {
-    "found": 10990,
+    "found": 11005,
     "status": "ok"
    },
    "kyocera:ALL": {
@@ -100848,29 +100923,29 @@
   }
  },
  "runs": {
-  "brother-support:ALL": "2026-11-16",
-  "canon-asia:ALL": "2026-11-16",
-  "canon-uk:ALL": "2026-11-16",
-  "epson-au:ALL": "2026-11-16",
-  "epson:BE": "2026-11-16",
-  "epson:DE": "2026-11-16",
-  "epson:ES": "2026-11-16",
-  "epson:FR": "2026-11-16",
-  "epson:GB": "2026-11-16",
-  "epson:IT": "2026-11-16",
-  "epson:NL": "2026-11-16",
-  "hp-shop:ALL": "2026-11-16",
-  "icecat:ALL": "2026-11-16",
-  "kyocera:ALL": "2026-11-16",
-  "lexmark:BE": "2026-11-16",
-  "lexmark:CH": "2026-11-16",
-  "lexmark:DE": "2026-11-16",
-  "lexmark:ES": "2026-11-16",
-  "lexmark:FR": "2026-11-16",
-  "lexmark:GB": "2026-11-16",
-  "lexmark:IT": "2026-11-16",
-  "lexmark:NL": "2026-11-16",
-  "lexmark:US": "2026-11-16"
+  "brother-support:ALL": "2026-11-23",
+  "canon-asia:ALL": "2026-11-23",
+  "canon-uk:ALL": "2026-11-23",
+  "epson-au:ALL": "2026-11-23",
+  "epson:BE": "2026-11-23",
+  "epson:DE": "2026-11-23",
+  "epson:ES": "2026-11-23",
+  "epson:FR": "2026-11-23",
+  "epson:GB": "2026-11-23",
+  "epson:IT": "2026-11-23",
+  "epson:NL": "2026-11-23",
+  "hp-shop:ALL": "2026-11-23",
+  "icecat:ALL": "2026-11-23",
+  "kyocera:ALL": "2026-11-23",
+  "lexmark:BE": "2026-11-23",
+  "lexmark:CH": "2026-11-23",
+  "lexmark:DE": "2026-11-23",
+  "lexmark:ES": "2026-11-23",
+  "lexmark:FR": "2026-11-23",
+  "lexmark:GB": "2026-11-23",
+  "lexmark:IT": "2026-11-23",
+  "lexmark:NL": "2026-11-23",
+  "lexmark:US": "2026-11-23"
  },
  "started": "2026-11-15"
 }
