@@ -44,10 +44,13 @@ jobs:
           ICECAT_USER: ${{ secrets.ICECAT_USER }}
           ICECAT_PASSWORD: ${{ secrets.ICECAT_PASSWORD }}
           ICECAT_KEY: ${{ secrets.ICECAT_KEY }}
+          # via env, not inlined in the script, so an input can't inject shell code
+          MAX_LOOKUPS: ${{ inputs.max_lookups || '4000' }}
+          MAX_PAGES: ${{ inputs.max_pages || '400' }}
         run: >-
           uv run printers update
-          --max-lookups "${{ inputs.max_lookups || '4000' }}"
-          --max-pages "${{ inputs.max_pages || '400' }}"
+          --max-lookups "$MAX_LOOKUPS"
+          --max-pages "$MAX_PAGES"
       - name: Commit the catalogue
         run: |
           git config user.name "github-actions[bot]"
