@@ -57,6 +57,8 @@ jobs:
           --max-lookups "$MAX_LOOKUPS"
           --max-pages "$MAX_PAGES"
       - name: Commit the catalogue
+        env:
+          GH_TOKEN: ${{ github.token }} # checkout keeps no credentials
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -65,7 +67,7 @@ jobs:
             echo "nothing new"
           else
             git commit -m "Refresh the printer catalogue"
-            git push
+            git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD
           fi
 
   deploy:
