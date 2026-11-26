@@ -58166,6 +58166,11 @@
    "id": 14757650,
    "reason": ""
   },
+  "icecat:147635709": {
+   "checked": "2026-11-26",
+   "id": 147635709,
+   "reason": ""
+  },
   "icecat:147656498": {
    "checked": "2026-11-15",
    "id": 147656498,
@@ -100793,9 +100798,9 @@
   }
  },
  "report": {
-  "date": "2026-11-23",
-  "lookups": 15,
-  "new": 11,
+  "date": "2026-11-26",
+  "lookups": 1,
+  "new": 1,
   "pending": 0,
   "sources": {
    "brother-support:ALL": {
@@ -100877,7 +100882,7 @@
     "status": "error"
    },
    "icecat:ALL": {
-    "found": 11005,
+    "found": 11003,
     "status": "ok"
    },
    "kyocera:ALL": {
@@ -100923,29 +100928,29 @@
   }
  },
  "runs": {
-  "brother-support:ALL": "2026-11-23",
-  "canon-asia:ALL": "2026-11-23",
-  "canon-uk:ALL": "2026-11-23",
-  "epson-au:ALL": "2026-11-23",
-  "epson:BE": "2026-11-23",
-  "epson:DE": "2026-11-23",
-  "epson:ES": "2026-11-23",
-  "epson:FR": "2026-11-23",
-  "epson:GB": "2026-11-23",
-  "epson:IT": "2026-11-23",
-  "epson:NL": "2026-11-23",
-  "hp-shop:ALL": "2026-11-23",
-  "icecat:ALL": "2026-11-23",
-  "kyocera:ALL": "2026-11-23",
-  "lexmark:BE": "2026-11-23",
-  "lexmark:CH": "2026-11-23",
-  "lexmark:DE": "2026-11-23",
-  "lexmark:ES": "2026-11-23",
-  "lexmark:FR": "2026-11-23",
-  "lexmark:GB": "2026-11-23",
-  "lexmark:IT": "2026-11-23",
-  "lexmark:NL": "2026-11-23",
-  "lexmark:US": "2026-11-23"
+  "brother-support:ALL": "2026-11-26",
+  "canon-asia:ALL": "2026-11-26",
+  "canon-uk:ALL": "2026-11-26",
+  "epson-au:ALL": "2026-11-26",
+  "epson:BE": "2026-11-26",
+  "epson:DE": "2026-11-26",
+  "epson:ES": "2026-11-26",
+  "epson:FR": "2026-11-26",
+  "epson:GB": "2026-11-26",
+  "epson:IT": "2026-11-26",
+  "epson:NL": "2026-11-26",
+  "hp-shop:ALL": "2026-11-26",
+  "icecat:ALL": "2026-11-26",
+  "kyocera:ALL": "2026-11-26",
+  "lexmark:BE": "2026-11-26",
+  "lexmark:CH": "2026-11-26",
+  "lexmark:DE": "2026-11-26",
+  "lexmark:ES": "2026-11-26",
+  "lexmark:FR": "2026-11-26",
+  "lexmark:GB": "2026-11-26",
+  "lexmark:IT": "2026-11-26",
+  "lexmark:NL": "2026-11-26",
+  "lexmark:US": "2026-11-26"
  },
  "started": "2026-11-15"
 }
