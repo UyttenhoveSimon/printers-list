@@ -12,6 +12,7 @@ import os
 import pytest
 
 from printers import icecat
+from printers.browser import Browser
 from printers.fetch import BotWallError, Fetcher, FetchError
 from printers.sources import KNOWN_WALLS, all_sources, epson, lexmark, pages
 
@@ -33,7 +34,11 @@ def test_source_lists_printers(source, market):
     if source.NAME == "icecat" and not os.environ.get("ICECAT_PASSWORD"):
         pytest.skip("needs an Icecat account")
     try:
-        found = source.discover(Fetcher(), market, {})
+        if getattr(source, "BROWSER", False):
+            with Browser() as browser:
+                found = source.discover(browser, market, {})
+        else:
+            found = source.discover(Fetcher(), market, {})
     except (BotWallError, FetchError) as error:
         if source.NAME in KNOWN_WALLS:
             pytest.xfail(str(error))

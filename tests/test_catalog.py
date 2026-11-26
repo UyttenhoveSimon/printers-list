@@ -419,6 +419,25 @@ def test_a_maker_that_needs_a_browser_is_read_only_through_it(
     assert catalog.products["3"]["weight_kg"] == 21.5
 
 
+def test_a_source_that_needs_a_browser_is_asked_only_through_it(tmp_path, icecat):
+    readers = []
+
+    def discover(reader, market, cache):
+        readers.append(reader)
+        return [Candidate("hp.com", icecat_id=3)]
+
+    hp = SimpleNamespace(
+        NAME="hp.com", MARKETS=("GB",), BROWSER=True, discover=discover
+    )
+    _, report = run(tmp_path, DAY, [hp])
+    assert readers == []  # no browser in this run: skipped, not failed
+    assert report.sources["hp.com:GB"]["status"] == "skipped"
+    browser = SimpleNamespace(text=lambda url: "")
+    report = Catalog(tmp_path, today=DAY).update(None, [hp], 100, browser)
+    assert readers == [browser]
+    assert report.sources["hp.com:GB"] == {"status": "ok", "found": 1}
+
+
 class CoveringEnricher(FakeEnricher):
     def covers(self, reader, product):
         return product["name"].endswith("HL-L2445DW")

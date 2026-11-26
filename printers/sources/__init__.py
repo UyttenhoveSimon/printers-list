@@ -8,9 +8,9 @@ and are compared with Icecat's otherwise. The sources overlap on purpose: a
 model missing from one is often in another.
 
 Left out, because they wall off plain HTTP clients with a 403: Canon's sites,
-Galaxus and Digitec. Amazon forbids automated access. hp.com and brother.* are
-kept, since they publish model lists, but they currently refuse non-browser
-clients; the run reports it and goes on.
+Galaxus and Digitec. Amazon forbids automated access. brother.* is kept, since
+it publishes model lists, but it currently refuses non-browser clients; the
+run reports it and goes on. hp.com is read through a browser.
 """
 
 from dataclasses import dataclass, field
@@ -19,7 +19,7 @@ from typing import Any, Protocol
 from ..fetch import Fetcher
 
 #: sources that refuse plain HTTP clients today: their failure is expected
-KNOWN_WALLS = frozenset({"hp.com", "brother"})
+KNOWN_WALLS = frozenset({"brother"})
 
 
 @dataclass(frozen=True)

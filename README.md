@@ -73,7 +73,7 @@ The page lists these sources too, at the bottom, with how each one answered in t
 | [Open Icecat](https://icecat.biz) product data sheets | Specifications, images, release and end-of-life dates, related cartridges with their brand | ✅ |
 | [epson.co.uk, .be, .nl, .fr, .de, .it, .es](https://www.epson.eu) | Epson's catalogue per country, with its spec sheets to cross-check Icecat | ✅ |
 | [lexmark.com](https://www.lexmark.com) (GB, BE, NL, FR, DE, CH, IT, ES, US) | Lexmark's printers and full specs; Lexmark is not in Open Icecat | ✅ |
-| [hp.com](https://www.hp.com) (GB, FR, DE) | HP's shop list | ⛔ refuses non-browser clients (HP is covered by Icecat) |
+| [hp.com](https://www.hp.com) (GB, FR, DE) | HP's shop list | ✅ read through headless Chromium, as hp.com answers only browsers |
 | [brother.*](https://www.brother.eu) (GB, BE, FR, DE) | Brother's support sitemap | ⛔ 403 (Brother is covered by Icecat) |
 | [support.brother.com](https://support.brother.com) | Brother's spec pages: weight, noise, paper trays and ADF size where Icecat leaves them empty | ✅ |
 | [HP's shops](https://www.hp.com/gb-en/shop) (GB, CA, IN, DE, CH, FR, ES, then Asia, Oceania and Latin America) | HP's spec sheets: speed, energy use, duty cycle and paper capacity where Icecat leaves them empty; read through headless Chromium, as hp.com answers browsers only. A SKU the European shops do not sell is looked up in HP's global product sitemap and read from Argentina, Chile, Colombia, Brazil, Singapore, Thailand... | ✅ |

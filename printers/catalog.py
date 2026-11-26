@@ -25,7 +25,7 @@ from dataclasses import dataclass, field
 from datetime import date, timedelta
 from pathlib import Path
 from types import ModuleType
-from typing import Any
+from typing import Any, cast
 
 from . import icecat
 from .browser import Browser
@@ -116,16 +116,33 @@ class Catalog:
     # discovery ---------------------------------------------------------------
 
     def discover(
-        self, fetcher: Fetcher, sources: list[Source], report: Report
+        self,
+        fetcher: Fetcher,
+        sources: list[Source],
+        report: Report,
+        browser: Browser | None = None,
     ) -> dict[str, list[Candidate]]:
-        """Ask every source about every market; a failure is reported, not fatal."""
+        """Ask every source about every market; a failure is reported, not fatal.
+
+        A source that refuses plain HTTP (``BROWSER``) is asked through
+        ``browser``, and skipped when the run has none.
+        """
         found: dict[str, list[Candidate]] = {}
         for source in sources:
+            needs_browser = getattr(source, "BROWSER", False)
+            # a browser source reads only what Browser offers: text(url)
+            reader = cast("Fetcher", browser) if needs_browser else fetcher
             cache = self.state["caches"].setdefault(source.NAME, {})
             for market in source.MARKETS:
                 where = f"{source.NAME}:{market}"
+                if needs_browser and browser is None:
+                    report.sources[where] = {
+                        "status": "skipped",
+                        "detail": "needs a browser",
+                    }
+                    continue
                 try:
-                    candidates = source.discover(fetcher, market, cache)
+                    candidates = source.discover(reader, market, cache)
                 except BotWallError as error:
                     report.sources[where] = {"status": "walled", "detail": str(error)}
                     logger.warning(f"{where}: {error}")
@@ -399,7 +416,7 @@ class Catalog:
     ) -> Report:
         report = Report()
         known_before = set(self.products)
-        found = self.discover(fetcher, sources, report)
+        found = self.discover(fetcher, sources, report, browser)
         # new models come first: refreshes only take what they leave
         first = sum(
             1
