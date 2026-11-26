@@ -93,3 +93,7 @@ include = ["tests/**"]
 
 [tool.ty.overrides.rules]
 invalid-argument-type = "ignore"
+
+[tool.uv]
+# skip releases younger than two weeks, like the Dependabot cooldown
+exclude-newer = "14 days"
