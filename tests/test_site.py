@@ -189,6 +189,17 @@ def hash_of(page):
     return page.evaluate("location.hash")
 
 
+def open_at(page, site, fragment):
+    """Open the site on a given URL fragment, as a visitor following a shared link.
+
+    Not `page.reload()`: rustwright never sees the reload finish and waits out
+    its 30 s timeout, whatever `wait_until` says. Leaving the page and coming
+    back is a fresh load that it reports at once.
+    """
+    page.goto("about:blank")
+    page.goto(f"{site}#{fragment}")
+
+
 def count(page):
     return page.text_content("#count")
 
@@ -416,8 +427,7 @@ def test_detail_shows_supplies_and_countries(page):
 
 
 def test_compare_two_printers(page, site):
-    page.goto(site + "#sort=name")
-    page.reload()
+    open_at(page, site, "sort=name")
     page.wait_for_selector(".card")
     page.check('input[data-compare="1000"]')
     assert page.is_visible("#tray")
@@ -441,8 +451,7 @@ def test_compare_two_printers(page, site):
 
 
 def test_url_restores_the_view(page, site):
-    page.goto(site + "#duplex_print=1&technology=inkjet&sort=fastest")
-    page.reload()
+    open_at(page, site, "duplex_print=1&technology=inkjet&sort=fastest")
     page.wait_for_selector(".card")
     assert count(page) == "20 of 64 printers"
     assert page.is_checked('input[data-key="duplex_print"]')
@@ -535,8 +544,7 @@ def test_the_default_years_are_stated_by_the_count(page):
 
 
 def test_older_years_from_the_url(page, site):
-    page.goto(site + "#year=2011")
-    page.reload()
+    open_at(page, site, "year=2011")
     page.wait_for_selector(".card")
     assert count(page) == "62 of 64 printers"
 
