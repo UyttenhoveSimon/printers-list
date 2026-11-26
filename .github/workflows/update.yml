@@ -85,7 +85,7 @@ jobs:
         with:
           path: _site
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   # the canary: fails the run when a source that used to answer stopped
   check:
