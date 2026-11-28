@@ -285,3 +285,11 @@ table { border-collapse: collapse; width: 100%; }
   .filters { display: none; }
   .filters.open { display: block; }
 }
+
+/* brand pages (printers build): every model in one plain table */
+.static { padding-block: 16px 48px; }
+.static h1 { font-size: 24px; margin: 8px 0; }
+.listing { font-size: 13px; }
+.listing th, .listing td { width: auto; white-space: nowrap; }
+.listing thead th { color: var(--muted); font-weight: 600; }
+.listing tbody th { color: inherit; font-weight: 500; }

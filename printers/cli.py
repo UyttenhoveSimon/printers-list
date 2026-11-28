@@ -8,6 +8,7 @@ import shutil
 from pathlib import Path
 
 from . import catalog as catalog_module
+from . import static
 from .browser import Browser
 from .catalog import Catalog
 from .fetch import Fetcher
@@ -71,6 +72,7 @@ def build(args: argparse.Namespace) -> None:
     for name, payload in (("printers.json", site), ("details.json", details)):
         text = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
         (out / name).write_text(text, encoding="utf-8")
+    static.write(out, site)
     bust_caches(out)
     print(f"site written to {out}: {len(site['printers'])} printers")
 
@@ -82,7 +84,7 @@ REFERENCES = (
     ("details.json", ("app.js",)),
     ("i18n.js", ("app.js",)),
     ("logic.js", ("app.js",)),
-    ("style.css", ("index.html",)),
+    ("style.css", ("index.html", "brands/*.html")),
     ("app.js", ("index.html",)),
 )
 
@@ -97,10 +99,9 @@ def bust_caches(out: Path) -> None:
     """
     for name, referrers in REFERENCES:
         version = hashlib.sha256((out / name).read_bytes()).hexdigest()[:10]
-        for referrer in referrers:
-            path = out / referrer
+        for path in (p for referrer in referrers for p in sorted(out.glob(referrer))):
             text = path.read_text(encoding="utf-8")
-            for quoted in (f'"{name}"', f'"./{name}"'):
+            for quoted in (f'"{name}"', f'"./{name}"', f'"../{name}"'):
                 text = text.replace(quoted, f'{quoted[:-1]}?v={version}"')
             path.write_text(text, encoding="utf-8")
 

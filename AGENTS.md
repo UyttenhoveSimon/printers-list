@@ -42,6 +42,7 @@ commit; it only checks files git tracks, so `git add` new files first.
 ```
 printers/
   cli.py            printers update | build | check; the lean list and details.json
+  static.py         what crawlers read: head tags, JSON-LD, brand pages, sitemap.xml, llms.txt
   catalog.py        the merge: lookups cache, sightings, availability, checks, the page's data
   icecat.py         Icecat JSON lookup and data-sheet mapping, consumables
   specs.py          the record's fields, number readers, SCHEMA, cross-check rules

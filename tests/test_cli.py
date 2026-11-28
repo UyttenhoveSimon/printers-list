@@ -52,6 +52,15 @@ def test_build_writes_the_site_with_compact_records(tmp_path):
     assert "fax" not in printer  # false flags are left out
     assert printer["url"].endswith("desc-7.html")
     assert site["updated"] == "2026-11-15"
+    # what crawlers read without running the script
+    assert '<link rel="canonical"' in page
+    assert '"@type": "Dataset"' in page
+    assert 'href="brands/hp.html"' in page
+    brand = (out / "brands" / "hp.html").read_text()
+    assert "HP Color LaserJet Pro 3202dw Printer" in brand
+    assert 'href="../style.css?v=' in brand
+    assert "brands/hp.html" in (out / "sitemap.xml").read_text()
+    assert "printers.json" in (out / "llms.txt").read_text()
 
 
 def test_update_with_no_source_selected(tmp_path, capsys):
