@@ -42,7 +42,7 @@ commit; it only checks files git tracks, so `git add` new files first.
 ```
 printers/
   cli.py            printers update | build | check; the lean list and details.json
-  static.py         what crawlers read: head tags, JSON-LD, brand pages, sitemap.xml, llms.txt
+  static.py         what crawlers read: head tags, JSON-LD, brand and model pages, sitemap.xml, llms.txt
   catalog.py        the merge: lookups cache, sightings, availability, checks, the page's data
   icecat.py         Icecat JSON lookup and data-sheet mapping, consumables
   specs.py          the record's fields, number readers, SCHEMA, cross-check rules
@@ -63,6 +63,7 @@ printers/
     hp.py, brother.py  model lists; both refuse non-browser clients today
 site/
   index.html        the shell; strings filled from i18n.js
+  preview.png       the image shown when a link to the page is shared
   app.js            the DOM: panel, cards, pager, comparison, detail, sources table
   logic.js          no DOM: filters, matching, sorts, URL state, pages (unit-tested)
   i18n.js           English, French, Dutch, German; country names from Intl

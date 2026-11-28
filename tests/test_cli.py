@@ -59,7 +59,17 @@ def test_build_writes_the_site_with_compact_records(tmp_path):
     brand = (out / "brands" / "hp.html").read_text()
     assert "HP Color LaserJet Pro 3202dw Printer" in brand
     assert 'href="../style.css?v=' in brand
-    assert "brands/hp.html" in (out / "sitemap.xml").read_text()
+    model = "models/hp-color-laserjet-pro-3202dw-printer.html"
+    assert f'href="../{model}"' in brand
+    detail = (out / model).read_text()
+    assert "The HP" in detail
+    assert '"@type": "Product"' in detail
+    assert "Two-sided printing</th><td>Yes" in detail  # label from i18n.js
+    assert 'href="../style.css?v=' in detail
+    sitemap = (out / "sitemap.xml").read_text()
+    assert "brands/hp.html" in sitemap
+    assert model in sitemap
+    assert 'property="og:image"' in page
     assert "printers.json" in (out / "llms.txt").read_text()
 
 

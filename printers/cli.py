@@ -68,11 +68,11 @@ def build(args: argparse.Namespace) -> None:
         record["id"]: {key: record[key] for key in DETAIL_FIELDS if record.get(key)}
         for record in site["printers"]
     }
-    site["printers"] = [lean(record) for record in site["printers"]]
+    static.write(out, site, details)
+    site = site | {"printers": [lean(record) for record in site["printers"]]}
     for name, payload in (("printers.json", site), ("details.json", details)):
         text = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
         (out / name).write_text(text, encoding="utf-8")
-    static.write(out, site)
     bust_caches(out)
     print(f"site written to {out}: {len(site['printers'])} printers")
 
@@ -84,7 +84,7 @@ REFERENCES = (
     ("details.json", ("app.js",)),
     ("i18n.js", ("app.js",)),
     ("logic.js", ("app.js",)),
-    ("style.css", ("index.html", "brands/*.html")),
+    ("style.css", ("index.html", "brands/*.html", "models/*.html")),
     ("app.js", ("index.html",)),
 )
 
